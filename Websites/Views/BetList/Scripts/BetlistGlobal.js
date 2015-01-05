@@ -1,0 +1,69 @@
+﻿function virtualHRPopup(sporttype, matchID, raceNo) {
+    try { parent.BlockUI(); } catch (e) { }
+    var URL = "";
+    var title = "";
+    var heightTmp = 0;
+    var widthTmp = 0;
+    var params = {
+        MatchID: matchID,
+        RaceNo: raceNo
+    };
+    switch (sporttype) {
+        case 181:
+            URL = "BetList/GetVirtualHRPopup?MatchID=" + matchID + "&RaceNo=" + raceNo;
+            title = "Virtual Horse Racing";
+            heightTmp = 200;
+            widthTmp = 750;
+            break;
+        case 182:
+            URL = "BetList/GetVirtualHRPopup?MatchID=" + matchID + "&RaceNo=" + raceNo;
+            title = "Virtual Greyhound";
+            heightTmp = 200;
+            widthTmp = 750;
+            break;
+        case 183:
+            URL = "BetList/GetVirtualHRPopup?MatchID=" + matchID + "&RaceNo=" + raceNo + "&sport=183";
+            title = "Virtual Speedway";
+            heightTmp = 200;
+            widthTmp = 750;
+            break;
+        case 184:
+            URL = "BetList/GetVirtualHRPopup?MatchID=" + matchID + "&RaceNo=" + raceNo;
+            title = "Virtual Motor Racing";
+            heightTmp = 200;
+            widthTmp = 750;
+            break;
+        case 185:
+            URL = "BetList/GetVirtualHRPopup?MatchID=" + matchID + "&RaceNo=" + raceNo + "&sport=185";
+            title = "Virtual Cycling";
+            heightTmp = 200;
+            widthTmp = 750;
+            break;
+        case 186:
+            URL = "BetList/GetVirtualTennisPopup?MatchID=" + matchID + "&RaceNo=" + raceNo;
+            title = "Tennis - Virtual Tennis";
+            heightTmp = 180;
+            widthTmp = 700;
+            break;
+    }
+
+    parent.OpenNextPopup("popupVirtualHR", window.rootUrl + URL, title, widthTmp, heightTmp, true, true, window, 2000, null, null);
+
+    try { parent.jQuery.unblockUI(); } catch (e) { }
+}
+
+
+function ViewTennisPopup(matchID, bettype, betId, leagueName) {
+    try { parent.BlockUI(); } catch (e) { }
+    URL = "BetList/GetTennisResult?matchid=" + matchID + "&bettype=" + bettype + "&betId=" + betId;
+
+    parent.OpenNextPopup("-TennisResult", window.rootUrl + URL, "Tennis", 945, 200, true, true, window, 2000, null, null);
+
+    try { parent.jQuery.unblockUI(); } catch (e) { }
+}
+
+
+function ViewIP(ip) {
+    //    window.open('http://anonym.to/?http://legacytools.dnsstuff.com/tools/ipall.ch?tool_id=67&token=&toolhandler_redirect=0&j=1&ip=' + ip);
+    window.open('http://www.iplocationfinder.com/' + ip);
+} 
