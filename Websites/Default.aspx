@@ -250,39 +250,52 @@
             SettingContent.processTemplate(rs);
             var arr;
             var sarr;
-
-
             var total = rs.length;
             if (total > 0) {
                 for (var i = 0; i < total; i++) //Top menu
                 {
-                    var mainid = rs[i].Id;
-                    if (rs[i].SubMenu != null && rs[i].SubMenu.length > 0) {
-                        var sub1 = rs[i].SubMenu;
-                        var total1 = sub1.length;
-                        arr = 'item_' + mainid;
-                        accMenu[arr] = new Array();
-                        for (var j = 0; j < total1; j++) {
-                            if (CheckIsMenuIgnore(sub1[j].Name) == false) {
-                                if (sub1[j].SubMenu == null || sub1[j].SubMenu.length == 0) {
-                                    accMenu[arr].push(sub1[j].Name + "|" + trimSpace(sub1[j].Url));
-                                }
-                                else {
-                                    accMenu[arr].push(sub1[j].Name + "|sMenu" + mainid + "_" + sub1[j].Id);
-                                    var sub2 = sub1[j].SubMenu;
-                                    var total2 = sub2.length;
-
-                                    sarr = 'sMenu' + mainid + "_" + sub1[j].Id;
-                                    subaccMenu[sarr] = new Array();
-                                    for (var z = 0; z < total2; z++) {
-                                        if (CheckIsMenuIgnore(sub2[z].Name) == false) {
-                                            subaccMenu[sarr].push(sub2[z].Name + "|" + trimSpace(sub2[z].Url));
-                                        }
+                    topMenu=rs[i];
+                    if (!CheckIsMenuIgnore(topMenu.Name)) {
+                        var mainid = topMenu.Id;
+                        if (topMenu.SubMenu != null && topMenu.SubMenu.length > 0) {
+                            var sub1 = topMenu.SubMenu;
+                            var total1 = sub1.length;
+                            arr = 'item_' + mainid;
+                            accMenu[arr] = new Array();
+                            for (var j = 0; j < total1; j++) {
+                                if (CheckIsMenuIgnore(sub1[j].Name) == false) {
+                                    if (sub1[j].SubMenu == null || sub1[j].SubMenu.length == 0) {
+                                        accMenu[arr].push(sub1[j].Name + "|" + trimSpace(sub1[j].Url));
                                     }
+                                    else {
+                                        accMenu[arr].push(sub1[j].Name + "|sMenu" + mainid + "_" + sub1[j].Id);
+                                        var sub2 = sub1[j].SubMenu;
+                                        var total2 = sub2.length;
 
+                                        sarr = 'sMenu' + mainid + "_" + sub1[j].Id;
+                                        subaccMenu[sarr] = new Array();
+                                        for (var z = 0; z < total2; z++) {
+                                            if (CheckIsMenuIgnore(sub2[z].Name) == false) {
+                                                subaccMenu[sarr].push(sub2[z].Name + "|" + trimSpace(sub2[z].Url));
+                                            }
+                                        }
+
+                                    }
                                 }
                             }
                         }
+                    }
+                }
+            }
+        }
+
+        function RemoveIgnoredMenu(rs) { 
+            var total = rs.length;
+            if (total > 0) {
+                for (var i = 0; i < total; i++) {
+                    topMenu=rs[i];
+                    if (!CheckIsMenuIgnore(topMenu.Name)) {
+                        
                     }
                 }
             }

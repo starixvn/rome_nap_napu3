@@ -523,6 +523,17 @@ namespace Sunplus.Accounting.DataAccess.AdoNet
             return listMenu;
         }
 
+        private bool isIgnoredMenu(string name)
+        {
+            string [] ignoredList = ConfigurationManager.AppSettings["ListIgnoreMenu"].ToString().Split(new Char[]{';'});
+            foreach (string menu in ignoredList)
+            {
+                if (menu.Equals(name))
+                    return true;
+            }
+            return false;
+        }
+
         public List<MenuBO> ManageMenuGetMenuList(string system)
         {
             var listMenu = new List<MenuBO>();
@@ -813,23 +824,25 @@ namespace Sunplus.Accounting.DataAccess.AdoNet
             var sid = new Random();
             foreach (DataRow row in rows)
             {
-                var menuItem = new MenuBO();
-                menuItem.Id = int.Parse(row["MenuId"].ToString());
-                menuItem.Name = row["Menu"].ToString();
-                var url = row["Url"].ToString();
-                menuItem.Url = (url.ToLower().IndexOf("crm") != -1) ? url + "?sid=" + sid.NextDouble() : url;
-                menuItem.System = row["System"].ToString();
-                menuItem.ParentId = CastAide.AsInt32(row["ParentId"]);
-                menuItem.FunctionName = CastAide.AsString(row["funcname"]);
-                menuItem.Target = CastAide.AsString(row["Target"]);
-                menuItem.IsHide = CastAide.AsBoolean(row["IsHide"]);
-                menuItem.Order = CastAide.AsInt32(row["Order"]);
-                var listSubMenu = new List<MenuBO>();
-                RecursionMenu(dt, ref listSubMenu, menuItem.Id);
-                menuItem.SubMenu = listSubMenu;
-
-
-                listMenu.Add(menuItem);
+                if (!isIgnoredMenu(row["Menu"].ToString()))
+                {
+                    var menuItem = new MenuBO();
+               
+                    menuItem.Id = int.Parse(row["MenuId"].ToString());
+                    menuItem.Name = row["Menu"].ToString();
+                    var url = row["Url"].ToString();
+                    menuItem.Url = (url.ToLower().IndexOf("crm") != -1) ? url + "?sid=" + sid.NextDouble() : url;
+                    menuItem.System = row["System"].ToString();
+                    menuItem.ParentId = CastAide.AsInt32(row["ParentId"]);
+                    menuItem.FunctionName = CastAide.AsString(row["funcname"]);
+                    menuItem.Target = CastAide.AsString(row["Target"]);
+                    menuItem.IsHide = CastAide.AsBoolean(row["IsHide"]);
+                    menuItem.Order = CastAide.AsInt32(row["Order"]);
+                    var listSubMenu = new List<MenuBO>();
+                    RecursionMenu(dt, ref listSubMenu, menuItem.Id);
+                    menuItem.SubMenu = listSubMenu;
+                    listMenu.Add(menuItem);
+                }
             }
         }
 
