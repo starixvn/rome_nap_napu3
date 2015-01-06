@@ -60,7 +60,7 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
                 CanEditCredit = _customerSettingService.CheckPermissionEditCredit(),
                 IsDisplaySportbooks = isDisplaySportbooks
             };
-            return View(isDisplaySportbooks ? "~/Views/Customer/CreditCustomer/EditAgent.cshtml" : "~/Views/Customer/NumberGameSetting/EditAgent.cshtml", customerSettingView);
+            return View("~/Views/Customer/CreditCustomer/EditAgent.cshtml", customerSettingView);
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
         /// <returns>Return a result message</returns>
         [AuthenticateHost]
         [HttpPost]
-        public JsonResult DoEditAgent(string stringcustomer, RequestContext currentContext, bool isUpdateAllMembers, float newPositionTakingValue, bool isDisplaySportbooks = true)
+        public JsonResult DoEditAgent(string stringcustomer, RequestContext currentContext, bool isUpdateAllMembers, float newPositionTakingValue)
         {
             Fanex.PTEngine.BusinessObjects.Result result;
             try
@@ -116,7 +116,7 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
                 currentContext.AdminId = AppSession.AccId;
                 currentContext.IP = System.Web.HttpContext.Current.Request.UserHostAddress;
                 customer.Language = "E";
-                result = isDisplaySportbooks ? _customerService.MasterUpdateAgent(customer, currentContext, isUpdateAllMembers, (decimal)newPositionTakingValue) : _customerService.MasterUpdateMultipleAgents(customer, currentContext, isUpdateAllMembers, (decimal)newPositionTakingValue, updateParameters);
+                result = _customerService.MasterUpdateMultipleAgents(customer, currentContext, isUpdateAllMembers, (decimal)newPositionTakingValue, updateParameters);
                 // format template of error message
                 int tempErrorCode = 0;
                 string tempErrorMessage = "";
