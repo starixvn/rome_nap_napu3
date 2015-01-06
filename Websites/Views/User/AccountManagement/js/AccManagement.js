@@ -1,4 +1,5 @@
 ﻿var accManager = {
+    u3GroupId: 125
 };
 
 accManager.init = function () {
@@ -55,7 +56,7 @@ accManager.tabs = {
             $("#divDeptFilter").hide();
             $("#divAccPath").hide();
             $("#divAccFilter").show();
-            window.accManager.accounts.deptId = 125;
+            window.accManager.accounts.deptId = accManager.u3GroupId;
             window.accManager.accounts.vmFiltering = null;
             window.accManager.accounts.pageIndex = 0;
             window.accManager.accounts.renderGrid(window.accManager.accounts.concatVM4Paging());
@@ -74,7 +75,7 @@ accManager.tabs = {
         $("#divDeptFilter").hide();
         $("#divAccPath").hide();
         $("#divAccFilter").show();
-        window.accManager.accounts.deptId = 125;
+        window.accManager.accounts.deptId = accManager.u3GroupId;
         window.accManager.accounts.vmFiltering = null;
         window.accManager.accounts.pageIndex = 0;
         window.accManager.accounts.renderGrid(window.accManager.accounts.concatVM4Paging());
@@ -86,7 +87,7 @@ accManager.accounts = {
     height: 750,
     pageIndex: 0,
     pageSize: 100,
-    deptId: 0,
+    deptId: 125,
     AllFuncIds: [],
     getValueOfFuncId: function (arrPolicies, funcId) {
         for (var i = 0; i < arrPolicies.length; ++i) {
@@ -233,8 +234,8 @@ accManager.accounts = {
                 ({
                     content: $("#userPolicyGrid"),
                     title: "Account: " + userName,
-                    width: 839,
-                    height: 462,
+                    width: 639,
+                    height: 452,
                     buttons: [{
                         "text": "Update",
                         callback: function (popuid) {
@@ -277,7 +278,7 @@ accManager.accounts = {
         });
     },
     bindDataPolicy: function (table) {
-        var width = 775;
+        var width = 570;
         var height = 343;
         $("#scriptTempalteUserPolicy").tmpl(this.buildTableTree(table)).appendTo($("#tbodyUserPol").empty());
         $("#tbodyUserPol").find("tr").each(function () {
@@ -311,7 +312,7 @@ accManager.accounts = {
         return isHaveOneChecked;
     },
     initGridUserPolEvent: function () {
-        var width = 775;
+        var width = 570;
         var height = 343;
         $("#tbodyUserPol").find("tr").each(function () {
             $(this).mouseover(function () {
@@ -597,7 +598,7 @@ accManager.accounts = {
         var firstName = $("#tbxFirstNameNewAcc").val();
         var lastName = $("#tbxLastNameNewAcc").val();
         var password = $("#tbxPassNewAcc").val();
-        var deptId = 125; //Hardcode for Unit 3 only
+        //var deptId = 125; //Hardcode for Unit 3 only
 
         if (accManager.utils.isEmpty(userName)) {
             accManager.utils.showErr("Please input Username!");
@@ -638,7 +639,7 @@ accManager.accounts = {
             userName: userName,
             firstName: accManager.utils.encodeSpecifiedCharacter(firstName),
             lastName: accManager.utils.encodeSpecifiedCharacter(lastName),
-            groupId: deptId,
+            groupId: accManager.u3GroupId,
             password: password
         };
 
@@ -949,15 +950,15 @@ accManager.accounts = {
 
         var colFirstName = $(target).parents("tr:first").find("div[firstname]").hide();
         var colLastName = $(target).parents("tr:first").find("div[lastname]").hide();
-        var colDept = $(target).parents("tr:first").find("div[dept]").hide();
+        //var colDept = $(target).parents("tr:first").find("div[dept]").hide();
 
         colFirstName.parent().append("<input type='text' style='width:196px' editor='true' firstname='true' />").find("input[editor]").val(accManager.utils.decodeSpecifiedCharacter(accManager.utils.trimStartEnd(colFirstName.html())));
         colLastName.parent().append("<input type='text' style='width:196px' editor='true' lastname='true' />").find("input[editor]").val(accManager.utils.decodeSpecifiedCharacter(accManager.utils.trimStartEnd(colLastName.html())));
 
-        var arr = jlinq.from(window.viewModel.Accounts).equals("Id", id).select();
-        if (arr.length > 0) {
-            colDept.parent().append(this.createDeptDropDownBox()).find("select").val(arr[0].DeptId);
-        }
+        //        var arr = jlinq.from(window.viewModel.Accounts).equals("Id", id).select();
+        //        if (arr.length > 0) {
+        //            colDept.parent().append(this.createDeptDropDownBox()).find("select").val(arr[0].DeptId);
+        //        }
 
         $(target).parents("tr:first").find("img[alt='Edit']").hide();
         $(target).parents("tr:first").find("img[alt='Save']").show();
@@ -974,7 +975,7 @@ accManager.accounts = {
         $(target).parents("tr:first").find("select[editor]").remove();
         $(target).parents("tr:first").find("div[firstname]").show();
         $(target).parents("tr:first").find("div[lastname]").show();
-        $(target).parents("tr:first").find("div[dept]").show();
+        //$(target).parents("tr:first").find("div[dept]").show();
 
         $(target).parents("tr:first").find("img[alt='Edit']").show();
         $(target).parents("tr:first").find("img[alt='Save']").hide();
@@ -1001,7 +1002,7 @@ accManager.accounts = {
         });
         params.push({
             "Name": "groupid",
-            "Value": tr.find("select[editor]").val()
+            "Value": accManager.u3GroupId
         });
         params.push({
             "Name": "firstname",

@@ -10,6 +10,7 @@ using System.Collections;
 using Fanex.Tarus.Entities;
 using Sunplus.Accounting.Entities;
 using DNAide.Core;
+using System.Configuration;
 
 namespace Fanex.Tarus.User.DataAccess.Sql
 {
@@ -28,6 +29,9 @@ namespace Fanex.Tarus.User.DataAccess.Sql
         {
             using (var objDb = new ObjectDb("AdminSelByGroupID"))
             {
+                var param = new Hashtable();
+                param.Add("groupid", Convert.ToInt32(ConfigurationManager.AppSettings["U3GroupId"]));
+                objDb.AssignParamValues(param);
                 var dataSet = objDb.ExecuteDataSet();
                 return dataSet.Tables.Count > 0 ? dataSet.Tables[0] : null;
             }
