@@ -55,7 +55,7 @@ accManager.tabs = {
             $("#divDeptFilter").hide();
             $("#divAccPath").hide();
             $("#divAccFilter").show();
-            window.accManager.accounts.deptId = 0;
+            window.accManager.accounts.deptId = 125;
             window.accManager.accounts.vmFiltering = null;
             window.accManager.accounts.pageIndex = 0;
             window.accManager.accounts.renderGrid(window.accManager.accounts.concatVM4Paging());
@@ -65,6 +65,19 @@ accManager.tabs = {
             $("#divAccFilter").hide();
             $("#divMainHeader").height(30);
         });
+    },
+    viewAllAccount: function () {
+        $("#divHeaderUserName").removeClass("asc").removeClass("desc");
+        $("#txtSearchAcc").val("");
+        $("#listAlpha").val("All");
+        $("#divMainHeader").height(61);
+        $("#divDeptFilter").hide();
+        $("#divAccPath").hide();
+        $("#divAccFilter").show();
+        window.accManager.accounts.deptId = 125;
+        window.accManager.accounts.vmFiltering = null;
+        window.accManager.accounts.pageIndex = 0;
+        window.accManager.accounts.renderGrid(window.accManager.accounts.concatVM4Paging());
     }
 };
 
@@ -584,7 +597,7 @@ accManager.accounts = {
         var firstName = $("#tbxFirstNameNewAcc").val();
         var lastName = $("#tbxLastNameNewAcc").val();
         var password = $("#tbxPassNewAcc").val();
-        var deptId = $("#selDeptNewAcc").val();
+        var deptId = 125; //Hardcode for Unit 3 only
 
         if (accManager.utils.isEmpty(userName)) {
             accManager.utils.showErr("Please input Username!");
@@ -616,10 +629,10 @@ accManager.accounts = {
             return;
         }
 
-        if (deptId == "0") {
-            accManager.utils.showErr("Please choice department!");
-            return;
-        }
+        //        if (deptId == "0") {
+        //            accManager.utils.showErr("Please choice department!");
+        //            return;
+        //        }
 
         var param = {
             userName: userName,
@@ -737,7 +750,8 @@ accManager.accounts = {
         $("#btnSearcAcc").click(function () {
             accManager.accounts.search();
         });
-        this.fillDeptComboBoxs();
+        //this.fillDeptComboBoxs();
+        accManager.tabs.viewAllAccount();
     },
     fillDeptComboBoxs: function () {
         var arr = [];
@@ -1637,22 +1651,6 @@ accManager.dept = {
         accManager.dept.renderGrid(arr);
     },
     renderGrid: function (arr) {
-        if (arr.length > 0) {
-            $("#scriptTmpDepts").tmpl(arr).appendTo($("#tbodyViewAllDept").empty());
-            $("#divViewAllDept").removeClass("hidden");
-            var timerId = setTimeout(function () {
-                $("#tbodyViewAllDept").find("tr").mouseover(function () {
-                    $(this).find("td").css("background-color", "#FFDDFE");
-                }).mouseout(function () {
-                    $(this).find("td").css("background-color", "");
-                });
-                clearTimeout(timerId);
-            }, 200);
-        }
-        else {
-            $("#scriptTmpDepts_NoInfo").tmpl([{ noinfo: true}]).appendTo($("#tbodyViewAllDept").empty());
-            $("#divViewAllDept").removeClass("hidden");
-        }
     },
     editClick: function (e) {
         var target = e.target || e.srcElement;

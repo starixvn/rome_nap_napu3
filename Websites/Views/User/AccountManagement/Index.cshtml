@@ -29,40 +29,19 @@ var viewModel = @Html.Raw(Json.Encode(Model));
             <div class="box_header" style="width: 100%;">
                 <div id="left_tab1" class="left_tab" style="width: 100%">
                     <ul>
-                        <li id="left_tab1_1" class="current"><a href="javascript:;"><span>View All Departments</span></a></li>
-                        <li id="left_tab1_2" style="position: relative"><a href="javascript:;"><span>Add Department</span>
-                        </a></li>
                         <li id="left_tab1_3" style="position: relative"><a href="javascript:;"><span>Add Account</span></a></li>
-                        <li id="left_tab1_4" style="position: relative"><a href="javascript:;"><span>Add Existed
-                            Account</span></a></li>
-                        <li id="left_tab1_5" style="position: relative"><a href="javascript:;"><span>View All
-                            Accounts</span></a></li>
-                        <li id="left_tab1_6" style="position: relative"><a href="javascript:;"><span>User Control
-                            Log</span></a></li>
+                        <li id="left_tab1_5" class="current" style="position: relative"><a href="javascript:;"><span>View All Accounts</span></a></li>
+                        <li id="left_tab1_6" style="position: relative"><a href="javascript:;"><span>User Control Log</span></a></li>
                     </ul>
                 </div>
             </div>
-
             @Html.Partial("~/Views/User/AccountManagement/DeptFilter.cshtml")
-
             @Html.Partial("~/Views/User/AccountManagement/AccFilter.cshtml")
-
-        </div>
-
-
-        <div id="left_tab1_1_content" style="margin-top:70px; margin-bottom:2px">
-            @Html.Partial("~/Views/User/AccountManagement/Department.cshtml")
-        </div>
-        <div id="left_tab1_2_content" style="display: none;margin-top:40px">
-            @Html.Partial("~/Views/User/AccountManagement/AddDept.cshtml")
-        </div>
+        </div>      
         <div id="left_tab1_3_content" style="display: none;margin-top:40px">
             @Html.Partial("~/Views/User/AccountManagement/AddAccount.cshtml")
-        </div>
-        <div id="left_tab1_4_content" style="display: none;margin-top:40px">
-            @Html.Partial("~/Views/User/AccountManagement/AddExistedAccount.cshtml")
-        </div>
-        <div id="left_tab1_5_content" style="display: none;margin-top:70px">
+        </div>       
+        <div id="left_tab1_5_content" style="margin-top:70px">
             @Html.Partial("~/Views/User/AccountManagement/Account.cshtml")
         </div>
         <div id="left_tab1_6_content" style="display: none;margin-top:40px">
