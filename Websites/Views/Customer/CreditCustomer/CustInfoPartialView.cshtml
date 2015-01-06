@@ -3,6 +3,9 @@
 @model Fanex.Tarus.Customer.CreditCustomer.Entities.CustomerSettingView
 @{
     bool isOfferHRFixedOdds = WebSettings.OfferHorseRacingFixedOdds;
+    string displayNone = "style = display:none";
+    string isNoneDisplayClass = Model.IsDisplaySportbooks ? string.Empty : displayNone;
+    string isNumberGameClass = Model.IsDisplaySportbooks ? string.Empty : "style = width:50%";
 }
 @if (Model.IsUpdateMinMaxPt)
 {
@@ -54,7 +57,7 @@ else if ((Model.IsSuperSetting && Model.IsMemberSetting) || (Model.IsMasterSetti
             <td class="r" style="width:16%">@Resources.Language.lblFax</td>
             <td class="l" style="width:16%"><span data-bind="text: customer.fax"></span></td>
         </tr>
-        <tr>
+        <tr @displayNone>
             <td class="r" style="width:16%">@Resources.Language.lblStatusClosed</td>
             <td class="l" style="width:16%"><input type="checkbox" onclick="" class="" name="chkClosed" id="chkClosed" data-bind="checked: customer.statusSetting.closed"></td>
             <td class="r" style="width:16%">Given Credit</td>
@@ -81,7 +84,7 @@ else if ((Model.IsSuperSetting && Model.IsMemberSetting) || (Model.IsMasterSetti
                         </tr>
                         <!--/header-->
                         <!--HDPOUOE-->
-                        <tr>
+                        <tr @isNoneDisplayClass>
                             <td class="r" style="width: 25%;">@Resources.Language.lblAsianHDC_OU_OE</td>
                             <td><span data-bind="text: customer.commissionSetting2.playerDiscount"></span></td>
                             <td><span data-bind="text: customer.commissionSetting.discount"></span></td>
@@ -89,7 +92,7 @@ else if ((Model.IsSuperSetting && Model.IsMemberSetting) || (Model.IsMasterSetti
                         </tr>
                         <!--/HDPOUOE-->
                         <!--1x2-->
-                        <tr>
+                        <tr @isNoneDisplayClass>
                             <td class="r" style="width: 25%;">@Resources.Language.lbl1x2</td>
                             <td><span data-bind="text: customer.commissionSetting2.playerDiscount1x2"></span></td>
                             <td><span data-bind="text: customer.commissionSetting.discount1x2"></span></td>
@@ -97,7 +100,7 @@ else if ((Model.IsSuperSetting && Model.IsMemberSetting) || (Model.IsMasterSetti
                         </tr>
                         <!--/1x2-->
                         <!--other-->
-                        <tr>
+                        <tr @isNoneDisplayClass>
                             <td class="r" style="width: 25%;">@Resources.Language.lblOtherBettypes</td>
                             <td><span data-bind="text: customer.commissionSetting2.playerDiscountCs"></span></td>
                             <td><span data-bind="text: customer.commissionSetting.discountCS"></span></td>
@@ -117,7 +120,7 @@ else if ((Model.IsSuperSetting && Model.IsMemberSetting) || (Model.IsMasterSetti
                         @if (isOfferHRFixedOdds)
                         {
                          <!--hr-fixed-odds-->
-                        <tr>
+                        <tr @isNoneDisplayClass>
                             <td class="r" style="width: 25%;">
                                  HR Fixed Odds
                             </td>
@@ -140,21 +143,21 @@ else if ((Model.IsSuperSetting && Model.IsMemberSetting) || (Model.IsMasterSetti
                         </tr>
                         <!--/header-->
                         <!--HDPOUOE-->
-                        <tr>
+                        <tr @isNoneDisplayClass>
                             <td class="r" style="width: 25%;">@Resources.Language.lblAsianHDC_OU_OE</td>
                             <td><span data-bind="text: customer.commissionSetting.discount"></span></td>
                             <td><span data-bind="text: customer.commissionSetting.playerDiscount"></span></td>
                         </tr>
                         <!--/HDPOUOE-->
                         <!--1x2-->
-                        <tr>
+                        <tr @isNoneDisplayClass>
                             <td class="r" style="width: 25%;">@Resources.Language.lbl1x2</td>
                             <td><span data-bind="text: customer.commissionSetting.discount1x2"></span></td>
                             <td><span data-bind="text: customer.commissionSetting.playerDiscount1x2"></span></td>
                         </tr>
                         <!--/1x2-->
                         <!--other-->
-                        <tr>
+                        <tr @isNoneDisplayClass>
                             <td class="r" style="width: 25%;">@Resources.Language.lblOtherBettypes</td>
                             <td><span data-bind="text: customer.commissionSetting.discountCS"></span></td>
                             <td><span data-bind="text: customer.commissionSetting.playerDiscountCs"></span></td>
@@ -172,7 +175,7 @@ else if ((Model.IsSuperSetting && Model.IsMemberSetting) || (Model.IsMasterSetti
                          @if (isOfferHRFixedOdds)
                          {
                         <!--hr-fixed-odds-->
-                        <tr>
+                        <tr @isNoneDisplayClass>
                             <td class="r" style="width: 25%;">
                                 HR Fixed Odds
                             </td>
@@ -227,7 +230,8 @@ else
                       {
                         @: width="45%"
                       }>
-            <input class="f8 w130" maxlength="50" name="txtFirstname" id="txtFirstname" data-bind="value: customer.firstName" />
+            <input @displayNone class="f8 w130" maxlength="50" name="txtFirstname" id="txtFirstname" data-bind="value: customer.firstName" />
+            <span data-bind="text: customer.firstName"></span>
         </td>
         <td class="l" @if (!Model.IsInsertPage)
                       {
@@ -239,7 +243,8 @@ else
                       {
                         @: width="31%"
                       }>
-            <input class="f8 w130" maxlength="50" name="txtLastname" id="txtLastname" data-bind="value: customer.lastName" />
+            <input @displayNone class="f8 w130" maxlength="50" name="txtLastname" id="txtLastname" data-bind="value: customer.lastName" />
+            <span data-bind="text: customer.lastName"></span>
         </td>
     </tr>
     <tr>
@@ -247,13 +252,15 @@ else
             @Resources.Language.Phone
         </td>
         <td class="l">
-            <input class="f8 w130" maxlength="50" name="txtPhone" id="txtPhone" data-bind="value: customer.phone" />
+            <input @displayNone class="f8 w130" maxlength="50" name="txtPhone" id="txtPhone" data-bind="value: customer.phone" />
+            <span data-bind="text: customer.phone"></span>
         </td>
         <td class="l">
             @Resources.Language.lblMobilePhone
         </td>
         <td class="l">
-            <input class="f8 w130" maxlength="50" name="txtMobile" id="txtMobile" data-bind="value: customer.mobilePhone" />
+            <input @displayNone class="f8 w130" maxlength="50" name="txtMobile" id="txtMobile" data-bind="value: customer.mobilePhone" />
+            <span data-bind="text: customer.mobilePhone"></span>
         </td>
     </tr>
     <tr class="{site-curr-hidden}">
@@ -293,6 +300,19 @@ else
     </tr>
     <!--MinMaxPT-->
     <tr>
+     <td class="l">
+                @Resources.Language.lblFax
+            </td>
+           
+            <td class="l">
+                 <span data-bind="text: customer.fax"></span>
+            </td>
+            <td>
+            </td>
+            <td >
+            </td>
+    </tr>
+    <tr @displayNone>
         <td class="l">
             @if (Model.IsMemberSetting)
             {
@@ -415,7 +435,7 @@ else
         }
         else if (Model.IsAgentSetting)
         {
-        <tr>
+        <tr @displayNone>
             <td class="l">
                 @Resources.Language.lblMemberMaxCredit
             </td>
@@ -447,7 +467,7 @@ else
         </tr>
                 if (Model.IsInsertPage == false)
                 {
-                <tr> <td class="l">
+                <tr @displayNone> <td class="l">
                 @Resources.Language.lblStatusClosed
                 </td> <td class="l"> <input type="checkbox" onclick="" class="" name="chkClosed"
                 id="chkClosed" data-bind="checked: customer.statusSetting.closed"> </td> <td class="l">
@@ -458,7 +478,7 @@ else
         }
         else if (Model.IsMemberSetting)
         {
-        <tr>
+        <tr @displayNone>
             <td class="l">
                 @Resources.Language.lblGroup
             </td>
@@ -493,7 +513,7 @@ else
                 >
             </td>
         </tr>
-        <tr>
+        <tr @displayNone>
             <td colspan="2">
             </td>
             <td class="l">
@@ -515,7 +535,7 @@ else
         }
         else if (Model.IsInsertPage == false)
         {
-        <tr>
+        <tr @displayNone>
             <td class="l">
                 @Resources.Language.lblStatusClosed
             </td>
@@ -542,7 +562,7 @@ else
             @if (Model.IsMemberSetting == false)
             {
                 <table width="100%" class="noneborder" cellpadding="0" cellspacing="0">
-                    <tr>
+                    <tr @isNoneDisplayClass>
                         <td class="r">
                             Group A
                         </td>
@@ -574,26 +594,26 @@ else
                     </tr>
                     <tr>
                         <!--none-1x2-Comm-->
-                        <td class="r">
+                        <td class="r" @isNoneDisplayClass>
                             @Resources.Language.lbl1x2Comm
                         </td>
-                        <td class="l">
+                        <td class="l" @isNoneDisplayClass>
                             <select class="selectcomm" name="listGroup1x2" id="listGroup1x2">
                             </select>
                         </td>
                         <!--/none-1x2-Comm-->
-                        <td class="r">
+                        <td class="r" @isNoneDisplayClass>
                             @Resources.Language.OtherComm
                         </td>
-                        <td class="l">
+                        <td class="l" @isNoneDisplayClass>
                             <select class="selectcomm" name="listOther" id="listOther">
                             </select>
                         </td>
                         <!--game-comm-->
-                        <td class="r">
+                        <td class="r" @isNumberGameClass>
                             @Resources.Language.lblGameComm
                         </td>
-                        <td class="l">
+                        <td class="l" @isNumberGameClass>
                             <select class="selectcomm" name="listGameComm" id="listGameComm">
                             </select>
                         </td>
@@ -601,10 +621,10 @@ else
                          @if (isOfferHRFixedOdds)
                          {
                          <!--hr-fixed-odds-->
-                        <td class="r">
+                        <td class="r" @isNoneDisplayClass>
                            HR Fixed Odds
                         </td>
-                        <td class="l">
+                        <td class="l" @isNoneDisplayClass>
                             <select class="selectcomm" name="listHRFixOddsComm" id="listHRFixOddsComm">
                             </select>
                         </td>
@@ -629,7 +649,7 @@ else
                     </tr>
                     <!--/header-->
                     <!--HDPOUOE-->
-                    <tr>
+                    <tr @isNoneDisplayClass>
                         <td class="r" style="width: 25%;">
                             @Resources.Language.lblAsianHDC_OU_OE
                         </td>
@@ -644,7 +664,7 @@ else
                     </tr>
                     <!--/HDPOUOE-->
                     <!--1x2-->
-                    <tr>
+                    <tr @isNoneDisplayClass>
                         <td class="r" style="width: 25%;">
                             @Resources.Language.lbl1x2
                         </td>
@@ -659,7 +679,7 @@ else
                     </tr>
                     <!--/1x2-->
                     <!--other-->
-                    <tr>
+                    <tr @isNoneDisplayClass>
                         <td class="r" style="width: 25%;">
                             @Resources.Language.lblOtherBettypes
                         </td>
@@ -692,7 +712,7 @@ else
                      @if (isOfferHRFixedOdds)
                      {
                     <!--hr-fixed-odds-->
-                    <tr>
+                    <tr @isNoneDisplayClass>
                         <td class="r" style="width: 25%;">
                            HR Fixed Odds
                         </td>
@@ -707,6 +727,7 @@ else
                     </tr>
                     <!--/hr-fixed-odds-->
                      }
+                     
                 </table>
             }
         </td>

@@ -27,6 +27,7 @@
 <script type="text/javascript">
     var agentId = @Model.UplineCustId;
     var memberId = @Model.CustId;
+     var isDisplaySportbooks = "@Model.IsDisplaySportbooks".toLowerCase();
 </script>
 <table border="0" cellpadding="0px" cellspacing="0px" class="maincontent_header">
     <tr>
@@ -46,17 +47,6 @@
     </div>
 </div>
 <div class="bg_table" style="width: 844px;">
-    <table cellspacing="0" cellpadding="0" border="0" style="margin-bottom:10px;">
-        <tbody>
-            <tr>
-                <td class="custBtn1">
-                </td>
-                <td onclick="return edm.editMember();" class="custBtn2 hand">
-                    Update
-                </td>
-            </tr>
-        </tbody>
-    </table>
     @*Cust Infor Section*@
     @Html.Partial("~/Views/Customer/CreditCustomer/CustInfoPartialView.cshtml", Model)
     @*betting limit and position taking*@

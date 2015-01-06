@@ -19,7 +19,7 @@ var edm = {
             url: "GetContextObject",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            data: '{"uplineId":' + JSON.stringify(uplineId) + ', "targetId": ' + JSON.stringify(targetId) + '}',
+            data: '{"uplineId":' + JSON.stringify(uplineId) + ', "targetId": ' + JSON.stringify(targetId) + ',"isDisplaySportbooks":' + JSON.stringify(isDisplaySportbooks) + '}',
             success: function (stringContext) {
                 context = JSON.parse(stringContext);
                 edm.initCustomer();
