@@ -4,7 +4,7 @@
             Total Cash
         </td>
         <td class="dot_right b" style="width: 140px;">
-            {CurTotalCashBalCur}<span class="{colorTotalCash}" onclick="DoTransfer(this, '{TotalCashBal}');">{TotalCashBalCur}</span>
+            {CurTotalCashBalCur}<span class="{colorTotalCash}">{TotalCashBalCur}</span>
         </td>
     </tr>
     <tr>
@@ -12,7 +12,7 @@
             Yesterday Cash
         </td>
         <td class="dot_right b">
-            {CurYesterdayCashBalCur} <span class="{colorYesterdayCash}" onclick="DoTransfer(this, '{YesterdayCashBal}', true);">
+            {CurYesterdayCashBalCur} <span class="{colorYesterdayCash}">
                 {YesterdayCashBalCur}</span>
         </td>
     </tr>
@@ -21,7 +21,7 @@
             Total Balance
         </td>
         <td class="dot_right b">
-            {CurTotalBalCur}<span class="{colorTotalBal}" onclick="DoTransfer(this, '{TotalBal}');">{TotalBalCur}</span>
+            {CurTotalBalCur}<span class="{colorTotalBal}">{TotalBalCur}</span>
         </td>
     </tr>
     <tr class="{hiddenbalance}">
@@ -29,7 +29,7 @@
             Yesterday Balance
         </td>
         <td class="dot_right b">
-            {CurYesterdayBalCur}<span class="{colorYesterdayBal}" onclick="DoTransfer(this, '{YesterdayBal}', true);">
+            {CurYesterdayBalCur}<span class="{colorYesterdayBal}">
                 {YesterdayBalCur}</span>
         </td>
     </tr>
@@ -46,16 +46,8 @@
             Given Credit
         </td>
         <td class="dot_right b">
-            <!--AllowGiven-->
-            {GivenCreditCurrency}
-            <input style="display: none; width: 100px; margin-top: -3px;" class="form_top" maxlength="14"
-                onkeypress="return checkKeyPress(event);" onblur="ChangeGivenCredit();" type="text"
-                id="txtGivenCredit" name="txtGivenCredit" />
-            <span id="spanGivenCredit" name="spanGivenCredit" class="{givencreditClass}" onclick="{givencreditOnclick}">
-                {GivenCredit}</span>
-            <!--/AllowGiven-->
             <!--NotAllowGiven-->
-            {GivenCreditCurrency} <span id="span1" name="spanGivenCredit" class="{givencreditClass}">
+            {GivenCreditCurrency} <span id="span1" name="spanGivenCredit">
                 {GivenCredit}</span>
             <!--/NotAllowGiven-->
         </td>
@@ -70,15 +62,6 @@
         </td>
     </tr>
     <!--/betcredit-->
-    <tr>
-        <td class="dot_left">
-            Virtual Rate(%)
-        </td>
-        <td class="dot_right b">
-            <span class="{virtualRateClass}" onclick="{virtualRateOnclick}">{VirtualRate}</span>
-            <a href="#" onclick="ViewVRHistory('{CustId}','{Username}')">&nbsp;[History]</a>
-        </td>
-    </tr>
     <tr class="{hiddenbalance}">
         <td class="dot_left">
             {AgentType} Outstanding
@@ -89,7 +72,7 @@
     </tr>
     <tr class="{hiddenbalance}">
         <td class="dot_left">
-            <span>Used Credit [<a href="javascript: parent.gotoURL('centerFr','UsedCreditDetail.aspx');">Detail</a>]</span>
+            <span>Used Credit</span>
         </td>
         <td class="dot_right b">
             <span>{UsedCredit}</span>
