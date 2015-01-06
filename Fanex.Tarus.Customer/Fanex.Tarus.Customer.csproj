@@ -159,8 +159,6 @@
     <Compile Include="Business\CustomerCoreService.cs" />
     <Compile Include="Business\CustomerList\CustomerListService.cs" />
     <Compile Include="Business\CustomerList\ICustomerListService.cs" />
-    <Compile Include="Business\CustomerLogin\CustomerSecurityCodeService.cs" />
-    <Compile Include="Business\CustomerLogin\ICustomerSecurityCodeService.cs" />
     <Compile Include="Business\EditLicensee\EditLicenseeService.cs" />
     <Compile Include="Business\EditLicensee\IEditLicenseeService.cs" />
     <Compile Include="Business\NewLicensee\INewLicenseeService.cs" />
@@ -247,7 +245,6 @@
     <Compile Include="Controller\Credit\EditMemberController.cs" />
     <Compile Include="Controller\Credit\EditSuperController.cs" />
     <Compile Include="Controller\CustomerList\CustomerListController.cs" />
-    <Compile Include="Controller\CustomerLogin\CustomerSecurityCodeController.cs" />
     <Compile Include="Controller\Racing\EditAgentPTRacingController.cs" />
     <Compile Include="Controller\Racing\EditMasterPTRacingController.cs" />
     <Compile Include="Controller\Racing\EditMemberPTRacingController.cs" />
@@ -259,14 +256,9 @@
     <Compile Include="Controller\Setting\CasinoCommissionController.cs" />
     <Compile Include="Controller\Setting\CustomerSettingController.cs" />
     <Compile Include="Controller\Setting\SMATurnoverController.cs" />
-    <Compile Include="Criteria\CustomerLogin\ResetSecurityCodeCriteria.cs" />
     <Compile Include="DataAccess\BaseDataAccess.cs" />
     <Compile Include="DataAccess\CreditCustomer\CustomerSettingDataAccess.cs" />
     <Compile Include="DataAccess\CreditCustomer\ICustomerSettingDataAccess.cs" />
-    <Compile Include="DataAccess\CustomerList\CustomerListAccess.cs" />
-    <Compile Include="DataAccess\CustomerList\ICustomerListAccess.cs" />
-    <Compile Include="DataAccess\CustomerLogin\CustomerSecurityCodeDataAccess.cs" />
-    <Compile Include="DataAccess\CustomerLogin\ICustomerSecurityCodeDataAccess.cs" />
     <Compile Include="DataAccess\SettingCustomer\AbnormalBetAccess.cs" />
     <Compile Include="DataAccess\SettingCustomer\CasinoComm\CasinoCommAccess.cs" />
     <Compile Include="DataAccess\SettingCustomer\CasinoComm\ICasinoCommAccess.cs" />
@@ -369,7 +361,12 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Business\CustomerLogin\" />
+    <Folder Include="Controller\CustomerLogin\" />
+    <Folder Include="Criteria\CustomerLogin\" />
+    <Folder Include="DataAccess\CustomerLogin\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

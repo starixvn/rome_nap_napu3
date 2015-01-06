@@ -540,10 +540,9 @@ namespace Sunplus.Accounting.Business.Customer
 
                                 bool isManageCustomerAccess = Permissions.GetHostPermission(Enumerations.Functions.Customer.OtherCust); // 4: id of [Customer] function
                                 bool hasTransferPermission = Permissions.GetHostPermission(Enumerations.Functions.Transfer.OtherTrans); // 2: Transfer
-                                bool isManageVirtualRateAccess = Permissions.GetHostPermission(Enumerations.Functions.ExRates.VirtualRate); // [VirtualRate]
-                                TemplateHandler.Assign(ref balanceinfo, "{colorTotalCash}", ((hasTransferPermission && Functions.Customer.IsApplyCssBalanceInfo) ? " canchange" : string.Empty) + ((cash >= 0) ? " b" : " hilight"));
+                                TemplateHandler.Assign(ref balanceinfo, "{colorTotalCash}", ((cash >= 0) ? " b" : " hilight"));
 
-                                TemplateHandler.Assign(ref balanceinfo, "{colorYesterdayCash}", ((hasTransferPermission && Functions.Customer.IsApplyCssBalanceInfo) ? " canchange" : string.Empty) + ((yesterdayCash >= 0) ? " b" : " hilight"));
+                                TemplateHandler.Assign(ref balanceinfo, "{colorYesterdayCash}", ((yesterdayCash >= 0) ? " b" : " hilight"));
                                 if (string.IsNullOrEmpty(cash.ToString())) cash = 0;
                                 if (string.IsNullOrEmpty(yesterdayCash.ToString())) yesterdayCash = 0;
                                 TemplateHandler.Assign(ref balanceinfo, "{TotalCashBal}", IBCUtils.FormatHandler.FormatNumber20(cash));
@@ -558,44 +557,21 @@ namespace Sunplus.Accounting.Business.Customer
                                 TemplateHandler.Assign(ref balanceinfo, "{AccOutstandTxn}", string.Format("{0:n}", currency + " " + IBCUtils.FormatHandler.FormatNumber20(accOutstanding)));
                                 //Check Given Credit Permission
                                 bool isallowupdategivencredit = Permissions.GetHostPermission(Enumerations.Functions.Customer.Credit);
-                                if (isallowupdategivencredit == true)
-                                {
-                                    TemplateHandler.Assign(ref balanceinfo, "{givencreditOnclick}", "return ChangeGivenCredit(true);");
-                                    TemplateHandler.Assign(ref balanceinfo, "{givencreditClass}", "canchange");
-                                    TemplateHandler.RemoveBlock(ref balanceinfo, "NotAllowGiven");
-                                }
-                                else
-                                {
-                                    TemplateHandler.Assign(ref balanceinfo, "{virtualRateClass}", string.Empty);
-                                    TemplateHandler.RemoveBlock(ref balanceinfo, "AllowGiven");
-                                }
 
-                                if (isManageVirtualRateAccess)
-                                {
-                                    TemplateHandler.Assign(ref balanceinfo, "{virtualRateOnclick}", "return OpenEditVirtualExRate(" + custId + ",'" + userName + "','" + AccCommon.GetRoleName(roleId) + "');");
-                                    TemplateHandler.Assign(ref balanceinfo, "{virtualRateClass}", "canchange");
-                                }
-                                else
-                                {
-                                    TemplateHandler.Assign(ref balanceinfo, "{virtualRateOnclick}", string.Empty);
-                                    TemplateHandler.Assign(ref balanceinfo, "{virtualRateClass}", string.Empty);
-                                }
                                 TemplateHandler.Assign(ref balanceinfo, "{GivenCreditCurrency}", currency + " ");
                                 TemplateHandler.Assign(ref balanceinfo, "{GivenCredit}", string.Format("{0:n}", credit));
-
-                                TemplateHandler.Assign(ref balanceinfo, "{VirtualRate}", vRate);
 
                                 if (roleId > 1)
                                 {
                                     TemplateHandler.RemoveBlock(ref balanceinfo, "betcredit");
 
                                     //TemplateHandler.Assign(ref balanceinfo, "{IsHiddenAgentInfo}", "");
-                                    TemplateHandler.Assign(ref balanceinfo, "{colorTotalBal}", ((hasTransferPermission && Functions.Customer.IsApplyCssBalanceInfo) ? " canchange" : string.Empty) + ((totalBal >= 0) ? " b" : " hilight"));
+                                    TemplateHandler.Assign(ref balanceinfo, "{colorTotalBal}", (totalBal >= 0) ? " b" : " hilight");
                                     TemplateHandler.Assign(ref balanceinfo, "{TotalBal}", string.Format("{0:####.##}", totalBal));
                                     TemplateHandler.Assign(ref balanceinfo, "{TotalBalCur}", string.Format("{0:n}", IBCUtils.FormatHandler.FormatNumber20(totalBal)));
                                     TemplateHandler.Assign(ref balanceinfo, "{CurTotalBalCur}", currency + " ");
 
-                                    TemplateHandler.Assign(ref balanceinfo, "{colorYesterdayBal}", ((hasTransferPermission && Functions.Customer.IsApplyCssBalanceInfo) ? " canchange" : string.Empty) + ((yesterdayBal >= 0) ? " b" : " hilight"));
+                                    TemplateHandler.Assign(ref balanceinfo, "{colorYesterdayBal}", (yesterdayBal >= 0) ? " b" : " hilight");
                                     TemplateHandler.Assign(ref balanceinfo, "{YesterdayBal}", string.Format("{0:####.##}", yesterdayBal));
                                     TemplateHandler.Assign(ref balanceinfo, "{YesterdayBalCur}", string.Format("{0:n}", IBCUtils.FormatHandler.FormatNumber20(yesterdayBal)));
                                     TemplateHandler.Assign(ref balanceinfo, "{CurYesterdayBalCur}", currency + " ");
@@ -821,7 +797,6 @@ namespace Sunplus.Accounting.Business.Customer
 
                                 GenMenuMinMaxPT(ref htmlcontent, row2, custId, roleId, currency, userName, (isAllowEditBI && AppSession.IsSyncBingoCurrentCust), isDeposit);
 
-                                string infoUrl = "";
                                 string detailUrl = "";
                                 string downlineListURL = "";
                                 string addDownlineURL = "";
@@ -829,83 +804,59 @@ namespace Sunplus.Accounting.Business.Customer
                                 string addDownlineURL_New = "";
                                 string detailUrlNew = "";
                                 string bingoLinkSetting = "";
-                                string pokerLinkSetting = "";
                                 var liveCasinoSetting = "";
-                                var kenoSetting = string.Empty;
                                 var agCasinoLinkSetting = string.Empty;
 
-                                string RacingUpdateURL = "";
-                                var VirtualSportsSetting = "";
                                 switch (roleId)
                                 {
                                     case 1: // member
                                         parentId = Convert.ToInt32(row2["agentId"]);
                                         bingoLinkSetting = "Customer/PT/Bingo/MemberUpdate.aspx?custId=" + custId;
-                                        pokerLinkSetting = "Customer/PT/Poker/MemberUpdate.aspx?custId=" + custId;
                                         detailUrl = isDeposit ? "DepositCustomer/EditSettingAgent" : "Customer/v2/EditCustomerNew.aspx?set=1&custId=" + custId + "&agentId=" + row2["agentId"] + "&uname=" + userName + "&m=0";
                                         detailUrlNew = isDeposit ? "DepositCustomer/EditSettingAgent" : "EditMember/EditMemberPage?custId=" + custId + "&agentId=" + row2["agentId"] + "&uname=" + userName;
-                                        infoUrl = "Customer/EditCustomerInfo.aspx?custId=" + custId + "&type=Super";
                                         liveCasinoSetting = string.Format("LiveCasinoSetting/Setting/EditSetting?uplineId={0}&parentId={1}&uplineLevel=2&actorId={2}&actorUsername={3}&customerId={4}&customerLevel=1", parentId, parentId, AppSession.AccId, AppSession.AccUserName, custId);
                                         agCasinoLinkSetting = string.Format("AGCasino/EditAGCasinoGameSetting?customerId={0}&uplineId={1}&roleId={2}", custId, parentId, roleId);
-                                        VirtualSportsSetting = string.Format("VirtualSportMemberPT/EditMember?custId={0}&uplineId={1}", custId, parentId);
-                                        kenoSetting = string.Format("customersetting/KenoSetting/kenosetting/AgentEditMember?custId={0}&userId={1}", custId, AppSession.AccId);
                                         TemplateHandler.Assign(ref htmlcontent, "{IsHidden1}", "hidden");
                                         TemplateHandler.Assign(ref htmlcontent, "{IsShow1}", "");
-                                        RacingUpdateURL = string.Format("EditMemberPTRacing/Index?custid={0}&uplineid={1}", custId, parentId);
                                         break;
 
                                     case 2: // agent
                                         int _masterID = CastAide.AsInt32(row2["masterid"], -1);
-                                        RacingUpdateURL = string.Format("EditAgentPTRacing/Index?custid={0}&uplineid={1}", custId, _masterID);
                                         bingoLinkSetting = "Customer/PT/Bingo/AgentUpdate.aspx?custId=" + custId;
-                                        pokerLinkSetting = "Customer/PT/Poker/AgentUpdate.aspx?custId=" + custId;
                                         downlineListURL = "Customer/MemberList.aspx?agentId=" + custId;
                                         addDownlineURL_New = isDeposit ? "DepositCustomer/AddNewAgent" : "AddNewMember/AddNewMemberPage?agentId=" + custId + "&username=" + userName;
                                         addDownlineURL = isDeposit ? "DepositCustomer/AddNewAgent" : "Customer/v2/AddNewMember.aspx?set=1&agentId=" + custId + "&username=" + userName;
                                         detailUrl = isDeposit ? "DepositCustomer/EditSettingAgent" : "Customer/v2/EditAgent.aspx?set=1&custId=" + custId + "&masterId=" + _masterID.ToString() + "&uname=" + userName;
                                         detailUrlNew = isDeposit ? "DepositCustomer/EditSettingAgent" : "EditAgent/EditAgentPage?" + "custId=" + custId + "&masterId=" + _masterID.ToString() + "&uname=" + userName;
-                                        infoUrl = "Customer/EditCustomerInfo.aspx?custId=" + custId + "&type=Agent";
                                         liveCasinoSetting = string.Format("LiveCasinoSetting/Setting/EditSetting?uplineId={0}&parentId={1}&uplineLevel=3&actorId={2}&actorUsername={3}&customerId={4}&customerLevel=2", _masterID, _masterID, AppSession.AccId, AppSession.AccUserName, custId);
                                         agCasinoLinkSetting = string.Format("AGCasino/EditAGCasinoGameSetting?customerId={0}&uplineId={1}&roleId={2}", custId, _masterID, roleId);
-                                        VirtualSportsSetting = string.Format("VirtualSportAgentPT/EditAgent?custId={0}&uplineId={1}", custId, _masterID);
-                                        kenoSetting = string.Format("customersetting/KenoSetting/kenosetting/EditAgent?custId={0}&userId={1}", custId, AppSession.AccId);
                                         TemplateHandler.Assign(ref htmlcontent, "{type}", "Agent");
                                         if (!CustomerUtils.IsTransferDaily(Convert.ToString(_masterID))) TemplateHandler.RemoveBlock(ref htmlcontent, "editTransferTime");
                                         break;
 
                                     case 3: // master
                                         int _superID = CastAide.AsInt32(row2["superId"], -1);
-                                        RacingUpdateURL = string.Format("EditMasterPTRacing/Index?custid={0}&uplineid={1}", custId, _superID);
                                         bingoLinkSetting = "Customer/PT/Bingo/MasterUpdate.aspx?custId=" + custId;
-                                        pokerLinkSetting = "Customer/PT/Poker/MasterUpdate.aspx?custId=" + custId;
                                         detailUrl = isDeposit ? "DepositCustomer/EditSettingAgent" : "Customer/v2/EditMaster.aspx?set=1&custId=" + custId + "&superId=" + _superID.ToString() + "&uname=" + userName;
                                         detailUrlNew = isDeposit ? "DepositCustomer/EditSettingAgent" : "EditMaster/EditMasterPage?custId=" + custId + "&superId=" + _superID.ToString() + "&uname=" + userName;
-                                        infoUrl = "Customer/EditCustomerInfo.aspx?custId=" + custId + "&type=Master";
                                         addDownlineURL_New = isDeposit ? "DepositCustomer/AddNewAgent" : "AddNewAgent/AddNewAgentPage?masterId=" + custId + "&username=" + userName;
                                         addDownlineURL = isDeposit ? "DepositCustomer/AddNewAgent" : "Customer/v2/AddNewAgent.aspx?set=1&masterId=" + custId + "&username=" + userName;
                                         downlineListURL = "Customer/AgentList.aspx?masterId=" + custId;
                                         liveCasinoSetting = string.Format("LiveCasinoSetting/Setting/EditSetting?uplineId={0}&parentId={1}&uplineLevel=4&actorId={2}&actorUsername={3}&customerId={4}&customerLevel=3", _superID, _superID, AppSession.AccId, AppSession.AccUserName, custId);
                                         agCasinoLinkSetting = string.Format("AGCasino/EditAGCasinoGameSetting?customerId={0}&uplineId={1}&roleId={2}", custId, _superID, roleId);
-                                        VirtualSportsSetting = string.Format("VirtualSportMasterPT/EditMaster?custId={0}&uplineId={1}", custId, _superID);
-                                        kenoSetting = string.Format("customersetting/KenoSetting/kenosetting/EditMaster?custId={0}&userId={1}", custId, AppSession.AccId);
                                         TemplateHandler.Assign(ref htmlcontent, "{type}", "Master");
                                         break;
 
                                     case 4: // super
                                         parentId = 0;
-                                        RacingUpdateURL = string.Format("EditSuperPTRacing/Index?custid={0}", custId);
                                         bingoLinkSetting = "Customer/PT/Bingo/SuperUpdate.aspx?custId=" + custId;
-                                        pokerLinkSetting = "Customer/PT/Poker/SuperUpdate.aspx?custId=" + custId;
                                         addDownlineURL_New = isDeposit ? "DepositCustomer/AddNewAgent" : "AddNewMaster/AddNewMasterPage?superId=" + custId + "&username=" + userName;
                                         addDownlineURL = isDeposit ? "DepositCustomer/AddNewAgent" : "Customer/V2/AddNewMaster.aspx?set=1&superId=" + custId + "&username=" + userName;
                                         downlineListURL = "Customer/MasterAgentList.aspx?superId=" + custId;
                                         detailUrl = isDeposit ? "DepositCustomer/EditSettingSuper" : "Customer/v2/AddNewSuper.aspx?set=1&custId=" + custId + "&uname=" + userName;
                                         detailUrlNew = isDeposit ? "DepositCustomer/EditSettingSuper" : "EditSuper/EditSuperPage?custId=" + custId + "&uname=" + userName;
-                                        infoUrl = "Customer/EditCustomerInfo.aspx?custId=" + custId + "&type=Super";
                                         liveCasinoSetting = string.Format("LiveCasinoSetting/Setting/EditSetting?uplineId=0&uplineLevel=0&actorId={0}&actorUsername={1}&customerId={2}&customerLevel=4", AppSession.AccId, AppSession.AccUserName, custId);
                                         agCasinoLinkSetting = string.Format("AGCasino/EditAGCasinoGameSetting?customerId={0}&uplineId={1}&roleId={2}&exchangeId={3}", custId, 0, roleId, CastAide.AsInt32(row1["exchangeid"]));
-                                        VirtualSportsSetting = string.Format("VirtualSportSuperPT/EditSuper?custId={0}&uname={1}", custId, userName);
-                                        kenoSetting = string.Format("customersetting/KenoSetting/kenosetting/EditSuper?custId={0}&userId={1}", custId, AppSession.AccId);
                                         TemplateHandler.Assign(ref htmlcontent, "{type}", "Super");
                                         if (custId < 100) TemplateHandler.RemoveBlock(ref htmlcontent, "editTransferTime"); // for dummy super
                                         break;
@@ -952,13 +903,8 @@ namespace Sunplus.Accounting.Business.Customer
                                     TemplateHandler.RemoveBlock(ref htmlcontent, "edit-Keno");
                                 }
 
-                                TemplateHandler.Assign(ref htmlcontent, "{RacingUpdateURL}", RacingUpdateURL);
-                                TemplateHandler.Assign(ref htmlcontent, "{linkSettingInfo}", infoUrl);
                                 TemplateHandler.Assign(ref htmlcontent, "{bingoLinkSetting}", bingoLinkSetting);
-                                TemplateHandler.Assign(ref htmlcontent, "{pokerLinkSetting}", pokerLinkSetting + "&roleId=" + roleId.ToString());
-                                TemplateHandler.Assign(ref htmlcontent, "{livecasinoLinkSetting}", liveCasinoSetting );
-                                TemplateHandler.Assign(ref htmlcontent, "{virtualSportLinkSetting}", VirtualSportsSetting + "&roleId=" + roleId.ToString());
-                                TemplateHandler.Assign(ref htmlcontent, "{kenoLinkSetting}", kenoSetting);
+                                TemplateHandler.Assign(ref htmlcontent, "{livecasinoLinkSetting}", liveCasinoSetting);
 
                                 if (!WebSettings.EnableAGCasino || roleId != 4 || !isLicensee)
                                 {
@@ -1087,6 +1033,7 @@ namespace Sunplus.Accounting.Business.Customer
             }
 
         }
+
         private string GetSettingAbnormal(int roleId, bool isManageCustomerAccess, int currentLevel)
         {
             try
@@ -1114,123 +1061,6 @@ namespace Sunplus.Accounting.Business.Customer
             //Render Setting Control
             //HuyNguyen
             SettingGroup sg = new SettingGroup();
-
-            //Get setting controll Suspended
-            sg.Add(GetSettingControlSuspended(isManageCustomerAccess, "suspended", isSuspended, (roleId > 1), CustParent.IsSuspended));
-
-            #region Selected Betting
-
-            if (roleId > 1 && Functions.Settings.IsVisibleSelectedBetting)
-            {
-                bool SelectedBetting = Convert.IsDBNull(row1["SelectedBetting"]) ? false : Convert.ToBoolean(row1["SelectedBetting"]);
-                //bool SelectedBettingDL = Convert.IsDBNull(row1["DownlinesSelectedBetting"]) ? false : Convert.ToBoolean(row1["DownlinesSelectedBetting"]);
-                sg.Add(GetSettingControlSelectedBetting(roleId, CustParent.SelectedBetting, isManageCustomerAccess, "SelectedBetting", SelectedBetting, (roleId > 1)));
-            }
-
-            #endregion Selected Betting
-
-            #region Auto Suspend
-
-
-
-            #endregion Auto Suspend
-
-            #region is Internal user
-
-            if (!WebSettings.DisableInternal && Functions.Settings.IsVisibleInternal)
-            {
-                bool isInternalUser = Convert.IsDBNull(row1["IsInternal"]) ? false : Convert.ToBoolean(row1["IsInternal"]);
-                sg.Add(GetSettingControlInternalUser(roleId, CustParent.IsInternalUser, isManageCustomerAccess, "internalUser", isInternalUser, CastAide.AsBoolean(row1["Enabled"])));
-            }
-
-            ConfigureDirectAccountService.AddMarkDirectAccountSettingControl(new AddMarkDirectAccountSettingControlCriteria
-            {
-                SettingGroup = sg,
-                UserId = Converter.ToString2(row1["custid"]),
-                Username = Converter.ToString2(row1["username"]),
-                DirectAccountStatusInfo = new DirectAccountStatusInfo
-                {
-                    IsShowDirectStatus = !Converter.ToBool(row1["IsHideDirectStatus"]),
-                    IsCheckedDirectStatus = Converter.ToBool(row1["IsCheckDirectStatus"]),
-                    CanEditDirectStatus = !Converter.ToBool(row1["IsDisabledDirectStatus"]) && Permissions.GetHostPermission(Enumerations.Functions.Customer.ConfigureDirectAccount)
-                },
-
-                RoleId = roleId,
-                Htmlcontent = htmlcontent,
-                IsManageCustomerAccess = isManageCustomerAccess
-            });
-
-            #endregion is Internal user
-
-            #region Auto Master
-
-            if (roleId == 3)
-            {
-                try
-                {
-                    bool enableAutoMPT = Convert.IsDBNull(row3["DisableAutoMPT"]) ? false : !Convert.ToBoolean(row3["DisableAutoMPT"]);
-                    sg.Add(GetSettingControlEnableAutoMaster(roleId, isManageCustomerAccess, "Allow Auto PT", !enableAutoMPT, CastAide.AsBoolean(row1["Enabled"])));
-                }
-                catch (Exception ex)
-                {
-                    Sunplus.Accounting.Core.Extensions.LogExtensions.ExceptionHandler(ex);
-                }
-            }
-
-            #endregion Auto Master
-
-            #region Outright
-
-            bool disabledOutright = Convert.IsDBNull(row1["DisableOutright"]) ? false : Convert.ToBoolean(row1["DisableOutright"]);
-            sg.Add(GetSettingControlOutright(roleId, CustParent.IsDisableOutright, isManageCustomerAccess, "disabledOutright", !disabledOutright, (roleId > 1), CastAide.AsBoolean(row1["Enabled"])));
-
-            #endregion Outright
-
-            #region HR
-
-            ////////HR
-            //if (Permissions.AllowSaTote(row1["currency"].ToString()))
-            //{
-            //    bool disabledHR = Convert.IsDBNull(row1["DisableHorseracing"]) ? false : Convert.ToBoolean(row1["DisableHorseracing"]);
-            //    bool disabledHRDL = Convert.IsDBNull(row1["DisableDownlinesHR"]) ? false : Convert.ToBoolean(row1["DisableDownlinesHR"]);
-            //    sg.Add(GetSettingControlHR(roleId, CustParent.IsDisabledHR, isManageCustomerAccess, "disabledHR", row1["currency"].ToString(), !disabledHR, (roleId > 1), !disabledHRDL, CastAide.AsBoolean(row1["Enabled"])));
-
-            //    TemplateHandler.Assign(ref htmlcontent, "{chkSATote}", disabledHR ? 1 : 0);
-            //}
-            //else
-            //{
-            //    TemplateHandler.Assign(ref htmlcontent, "{chkSATote}", 1);
-            //}
-
-            //////HR OpenTote (UKTote)
-            //bool disabledHROpenTote = Convert.IsDBNull(row1["DisableOpenTote"]) ? false : Convert.ToBoolean(row1["DisableOpenTote"]);
-            //bool disabledHROpenToteDL = Convert.IsDBNull(row1["DisableDownlinesOpenTote"]) ? false : Convert.ToBoolean(row1["DisableDownlinesOpenTote"]);
-            //sg.Add(GetSettingControlHROpenTote(roleId, CustParent.IsDisabledOpenTote, isManageCustomerAccess, "disabledHROpenTote", row1["currency"].ToString(), !disabledHROpenTote, (roleId > 1), !disabledHROpenToteDL, CastAide.AsBoolean(row1["Enabled"])));
-            //TemplateHandler.Assign(ref htmlcontent, "{chkUKTote}", disabledHROpenTote ? 1 : 0);
-
-            #endregion HR
-
-            #region FI
-
-            if (!AppSession.CurrentSystemNAME.Equals(Enumerations.AccountingSystem.EXTERNAL))
-            {
-                bool disabledFinancial = Convert.IsDBNull(row1["DisableFinancial"]) ? false : Convert.ToBoolean(row1["DisableFinancial"]);
-                bool disabledFIDL = Convert.IsDBNull(row1["DisableDownlinesFI"]) ? false : Convert.ToBoolean(row1["DisableDownlinesFI"]);
-                sg.Add(GetSettingControlFI(roleId, CustParent.IsDisabledFI, isManageCustomerAccess, "disabledFinancial", !disabledFinancial, (roleId > 1), !disabledFIDL, CastAide.AsBoolean(row1["Enabled"])));
-                TemplateHandler.Assign(ref htmlcontent, "{chkFinance}", disabledFinancial ? 1 : 0);
-            }
-
-            #endregion FI
-
-            #region Enable Casino
-
-            bool disabledCasino = Convert.IsDBNull(row1["disablecasino"]) ? false : Convert.ToBoolean(row1["disablecasino"]);
-            bool syncCasino = Convert.IsDBNull(row1["synccasino"]) ? false : Convert.ToBoolean(row1["synccasino"]);
-            bool disabledCSDL = Convert.IsDBNull(row1["DisableDownlinesCS"]) ? false : Convert.ToBoolean(row1["DisableDownlinesCS"]);
-            sg.Add(GetSettingControlCasino(roleId, parentID, isManageCustomerAccess, "disabledCS", !disabledCasino, (roleId > 1), syncCasino, isAllowEdit, CastAide.AsBoolean(row1["Enabled"].ToString()), disabledCSParent, !disabledCSDL));
-            TemplateHandler.Assign(ref htmlcontent, "{chkCasino}", disabledCasino ? 1 : 0);
-
-            #endregion Enable Casino
 
             #region Bingo Game
 
@@ -1273,82 +1103,6 @@ namespace Sunplus.Accounting.Business.Customer
 
             #endregion live casino
 
-            #region Virtual Sports
-
-            bool disabledVirtualSports = WebSettings.EnableVirtualSports ? Convert.IsDBNull(row1["disablevirtualsports"]) ? false : Convert.ToBoolean(row1["disablevirtualsports"]) : true;
-            bool disabledVSDownline = WebSettings.EnableVirtualSports
-                                     ? Convert.IsDBNull(row1["disabledownlinesvirtualsports"])
-                                           ? false
-                                           : Convert.ToBoolean(row1["disabledownlinesvirtualsports"])
-                                     : true;
-
-            bool hideVirtualSports = WebSettings.EnableVirtualSports ? Convert.ToBoolean(row1["hidevirtualsports"]) : false;
-            if (!hideVirtualSports)
-            {
-                sg.Add(GetSettingControlVirtualSports(roleId, isManageCustomerAccess, "disabledVS", !disabledVirtualSports,
-                                                   (roleId > 1), disabledVirtualSports,
-                                                   CastAide.AsBoolean(row1["Enabled"].ToString()), disabledVSParent,
-                                                   !disabledVSDownline));
-            }
-            TemplateHandler.Assign(ref htmlcontent, "{chkVirtualSport}", disabledVirtualSports ? 1 : 0);
-
-            #endregion Virtual Sports
-
-            #region DoubleComm
-
-            if (WebSettings.OfferDoubleComm)
-            {
-                bool IsEnableDoubleCommLosing = Convert.IsDBNull(row1["DoubleCommLosing"]) ? false : Convert.ToBoolean(row1["DoubleCommLosing"]);
-                sg.Add(GetSettingControlDoubleComm(roleId, CustParent.IsEnableDoubleCommLosing, isManageCustomerAccess, "doubleCommLosing", IsEnableDoubleCommLosing, (roleId > 1), CastAide.AsBoolean(row1["Enabled"])));
-            }
-
-            #endregion DoubleComm
-
-            #region HRFixedOdds
-
-            if (WebSettings.OfferHorseRacingFixedOdds)
-            {
-                bool isEnableHorseRacingFixedOdds = Convert.IsDBNull(row1["DisableHRFixedOdds"]) ?
-                    false :
-                    !Convert.ToBoolean(row1["DisableHRFixedOdds"]);
-                bool disableDownlinesHorseRacingFixedOdds = !Convert.IsDBNull(row1["DisableDownlinesHRFixedOdds"]) ?
-                    Convert.ToBoolean(row1["DisableDownlinesHRFixedOdds"]) :
-                    false;
-
-                sg.Add(GetSettingControlEnableHorseRacingFixedOdds(
-                    roleId,
-                    CustParent.IsEnableHorseRacingFixedOdds,
-                    isManageCustomerAccess,
-                    "enableHorseRacingFixedOdds",
-                    isEnableHorseRacingFixedOdds,
-                    (roleId > 1),
-                    !disableDownlinesHorseRacingFixedOdds,
-                    CastAide.AsBoolean(row1["Enabled"])));
-                TemplateHandler.Assign(ref htmlcontent, "{chkEnableHorseRacingFixedOdds}", isEnableHorseRacingFixedOdds ? 1 : 0);
-            }
-
-            #endregion HRFixedOdds
-
-            #region Esports
-
-            if (!Convert.ToBoolean(ConfigurationManager.AppSettings["HideESports"]))
-            {
-                bool disabledEsports = Convert.IsDBNull(row1["DisableEsports"]) ? false : Convert.ToBoolean(row1["DisableEsports"]);
-                bool disabledEsportsDownline = Convert.IsDBNull(row1["disabledownlinesesports"]) ? false : Convert.ToBoolean(row1["disabledownlinesesports"]);
-                sg.Add(GetSettingControlEsports(roleId, isManageCustomerAccess, "disabledEsports", !disabledEsports,
-                                                       (roleId > 1), disabledEsports,
-                                                       CastAide.AsBoolean(row1["Enabled"].ToString()), disabledEsportsParent,
-                                                       !disabledEsportsDownline));
-
-                TemplateHandler.Assign(ref htmlcontent, "{chkEsports}", disabledEsports ? 1 : 0);
-            }
-            else
-            {
-                TemplateHandler.RemoveBlock(ref htmlcontent, "{chkEsports}");
-            }
-
-            #endregion Esports
-
             TemplateHandler.Assign(ref htmlcontent, "{settingcontrol}", sg.GetHTMLSettingControl());
         }
 
@@ -1361,7 +1115,7 @@ namespace Sunplus.Accounting.Business.Customer
             string minMaxPtUrl = "";
             var minMaxPtRenovationUrl = string.Empty;
             string masterPtUrl = "";
-            bool isShowSetting = KenoSection.Instance.ShowSetting;
+
             switch (roleId)
             {
                 case 1: // member
@@ -1381,18 +1135,12 @@ namespace Sunplus.Accounting.Business.Customer
                     }
                     //HuyNguyen Menu Member
                     submenu1 = "<a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + minMaxPtUrl + "\");' target='centerFr'>Sport book</a>";
-                    if (!WebSettings.disabledFI && !AppSession.CurrentSystemNAME.Equals(Enumerations.AccountingSystem.EXTERNAL))
-                    {
-                        submenu1 += "<br><a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + "customer/v2/EditSuperOnMemberFI.aspx?uplineid=" + parentId + "&custid=" + custId.ToString() + "&roleid=" + roleId.ToString() + "\");' target='centerFr'>Finance</a>";
-                    }
-                    if (!WebSettings.disabledHR)
-                    {
-                        submenu1 += string.Format("<br><a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"SuperEditMemberPTRacing/Index?custid={0}&superid={1}\");' target='centerFr'>Racing</a>", custId, superId);
-                    }
+
                     if (BingoSettings.BingoGame.Enabled && isAllowEditBI)
                     {
                         submenu1 += "<br><a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + "customer/PT/Bingo/SuperOnMemberUpdate.aspx?custId=" + custId.ToString() + "&roleid=" + roleId.ToString() + "\");' target='centerFr'>Bingo</a>";
                     }
+
                     if (WebSettings.EnableLiveCasino)
                     {
                         if (AppSession.IsSyncLCSCurrentCust)
@@ -1401,33 +1149,14 @@ namespace Sunplus.Accounting.Business.Customer
                             submenu1 += "<br><a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + urlLiveCasino + "\");' target='centerFr'>Live Casino</a>";
                         }
                     }
-                    if (WebSettings.EnableVirtualSports)
-                    {
-                        if (!AppSession.IsHideVirtualSportsCurrentCust)
-                        {
-                            submenu1 += "<br><a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + "VirtualSportMemberPT/SuperEditMember?custId=" + custId.ToString() + "&superId=" + superId + "\");' target='centerFr'>Virtual Sports</a>";
-                        }
-                    }
-
-                    if (isShowSetting)
-                    {
-                        submenu1 += "<br><a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + "customersetting/KenoSetting/kenosetting/SuperEditMember?custId=" + custId.ToString() + "&userId=" + AppSession.AccId + "\");' target='centerFr'>Keno</a>";
-                    }
-
+                    
                     submenu2 = "<a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + masterPtUrl + "\");' target='centerFr'>Sport book</a>";
-                    if (!WebSettings.disabledFI)
-                    {
-                        submenu2 += "<br><a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + "customer/v2/EditMasterOnMemberFI.aspx?uplineid=" + parentId + "&custid=" + custId.ToString() + "&roleid=" + roleId.ToString() + "\");' target='centerFr'>Finance</a>";
-                    }
-                    if (!WebSettings.disabledHR)
-                    {
-                        submenu2 += string.Format("<br><a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"MasterEditMemberPTRacing/Index?custid={0}&masterid={1}\");' target='centerFr'>Racing</a>", custId, masterId);
-                    }
 
                     if (BingoSettings.BingoGame.Enabled && isAllowEditBI)
                     {
                         submenu2 += "<br><a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + "customer/PT/Bingo/MasterOnMemberUpdate.aspx?custId=" + custId.ToString() + "&roleid=" + roleId.ToString() + "\");' target='centerFr'>Bingo</a>";
                     }
+
                     if (WebSettings.EnableLiveCasino)
                     {
                         if (AppSession.IsSyncLCSCurrentCust)
@@ -1435,18 +1164,6 @@ namespace Sunplus.Accounting.Business.Customer
                             var urlLiveCasino = string.Format("LiveCasinoSetting/Setting/EditSetting?uplineId={0}&parentId={1}&uplineLevel=3&actorId={2}&actorUsername={3}&customerId={4}&customerLevel=1", masterId, parentId, AppSession.AccId, AppSession.AccUserName, custId);
                             submenu2 += "<br><a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + urlLiveCasino + "\");' target='centerFr'>Live Casino</a>";
                         }
-                    }
-                    if (WebSettings.EnableVirtualSports)
-                    {
-                        if (!AppSession.IsHideVirtualSportsCurrentCust)
-                        {
-                            submenu2 += "<br><a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + "VirtualSportMemberPT/MasterEditMember?custId=" + custId.ToString() + "&masterId=" + masterId + "\");' target='centerFr'>Virtual Sports</a>";
-                        }
-                    }
-
-                    if (isShowSetting)
-                    {
-                        submenu2 += "<br><a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + "customersetting/KenoSetting/kenosetting/MasterEditMember?custId=" + custId.ToString() + "&userId=" + AppSession.AccId + "\");' target='centerFr'>Keno</a>";
                     }
 
                     TemplateHandler.Assign(ref htmlcontent, "{contentminmax}", submenu1);
@@ -1462,14 +1179,7 @@ namespace Sunplus.Accounting.Business.Customer
                     minMaxPtRenovationUrl = "EditAgentMinMaxPt/EditAgentMinMaxPtPage?&custId=" + custId + "&uplineId=" + parentId + "&uname=" + userName;
                     minMaxPtUrl = WebSettings.IsShowCustomerSettingRenovation == 3 ? minMaxPtRenovationUrl : "Customer/v2/EditMinMaxPT.aspx?set=1&custId=" + custId + "&type=Agent";
                     submenu3 = "<a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + minMaxPtUrl + "\");' target='centerFr'>Sport book</a>";
-                    if (!WebSettings.disabledFI && !AppSession.CurrentSystemNAME.Equals(Enumerations.AccountingSystem.EXTERNAL))
-                    {
-                        submenu3 += "<br><a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + "customer/v2/MinMaxFinancePT.aspx?uplineid=" + parentId + "&custid=" + custId.ToString() + "&roleid=" + roleId.ToString() + "\");' target='centerFr'>Finance</a>";
-                    }
-                    if (!WebSettings.disabledHR)
-                    {
-                        submenu3 += "<br><a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + "customer/pt/racing/AgentMinMaxUpdate.aspx?custId=" + custId.ToString() + "\");' target='centerFr'>Racing</a>";
-                    }
+
                     TemplateHandler.Assign(ref htmlcontent, "{contentminmax}", submenu3);
                     break;
 
@@ -1483,14 +1193,6 @@ namespace Sunplus.Accounting.Business.Customer
                     minMaxPtUrl = WebSettings.IsShowCustomerSettingRenovation == 3 ? minMaxPtRenovationUrl : "Customer/v2/EditMinMaxPT.aspx?set=1&custId=" + custId + "&type=Master";
 
                     submenu3 = "<a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + minMaxPtUrl + "\");' target='centerFr'>Sport book</a>";
-                    if (!WebSettings.disabledFI && !AppSession.CurrentSystemNAME.Equals(Enumerations.AccountingSystem.EXTERNAL))
-                    {
-                        submenu3 += "<br><a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + "customer/v2/MinMaxFinancePT.aspx?uplineid=" + parentId + "&custid=" + custId.ToString() + "&roleid=" + roleId.ToString() + "\");' target='centerFr'>Finance</a>";
-                    }
-                    if (!WebSettings.disabledHR)
-                    {
-                        submenu3 += "<br><a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + "customer/pt/racing/MasterMinMaxUpdate.aspx?custId=" + custId.ToString() + "\");' target='centerFr'>Racing</a>";
-                    }
                     TemplateHandler.Assign(ref htmlcontent, "{contentminmax}", submenu3);
                     break;
 
@@ -1502,14 +1204,6 @@ namespace Sunplus.Accounting.Business.Customer
                     minMaxPtRenovationUrl = "EditSuperMinPt/EditSuperMinPtPage?&custId=" + custId + "&uname=" + userName;
                     minMaxPtUrl = WebSettings.IsShowCustomerSettingRenovation == 3 ? minMaxPtRenovationUrl : "Customer/v2/EditMinMaxPT.aspx?set=1&custId=" + custId + "&type=Super";
                     submenu3 = "<a class='button_left02'  href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + minMaxPtUrl + "\");' target='centerFr'>Sport book</a>";
-                    if (!WebSettings.disabledFI && !AppSession.CurrentSystemNAME.Equals(Enumerations.AccountingSystem.EXTERNAL))
-                    {
-                        submenu3 += "<br><a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + "customer/v2/MinMaxFinancePT.aspx?uplineid=" + parentId + "&custid=" + custId.ToString() + "&roleid=" + roleId.ToString() + "\");' target='centerFr'>Finance</a>";
-                    }
-                    if (!WebSettings.disabledHR)
-                    {
-                        submenu3 += "<br><a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + "customer/pt/racing/SuperMinUpdate.aspx?custId=" + custId.ToString() + "\");' target='centerFr'>Racing</a>";
-                    }
                     TemplateHandler.Assign(ref htmlcontent, "{contentminmax}", submenu3);
                     break;
 
@@ -2426,73 +2120,11 @@ namespace Sunplus.Accounting.Business.Customer
                     TemplateHandler.RemoveBlock(ref tplTransLink, "downlinelistbtn");
                 }
 
-                switch (accLevel)
+                if (accLevel == Globals.AccountType.Member)
                 {
-                    case Globals.AccountType.Super:
-                        if (!isInternal)
-                        {
-                            if (WebSettings.OfferDoubleComm)
-                            {
-                                downlineListURL = "CustomerList/MasterAgentList?superId=" + custId + "&doubleCommSuper=" + doubleComm.ToString().ToLower();
-                            }
-                            else
-                            {
-                                downlineListURL = "Customer/MasterAgentList.aspx?superId=" + custId;
-                            }
-                        }
-                        else
-                        {
-                            downlineListURL = "FinanceCustomerList/Index?upline=" + custId + "&roleid=4";
-                        }
-                        lblDownlineList = "Master List";
-                        TemplateHandler.Assign(ref tplTransLink, "{AgentShow}", "hidden");
-                        break;
-
-                    case Globals.AccountType.Master:
-                        if (!isInternal)
-                        {
-                            if (WebSettings.OfferDoubleComm)
-                            {
-                                downlineListURL = "CustomerList/AgentList?masterId=" + custId + "&doubleCommMaster=" + doubleComm.ToString().ToLower();
-                            }
-                            else
-                            {
-                                downlineListURL = "Customer/AgentList.aspx?masterId=" + custId;
-                            }
-                        }
-                        else
-                        {
-                            downlineListURL = "FinanceCustomerList/Index?upline=" + custId + "&roleid=3";
-                        }
-                        lblDownlineList = "Agent List";
-                        TemplateHandler.Assign(ref tplTransLink, "{AgentShow}", "hidden");
-                        break;
-
-                    case Globals.AccountType.Agent:
-                        if (!isInternal)
-                        {
-                            if (WebSettings.OfferDoubleComm)
-                            {
-                                downlineListURL = "CustomerList/MemberList?agentId=" + custId + "&hr=" + allowHR.ToString().ToLower() + "&internal=" + isInternal.ToString().ToLower() + "&doubleCommAgent=" + doubleComm.ToString().ToLower();
-                            }
-                            else
-                            {
-                                downlineListURL = "Customer/MemberList.aspx?agentId=" + custId + "&hr=" + allowHR.ToString().ToLower() + "&internal=" + isInternal.ToString().ToLower();
-                            }
-                        }
-                        else
-                        {
-                            downlineListURL = "FinanceCustomerList/Index?upline=" + custId + "&roleid=2";
-                        }
-                        lblDownlineList = "Member List";
-                        TemplateHandler.Assign(ref tplTransLink, "{AgentShow}", "");
-                        break;
-
-                    case Globals.AccountType.Member:
-                        downlineListURL = "TarusBetList/BetListByCustInfo?CustID=" + custId;
-                        lblDownlineList = "Bet List";
-                        TemplateHandler.Assign(ref tplTransLink, "{AgentShow}", "hidden");
-                        break;
+                    downlineListURL = "TarusBetList/BetListByCustInfo?CustID=" + custId;
+                    lblDownlineList = "Bet List";
+                    TemplateHandler.Assign(ref tplTransLink, "{AgentShow}", "hidden");
                 }
 
                 TemplateHandler.Assign(ref tplTransLink, "{IsInternal}", isInternal.ToString().ToLower());
