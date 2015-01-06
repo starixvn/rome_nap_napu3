@@ -38,12 +38,7 @@
     },
     search: function () {
         if (accManager.utils.isEmpty($("#txtFilterBy").val())) {
-            if ($("#rdoGroup").is(":checked")) {
-                accManager.utils.showErr("Please input group name!");
-            }
-            else {
-                accManager.utils.showErr(" Please input admin name!");
-            }
+           accManager.utils.showErr(" Please input admin name!");
             $("#txtFilterBy").focus();
             return;
         }
@@ -63,7 +58,7 @@ userLog.mainGrid = {
         var param = {
             fromDate: $("#tbxFromDate").val(),
             toDate: $("#tbxToDate").val(),
-            type: ($("#rdoGroup").is(":checked") ? 0 : 1),
+            type: 1,
             userName: accManager.utils.removeSpecifiedCharacter(accManager.utils.trimStartEnd($("#txtFilterBy").val())),
             pageIndex: this.pageIndex,
             pageSize: this.pageSize
