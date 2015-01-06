@@ -2,6 +2,7 @@
 namespace Fanex.Tarus.Customer.Credit.Controllers
 {
     using System;
+    using System.Collections;
     using System.Web.Mvc;
     using Fanex.PTEngine.BusinessObjects;
     using Fanex.Tarus.Customer.CreditCustomer.Business;
@@ -13,6 +14,8 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
 
     public class EditAgentController : CustomerSettingBaseController
     {
+        private Hashtable updateParameters = new Hashtable();
+
         /// <summary>
         /// Constructor With parameter
         /// </summary>
@@ -28,6 +31,10 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
         public EditAgentController()
             : base()
         {
+            for (var i = 0; i < 24; i++)
+            {
+                updateParameters.Add(i, (i.Equals(12) || i.Equals(23)) ? "1" : "0");
+            }
         }
 
         /// <summary>
@@ -35,7 +42,7 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
         /// </summary>
         /// <returns>A Edit Agent Page</returns>
         [AuthenticateRead]
-        public ActionResult EditAgentPage(int custId, int masterId, string uname)
+        public ActionResult EditAgentPage(int custId, int masterId, string uname, bool isDisplaySportbooks = true)
         {
             //save super id
             // Setting edit page
@@ -50,7 +57,8 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
                 CustId = custId,
                 CustUserName = uname,
                 UplineCustId = masterId,
-                CanEditCredit = _customerSettingService.CheckPermissionEditCredit()
+                CanEditCredit = _customerSettingService.CheckPermissionEditCredit(),
+                IsDisplaySportbooks = isDisplaySportbooks
             };
             return View("~/Views/Customer/CreditCustomer/EditAgent.cshtml", customerSettingView);
         }
@@ -70,7 +78,7 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
         /// </summary>
         /// <returns>Current context object</returns>
         [HttpPost]
-        public JsonResult GetContextObject(int masterId, int agentId)
+        public JsonResult GetContextObject(int masterId, int agentId, bool isDisplaySportbooks = true)
         {
             //init context for edit master
             IRequestContext currentContext = new RequestContext()
@@ -81,7 +89,8 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
                 TargetRoleId = 2,
                 FormId = FormType.EditPT,
                 SubAccId = 0,
-                AdminId = AppSession.AccId
+                AdminId = AppSession.AccId,
+                IsDisplaySportbooks = isDisplaySportbooks
             };
 
             return Json(JsonConvert.SerializeObject(currentContext, Formatting.Indented, GetJsonSerializerSetting()));
@@ -107,7 +116,7 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
                 currentContext.AdminId = AppSession.AccId;
                 currentContext.IP = System.Web.HttpContext.Current.Request.UserHostAddress;
                 customer.Language = "E";
-                result = _customerService.MasterUpdateAgent(customer, currentContext, isUpdateAllMembers, (decimal)newPositionTakingValue);
+                result = _customerService.MasterUpdateMultipleAgents(customer, currentContext, isUpdateAllMembers, (decimal)newPositionTakingValue, updateParameters);
                 // format template of error message
                 int tempErrorCode = 0;
                 string tempErrorMessage = "";

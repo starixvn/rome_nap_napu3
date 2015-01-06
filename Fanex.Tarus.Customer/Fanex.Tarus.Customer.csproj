@@ -230,10 +230,6 @@
     <Compile Include="DataAccess\ReplicateLicenseeSettings\ReplicateLicenseeSettingsRepository.cs" />
     <Compile Include="DataAccess\SettingCustomer\SMATurnover\ISMATurnoverAccess.cs" />
     <Compile Include="DataAccess\SettingCustomer\SMATurnover\SMATurnoverAccess.cs" />
-    <Compile Include="Controller\Credit\AddNewAgentController.cs" />
-    <Compile Include="Controller\Credit\AddNewMasterController.cs" />
-    <Compile Include="Controller\Credit\AddNewMemberController.cs" />
-    <Compile Include="Controller\Credit\AddNewSuperController.cs" />
     <Compile Include="Controller\Credit\EditMasterOnMemberController.cs" />
     <Compile Include="Controller\Credit\EditSuperOnMemberController.cs" />
     <Compile Include="Controller\Credit\EditAgentMinMaxPtController.cs" />

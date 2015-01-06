@@ -2,6 +2,7 @@
 namespace Fanex.Tarus.Customer.Credit.Controllers
 {
     using System;
+    using System.Collections;
     using System.Web.Mvc;
     using Fanex.PTEngine.BusinessObjects;
     using Fanex.Tarus.Customer.CreditCustomer.Business;
@@ -9,12 +10,13 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
     using Fanex.Tarus.Web.Controllers.Filters;
     using Newtonsoft.Json;
     using Sunplus.Accounting.Core.Common;
-    using Sunplus.Accounting.Core.Helper;
-    using System.Collections.Generic;
     using Sunplus.Accounting.Core.Extensions;
+    using Sunplus.Accounting.Core.Helper;
 
     public class EditMasterOnMemberController : CustomerSettingBaseController
     {
+        private Hashtable updateParameters = new Hashtable();
+
         public EditMasterOnMemberController(ICustomerSettingService customerSettingService)
             : base(customerSettingService)
         {
@@ -23,6 +25,10 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
         public EditMasterOnMemberController()
             : base()
         {
+            for (var i = 0; i < 24; i++)
+            {
+                updateParameters.Add(i, (i.Equals(12) || i.Equals(23)) ? "1" : "0");
+            }
         }
 
         /// <summary>
@@ -32,7 +38,7 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
         /// <param name="userName">Name of agent</param>
         /// <returns></returns>
         [AuthenticateRead]
-        public ActionResult EditMasterOnMemberPage(int agentId, int custId, string uname)
+        public ActionResult EditMasterOnMemberPage(int agentId, int custId, string uname, bool isDisplaySportbooks = true)
         {
             //// Setting for customer information section
             CustomerSettingView customerSettingView = new CustomerSettingView
@@ -46,7 +52,8 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
                 CustId = custId,
                 CustUserName = uname,
                 UplineCustId = agentId,
-                CanEditCredit = _customerSettingService.CheckPermissionEditCredit()
+                CanEditCredit = _customerSettingService.CheckPermissionEditCredit(),
+                IsDisplaySportbooks = isDisplaySportbooks
             };
             return View("~/Views/Customer/CreditCustomer/EditMasterOnMember.cshtml", customerSettingView);
         }
@@ -66,7 +73,7 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
         /// </summary>
         /// <returns>Current context object</returns>
         [HttpPost]
-        public JsonResult GetContextObject(int agentId, int memberId)
+        public JsonResult GetContextObject(int agentId, int memberId, bool isDisplaySportbooks = true)
         {
             //init context for add new supper
             IRequestContext currentContext = new RequestContext()
@@ -78,7 +85,8 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
                 TargetRoleId = 1,
                 FormId = FormType.EditPT,
                 SubAccId = 0,
-                AdminId = AppSession.AccId
+                AdminId = AppSession.AccId,
+                IsDisplaySportbooks = isDisplaySportbooks
             };
 
             return Json(JsonConvert.SerializeObject(currentContext, Formatting.Indented, GetJsonSerializerSetting()));
@@ -103,7 +111,7 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
                 currentContext.CustId = AppSession.AccId;
                 customer.Language = "E";
                 currentContext.IP = System.Web.HttpContext.Current.Request.UserHostAddress;
-                result = _customerService.MasterUpdateMember(customer, currentContext);
+                result = _customerService.MasterUpdateMultipleMembers(customer, currentContext, updateParameters);
 
                 int tempErrorCode = 0;
                 string tempErrorMessage = "";

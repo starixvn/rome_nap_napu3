@@ -37,7 +37,7 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
         /// </summary>
         /// <returns>A Edit super Page</returns>
         [AuthenticateRead]
-        public ActionResult EditSuperMinPtPage(int custId, string uname)
+        public ActionResult EditSuperMinPtPage(int custId, string uname, bool isDisplaySportbooks = true)
         {
             //save super id
             // Setting edit page
@@ -48,7 +48,8 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
                 CustId = custId,
                 CustUserName = uname,
                 UplineCustId = 0,
-                CanEditCredit = _customerSettingService.CheckPermissionEditCredit()
+                CanEditCredit = _customerSettingService.CheckPermissionEditCredit(),
+                IsDisplaySportbooks = isDisplaySportbooks
             };
             return View("~/Views/Customer/CreditCustomer/EditSuperMinPt.cshtml", customerSettingView);
         }
@@ -68,7 +69,7 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
         /// </summary>
         /// <returns>Current context object</returns>
         [HttpPost]
-        public JsonResult GetContextObject(int targetId)
+        public JsonResult GetContextObject(int targetId, bool isDisplaySportbooks = true)
         {
             //init context for edit master
             IRequestContext currentContext = new RequestContext()
@@ -79,7 +80,8 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
                 TargetRoleId = 4,
                 FormId = FormType.EditMinPT,
                 SubAccId = 0,
-                AdminId = AppSession.AccId
+                AdminId = AppSession.AccId,
+                IsDisplaySportbooks = isDisplaySportbooks
             };
 
             return Json(JsonConvert.SerializeObject(currentContext, Formatting.Indented, GetJsonSerializerSetting()));
