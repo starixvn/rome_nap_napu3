@@ -203,6 +203,9 @@
                 success: function (rs) {
                     //document.getElementById("onlinepanel").innerHTML = rs;
                     $('#onlinepanel').html(rs);
+                    var t = setTimeout(function () {
+                        $('#pane21').jScrollPane({ showArrows: true, scrollbarWidth: 15, arrowSize: 16 });
+                    }, 1000);
                 }
             });
         }
