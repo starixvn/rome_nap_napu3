@@ -1,14 +1,5 @@
-﻿//load function
-$(function () {
+﻿$(function () {
     edm.init();
-    $('#chkClosed').on('click', function () {
-        if (!confirm("Are you sure you want to change Close status for this customer?")) {
-            $('#chkClosed').prop('checked', !($('#chkClosed').prop('checked')));
-        }
-        else {
-            $('#chkClosed').prop('checked', ($('#chkClosed').prop('checked')));
-        }
-    });
 });
 
 var customer;
