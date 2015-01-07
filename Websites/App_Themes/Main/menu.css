@@ -1,4 +1,24 @@
-﻿#lefttopbanner2
+﻿@font-face {
+    font-family: Roboto;
+    src: url(../Fonts/Roboto/Roboto-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Roboto Light";
+    src: url(../Fonts/Roboto/Roboto-Light.ttf);
+}
+
+@font-face {
+    font-family: "Roboto Bold";
+    src: url(../Fonts/Roboto/Roboto-Bold.ttf);
+}
+
+@font-face {
+    font-family: "Roboto Medium";
+    src: url(../Fonts/Roboto/Roboto-Medium.ttf);
+}
+
+#lefttopbanner2
 {
 	float:left;
 	margin-left:3px;
@@ -75,7 +95,6 @@
 }
 #mainmenu{
 	font-size:11px;
-	font-weight:bold;
 	float:left;
 	line-height: 43px;
 	/*width:820px;*/
@@ -102,14 +121,14 @@
 }
 #mainmenu a span{
 	font-size: 13px;
-	font-weight:bold;
+	
 	color:#fff;
 	display:block;
 	padding: 0px 6px 0px 10px;
 	
 	background:none no-repeat scroll right top #576b9d;
 	border-left: 1px solid #40444f;
-	
+	font-family:"Roboto Medium",Tahoma,Arial,helvetica,sans-serif;
 }
 #mainmenu a:hover span
 {

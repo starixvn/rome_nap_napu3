@@ -583,7 +583,9 @@ namespace Sunplus.Accounting.Business.Customer
                                         TemplateHandler.Assign(ref balanceinfo, "{YesterdayCashBalCur}", string.Format("{0:n}", yesterdayCash));
                                         TemplateHandler.Assign(ref balanceinfo, "{CurYesterdayCashBalCur}", currency + " ");
 
-                                        TemplateHandler.Assign(ref balanceinfo, "{AccOutstandTxn}", string.Format("{0:n}", currency + " " + IBCUtils.FormatHandler.FormatNumber20(accOutstanding)));
+                                        TemplateHandler.Assign(ref balanceinfo, "{AccOutstandTxn}", string.Format("{0:n}",
+                                            "<span class=\"curency-label\">" + currency + "</span> " +
+                                            IBCUtils.FormatHandler.FormatNumber20(accOutstanding)));
                                         //Check Given Credit Permission
                                         bool isallowupdategivencredit = Permissions.GetHostPermission(Enumerations.Functions.Customer.Credit);
 
@@ -605,8 +607,12 @@ namespace Sunplus.Accounting.Business.Customer
                                             TemplateHandler.Assign(ref balanceinfo, "{YesterdayBalCur}", string.Format("{0:n}", IBCUtils.FormatHandler.FormatNumber20(yesterdayBal)));
                                             TemplateHandler.Assign(ref balanceinfo, "{CurYesterdayBalCur}", currency + " ");
 
-                                            TemplateHandler.Assign(ref balanceinfo, "{OutstandTxn}", string.Format("{0:n}", currency + " " + IBCUtils.FormatHandler.FormatNumber20(outStanding)));
-                                            TemplateHandler.Assign(ref balanceinfo, "{UsedCredit}", string.Format("{0:n}", currency + " " + IBCUtils.FormatHandler.FormatNumber20(usedCredit)));
+                                            TemplateHandler.Assign(ref balanceinfo, "{OutstandTxn}", string.Format("{0:n}",
+                                                    "<span class=\"curency-label\">" + currency + "</span> " +
+                                                    IBCUtils.FormatHandler.FormatNumber20(outStanding)));
+                                            TemplateHandler.Assign(ref balanceinfo, "{UsedCredit}", string.Format("{0:n}",
+                                                "<span class=\"curency-label\">" + currency + "</span> " +
+                                                IBCUtils.FormatHandler.FormatNumber20(usedCredit)));
                                             TemplateHandler.Assign(ref balanceinfo, "{AgentType}", downlinename);
                                             TemplateHandler.Assign(ref balanceinfo, "{hiddenbalance}", "");
                                             TemplateHandler.Assign(ref balanceinfo, "{ishiddenmember}", "hidden");
@@ -2166,6 +2172,10 @@ namespace Sunplus.Accounting.Business.Customer
                 TemplateHandler.Assign(ref tplTransLink, "{custid}", custId.ToString());
                 TemplateHandler.Assign(ref tplTransLink, "downlineLink", downlineListURL);
                 TemplateHandler.Assign(ref tplTransLink, "lblDownline", lblDownlineList);
+                TemplateHandler.Assign(
+                    ref tplTransLink,
+                    "{downlineLink-button}",
+                    accLevel == Globals.AccountType.Member ? string.Empty : "hide");
 
                 TemplateHandler.Assign(ref htmlCustInfo, "{TransLinksBox}", tplTransLink);
 
@@ -2285,15 +2295,15 @@ namespace Sunplus.Accounting.Business.Customer
             #region assign template
 
             TemplateHandler.Assign(ref balanceInfo, "{masteractive}",
-                                    string.Format("<span style='color:#4b649b'>{0}</span>/<span style='color:#E65858'>{1}</span>/{2}",
+                                    string.Format("<span style='color:#4b649b'>{0}</span>/<span style='color:#da0404'>{1}</span>/{2}",
                                                     mAgentActive, mAgentClosed, mAgentSuspended));
 
             TemplateHandler.Assign(ref balanceInfo, "{agentavtive}",
-                                    string.Format("<span style='color:#4b649b'>{0}</span>/<span style='color:#E65858'>{1}</span>/{2}",
+                                    string.Format("<span style='color:#4b649b'>{0}</span>/<span style='color:#da0404'>{1}</span>/{2}",
                                                     agentActive, agentClosed, agentSuspend));
 
             TemplateHandler.Assign(ref balanceInfo, "{memberactive}",
-                                    string.Format("<span style='color:#4b649b'>{0}</span>/<span style='color:#E65858'>{1}</span>/{2}",
+                                    string.Format("<span style='color:#4b649b'>{0}</span>/<span style='color:#da0404'>{1}</span>/{2}",
                                                     memberActive, memberClosed, memberSuspend));
 
             TemplateHandler.Assign(ref balanceInfo, "{masterhidden}", roleId > 3 ? "" : "hidden");

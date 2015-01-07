@@ -24,7 +24,7 @@ body
 	padding: 0;
 	height: 100%; /* this is the key! */
 	width:100%;
-	font-family: Roboto,Tahoma,Arial ,helvetica ,sans-serif;
+	font-family: "Roboto Light",Tahoma,Arial ,helvetica ,sans-serif;
 	font-size:12px;
 	line-height:21px;
 }
@@ -99,7 +99,8 @@ input[type="file"] >input[type="button"]::-moz-focus-inner{border:none}
 }
 .text_dif{
 	color:#fdf8ad;
-	text-align:right;
+	text-align:right;    
+	margin: 0 4px;
 }
 .text_user{
 
@@ -129,7 +130,7 @@ input[type="file"] >input[type="button"]::-moz-focus-inner{border:none}
 
 .text_org
 {
-	color:#ff7200;
+	color:#fabf4a;
 	text-align:left;
 	font-size:12px;
 }

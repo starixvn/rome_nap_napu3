@@ -51,7 +51,7 @@ namespace Sunplus.Accounting.DataAccess
             htmctl = Sunplus.Accounting.Core.Web.WebUtils.LoadTemplate(Globals.CUSTINFO_HTM_TEMPLATE);
             arr = ShowSettingControl();
 
-            for (int i = 0; i < arr.Count; i += 2)
+            for (int i = 0; i < arr.Count; i += 1)
             {
                 SettingControl control = (SettingControl)arr[i];
 
@@ -126,95 +126,6 @@ namespace Sunplus.Accounting.DataAccess
                 TemplateHandler.Assign(ref _htlctl, "{lblagenttypeL}", lblagenttype);
                 TemplateHandler.Assign(ref _htlctl, "{lblagenttypeDLL}", (control.Type == "CS" ? "Casino" : lblagenttype) + "'s downlines");
 
-                if (i + 1 < arr.Count)
-                {
-                    SettingControl nextControl = (SettingControl)arr[i + 1];
-
-                    if (Utils.IsBooleanType(nextControl.Value))
-                        TemplateHandler.Assign(ref _htlctl, "{statusR}", (bool)nextControl.Value == true ? "checked='true'" : "");
-                    TemplateHandler.Assign(ref _htlctl, "{typeR}", nextControl.Type);
-                    lblagenttype = Sunplus.Accounting.Core.Common.Constants.GetNameByRoleId(nextControl.RoleID);
-
-                    TemplateHandler.Assign(ref _htlctl, "{lblagenttypeR}", lblagenttype);
-                    TemplateHandler.Assign(ref _htlctl, "{lblagenttypeDLR}", (nextControl.Type == "CS" ? "Casino" : lblagenttype) + "'s downlines");
-
-                    TemplateHandler.Assign(ref _htlctl, "{lblR}", nextControl.Lable);
-                    if (Utils.IsBooleanType(nextControl.Value))
-                    {
-                        TemplateHandler.Assign(ref _htlctl, "{R}", "");
-                        TemplateHandler.Assign(ref _htlctl, "{classnameR}", (bool)nextControl.Value == true ? "chkchecked" : "chkuncheck");
-                    }
-                    else
-                    {
-                        TemplateHandler.Assign(ref _htlctl, "{R}", nextControl.Value.ToString());
-                        TemplateHandler.Assign(ref _htlctl, "{classnameR}", nextControl.CSSClass);
-                    }
-
-                    TemplateHandler.Assign(ref _htlctl, "{jsonclickR}", nextControl.JSOnClick);
-                    TemplateHandler.Assign(ref _htlctl, "{jsonmouseoverR}", nextControl.JSOnMouseOver);
-                    TemplateHandler.Assign(ref _htlctl, "{jsonmouseoutR}", nextControl.JSOnMouseOut);
-                    //TemplateHandler.Assign(ref _htlctl, "{classnameR}", nextControl.CSSClass);
-                    TemplateHandler.Assign(ref _htlctl, "{lblidR}", nextControl.StatusName.Trim().Replace(" ", ""));
-                    TemplateHandler.Assign(ref _htlctl, "{lblPopUpTitleR}", nextControl.Lable);
-                    if (Utils.IsBooleanType(nextControl.Value))
-                        TemplateHandler.Assign(ref _htlctl, "{oldvalueR}", (bool)nextControl.Value == true ? "1" : "0");
-
-                    if (nextControl.Type == "SelectedBetting")
-                    {
-                        if ((Utils.IsBooleanType(nextControl.Value) && (bool)nextControl.Value))
-                        {
-                            TemplateHandler.Assign(ref _htlctl, "{oldvalueDLR}", "1");
-                            TemplateHandler.Assign(ref _htlctl, "{statusDLR}", "checked");
-                        }
-                        else
-                        {
-                            TemplateHandler.Assign(ref _htlctl, "{oldvalueDLR}", "0");
-                            TemplateHandler.Assign(ref _htlctl, "{statusDLR}", "");
-                        }
-
-                        if (nextControl.RoleID < 3)
-                        {
-                            TemplateHandler.RemoveBlock(ref _htlctl, "chkdownlineR");
-                        }
-                    }
-                    else
-                    {
-                        if ((Utils.IsBooleanType(nextControl.Value) && !(bool)nextControl.Value) || !nextControl.IsDisableDownlines)
-                        {
-                            TemplateHandler.Assign(ref _htlctl, "{oldvalueDLR}", "0");
-                            TemplateHandler.Assign(ref _htlctl, "{statusDLR}", "");
-                        }
-                        else
-                        {
-                            TemplateHandler.Assign(ref _htlctl, "{oldvalueDLR}", "1");
-                            TemplateHandler.Assign(ref _htlctl, "{statusDLR}", "checked='true'");
-                        }
-
-                        if (nextControl.RoleID == 1)
-                        {
-                            TemplateHandler.RemoveBlock(ref _htlctl, "chkdownlineR");
-                        }
-                    }
-
-                }
-                else
-                {
-                    TemplateHandler.Assign(ref _htlctl, "{lblR}", "");
-                    TemplateHandler.Assign(ref _htlctl, "{R}", "");
-                    TemplateHandler.Assign(ref _htlctl, "{jsonclickR}", "");
-                    TemplateHandler.Assign(ref _htlctl, "{jsonmouseoverR}", "");
-                    TemplateHandler.Assign(ref _htlctl, "{jsonmouseoutR}", "");
-                    TemplateHandler.Assign(ref _htlctl, "{classnameR}", "");
-                    TemplateHandler.Assign(ref _htlctl, "{lblidR}", "");
-                    TemplateHandler.Assign(ref _htlctl, "{lblPopUpTitleR}", "");
-                    TemplateHandler.Assign(ref _htlctl, "{lblagenttypeR}", "");
-                    TemplateHandler.Assign(ref _htlctl, "{lblagenttypeDLR}}", "");
-                    TemplateHandler.Assign(ref _htlctl, "{statusR}", "");
-                    TemplateHandler.Assign(ref _htlctl, "{oldvalueR}", "");
-                    TemplateHandler.Assign(ref _htlctl, "{oldvalueDLR}", "");
-                    TemplateHandler.Assign(ref _htlctl, "{statusDLR}", "");
-                    TemplateHandler.RemoveBlock(ref _htlctl, "removeable");
-                }
                 strsetting += _htlctl;
             }
             return strsetting;

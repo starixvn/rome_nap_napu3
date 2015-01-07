@@ -13,9 +13,14 @@
     src: url(../Fonts/Roboto/Roboto-Bold.ttf);
 }
 
+@font-face {
+    font-family: "Roboto Medium";
+    src: url(../Fonts/Roboto/Roboto-Light.ttf);
+}
+
 body
 {
-    font-family: Roboto,Tahoma,Arial ,helvetica ,sans-serif;
+    font-family: "Roboto Light",Tahoma,Arial ,helvetica ,sans-serif;
     font-size: 11px;
     margin: 0px;
     color: #696969;

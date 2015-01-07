@@ -39,10 +39,10 @@ input[disabled].btn {
 .btn
 {
 	text-align:center;
-	font-size:13px;
+	font-size:11px;
 	color:#FFFFFF;
 	background:none repeat-x scroll left center #3a456d;	
-    border-radius: 3px;
+    border-radius: 2px;
     
 	cursor:pointer;
 	border: none;

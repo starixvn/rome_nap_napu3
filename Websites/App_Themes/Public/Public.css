@@ -1,7 +1,8 @@
-﻿/*----Reset-----*/
+﻿
+/*----Reset-----*/
 *{
 	outline: none 0;
-	font-family:Tahoma, Arial,Helvetica,sans-serif;
+	font-family:  "Roboto Light", Tahoma, Arial,Helvetica,sans-serif;
 }
 html {overflow: auto}
 ol, ul {list-style: none}
