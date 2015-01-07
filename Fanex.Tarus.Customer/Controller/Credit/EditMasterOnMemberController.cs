@@ -55,7 +55,7 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
                 CanEditCredit = _customerSettingService.CheckPermissionEditCredit(),
                 IsDisplaySportbooks = isDisplaySportbooks
             };
-            return View("~/Views/Customer/CreditCustomer/EditMasterOnMember.cshtml", customerSettingView);
+            return View(isDisplaySportbooks ? "~/Views/Customer/CreditCustomer/EditMasterOnMember.cshtml" : "~/Views/Customer/NumberGameSetting/EditMasterOnMember.cshtml", customerSettingView);
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
         /// <returns>Return a result message</returns>
         [AuthenticateHost]
         [HttpPost]
-        public JsonResult DoEditMember(string stringcustomer, RequestContext currentContext)
+        public JsonResult DoEditMember(string stringcustomer, RequestContext currentContext, bool isDisplaySportbooks = true)
         {
             Result result;
             try
@@ -111,7 +111,7 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
                 currentContext.CustId = AppSession.AccId;
                 customer.Language = "E";
                 currentContext.IP = System.Web.HttpContext.Current.Request.UserHostAddress;
-                result = _customerService.MasterUpdateMultipleMembers(customer, currentContext, updateParameters);
+                result = isDisplaySportbooks ?  _customerService.MasterUpdateMember(customer, currentContext) :  _customerService.MasterUpdateMultipleMembers(customer, currentContext, updateParameters);
 
                 int tempErrorCode = 0;
                 string tempErrorMessage = "";

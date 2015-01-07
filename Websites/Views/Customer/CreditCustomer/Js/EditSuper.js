@@ -35,7 +35,7 @@ eds.initContext = function () {
         url: "GetContextObject",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        data: '{"superId":' + JSON.stringify(superId) + ',"isDisplaySportbooks":' + JSON.stringify(isDisplaySportbooks) + '}',
+        data: '{"superId":' + JSON.stringify(superId) + '}',
         success: function (stringContext) {
             context = JSON.parse(stringContext);
             eds.initCustomer();
