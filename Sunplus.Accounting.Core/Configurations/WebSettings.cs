@@ -548,5 +548,21 @@ namespace Sunplus.Accounting.Core.Configurations
                 return Convert.ToString(ConfigurationManager.AppSettings["AllowedUsersAccess"]).Split(',');
             }
         }
+
+        public static string[] InternalCustomersOfMrLam
+        {
+            get
+            {
+                return Convert.ToString(ConfigurationManager.AppSettings["InternalCustomersOfMrLam"]).Split(',');
+            }
+        }
+
+        public static int U3GroupId
+        {
+            get
+            {
+                return Convert.ToInt32(ConfigurationManager.AppSettings["U3GroupId"]);
+            }
+        }
     }
 }

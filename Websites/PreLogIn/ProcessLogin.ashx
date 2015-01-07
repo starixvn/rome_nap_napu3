@@ -58,6 +58,7 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
             string[] allowedGroupsAccess = WebSettings.AllowedGroupsAccess;
             string[] allowedUsersAccess = WebSettings.AllowedUsersAccess;
             bool allowedAccess = false;
+            bool isMrLamAccount = false;
 
             for (int i = 0; i < allowedGroupsAccess.Length; i++)
             {
@@ -75,6 +76,7 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                     if (username == allowedUsersAccess[i].Trim())
                     {
                         allowedAccess = true;
+                        isMrLamAccount = true;
                         break;
                     }
                 }
@@ -90,6 +92,9 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                 AppSession.AccId = custId;
                 AppSession.UserGroupId = userGroup.GroupId;
                 AppSession.CurrentSystemName = system;
+                AppSession.IsMrLamAccount = isMrLamAccount;
+                AppSession.IsU3Account = userGroup.GroupId == WebSettings.U3GroupId ? true : false;
+
 
                 if (string.IsNullOrEmpty(system))
                 {
@@ -158,14 +163,14 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                         SubMenu = null
                     });
                 }
-                
+
                 bool isShowNap = (new LoginRepository()).CheckUserSiteAccess(new CheckUserSiteAccessCriteria());
                 if (isShowNap)
                 {
                     AppSession.UserMenu.Add(new Sunplus.Accounting.Entities.MenuBO
                     {
                         Id = 0,
-                        Name="NAP",
+                        Name = "NAP",
                         Url = System.Configuration.ConfigurationManager.AppSettings["NapHomeSSOController"],
                         System = "accounting",
                         ParentId = 0,

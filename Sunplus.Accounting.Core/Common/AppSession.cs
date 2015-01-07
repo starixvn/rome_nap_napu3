@@ -312,5 +312,17 @@ namespace Sunplus.Accounting.Core.Common
             get { return CastAide.AsInt32(HttpContext.Current.Session["UserGroupId"], 0); }
             set { HttpContext.Current.Session["UserGroupId"] = value; }
         }
+
+        public static bool IsMrLamAccount
+        {
+            get { return CastAide.AsBoolean(HttpContext.Current.Session["IsMrLamAccount"], false); }
+            set { HttpContext.Current.Session["IsMrLamAccount"] = value; }
+        }
+
+        public static bool IsU3Account
+        {
+            get { return CastAide.AsBoolean(HttpContext.Current.Session["IsU3Account"], false); }
+            set { HttpContext.Current.Session["IsU3Account"] = value; }
+        }
     }
 }
