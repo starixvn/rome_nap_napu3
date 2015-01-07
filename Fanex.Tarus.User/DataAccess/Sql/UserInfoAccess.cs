@@ -281,6 +281,7 @@ namespace Fanex.Tarus.User.DataAccess.Sql
             {
                 objDB.AddInParameter("custid", DbType.Int32, custId);
                 objDB.AddInParameter("groupid", DbType.Int32, 0);
+                objDB.AddInParameter("system", DbType.String, ConfigurationManager.AppSettings["U3GroupName"].ToString());
                 return objDB.ExecuteDataSet();
             }
         }
