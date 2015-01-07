@@ -41,7 +41,7 @@ eda.initContext = function () {
         url: "GetContextObject",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        data: '{"masterId":' + JSON.stringify(masterId) + ', "agentId": ' + JSON.stringify(agentId) + ',"isDisplaySportbooks":' + JSON.stringify(isDisplaySportbooks) + '}',
+        data: '{"masterId":' + JSON.stringify(masterId) + ', "agentId": ' + JSON.stringify(agentId) + '}',
         success: function (stringContext) {
             context = JSON.parse(stringContext);
             eda.initCustomer();
