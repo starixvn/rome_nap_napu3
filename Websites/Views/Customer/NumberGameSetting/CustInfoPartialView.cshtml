@@ -1,0 +1,282 @@
+﻿@using Fanex.Tarus.Customer.CreditCustomer.Entities;
+@using Sunplus.Accounting.Core.Configurations;
+@model Fanex.Tarus.Customer.CreditCustomer.Entities.CustomerSettingView
+
+@if (Model.IsUpdateMinMaxPt)
+{
+    <table class="tblcollapse" style="width: 750px; margin-bottom: 10px;">
+        <tr class="title">
+            <td colspan="6">
+                @Model.TitlePage
+            </td>
+        </tr>
+        <tr>
+            <td class="r" style="width: 16%">@Resources.Language.UserName
+            </td>
+            <td class="l" style="width: 16%">
+                <span data-bind="text: customer.userName"></span>
+            </td>
+            <td class="r" style="width: 16%">@Resources.Language.lblFirstname
+            </td>
+            <td class="l" style="width: 16%">
+                <span data-bind="text: customer.firstName"></span>
+            </td>
+            <td class="r" style="width: 16%">@Resources.Language.lblLastname
+            </td>
+            <td class="l" style="width: 16%">
+                <span data-bind="text: customer.lastName"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="r" style="width: 16%">@Resources.Language.Phone
+            </td>
+            <td class="l" style="width: 16%">
+                <span data-bind="text: customer.phone"></span>
+            </td>
+            <td class="r" style="width: 16%">@Resources.Language.lblMobilePhone
+            </td>
+            <td class="l" style="width: 16%">
+                <span data-bind="text: customer.mobilePhone"></span>
+            </td>
+            <td class="r" style="width: 16%">@Resources.Language.lblFax
+            </td>
+            <td class="l" style="width: 16%">
+                <span data-bind="text: customer.fax"></span>
+            </td>
+        </tr>
+    </table>
+}
+else if ((Model.IsSuperSetting && Model.IsMemberSetting) || (Model.IsMasterSetting && Model.IsMemberSetting))
+{
+    <table class="tblcollapse" style="width: 850px; margin-bottom: 10px;">
+        <tr class="title">
+            <td colspan="6">
+                @Model.TitlePage
+            </td>
+        </tr>
+        <tr>
+            <td class="r" style="width: 16%">@Resources.Language.UserName
+            </td>
+            <td class="l" style="width: 16%">
+                <span data-bind="text: customer.userName"></span>
+            </td>
+            <td class="r" style="width: 16%">@Resources.Language.lblFirstname
+            </td>
+            <td class="l" style="width: 16%">
+                <span data-bind="text: customer.firstName"></span>
+            </td>
+            <td class="r" style="width: 16%">@Resources.Language.lblLastname
+            </td>
+            <td class="l" style="width: 16%">
+                <span data-bind="text: customer.lastName"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="r" style="width: 16%">@Resources.Language.Phone
+            </td>
+            <td class="l" style="width: 16%">
+                <span data-bind="text: customer.phone"></span>
+            </td>
+            <td class="r" style="width: 16%">@Resources.Language.lblMobilePhone
+            </td>
+            <td class="l" style="width: 16%">
+                <span data-bind="text: customer.mobilePhone"></span>
+            </td>
+            <td class="r" style="width: 16%">@Resources.Language.lblFax
+            </td>
+            <td class="l" style="width: 16%">
+                <span data-bind="text: customer.fax"></span>
+            </td>
+        </tr>
+        <tr class="title">
+            <td colspan="6">
+                Commission
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6">
+                @if (Model.IsSuperSetting)
+                {
+                    <table class="tblcollapse" width="100%">
+                        <!--header-->
+                        <tr class="title">
+                            <td>
+                            </td>
+                            <td>@Resources.Language.CommissionForMaster
+                            </td>
+                            <td>@Resources.Language.CommissionForAgent
+                            </td>
+                            <td>@Resources.Language.CommissionForMember
+                            </td>
+                        </tr>
+                        <!--game-comm-->
+                        <tr>
+                            <td class="r" style="width: 25%;">
+                                @Resources.Language.lblGameComm
+                            </td>
+                            <td>
+                                <span data-bind="text: customer.commissionSetting2.playerDiscountNumber"></span>
+                            </td>
+                            <td>
+                                <span data-bind="text: customer.commissionSetting.discountNumber"></span>
+                            </td>
+                            <td>
+                                <span data-bind="text: customer.commissionSetting.playerDiscountNumber"></span>
+                            </td>
+                        </tr>
+                        <!--/game-comm-->
+                    </table>
+                }
+                else
+                {
+                    <table class="tblcollapse" width="100%">
+                        <!--header-->
+                        <tr class="title">
+                            <td>
+                            </td>
+                            <td>@Resources.Language.CommissionForAgent
+                            </td>
+                            <td>@Resources.Language.CommissionForMember
+                            </td>
+                        </tr>
+                        <!--/header-->
+                        <!--game-comm-->
+                        <tr>
+                            <td class="r" style="width: 25%;">
+                                @Resources.Language.lblGameComm
+                            </td>
+                            <td>
+                                <span data-bind="text: customer.commissionSetting.discountNumber"></span>
+                            </td>
+                            <td>
+                                <span data-bind="text: customer.commissionSetting.playerDiscountNumber"></span>
+                            </td>
+                        </tr>
+                        <!--/game-comm-->
+                    </table>
+                }
+            </td>
+        </tr>
+    </table>
+}
+else
+{
+    <table class="tblcollapse" style="width: 850px; margin-bottom: 10px;">
+        <tr class="title">
+            <td colspan="4">
+                @Model.TitlePage
+            </td>
+        </tr>
+        <tr>
+            <td class="l" @if (!Model.IsInsertPage)
+                          {
+                        @: width="12%"
+                      }>
+                @Resources.Language.lblFirstname
+            </td>
+            <td class="l" @if (!Model.IsInsertPage)
+                          {
+                        @: width="45%"
+                      }>
+                <span data-bind="text: customer.firstName"></span>
+            </td>
+            <td class="l" @if (!Model.IsInsertPage)
+                          {
+                        @: width="12%"
+                      }>
+                @Resources.Language.lblLastname
+            </td>
+            <td class="l" @if (!Model.IsInsertPage)
+                          {
+                        @: width="31%"
+                      }>
+                <span data-bind="text: customer.lastName"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="l">
+                @Resources.Language.Phone
+            </td>
+            <td class="l">
+                <span data-bind="text: customer.phone"></span>
+            </td>
+            <td class="l">
+                @Resources.Language.lblMobilePhone
+            </td>
+            <td class="l">
+                <span data-bind="text: customer.mobilePhone"></span>
+            </td>
+        </tr>
+        <!--MinMaxPT-->
+        <tr>
+            <td class="l">
+                @Resources.Language.lblFax
+            </td>
+            <td class="l">
+                <span data-bind="text: customer.fax"></span>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr class="title">
+            <td colspan="4">
+                Commission
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                @if (Model.IsMemberSetting == false)
+                {
+                    <table width="100%" class="noneborder" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <!--game-comm-->
+                            <td class="r" style = "width:50%">
+                                @Resources.Language.lblGameComm
+                            </td>
+                            <td class="l" style = "width:50%">
+                                <select class="selectcomm" name="listGameComm" id="listGameComm">
+                                </select>
+                            </td>
+                            <!--/game-comm-->
+                        </tr>
+                    </table>
+                }
+                else
+                {
+                    <table class="tblcollapse" width="100%">
+                        <!--header-->
+                        <tr class="title">
+                            <td>
+                            </td>
+                            <td>
+                                @Resources.Language.CommissionForAgent
+                            </td>
+                            <td>
+                                @Resources.Language.CommissionForMember
+                            </td>
+                        </tr>
+                        <!--/header-->
+                        <!--game-comm-->
+                        <tr>
+                            <td class="r" style="width: 25%;">
+                                @Resources.Language.lblGameComm
+                            </td>
+                            <td>
+                                <input class="selectcomm" type="text" id="txtDiscountNB" name="txtDiscountNB" disabled="disabled"
+                                    data-bind="value: customer.commissionSetting.discountNumber" style="text-align: right;" />
+                            </td>
+                            <td>
+                                <select class="selectcomm" name="listGameComm" id="listGameComm">
+                                </select>
+                            </td>
+                        </tr>
+                        <!--/game-comm-->
+                    </table>
+                }
+            </td>
+        </tr>
+        <!--/MinMaxPT-->
+    </table>
+}

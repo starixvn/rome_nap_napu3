@@ -51,7 +51,7 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
                 CanEditCredit = _customerSettingService.CheckPermissionEditCredit(),
                 IsDisplaySportbooks = isDisplaySportbooks
             };
-            return View("~/Views/Customer/CreditCustomer/EditAgentMinMaxPt.cshtml", customerSettingView);
+            return View(isDisplaySportbooks ? "~/Views/Customer/CreditCustomer/EditAgentMinMaxPt.cshtml" : "~/Views/Customer/NumberGameSetting/EditAgentMinMaxPt.cshtml", customerSettingView);
         }
 
         /// <summary>

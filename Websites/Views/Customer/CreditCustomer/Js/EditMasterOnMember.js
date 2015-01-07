@@ -1,5 +1,14 @@
-﻿$(function () {
+﻿//load function
+$(function () {
     edm.init();
+    $('#chkClosed').on('click', function () {
+        if (!confirm("Are you sure you want to change Close status for this customer?")) {
+            $('#chkClosed').prop('checked', !($('#chkClosed').prop('checked')));
+        }
+        else {
+            $('#chkClosed').prop('checked', ($('#chkClosed').prop('checked')));
+        }
+    });
 });
 
 var customer;
@@ -30,7 +39,7 @@ edm.initContext = function () {
         url: "GetContextObject",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        data: '{"agentId":' + JSON.stringify(agentId) + ',"memberId":' + JSON.stringify(memberId) + ',"isDisplaySportbooks":' + JSON.stringify(isDisplaySportbooks) + '}',
+        data: '{"agentId":' + JSON.stringify(agentId) + ',"memberId":' + JSON.stringify(memberId) + '}',
         success: function (stringContext) {
             context = JSON.parse(stringContext);
             edm.initCustomer();
