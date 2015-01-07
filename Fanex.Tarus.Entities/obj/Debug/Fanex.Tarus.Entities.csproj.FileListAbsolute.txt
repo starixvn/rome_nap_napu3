@@ -1,0 +1,4 @@
+D:\napu3\Fanex.Tarus.Entities\bin\Debug\Fanex.Tarus.Entities.dll
+D:\napu3\Fanex.Tarus.Entities\bin\Debug\Fanex.Tarus.Entities.pdb
+D:\napu3\Fanex.Tarus.Entities\obj\Debug\Fanex.Tarus.Entities.dll
+D:\napu3\Fanex.Tarus.Entities\obj\Debug\Fanex.Tarus.Entities.pdb

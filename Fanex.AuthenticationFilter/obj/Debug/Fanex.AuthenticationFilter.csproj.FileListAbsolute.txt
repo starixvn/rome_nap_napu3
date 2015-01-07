@@ -1,0 +1,6 @@
+D:\napu3\Fanex.AuthenticationFilter\bin\Debug\Fanex.AuthenticationFilter.dll
+D:\napu3\Fanex.AuthenticationFilter\bin\Debug\Fanex.AuthenticationFilter.pdb
+D:\napu3\Fanex.AuthenticationFilter\obj\Debug\Fanex.AuthenticationFilter.Resource.Errors.resources
+D:\napu3\Fanex.AuthenticationFilter\obj\Debug\Fanex.AuthenticationFilter.csproj.GenerateResource.Cache
+D:\napu3\Fanex.AuthenticationFilter\obj\Debug\Fanex.AuthenticationFilter.dll
+D:\napu3\Fanex.AuthenticationFilter\obj\Debug\Fanex.AuthenticationFilter.pdb
