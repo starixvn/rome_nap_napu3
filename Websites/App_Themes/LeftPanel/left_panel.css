@@ -17,12 +17,12 @@ body
 	line-height:21px;
 }
 .text_blueLink{
-	color:#0066CC;
+	color: #4b649b;
 	font-weight:bold;
 	text-decoration:none;
 }
 .text_blueLink:hover{
-	color:#FF6600;
+	color:#ff7200;
 	font-weight:bold;
 }
 
@@ -34,32 +34,34 @@ body
 {
 	margin-left:2px;
 	margin-top:1px;
-	width:258px;
+	width:274px;
 	height:100%;
 	text-align:left;
 }
 .box_line{
-	background:url(../Images/L_banner/bg02_box01.png) no-repeat top left;
-	width:258px;
+	background:none no-repeat scroll left top #ffffff;
+	width:274px;
 	height:6px;
 }
 .box_content{
-	background:url(../Images/L_banner/box_rp.jpg) repeat-y top left;
-	width:258px;
+	background:none repeat-y scroll left top #ffffff;
+	width:274px;
 	margin:0;
 	height:auto;
 }
 .box_content1
 {
-	width:248px;
+	width:274px;
 	margin-left:4px;
 
 }
 .box_header{
-	width:251px;
-	margin-left:2px;
+	width:267px;
 	height:26px;
-	background:url(../Images/L_banner/box_02header.jpg) repeat-x top left;
+	background:none repeat-x scroll left top #ededed;
+	border-bottom: solid 1px #C8CBD4;
+	border-top: solid 1px #C8CBD4;
+	padding-right:4px;
 }
 
 #box_02_headertext
@@ -81,16 +83,16 @@ body
 {
 	background: transparent url('../Images/L_banner/R_btn_left.png') no-repeat right;
 	width:76px;
-
+    margin-bottom: 3px;
 }
 .button 
 {
-	background:transparent url(../Images/L_banner/L_btn_left.png) no-repeat left;
+	background:none repeat-x scroll left center #3a456d;
     color: #fff;
     text-decoration: none;
-	font-weight:bold;
     text-align:center;
     cursor: pointer;
+    border-radius: 3px;
 }
 .buttonLeft_main01:hover
 {
@@ -99,8 +101,7 @@ body
 }
 .button:hover
 {
-	color:#2678c5;
-	background: transparent url(../Images/L_banner/L_btn_left_hover.png) no-repeat left;
+	color:#c8e0fa;
 }
 
 /*end button*/
@@ -113,7 +114,7 @@ body
 }
 .text_red
 {
-	color:#EE0000;
+	color:#5C5C5C;
 	text-align:left;
 	font-weight:bold;
 }
@@ -194,27 +195,24 @@ body
 .dot_left
 {
 	text-align:left;
-	border-bottom:1px dashed #7C98A4;
 }
 .dot_right
 {
 	text-align:right;
-	border-bottom:1px dashed #7C98A4;
 }
 /*L tab*/
 .left_tab{
-	font-size:11px;
+	font-size:12px;
 	font-weight:bold;
 	float:left;
 	width:246px;
 	line-height:17px;
-	margin: 5px 0px 0px 5px;
 }
 .left_tab ul{
 	font-size:11px;
 	list-style-type: none;
 	margin:0 auto;
-	margin-top:1px;
+	margin-top: 0px;
 	padding:0px;
 }
 .left_tab li{
@@ -224,7 +222,6 @@ body
 .left_tab a{
 	font-size:11px;
 	float:left;
-	background:url(../Images/L_banner/L_tab_left.png) no-repeat left top;
 	margin-right:3px;
 	padding-left:3px;
 	text-decoration:none;
@@ -232,25 +229,30 @@ body
 .left_tab a span{
 	font-size:11px;
 	font-weight:bold;
-	color:#ffffff;
+	color:#787878;
 	float:left;
 	display:block;
-	background:url(../Images/L_banner/R_tab_left-1.png) no-repeat right top;
 	padding: 1px 8px 2px 6px;
+	border-top: solid 2px transparent;
 }
 .left_tab a span {
 	float:none;
 }
 .left_tab a:hover span {
-	color:#d66d35;
+	color:#ff7200;
 }
 .left_tab .current a{
 	background-position:0 -21px !important;
 }
 .left_tab .current a span{
 	background-position:100% -21px !important;
-	color:#2678c5;
+	color:#4b649b;
+	border-top: solid 2px #3a456d;
 }
+.left_tab a:hover span {
+	color:#ff7200;
+}
+
 .left_tab a:hover{
 	background-position:0% -42px;
 }
@@ -261,7 +263,7 @@ body
 
 #box_04_contents
 {
-	width:248px;
+	width:274px;
 	margin-left:4px;
 	margin-top:4px;
 }
@@ -281,7 +283,7 @@ body
 	text-align:center	
 	}
 .box_bottom {
-	background:url(../Images/L_banner/box_bottom.png) no-repeat top left;
+	background:none no-repeat scroll left top #ffffff;
 	width:258px;
 	height:9px;
 }
@@ -406,7 +408,8 @@ body
 	vertical-align:middle;
 	cursor:pointer;
 	border:none 0px;
-	margin-top:-2px;
+	margin-top:6px;
+	float: right;
 	!margin-top:1px;
 	}
 .memberClass

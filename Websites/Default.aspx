@@ -43,9 +43,6 @@
             <!--Banner-->
             <div class="top_banner2">
                 <div id="left_topbanner2" style="float: left;">
-                    <div class="welcomebox">
-                        Welcome <span class="text_org">
-                            <%=accUsername%></span></div>
                     <div id="Search_box">
                         <input name="txtuserName" value="" onkeypress="return KeyPress(event);" class="form_top autocomp"
                             type="text" id="txtuserName" value="" autocomplete="off" />
@@ -58,8 +55,8 @@
                     <!--Main Menu-->
                 </div>
                 <div class="accOption">
-                    <a onclick="ShowHideSearchBox()" href="javascript:void(0);" class="text_user01" id="searchLink">
-                        Quick Link </a><span class="text_dif">|</span> <a onclick="gotoURL('centerFr','VerifyPassword.aspx')"
+                    <span class="welcomebox"><span class="text_org">Welcome
+                        <%=accUsername%></span></span> <span class="text_dif">|</span> <a onclick="gotoURL('centerFr','VerifyPassword.aspx')"
                             href="javascript:void(0);" class="text_user01">User Info</a> <span class="text_dif">
                                 |</span> <a href="PreLogin/LogOut.ashx" class="text_user01">Log out</a>
                 </div>
@@ -116,7 +113,7 @@
         //Top menu        
         var accMenu = new Array();
         var subaccMenu = new Array();
-      
+
         jQuery(document).ready(function () {
 
             pre_resize();
@@ -254,7 +251,7 @@
             if (total > 0) {
                 for (var i = 0; i < total; i++) //Top menu
                 {
-                    topMenu=rs[i];
+                    topMenu = rs[i];
                     if (!CheckIsMenuIgnore(topMenu.Name)) {
                         var mainid = topMenu.Id;
                         if (topMenu.SubMenu != null && topMenu.SubMenu.length > 0) {
@@ -289,13 +286,13 @@
             }
         }
 
-        function RemoveIgnoredMenu(rs) { 
+        function RemoveIgnoredMenu(rs) {
             var total = rs.length;
             if (total > 0) {
                 for (var i = 0; i < total; i++) {
-                    topMenu=rs[i];
+                    topMenu = rs[i];
                     if (!CheckIsMenuIgnore(topMenu.Name)) {
-                        
+
                     }
                 }
             }

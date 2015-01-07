@@ -19,14 +19,15 @@ input[disabled].btn {
 	color:#999 !important;
 }	
 .form_top{
-	background-color:#f2ede6;
-	width:120px;
+	background-color:#ffffff;
+	border-radius: 2px;
+	width:158px;
 	color:#000000;
-	font-size:11px;
+	font-size:12px;
 	padding-left:3px;
 	border:solid 1px #8db4cf;
 	vertical-align:baseline;
-	height:14px;
+	height:20px;
 	!margin-top:1px;
 	!vertical-align: middle;
 	vertical-align  /*\**/: middle\9;
@@ -38,16 +39,17 @@ input[disabled].btn {
 .btn
 {
 	text-align:center;
-	font-size:11px;
-	font-weight:bold;
-	color:#000;
-	background:url(../images/buttons/bg_btn.jpg) repeat-x left;
+	font-size:13px;
+	color:#FFFFFF;
+	background:none repeat-x scroll left center #3a456d;	
+    border-radius: 3px;
+    
 	cursor:pointer;
-	border:1px solid #7C98A4;
+	border: none;
 	margin:0px 2px 0px 0px;
 	vertical-align:baseline;
-	height:18px;
-	padding:1px 4px;
+	height:22px;
+	padding:1px 6px;
 	text-decoration:none;
 	!vertical-align: middle;
 	vertical-align  /*\**/: middle\9;
@@ -101,7 +103,7 @@ input.reversed
 
 .btn:hover
 {
-	color: #195687;
+	color: #c8e0fa;
 }
 .btncurrent
 {

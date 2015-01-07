@@ -1,8 +1,24 @@
-﻿body
+﻿@font-face {
+    font-family: Roboto;
+    src: url(../Fonts/Roboto/Roboto-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Roboto Light";
+    src: url(../Fonts/Roboto/Roboto-Light.ttf);
+}
+
+@font-face {
+    font-family: "Roboto Bold";
+    src: url(../Fonts/Roboto/Roboto-Bold.ttf);
+}
+
+body
 {
-    font-family: Tahoma,Arial ,helvetica ,sans-serif;
-    font-size: 8pt;
+    font-family: Roboto,Tahoma,Arial ,helvetica ,sans-serif;
+    font-size: 11px;
     margin: 0px;
+    color: #696969;
 }
 
 /*--Remove dot line onclick button--*/
@@ -99,12 +115,12 @@ span.hilight
 }
 span.canchange
 {
-    color: #0066CC;
+    color: #4b649b;
     cursor: pointer;
 }
 span.canchange:hover
 {
-    color: #D66D35;
+    color: #ff7200;
     cursor: pointer;
 }
 li.canchange

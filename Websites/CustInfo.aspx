@@ -93,7 +93,7 @@
               if (className == "show") {
                   tmp.removeClass("hidden");
                   curr.attr("title", "Hide Detail");
-                  curr.html('<img src="App_Themes/Images/icon_down.gif" class="imgDownUp" />');
+                  curr.html('<img src="App_Themes/Images/icon_down.png" class="imgDownUp" />');
               }
           }
           );

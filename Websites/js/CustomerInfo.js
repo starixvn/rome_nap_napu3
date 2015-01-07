@@ -567,12 +567,12 @@ function collapseInfo() {
         obj.removeClass("hidden");
         Set_Cookie("coUserInfo", "show", 7, "/", "", "");
         curr.attr("title", "Hide Detail");
-        curr.html('<img src="App_Themes/Images/icon_down.gif" class="imgDownUp" />');
+        curr.html('<img src="App_Themes/Images/icon_down.png" class="imgDownUp" />');
     }
     else {
         obj.addClass("hidden");
         Set_Cookie("coUserInfo", "hidden", 7, "/", "", "");
-        curr.html('<img src="App_Themes/Images/icon_up.gif" class="imgDownUp" />');
+        curr.html('<img src="App_Themes/Images/icon_up.png" class="imgDownUp" />');
         curr.attr("title", "Show Detail");
     }
 }

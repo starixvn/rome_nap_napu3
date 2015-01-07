@@ -2254,15 +2254,15 @@ namespace Sunplus.Accounting.Business.Customer
             #region assign template
 
             TemplateHandler.Assign(ref balanceInfo, "{masteractive}",
-                                    string.Format("<span style='color:blue'>{0}</span>/<span style='color:red'>{1}</span>/{2}",
+                                    string.Format("<span style='color:#4b649b'>{0}</span>/<span style='color:#E65858'>{1}</span>/{2}",
                                                     mAgentActive, mAgentClosed, mAgentSuspended));
 
             TemplateHandler.Assign(ref balanceInfo, "{agentavtive}",
-                                    string.Format("<span style='color:blue'>{0}</span>/<span style='color:red'>{1}</span>/{2}",
+                                    string.Format("<span style='color:#4b649b'>{0}</span>/<span style='color:#E65858'>{1}</span>/{2}",
                                                     agentActive, agentClosed, agentSuspend));
 
             TemplateHandler.Assign(ref balanceInfo, "{memberactive}",
-                                    string.Format("<span style='color:blue'>{0}</span>/<span style='color:red'>{1}</span>/{2}",
+                                    string.Format("<span style='color:#4b649b'>{0}</span>/<span style='color:#E65858'>{1}</span>/{2}",
                                                     memberActive, memberClosed, memberSuspend));
 
             TemplateHandler.Assign(ref balanceInfo, "{masterhidden}", roleId > 3 ? "" : "hidden");

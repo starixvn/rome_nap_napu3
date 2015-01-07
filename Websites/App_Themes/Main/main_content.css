@@ -1,3 +1,18 @@
+@font-face {
+    font-family: Roboto;
+    src: url(../Fonts/Roboto/Roboto-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Roboto Light";
+    src: url(../Fonts/Roboto/Roboto-Light.ttf);
+}
+
+@font-face {
+    font-family: "Roboto Bold";
+    src: url(../Fonts/Roboto/Roboto-Bold.ttf);
+}
+
 html
 {
 	overflow-y:hidden;
@@ -9,8 +24,8 @@ body
 	padding: 0;
 	height: 100%; /* this is the key! */
 	width:100%;
-	font-family:Tahoma,Arial ,helvetica ,sans-serif;
-	font-size:11px;
+	font-family: Roboto,Tahoma,Arial ,helvetica ,sans-serif;
+	font-size:12px;
 	line-height:21px;
 }
 /*--Remove dot line onclick button--*/
@@ -44,8 +59,8 @@ input[type="file"] >input[type="button"]::-moz-focus-inner{border:none}
 	margin-top:-3px;
 	color:#fff;
 	margin-left:6px;
-	background: url(../images/icon_welcome.gif) center left no-repeat;
-	padding-left:12px;
+	background: url(../images/icon_welcome.png) center left no-repeat;
+	padding-left:20px;
 	}
 .contentbox
 {
@@ -57,7 +72,7 @@ input[type="file"] >input[type="button"]::-moz-focus-inner{border:none}
     width: 0px;
     height: 100%;
     display:none;
-  
+    border-right: 1px solid #000000;  
 }
 .rightcontent
 {
@@ -69,7 +84,7 @@ input[type="file"] >input[type="button"]::-moz-focus-inner{border:none}
 .top_banner2
 {
 	width:100%;
-	background:url(../images/banner/bg_menu.jpg) repeat-x;
+	background: none repeat-x scroll 0 0 #576b9d;
 	height: 43px;
 }
 
@@ -97,12 +112,12 @@ input[type="file"] >input[type="button"]::-moz-focus-inner{border:none}
 	text-align:right;
 }
 .text_user01{
-	color:#fdf8ad;
+	color: #FFFFFF;
 	text-decoration:none;
 	text-align:right;
 }
 .text_user01:hover{
-	color:#c8e0fa;
+	color:  #c8e0fa;
 	text-align:right;
 }
 .text_datetime
@@ -114,10 +129,9 @@ input[type="file"] >input[type="button"]::-moz-focus-inner{border:none}
 
 .text_org
 {
-	color:#d66d35;
+	color:#ff7200;
 	text-align:left;
-	font-weight:bold;
-
+	font-size:12px;
 }
 .blockUI
 {
