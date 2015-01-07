@@ -9,6 +9,7 @@ namespace Fanex.Tarus.User.Business.Services
     using DNAide.Core;
     using Fanex.Tarus.Entities;
     using Fanex.Tarus.User.Business.Interface;
+    using Fanex.Tarus.User.Criteria;
     using Fanex.Tarus.User.DataAccess;
     using Fanex.Tarus.User.DataAccess.Sql;
     using Fanex.Tarus.User.Entities;
@@ -306,6 +307,11 @@ namespace Fanex.Tarus.User.Business.Services
             value = value.Replace("&apos;", "'");
             value = value.Replace("&quot;", "\"");
             return value;
+        }
+
+        public UserGroup GetAdminGroup(string userName)
+        {
+            return _userInfoAccess.GetAdminGroup(new GetAdminGroupCriteria { UserName = userName });
         }
     }
 }

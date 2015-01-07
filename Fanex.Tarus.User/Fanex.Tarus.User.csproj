@@ -48,6 +48,10 @@
     <Reference Include="Fanex.Data">
       <HintPath>..\Dependency\Fanex\Fanex.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.NAP.Framework, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependency\Fanex\Fanex.NAP.Framework.dll</HintPath>
+    </Reference>
     <Reference Include="IBCUtils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependency\IBCUtils.dll</HintPath>
@@ -71,6 +75,7 @@
     <Compile Include="Business\Services\UserLogService.cs" />
     <Compile Include="Controller\FunctionController.cs" />
     <Compile Include="Controller\UserInfoController.cs" />
+    <Compile Include="Criteria\GetAdminGroupCriteria.cs" />
     <Compile Include="DataAccess\IUserLogAccess.cs" />
     <Compile Include="DataAccess\Sql\UserLogAccess.cs" />
     <Compile Include="DataAccess\IFunctionAccess.cs" />
@@ -78,6 +83,7 @@
     <Compile Include="DataAccess\Sql\FunctionAccess.cs" />
     <Compile Include="DataAccess\Sql\UserInfoAccess.cs" />
     <Compile Include="Entities\Account.cs" />
+    <Compile Include="Entities\UserGroup.cs" />
     <Compile Include="Entities\Department.cs" />
     <Compile Include="Entities\AccManagementViewData.cs" />
     <Compile Include="Entities\FuncManagementViewData.cs" />

@@ -306,5 +306,11 @@ namespace Sunplus.Accounting.Core.Common
         {
             sessionState[key] = value;
         }
+
+        public static int UserGroupId
+        {
+            get { return CastAide.AsInt32(HttpContext.Current.Session["UserGroupId"], 0); }
+            set { HttpContext.Current.Session["UserGroupId"] = value; }
+        }
     }
 }

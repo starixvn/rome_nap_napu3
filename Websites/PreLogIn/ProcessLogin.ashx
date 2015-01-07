@@ -16,7 +16,8 @@ using IBCUtils;
 using System.Data;
 using Fanex.Nap.SSO.Repositories;
 using Fanex.Nap.SSO.Criteria;
-
+using Fanex.Tarus.User.Entities;
+using Fanex.Tarus.User.Business.Services;
 
 public class ProcessLogin : IHttpHandler, IRequiresSessionState
 {
@@ -52,7 +53,34 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
 
             string browserName = context.Request.Browser.Browser + " " + context.Request.Browser.Version;
             IbcError error = Sunplus.Accounting.DataAccess.IBCDLL.UserController.AccLoginAdmin(ref username, password, context.Request.UserHostAddress, context.Request.UrlReferrer.AbsoluteUri, out custId, out roleId, out system, context.Request.Url.Host, browserName, context.Request.Browser.Platform, "");
-            if (error.IsSuccess())
+
+            UserGroup userGroup = new UserInfoService().GetAdminGroup(username);
+            string[] allowedGroupsAccess = WebSettings.AllowedGroupsAccess;
+            string[] allowedUsersAccess = WebSettings.AllowedUsersAccess;
+            bool allowedAccess = false;
+
+            for (int i = 0; i < allowedGroupsAccess.Length; i++)
+            {
+                if (userGroup.GroupId.ToString() == allowedGroupsAccess[i].Trim())
+                {
+                    allowedAccess = true;
+                    break;
+                }
+            }
+
+            if (!allowedAccess)
+            {
+                for (int i = 0; i < allowedUsersAccess.Length; i++)
+                {
+                    if (username == allowedUsersAccess[i].Trim())
+                    {
+                        allowedAccess = true;
+                        break;
+                    }
+                }
+            }
+
+            if (error.IsSuccess() && allowedAccess)
             {
                 LoginFailedHandler.LoginSuccess(username);
 
@@ -60,7 +88,7 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                 AppSession.Username = username;
                 AppSession.AccUserName = username;
                 AppSession.AccId = custId;
-
+                AppSession.UserGroupId = userGroup.GroupId;
                 AppSession.CurrentSystemName = system;
 
                 if (string.IsNullOrEmpty(system))
@@ -76,13 +104,13 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
 
                 if (deniedGroups != null && deniedGroups.Length > 0)
                 {
-                    if(((IList<string>)deniedGroups).Contains(system.ToLower()))
-                    {  
-                            context.Session.Clear();
-                            FormsAuthentication.SignOut();
-                            context.Response.Write("parent.signIn.loginError('" + Resources.ErrorMsg.DenyLoginAccount + "');\n");
-                            goto end;
-                        
+                    if (((IList<string>)deniedGroups).Contains(system.ToLower()))
+                    {
+                        context.Session.Clear();
+                        FormsAuthentication.SignOut();
+                        context.Response.Write("parent.signIn.loginError('" + Resources.ErrorMsg.DenyLoginAccount + "');\n");
+                        goto end;
+
                     }
                 }
                 #endregion checking - denied systems
@@ -92,9 +120,9 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                     system = "EXTERNAL";
                     context.Session.Clear();
                     FormsAuthentication.SignOut();
-					context.Response.Clear();
+                    context.Response.Clear();
                     context.Response.Write("<script type='text/javascript'>top.location.href='https://www.726872.com/accext';</script>");
-					return;
+                    return;
                 }
 
                 AppSession.CurrentSystemNAME = Enumerations.ToAccountingSystem(system);
@@ -114,29 +142,30 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                 context.Response.Write("top.location.href='" + FormsAuthentication.DefaultUrl.Replace("https", "http") + "';\n");
                 IMenuManager menuService = CommonBootStrapper.Locator.GetInstance<IMenuManager>();
                 menuService.GetUserMenu();
-                
+
                 bool isShowNap = (new LoginRepository()).CheckUserSiteAccess(new CheckUserSiteAccessCriteria());
                 if (isShowNap)
                 {
-                    AppSession.UserMenu.Add(new Sunplus.Accounting.Entities.MenuBO { 
-                        Id=0,
-                        Name="Nap",
+                    AppSession.UserMenu.Add(new Sunplus.Accounting.Entities.MenuBO
+                    {
+                        Id = 0,
+                        Name = "Nap",
                         Url = System.Configuration.ConfigurationManager.AppSettings["NapHomeSSOController"],
                         System = "accounting",
                         ParentId = 0,
                         FunctionName = "",
                         Target = "_blank",
                         IsHide = false,
-                        SubMenu= null
+                        SubMenu = null
                     });
                 }
-                
+
                 menuService.GetReportMenu("ACC-REPORT");
                 menuService.GetBAMenu();
-				
-				// Progressive Bonus
-				Fanex.CustomerSetting.Module.Core.Web.AppSession.AdminId = custId;
-				Fanex.CustomerSetting.Module.Core.Web.AppSession.AdminUsername = username;
+
+                // Progressive Bonus
+                Fanex.CustomerSetting.Module.Core.Web.AppSession.AdminId = custId;
+                Fanex.CustomerSetting.Module.Core.Web.AppSession.AdminUsername = username;
             }
             else
             {
@@ -176,7 +205,7 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
             return false;
         }
     }
-    
+
     //private static void LogUserInfo(HttpContext context, string userName)
     //{
     //    var userBrowser = context.Request.Browser.Browser + "\n";
@@ -185,6 +214,6 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
     //    Sunplus.Accounting.Core.Extensions.LogExtensions.ExceptionHandler(logContent);
     //}
 
-    
+
 
 }

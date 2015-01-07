@@ -532,5 +532,21 @@ namespace Sunplus.Accounting.Core.Configurations
                 return Convert.ToDecimal(ConfigurationManager.AppSettings["KenoPositionTaking_Max"]);
             }
         }
+
+        public static string[] AllowedGroupsAccess
+        {
+            get
+            {
+                return Convert.ToString(ConfigurationManager.AppSettings["AllowedGroupsAccess"]).Split(',');
+            }
+        }
+
+        public static string[] AllowedUsersAccess
+        {
+            get
+            {
+                return Convert.ToString(ConfigurationManager.AppSettings["AllowedUsersAccess"]).Split(',');
+            }
+        }
     }
 }
