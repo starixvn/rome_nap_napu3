@@ -143,13 +143,29 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                 IMenuManager menuService = CommonBootStrapper.Locator.GetInstance<IMenuManager>();
                 menuService.GetUserMenu();
 
+                if (Permissions.HasPermission("UserControl"))
+                {
+                    AppSession.UserMenu.Add(new Sunplus.Accounting.Entities.MenuBO
+                    {
+                        Id = 1,
+                        Name = "ACCOUNT MANAGEMENT",
+                        Url = "UserInfo/Index",
+                        System = "accounting",
+                        ParentId = 0,
+                        FunctionName = "[UserControl]",
+                        Target = "",
+                        IsHide = false,
+                        SubMenu = null
+                    });
+                }
+                
                 bool isShowNap = (new LoginRepository()).CheckUserSiteAccess(new CheckUserSiteAccessCriteria());
                 if (isShowNap)
                 {
                     AppSession.UserMenu.Add(new Sunplus.Accounting.Entities.MenuBO
                     {
                         Id = 0,
-                        Name = "Nap",
+                        Name="NAP",
                         Url = System.Configuration.ConfigurationManager.AppSettings["NapHomeSSOController"],
                         System = "accounting",
                         ParentId = 0,
@@ -160,8 +176,8 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                     });
                 }
 
-                menuService.GetReportMenu("ACC-REPORT");
-                menuService.GetBAMenu();
+                //menuService.GetReportMenu("ACC-REPORT");
+                //menuService.GetBAMenu();
 
                 // Progressive Bonus
                 Fanex.CustomerSetting.Module.Core.Web.AppSession.AdminId = custId;

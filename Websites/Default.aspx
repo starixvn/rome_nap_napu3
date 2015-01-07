@@ -101,7 +101,7 @@
         setInterval('update_online_status()', 45000);
         var accid = "<%=accUsername%>"; //use for write and read cookie
         var timerId = "";
-        var listMenuIgnore = "<%=listMenuIgnore%>";
+        var listMenuIgnore = "";
         var arrayMenuNameIgnore = listMenuIgnore.split(";");
         var isonauto = false;
         var showleft = false;
