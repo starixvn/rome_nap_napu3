@@ -28,7 +28,8 @@
     var superId = @Model.UplineCustId;
     var masterId = @Model.CustId;
     var superUserName = "@Model.CustUserName";
-     var isDisplaySportbooks = "@Model.IsDisplaySportbooks".toLowerCase();
+    var lblChooseDaily = "Please choose Daily instead of 7 days.";
+    var lblChooseOneDay = "Please select at least one day.";
 </script>
 @*header*@
 <div class="maincontent">
@@ -50,6 +51,17 @@
         </div>
     </div>
     <div class="bg_table" style="width: 844px;">
+        <table cellspacing="0" cellpadding="0" border="0" style="margin-bottom:10px;">
+            <tbody>
+                <tr>
+                    <td class="custBtn1">
+                    </td>
+                    <td onclick="return edm.editMaster();" class="custBtn2 hand">
+                        Update
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         @*Cust Infor Section*@
         @Html.Partial("~/Views/Customer/CreditCustomer/CustInfoPartialView.cshtml", Model)
         @*betting limit and position taking*@
