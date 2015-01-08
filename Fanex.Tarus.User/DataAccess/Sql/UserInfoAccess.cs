@@ -33,6 +33,11 @@ namespace Fanex.Tarus.User.DataAccess.Sql
                 var param = new Hashtable();
                 string group = AppSession.IsU3Account ? ConfigurationManager.AppSettings["U3GroupId"].ToString() : ConfigurationManager.AppSettings["AllowedGroupsAccess"].ToString();
                 param.Add("groupid", group);
+                if (userGroup.GroupId.ToString().Equals(ConfigurationManager.AppSettings["U3GroupId"].ToString()))
+                {
+                    group = ConfigurationManager.AppSettings["U3GroupId"].ToString();
+                }
+                param.Add("groupid", group);
                 objDb.AssignParamValues(param);
                 var dataSet = objDb.ExecuteDataSet();
                 return dataSet.Tables.Count > 0 ? dataSet.Tables[0] : null;
