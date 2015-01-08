@@ -219,7 +219,7 @@ span.cannotchangeinternal:hover
 .maincontent_headerL
 {
     height: 23px;
-    width: 24px;
+    width: 15px;
     background: none no-repeat scroll right bottom #ededed;
     border-top: solid 2px #3a456d;
     border-left: solid 1px #a2a2a2;
@@ -227,7 +227,7 @@ span.cannotchangeinternal:hover
 .maincontent_headerR
 {
     height: 23px;
-    width: 5px;
+    width: 15px;
     background: none no-repeat scroll right bottom #ededed;
     border-top: solid 2px #3a456d;
     border-right: solid 1px #a2a2a2;
@@ -239,7 +239,7 @@ span.cannotchangeinternal:hover
     font-weight: normal;
     color: #4b649b;
     background: none repeat-x scroll center bottom #ededed;
-    text-align: left;
+    text-align: center;
     font-size:13px;
     border-top: solid 2px #3a456d;
 }

@@ -1,7 +1,27 @@
 ﻿/* File Created: July 18, 2014 */
+@font-face {
+    font-family: Roboto;
+    src: url(../Fonts/Roboto/Roboto-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Roboto Light";
+    src: url(../Fonts/Roboto/Roboto-Light.ttf);
+}
+
+@font-face {
+    font-family: "Roboto Bold";
+    src: url(../Fonts/Roboto/Roboto-Bold.ttf);
+}
+
+@font-face {
+    font-family: "Roboto Medium";
+    src: url(../Fonts/Roboto/Roboto-Medium.ttf);
+}
+
 body
 {
-    font-family: Tahoma;
+    font-family: "Roboto Light", Tahoma;
     font-size: 12px;
 }
 
@@ -46,13 +66,13 @@ select:disabled
 {
     font-weight: bold;
     color: White;
-    background-color: #587281;
+    background-color: #576b9d;
     padding-left: 10px;
 }
 
 .edit-setting-livecs table, .edit-setting-livecs table tr, .edit-setting-livecs table td
 {
-    border: 1px solid #7c98a4;
+    border: 1px solid #a2a2a2;
     border-collapse: collapse;
 }
 
@@ -109,7 +129,7 @@ select:disabled
 
 .edit-setting-livecs .update-setting-accounting-submit
 {
-    background: url("Images/btn-update-setting.jpg") no-repeat scroll center center transparent;
+    background: none no-repeat scroll center center #3a456d;
     border: 0 none;
     color: #FFFFFF;
     cursor: pointer;
@@ -118,7 +138,13 @@ select:disabled
     height: 24px;
     margin-top: 6px;
     text-align: center;
-    width: 122px;
+    width: 80px;
+    border-radius: 2px;
+}
+
+.edit-setting-livecs .update-setting-accounting-submit:hover
+{
+    color: #c8e0fa;
 }
 
 .edit-setting-livecs .update-setting-agency-submit
@@ -368,8 +394,10 @@ label.clearfix
     float: left;
     display: inline-block;
     height: 23px;
-    width: 24px;
-    background: url(Images/left-header.png) no-repeat right bottom;
+    width: 15px;
+    background: none no-repeat scroll right bottom #ededed;
+    border-top: 2px solid #3a456d;   
+    border-left: 1px solid #a2a2a2; 
 }
 
 .setting-header-accounting .setting-header-text
@@ -377,19 +405,22 @@ label.clearfix
     float: left;
     height: 23px;
     min-width: 120px;
-    font-weight: bold;
-    color: #fff;
-    text-align: left;
+    font-weight: normal;
+    color: #4b649b;
+    text-align: center;
     padding-top: 3px;
-    background: url(Images/center-header.png) repeat-x bottom;
+    background: none no-repeat scroll right bottom #ededed;
+    border-top: 2px solid #3a456d;
 }
 
 .setting-header-accounting .setting-header-last-icon
 {
     float: left;
-    background: url(Images/right-header.png) no-repeat right bottom;
+    background: none no-repeat scroll right bottom #ededed;
     height: 23px;
-    width: 5px;
+    width: 15px;
+    border-top: 2px solid #3a456d;
+    border-right: 1px solid #a2a2a2;
 }
 
 .setting-header-agency .setting-header-text
@@ -461,7 +492,7 @@ label.clearfix
 .member-win-limit
 {
     cursor: pointer;
-    color: Blue;
+    color: #4b649b;
 }
 
 .current-win-limit
