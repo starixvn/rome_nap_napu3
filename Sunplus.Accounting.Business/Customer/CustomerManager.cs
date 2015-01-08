@@ -841,6 +841,7 @@ namespace Sunplus.Accounting.Business.Customer
                                         string bingoLinkSetting = "";
                                         var liveCasinoSetting = "";
                                         var agCasinoLinkSetting = string.Empty;
+                                        var numberGameLinkSetting = string.Empty;
 
                                         switch (roleId)
                                         {
@@ -851,6 +852,7 @@ namespace Sunplus.Accounting.Business.Customer
                                                 detailUrlNew = isDeposit ? "DepositCustomer/EditSettingAgent" : "EditMember/EditMemberPage?custId=" + custId + "&agentId=" + row2["agentId"] + "&uname=" + userName;
                                                 liveCasinoSetting = string.Format("LiveCasinoSetting/Setting/EditSetting?uplineId={0}&parentId={1}&uplineLevel=2&actorId={2}&actorUsername={3}&customerId={4}&customerLevel=1", parentId, parentId, AppSession.AccId, AppSession.AccUserName, custId);
                                                 agCasinoLinkSetting = string.Format("AGCasino/EditAGCasinoGameSetting?customerId={0}&uplineId={1}&roleId={2}", custId, parentId, roleId);
+                                                numberGameLinkSetting = isDeposit ? "DepositCustomer/EditSettingAgent" : "EditMember/EditMemberPage?custId=" + custId + "&agentId=" + row2["agentId"] + "&uname=" + userName + "&isDisplaySportbooks=false";
                                                 TemplateHandler.Assign(ref htmlcontent, "{IsHidden1}", "hidden");
                                                 TemplateHandler.Assign(ref htmlcontent, "{IsShow1}", "");
                                                 break;
@@ -865,6 +867,7 @@ namespace Sunplus.Accounting.Business.Customer
                                                 detailUrlNew = isDeposit ? "DepositCustomer/EditSettingAgent" : "EditAgent/EditAgentPage?" + "custId=" + custId + "&masterId=" + _masterID.ToString() + "&uname=" + userName;
                                                 liveCasinoSetting = string.Format("LiveCasinoSetting/Setting/EditSetting?uplineId={0}&parentId={1}&uplineLevel=3&actorId={2}&actorUsername={3}&customerId={4}&customerLevel=2", _masterID, _masterID, AppSession.AccId, AppSession.AccUserName, custId);
                                                 agCasinoLinkSetting = string.Format("AGCasino/EditAGCasinoGameSetting?customerId={0}&uplineId={1}&roleId={2}", custId, _masterID, roleId);
+                                                numberGameLinkSetting = isDeposit ? "DepositCustomer/EditSettingAgent" : "EditAgent/EditAgentPage?" + "custId=" + custId + "&masterId=" + _masterID.ToString() + "&uname=" + userName + "&isDisplaySportbooks=false";
                                                 TemplateHandler.Assign(ref htmlcontent, "{type}", "Agent");
                                                 if (!CustomerUtils.IsTransferDaily(Convert.ToString(_masterID))) TemplateHandler.RemoveBlock(ref htmlcontent, "editTransferTime");
                                                 break;
@@ -879,6 +882,7 @@ namespace Sunplus.Accounting.Business.Customer
                                                 downlineListURL = "Customer/AgentList.aspx?masterId=" + custId;
                                                 liveCasinoSetting = string.Format("LiveCasinoSetting/Setting/EditSetting?uplineId={0}&parentId={1}&uplineLevel=4&actorId={2}&actorUsername={3}&customerId={4}&customerLevel=3", _superID, _superID, AppSession.AccId, AppSession.AccUserName, custId);
                                                 agCasinoLinkSetting = string.Format("AGCasino/EditAGCasinoGameSetting?customerId={0}&uplineId={1}&roleId={2}", custId, _superID, roleId);
+                                                numberGameLinkSetting = isDeposit ? "DepositCustomer/EditSettingAgent" : "EditMaster/EditMasterPage?custId=" + custId + "&superId=" + _superID.ToString() + "&uname=" + userName + "&isDisplaySportbooks=false";
                                                 TemplateHandler.Assign(ref htmlcontent, "{type}", "Master");
                                                 break;
 
@@ -892,6 +896,7 @@ namespace Sunplus.Accounting.Business.Customer
                                                 detailUrlNew = isDeposit ? "DepositCustomer/EditSettingSuper" : "EditSuper/EditSuperPage?custId=" + custId + "&uname=" + userName;
                                                 liveCasinoSetting = string.Format("LiveCasinoSetting/Setting/EditSetting?uplineId=0&uplineLevel=0&actorId={0}&actorUsername={1}&customerId={2}&customerLevel=4", AppSession.AccId, AppSession.AccUserName, custId);
                                                 agCasinoLinkSetting = string.Format("AGCasino/EditAGCasinoGameSetting?customerId={0}&uplineId={1}&roleId={2}&exchangeId={3}", custId, 0, roleId, CastAide.AsInt32(row1["exchangeid"]));
+                                                numberGameLinkSetting = isDeposit ? "DepositCustomer/EditSettingSuper" : "EditSuper/EditSuperPage?custId=" + custId + "&uname=" + userName + "&isDisplaySportbooks=false";
                                                 TemplateHandler.Assign(ref htmlcontent, "{type}", "Super");
                                                 if (custId < 100) TemplateHandler.RemoveBlock(ref htmlcontent, "editTransferTime"); // for dummy super
                                                 break;
@@ -936,11 +941,12 @@ namespace Sunplus.Accounting.Business.Customer
                                             TemplateHandler.RemoveBlock(ref htmlcontent, "detail_edit_menu");
                                             TemplateHandler.RemoveBlock(ref htmlcontent, "edit-VirtualSport");
                                             TemplateHandler.RemoveBlock(ref htmlcontent, "edit-Keno");
+                                            TemplateHandler.RemoveBlock(ref htmlcontent, "numberGameLinkSetting");
                                         }
 
                                         TemplateHandler.Assign(ref htmlcontent, "{bingoLinkSetting}", bingoLinkSetting);
                                         TemplateHandler.Assign(ref htmlcontent, "{livecasinoLinkSetting}", liveCasinoSetting);
-
+                                        TemplateHandler.Assign(ref htmlcontent, "{numberGameLinkSetting}", numberGameLinkSetting);
                                         if (!WebSettings.EnableAGCasino || roleId != 4 || !isLicensee)
                                         {
                                             TemplateHandler.RemoveBlock(ref htmlcontent, "edit-agcasino");
@@ -985,7 +991,7 @@ namespace Sunplus.Accounting.Business.Customer
                                         TemplateHandler.Assign(ref htmlcontent, "{IsShow1}", "hidden");
                                         TemplateHandler.Assign(ref htmlcontent, "{linkSettingDetail}", detailUrl);
                                         TemplateHandler.Assign(ref htmlcontent, "{linkDownlineList}", downlineListURL);
-                                        TemplateHandler.Assign(ref htmlcontent, "{linkAddnewDownline}", addDownlineURL);
+                                        //TemplateHandler.Assign(ref htmlcontent, "{linkAddnewDownline}", addDownlineURL);
                                         string _username = row1["username"].ToString();
                                         TemplateHandler.Assign(ref htmlcontent, "{CustId}", row1["custid"].ToString());
                                         TemplateHandler.Assign(ref htmlcontent, "{Username}", _username);
@@ -1171,7 +1177,7 @@ namespace Sunplus.Accounting.Business.Customer
                         masterPtUrl = string.Format("EditMasterOnMember/EditMasterOnMemberPage?agentId={0}&custId={1}&uname={2}", parentId, custId, userName);
                     }
                     //HuyNguyen Menu Member
-                    submenu1 = "<a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + minMaxPtUrl + "\");' target='centerFr'>Sport book</a>";
+                    //submenu1 = "<a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + minMaxPtUrl + "\");' target='centerFr'>Sport book</a>";
 
                     if (BingoSettings.BingoGame.Enabled && isAllowEditBI)
                     {
@@ -1187,7 +1193,12 @@ namespace Sunplus.Accounting.Business.Customer
                         }
                     }
 
-                    submenu2 = "<a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + masterPtUrl + "\");' target='centerFr'>Sport book</a>";
+                    var numberGameMinMaxPtUrl = string.Format("EditSuperOnMember/EditSuperOnMemberPage?agentId={0}&custId={1}&uname={2}&isDisplaySportbooks=false", parentId, custId, userName);
+                    var numberGamemasterPtUrl = string.Format("EditMasterOnMember/EditMasterOnMemberPage?agentId={0}&custId={1}&uname={2}&isDisplaySportbooks=false", parentId, custId, userName);
+                    submenu1 += "<br><a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + numberGameMinMaxPtUrl + "\");' target='centerFr'>Number Game</a>";
+
+
+                    //submenu2 = "<a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + masterPtUrl + "\");' target='centerFr'>Sport book</a>";
 
                     if (BingoSettings.BingoGame.Enabled && isAllowEditBI)
                     {
@@ -1202,7 +1213,7 @@ namespace Sunplus.Accounting.Business.Customer
                             submenu2 += "<br><a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + urlLiveCasino + "\");' target='centerFr'>Live Casino</a>";
                         }
                     }
-
+                    submenu2 += "<br><a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + numberGamemasterPtUrl + "\");' target='centerFr'>Number Game</a>";
                     TemplateHandler.Assign(ref htmlcontent, "{contentminmax}", submenu1);
                     TemplateHandler.Assign(ref htmlcontent, "{contentminmax1}", submenu2);
 
@@ -1215,8 +1226,10 @@ namespace Sunplus.Accounting.Business.Customer
                     TemplateHandler.Assign(ref htmlcontent, "{lblMinMax1}", "");
                     minMaxPtRenovationUrl = "EditAgentMinMaxPt/EditAgentMinMaxPtPage?&custId=" + custId + "&uplineId=" + parentId + "&uname=" + userName;
                     minMaxPtUrl = WebSettings.IsShowCustomerSettingRenovation == 3 ? minMaxPtRenovationUrl : "Customer/v2/EditMinMaxPT.aspx?set=1&custId=" + custId + "&type=Agent";
-                    submenu3 = "<a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + minMaxPtUrl + "\");' target='centerFr'>Sport book</a>";
-
+                    //submenu3 = "<a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + minMaxPtUrl + "\");' target='centerFr'>Sport book</a>";
+                    
+                    var agentMinMaxPT = "EditAgentMinMaxPt/EditAgentMinMaxPtPage?&custId=" + custId + "&uplineId=" + parentId + "&uname=" + userName + "&isDisplaySportbooks=false";
+                    submenu3 += "<br><a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + agentMinMaxPT + "\");' target='centerFr'>Number Game</a>";
                     TemplateHandler.Assign(ref htmlcontent, "{contentminmax}", submenu3);
                     break;
 
@@ -1229,7 +1242,10 @@ namespace Sunplus.Accounting.Business.Customer
                     minMaxPtRenovationUrl = "EditMasterMinMaxPt/EditMasterMinMaxPtPage?&custId=" + custId + "&uplineId=" + parentId + "&uname=" + userName;
                     minMaxPtUrl = WebSettings.IsShowCustomerSettingRenovation == 3 ? minMaxPtRenovationUrl : "Customer/v2/EditMinMaxPT.aspx?set=1&custId=" + custId + "&type=Master";
 
-                    submenu3 = "<a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + minMaxPtUrl + "\");' target='centerFr'>Sport book</a>";
+                    var masterMinMaxPT = "EditMasterMinMaxPt/EditMasterMinMaxPtPage?&custId=" + custId + "&uplineId=" + parentId + "&uname=" + userName + "&isDisplaySportbooks=false";
+                    submenu3 += "<br><a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + masterMinMaxPT + "\");' target='centerFr'>Number Game</a>";
+
+                    //submenu3 = "<a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + minMaxPtUrl + "\");' target='centerFr'>Sport book</a>";
                     TemplateHandler.Assign(ref htmlcontent, "{contentminmax}", submenu3);
                     break;
 
@@ -1240,7 +1256,10 @@ namespace Sunplus.Accounting.Business.Customer
                     TemplateHandler.Assign(ref htmlcontent, "{lblMinMax1}", "");
                     minMaxPtRenovationUrl = "EditSuperMinPt/EditSuperMinPtPage?&custId=" + custId + "&uname=" + userName;
                     minMaxPtUrl = WebSettings.IsShowCustomerSettingRenovation == 3 ? minMaxPtRenovationUrl : "Customer/v2/EditMinMaxPT.aspx?set=1&custId=" + custId + "&type=Super";
-                    submenu3 = "<a class='button_left02'  href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + minMaxPtUrl + "\");' target='centerFr'>Sport book</a>";
+                    //submenu3 = "<a class='button_left02'  href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + minMaxPtUrl + "\");' target='centerFr'>Sport book</a>";
+
+                    var superMinPT = "EditSuperMinPt/EditSuperMinPtPage?&custId=" + custId + "&uname=" + userName + "&isDisplaySportbooks=false";
+                    submenu3 += "<br><a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + superMinPT + "\");' target='centerFr'>Number Game</a>";
                     TemplateHandler.Assign(ref htmlcontent, "{contentminmax}", submenu3);
                     break;
 
