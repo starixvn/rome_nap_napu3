@@ -7,6 +7,7 @@ using System.Data;
 using DNAide.Core;
 using Fanex.Data;
 using Fanex.Tarus.Entities;
+using Fanex.Tarus.User.Business.Services;
 using Fanex.Tarus.User.Criteria;
 using Fanex.Tarus.User.Entities;
 using Sunplus.Accounting.Core.Common;
@@ -30,7 +31,13 @@ namespace Fanex.Tarus.User.DataAccess.Sql
             using (var objDb = new ObjectDb("AdminSelByGroupID"))
             {
                 var param = new Hashtable();
-                param.Add("groupid", Convert.ToInt32(ConfigurationManager.AppSettings["U3GroupId"]));
+                UserGroup userGroup = new UserInfoService().GetAdminGroup(AppSession.AccUserName);
+                string group = ConfigurationManager.AppSettings["AllowedGroupsAccess"].ToString();
+                if (userGroup.GroupId.ToString().Equals(ConfigurationManager.AppSettings["U3GroupId"].ToString()))
+                {
+                    group = ConfigurationManager.AppSettings["U3GroupId"].ToString();
+                }
+                param.Add("groupid", group);
                 objDb.AssignParamValues(param);
                 var dataSet = objDb.ExecuteDataSet();
                 return dataSet.Tables.Count > 0 ? dataSet.Tables[0] : null;

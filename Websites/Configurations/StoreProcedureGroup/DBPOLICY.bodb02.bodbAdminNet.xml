@@ -15,7 +15,7 @@
     
   <Function Name="User - Account Management">
     <Setting Key="GroupInfoSel" SpName="Acc_Con_GroupInfoSel" DbName="DBPOLICY.bodb02.bodbAdminNet" />
-    <Setting Key="AdminSelByGroupID" SpName="Acc_Con_AdminSelByGroupID" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
+    <Setting Key="AdminSelByGroupID" SpName="Acc_Con_AdminNapU3SelByGroupID" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
     <Setting Key="GroupPolicySel" SpName="Acc_Con_GroupPolicySel" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
     <Setting Key="AdminPolicySelByCustID" SpName="Acc_Con_AdminPolicySelByCustID" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
     <Setting Key="FuncInfoSelParent" SpName="Acc_Con_FuncInfoSelParent" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
