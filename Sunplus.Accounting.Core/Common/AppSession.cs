@@ -330,5 +330,11 @@ namespace Sunplus.Accounting.Core.Common
             get { return CastAide.AsBoolean(HttpContext.Current.Session["IsSpecialCustomersOfMrLam"], false); }
             set { HttpContext.Current.Session["IsSpecialCustomersOfMrLam"] = value; }
         }
+
+        public static bool IsShowBetlistOnStatement
+        {
+            get { return CastAide.AsBoolean(HttpContext.Current.Session["IsShowBetlistOnStatement"], false); }
+            set { HttpContext.Current.Session["IsShowBetlistOnStatement"] = value; }
+        }
     }
 }
