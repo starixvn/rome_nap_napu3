@@ -4,12 +4,15 @@
     font-weight: bold;
     line-height: 17px;
     margin: 5px 0 0 5px;
-    width: 246px;
+    width: 182px;
+    border-left: solid 1px #a2a2a2;
+    border-right: solid 1px #a2a2a2;
+    border-top: solid 1px #a2a2a2;
 }
 .left_tab ul {
     font-size: 11px;
     list-style-type: none;
-    margin: 1px auto 0;
+    margin: 0;
     padding: 0;
 }
 .left_tab li {
@@ -17,21 +20,24 @@
     font-size: 11px;
 }
 .left_tab a {
-    background: url("../../../../App_Themes/Images/L_banner/L_tab_left.png") no-repeat scroll left top transparent;
     float: left;
     font-size: 11px;
-    margin-right: 3px;
     padding-left: 3px;
     text-decoration: none;
+    background: none repeat-x scroll center bottom #ededed;
+    min-width:80px;
+    border-top: 2px solid #ededed;
 }
 .left_tab a span {
-    background: url("../../../../App_Themes/Images/L_banner/R_tab_left-1.png") no-repeat scroll right top transparent;
-    color: #FFFFFF;
+    background: none repeat-x scroll center bottom #ededed;
+    color:#787878;
     display: block;
     float: left;
     font-size: 11px;
     font-weight: bold;
     padding: 1px 8px 2px 6px;
+    text-align:center;
+    height:23px;
 }
 .left_tab a span {
     float: none;
@@ -40,10 +46,9 @@
     color: #D66D35;
 }
 .left_tab .current a {
-    background-position: 0 -21px !important;
+    border-top: 2px solid #3a456d;
 }
 .left_tab .current a span {
-    background-position: 100% -21px !important;
     color: #2678C5;
 }
 .left_tab a:hover {
@@ -73,4 +78,21 @@
     height : 14px;
     width: 14px;
     margin-left: 10px;
+}
+
+#maincontent_betlist,
+#maincontent_systemparlay
+{
+    margin-left:5px;
+}
+
+.font-medium
+{
+    font-family: 'Roboto Medium',Tahoma,Arial,helvetica,sans-serif;
+}
+
+#betListContent,
+#betListSystemParlayContent
+{
+    margin-left: 5px;
 }

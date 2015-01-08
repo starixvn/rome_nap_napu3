@@ -22,12 +22,12 @@ input[disabled].btn {
 	background-color:#ffffff;
 	border-radius: 2px;
 	width:158px;
-	color:#000000;
+	color:#696969;
 	font-size:12px;
 	padding-left:3px;
-	border:solid 1px #8db4cf;
+	border:solid 1px #a2a2a2;
 	vertical-align:baseline;
-	height:20px;
+	height:24px;
 	!margin-top:1px;
 	!vertical-align: middle;
 	vertical-align  /*\**/: middle\9;
@@ -60,7 +60,7 @@ input.unverify, input.verified, input.verifiedDisabled, input.reversed
 	background-position: left; text-align: center;
 	font-size: 11px;
 	font-weight: bold;
-	color: #000;
+	color: #fff;
 	cursor: pointer;
 	margin: 0px;
 	vertical-align: baseline;
@@ -69,10 +69,14 @@ input.unverify, input.verified, input.verifiedDisabled, input.reversed
 	padding: 1px 4px;
 	text-decoration: none; !vertical-align:middle;
 	vertical-align/*\**/:middle\9;
-	
-
  }
  
+ 
+input.unverify:hover, input.verified:hover, input.verifiedDisabled:hover, input.reversed:hover
+{
+	color: #c8e0fa;
+}
+
  input.verifiedDisabled 
  {
 	color: Gray;	
@@ -81,23 +85,23 @@ input.unverify, input.verified, input.verifiedDisabled, input.reversed
  
  input.unverify
  {
- 	background: url(../images/buttons/bgred_btn.jpg) repeat-x left;
- 	border: 1px solid #CC3300; 	
+	background: none repeat-x scroll left center #CC3300;	
+	border: 1px solid #7C98A4;	
+	border-radius: 2px;
  	
  }
 
 input.verified , input.reversed
-{
-	
-	background: url(../images/buttons/bg_btn.jpg) repeat-x left;	
+{	
+	background: none repeat-x scroll left center #3a456d;	
 	border: 1px solid #7C98A4;	
-	
+	border-radius: 2px;
 }
 input.reversed
  {
- 	background: url(../images/buttons/bgred1_btn.jpg) repeat-x left;
- 	border: 1px solid #CC3300; 	
- 	
+	background: none repeat-x scroll left center #CC3300;	
+	border: 1px solid #7C98A4;	
+	border-radius: 2px;
  }
 
 
@@ -253,7 +257,7 @@ padding-right:6px;
 .txt{
 	background-color:#fff;
 	width:120px;
-	color:#000;
+	color:#696969;
 	font-size:11px;
 	border:solid 1px #818181;
 	vertical-align:middle

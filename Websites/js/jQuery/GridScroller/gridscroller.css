@@ -16,7 +16,7 @@
     overflow:hidden;
     position:relative;
     z-index:0;
-    border:solid 1px #7C98A4;
+    border:solid 1px #a2a2a2;
 }
 
 .grid-title {
@@ -63,7 +63,7 @@
 
 
 .free-cell {
-background-color:#CDDEF3;
+background-color:#576b9d;
 overflow:hidden;
 position:absolute;
 z-index:999;
@@ -80,7 +80,7 @@ z-index:999;
     }
 
 .free-cell-bottom-left {
-background-color:#CDDEF3;
+background-color:#576b9d;
 border-top-width:1px!important;
 
 }
@@ -92,28 +92,28 @@ border-top-width:1px!important;
 
 
 .free-cell-top-right  {
-    background-color:#CDDEF3;
+    background-color:#576b9d;
 }
 .free-cell-top-right div  {
     width:13px;
 }
 .free-top-right {
-    border-left:solid 1px #7C98A4!important;
+    border-left:solid 1px #a2a2a2!important;
     width:17px;
 }
 .gridlite .free-top-right
 {
-   border-bottom: 1px solid #7C98A4 !important;
+   border-bottom: 1px solid #a2a2a2 !important;
     }
 .free-bottom-right {
-    border:solid 1px #7C98A4!important;
+    border:solid 1px #a2a2a2!important;
     border-bottom:none 0;
 }
 
 .y-scrollbar {
     width:17px;
-    background-color:#CDDEF3;
-    border-left:solid 1px #7C98A4!important;
+    background-color:#576b9d;
+    border-left:solid 1px #a2a2a2!important;
     position:absolute;
     overflow-x:hidden;
     overflow-y:scroll;
@@ -123,8 +123,8 @@ border-top-width:1px!important;
 
 .x-scrollbar {
     height:17px;
-    background-color:#CDDEF3;
-    border-top:solid 1px #7C98A4!important;
+    background-color:#576b9d;
+    border-top:solid 1px #a2a2a2!important;
     position:absolute;
     z-index:3;
     overflow-x:scroll;
@@ -152,7 +152,7 @@ border-top-width:1px!important;
     }
 
 .grid-container {
-    background-color:#CDDEF3;
+    background-color:#576b9d;
     overflow:hidden;
     overflow-y:scroll;
     position:absolute;
@@ -160,7 +160,7 @@ border-top-width:1px!important;
 }
 
 .grid-container-lite {
-    background-color:#CDDEF3;
+    background-color:#576b9d;
     position:absolute;
     z-index:1;
 }
@@ -183,9 +183,9 @@ border-top-width:1px!important;
     -moz-border-left-colors:none;
     -moz-border-right-colors:none;
     -moz-border-top-colors:none;
-    background:none repeat scroll 0 0 #CDDEF3;
+    background:none repeat scroll 0 0 #576b9d;
     z-index:3;
-    border-color:#7C98A4;
+    border-color:#a2a2a2;
     border-style:solid;
     border-width:0 1px 1px 0;
 }
@@ -212,8 +212,8 @@ div.row_header {
     text-align:center;
     vertical-align:middle;
     font-weight:700;
-    color:#000;
-    border-color:#7C98A4;
+    color:#FFF;
+    border-color:#a2a2a2;
     border-style:solid;
     border-width:0 1px 1px 0;
     padding:2px;
@@ -230,20 +230,20 @@ div.row_header {
     overflow:hidden;
     vertical-align:middle;
     white-space:normal;
-    border-color:#7C98A4;
+    border-color:#a2a2a2;
     border-style:solid;
     border-width:0 1px 1px 0;
     padding:2px;
 }
 
 div.row-headers-background {
-    background:none repeat scroll 0 0 #CDDEF3;
+    background:none repeat scroll 0 0 #576b9d;
     position:absolute;
     overflow:hidden;
 }
 
 .gridlite div.row-headers-background {
-	border-bottom: 1px solid #7C98A4;
+	border-bottom: 1px solid #a2a2a2;
 }
  
 .scroll-y {
@@ -255,9 +255,9 @@ div.row-headers-background {
 }
 
 .row-footer-background {
-    border-top:1px solid #7C98A4;
+    border-top:1px solid #a2a2a2;
     overflow:hidden;
-    background:none repeat scroll 0 0 #CDDEF3;
+    background:none repeat scroll 0 0 #576b9d;
     position:absolute;
     z-index:2;
 }
@@ -269,7 +269,7 @@ div.z999 {
 #pagination .gotopage_box
 {
      background: none repeat scroll 0 0 #FFFFFF;
-    border: 1px solid #7C98A4;
+    border: 1px solid #a2a2a2;
     display: none;
     padding: 0px !important;
     position: absolute;

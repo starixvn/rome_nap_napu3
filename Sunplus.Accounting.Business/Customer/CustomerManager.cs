@@ -589,7 +589,7 @@ namespace Sunplus.Accounting.Business.Customer
                                         //Check Given Credit Permission
                                         bool isallowupdategivencredit = Permissions.GetHostPermission(Enumerations.Functions.Customer.Credit);
 
-                                        TemplateHandler.Assign(ref balanceinfo, "{GivenCreditCurrency}", currency + " ");
+                                        TemplateHandler.Assign(ref balanceinfo, "{GivenCreditCurrency}", "<span class=\"curency-label\">" + currency + "</span> ");
                                         TemplateHandler.Assign(ref balanceinfo, "{GivenCredit}", string.Format("{0:n}", credit));
 
                                         if (roleId > 1)
@@ -600,12 +600,12 @@ namespace Sunplus.Accounting.Business.Customer
                                             TemplateHandler.Assign(ref balanceinfo, "{colorTotalBal}", (totalBal >= 0) ? " b" : " hilight");
                                             TemplateHandler.Assign(ref balanceinfo, "{TotalBal}", string.Format("{0:####.##}", totalBal));
                                             TemplateHandler.Assign(ref balanceinfo, "{TotalBalCur}", string.Format("{0:n}", IBCUtils.FormatHandler.FormatNumber20(totalBal)));
-                                            TemplateHandler.Assign(ref balanceinfo, "{CurTotalBalCur}", currency + " ");
+                                            TemplateHandler.Assign(ref balanceinfo, "{CurTotalBalCur}", "<span class=\"curency-label\">" + currency + "</span> ");
 
                                             TemplateHandler.Assign(ref balanceinfo, "{colorYesterdayBal}", (yesterdayBal >= 0) ? " b" : " hilight");
                                             TemplateHandler.Assign(ref balanceinfo, "{YesterdayBal}", string.Format("{0:####.##}", yesterdayBal));
                                             TemplateHandler.Assign(ref balanceinfo, "{YesterdayBalCur}", string.Format("{0:n}", IBCUtils.FormatHandler.FormatNumber20(yesterdayBal)));
-                                            TemplateHandler.Assign(ref balanceinfo, "{CurYesterdayBalCur}", currency + " ");
+                                            TemplateHandler.Assign(ref balanceinfo, "{CurYesterdayBalCur}", "<span class=\"curency-label\">" + currency + "</span> ");
 
                                             TemplateHandler.Assign(ref balanceinfo, "{OutstandTxn}", string.Format("{0:n}",
                                                     "<span class=\"curency-label\">" + currency + "</span> " +
@@ -621,7 +621,7 @@ namespace Sunplus.Accounting.Business.Customer
                                         }
                                         else
                                         {
-                                            TemplateHandler.Assign(ref balanceinfo, "{BetCredit}", currency + " " + Sunplus.Accounting.Core.Helper.Utils.GetDecimalRoundDown(betCredit));
+                                            TemplateHandler.Assign(ref balanceinfo, "{BetCredit}", "<span class=\"curency-label\">" + currency + "</span> " + Sunplus.Accounting.Core.Helper.Utils.GetDecimalRoundDown(betCredit));
 
                                             TemplateHandler.Assign(ref balanceinfo, "{hiddenbalance}", "hidden");
                                             TemplateHandler.Assign(ref balanceinfo, "{ishiddenmember}", "");

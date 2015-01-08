@@ -1,11 +1,31 @@
-﻿.tbllayout
+﻿@font-face {
+    font-family: Roboto;
+    src: url(../Fonts/Roboto/Roboto-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Roboto Light";
+    src: url(../Fonts/Roboto/Roboto-Light.ttf);
+}
+
+@font-face {
+    font-family: "Roboto Bold";
+    src: url(../Fonts/Roboto/Roboto-Bold.ttf);
+}
+
+@font-face {
+    font-family: "Roboto Medium";
+    src: url(../Fonts/Roboto/Roboto-Medium.ttf);
+}
+
+.tbllayout
 {
 	border-spacing: 1px;
-	background-color: #7c98a4;
+	background-color: #a2a2a2;
 	width: 100%;
 	text-align: center;
 	line-height: 18px;
-	font-family: Tahoma,Arial ,helvetica ,sans-serif;
+	font-family: "Roboto Light",Tahoma,Arial ,helvetica ,sans-serif;
 	font-size: 11px;
 	
 }
@@ -20,12 +40,12 @@
 {
 	background-color: #7c98a4 !important;
 	font-weight: bold;
-	color: #000;
+	color: #ffffff;
 	padding: 1px;
 	
 }
-.tbllayout .title td{background-color:#b5c4d0 !important;}	
-.tbllayout .title th{background-color:#b5c4d0 !important;}	
+.tbllayout .title td{background-color:#576b9d !important;}	
+.tbllayout .title th{background-color:#576b9d !important;}	
 
 .a1 {background-color:#CCFFFF !important;}
 .a2 {background-color:#CCFFFF !important;}
@@ -174,7 +194,7 @@
 .overrow td{background-color:#f8ff8d !important;}	
 .rowhighlight td{background-color:#f8ff8d !important;font-weight:bold !important;}		
 .new-rate-evenrow {background-color:#F7E9F8 !important;}/*Exchange rate format*/
-.statement-accu-row td{background-color:#fdf8b5;color:#0000ff}
+.statement-accu-row td{background-color:#fdf8b5;color:#4b649b}
 
 .limit td{background: #eaeaea  none repeat scroll 0%;}
 .limit-header td{background:  #fde9d9 none repeat scroll 0%;}
