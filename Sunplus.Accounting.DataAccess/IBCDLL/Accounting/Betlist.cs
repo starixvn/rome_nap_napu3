@@ -225,7 +225,7 @@ namespace Sunplus.Accounting.DataAccess.IBCDLL.Accounting
             var result = new DataSet();
             try
             {
-                using (ObjectDb db = new ObjectDb("Acc_BetlistCombinationParlay_Details",600))
+                using (ObjectDb db = new ObjectDb("Acc_BetlistCombinationParlay_Details", 600))
                 {
                     var p = new Hashtable();
                     p.Add("refno", refno);
@@ -318,11 +318,11 @@ namespace Sunplus.Accounting.DataAccess.IBCDLL.Accounting
             }
         }
 
-        public static DataSet Acc_BetList_SelBettype(DateTime fromdate, DateTime todate, int custid)
+        public static DataSet Acc_BetList_SelBettype(DateTime fromdate, DateTime todate, int custid, bool isSearchAll)
         {
             try
             {
-                using (ObjectDb objDB = new ObjectDb("Acc_BetList_SelBettype", 300))
+                using (ObjectDb objDB = new ObjectDb(isSearchAll ? "Acc_BetList_SelBettype" : "U3_BetList_SelBettype", 300))
                 {
                     Hashtable p = new Hashtable();
                     p.Add("fromdate", (fromdate));
@@ -343,7 +343,7 @@ namespace Sunplus.Accounting.DataAccess.IBCDLL.Accounting
             }
         }
 
-        public static DataSet BetsSelBetList(DateTime fromdate, DateTime todate, int custid, int bettype)
+        public static DataSet BetsSelBetList(DateTime fromdate, DateTime todate, int custid, int bettype, bool isSearchAll)
         {
             var result = new DataSet();
             try
@@ -354,7 +354,7 @@ namespace Sunplus.Accounting.DataAccess.IBCDLL.Accounting
                 p.Add("custid", custid);
                 p.Add("bettype", bettype);
                 p.Add("movebetsday", ReportUtils.BalanceUp.MoveBetsDay);
-                using (ObjectDb db = new ObjectDb("BetList_CustInfo", 180))
+                using (ObjectDb db = new ObjectDb(isSearchAll ? "BetList_CustInfo" : "U3_BetsSelBetList", 180))
                 {
                     db.AssignParamValues(p);
                     result = db.ExecuteDataSet();
@@ -368,7 +368,7 @@ namespace Sunplus.Accounting.DataAccess.IBCDLL.Accounting
             return result;
         }
 
-        public static DataSet BetsSelBetList_Old(DateTime fromdate, DateTime todate, int custid, int bettype)
+        public static DataSet BetsSelBetList_Old(DateTime fromdate, DateTime todate, int custid, int bettype, bool isSearchAll)
         {
             var result = new DataSet();
             try
@@ -380,7 +380,7 @@ namespace Sunplus.Accounting.DataAccess.IBCDLL.Accounting
                 p.Add("custid", custid);
                 p.Add("bettype", bettype);
 
-                using (ObjectDb db = new ObjectDb("Acc_BetsSelBetList_Old", 180))
+                using (ObjectDb db = new ObjectDb(isSearchAll ? "Acc_BetsSelBetList_Old" : "U3_BetsSelBetList_Old", 180))
                 {
                     db.AssignParamValues(p);
                     result = db.ExecuteDataSet();
@@ -393,12 +393,12 @@ namespace Sunplus.Accounting.DataAccess.IBCDLL.Accounting
             return result;
         }
 
-        public static DataSet BetsSelBetList_ByTransID(int custid, string transID)
+        public static DataSet BetsSelBetList_ByTransID(int custid, string transID, bool isSearchAll)
         {
             var result = new DataSet();
             try
             {
-                using (ObjectDb db = new ObjectDb("Acc_BetsSelBetList_ByTransID", 180))
+                using (ObjectDb db = new ObjectDb(isSearchAll ? "Acc_BetsSelBetList_ByTransID" : "U3_BetsSelBetList_ByTransID", 180))
                 {
                     var p = new Hashtable();
                     p.Add("custid", custid);
@@ -448,7 +448,7 @@ namespace Sunplus.Accounting.DataAccess.IBCDLL.Accounting
                 p.Add("transid", transID);
                 p.Add("balanceupday", ReportUtils.BalanceUp.BalanceUpDay);
                 p.Add("movebetsday", ReportUtils.BalanceUp.MoveBetsDay);
-                
+
                 using (ObjectDb db = new ObjectDb("Age_BetList_SelMatchResultFinance", 600))
                 {
                     db.AssignParamValues(p);
@@ -663,7 +663,7 @@ namespace Sunplus.Accounting.DataAccess.IBCDLL.Accounting
             try
             {
                 var p = new Hashtable { { "matchid", matchID } };
-                
+
                 DbResult dbResult = null;
                 using (ObjectDb db = new ObjectDb("SelMatchResultNumberGame", 600))
                 {
@@ -689,7 +689,7 @@ namespace Sunplus.Accounting.DataAccess.IBCDLL.Accounting
             var result = new DataTable();
             try
             {
-                using (ObjectDb objDB = new ObjectDb("SportingSolutionBetlistResult",600))
+                using (ObjectDb objDB = new ObjectDb("SportingSolutionBetlistResult", 600))
                 {
                     objDB.AddInParameter("matchid", DbType.Int32, matchID);
                     objDB.AddInParameter("resourceid", DbType.String, resourceId);

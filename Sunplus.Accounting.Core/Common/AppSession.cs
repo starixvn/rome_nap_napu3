@@ -307,12 +307,6 @@ namespace Sunplus.Accounting.Core.Common
             sessionState[key] = value;
         }
 
-        public static int UserGroupId
-        {
-            get { return CastAide.AsInt32(HttpContext.Current.Session["UserGroupId"], 0); }
-            set { HttpContext.Current.Session["UserGroupId"] = value; }
-        }
-
         public static bool IsMrLamAccount
         {
             get { return CastAide.AsBoolean(HttpContext.Current.Session["IsMrLamAccount"], false); }
@@ -323,6 +317,18 @@ namespace Sunplus.Accounting.Core.Common
         {
             get { return CastAide.AsBoolean(HttpContext.Current.Session["IsU3Account"], false); }
             set { HttpContext.Current.Session["IsU3Account"] = value; }
+        }
+
+        public static bool IsITAccount
+        {
+            get { return CastAide.AsBoolean(HttpContext.Current.Session["IsITAccount"], false); }
+            set { HttpContext.Current.Session["IsITAccount"] = value; }
+        }
+
+        public static bool IsSpecialCustomersOfMrLam
+        {
+            get { return CastAide.AsBoolean(HttpContext.Current.Session["IsSpecialCustomersOfMrLam"], false); }
+            set { HttpContext.Current.Session["IsSpecialCustomersOfMrLam"] = value; }
         }
     }
 }

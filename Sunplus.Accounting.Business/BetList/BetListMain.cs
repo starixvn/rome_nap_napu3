@@ -81,7 +81,7 @@ namespace Sunplus.Accounting.Business.BetList
             StringBuilder html = new StringBuilder();
 
             fromdate = DNAide.Core.CastAide.AsDateTime(fromdate.ToShortDateString());
-            var dbr = Sunplus.Accounting.DataAccess.IBCDLL.Accounting.Betlist.Acc_BetList_SelBettype(fromdate, todate, custid);
+            var dbr = Sunplus.Accounting.DataAccess.IBCDLL.Accounting.Betlist.Acc_BetList_SelBettype(fromdate, todate, custid, true);
             DataTable dataTable = null;
             if (dbr != null && dbr.Tables.Count > 0)
                 dataTable = dbr.Tables[0];
@@ -132,7 +132,7 @@ namespace Sunplus.Accounting.Business.BetList
 
                     if ((tdate) >= Sunplus.Accounting.DataAccess.Report.ReportUtils.BalanceUp.BalanceUpDay)
                     {
-                        rs = Sunplus.Accounting.DataAccess.IBCDLL.Accounting.Betlist.BetsSelBetList(fdate, tdate, custId, inputBettype);
+                        rs = Sunplus.Accounting.DataAccess.IBCDLL.Accounting.Betlist.BetsSelBetList(fdate, tdate, custId, inputBettype, true);
                         if (rs.Tables.Count > 0)
                         {
                             dt1 = rs.Tables[0];
@@ -142,7 +142,7 @@ namespace Sunplus.Accounting.Business.BetList
 
                     if ((fdate) < Sunplus.Accounting.DataAccess.Report.ReportUtils.BalanceUp.BalanceUpDay)
                     {
-                        rs = Sunplus.Accounting.DataAccess.IBCDLL.Accounting.Betlist.BetsSelBetList_Old(fdate, tdate, custId, inputBettype);
+                        rs = Sunplus.Accounting.DataAccess.IBCDLL.Accounting.Betlist.BetsSelBetList_Old(fdate, tdate, custId, inputBettype, true);
                         if (rs.Tables.Count > 0)
                         {
                             dt = rs.Tables[0];
@@ -187,7 +187,7 @@ namespace Sunplus.Accounting.Business.BetList
                 if (HttpContext.Current.Session["CustId"] != null)
                 {
                     custId = CastAide.AsInt32(HttpContext.Current.Session["CustId"]);
-                    ds = DataAccess.IBCDLL.Accounting.Betlist.BetsSelBetList_ByTransID(custId, transID);
+                    ds = DataAccess.IBCDLL.Accounting.Betlist.BetsSelBetList_ByTransID(custId, transID, true);
                     return GenMainReport(ds.Tables[0], ds.Tables[1]);
                 }
             }
@@ -204,7 +204,7 @@ namespace Sunplus.Accounting.Business.BetList
             DataSet ds = new DataSet();
             try
             {
-                ds = DataAccess.IBCDLL.Accounting.Betlist.BetsSelBetList_ByTransID(custId, transID);
+                ds = DataAccess.IBCDLL.Accounting.Betlist.BetsSelBetList_ByTransID(custId, transID, true);
                 return GenMainReport(ds.Tables[0], ds.Tables[1], custId);
             }
             catch (Exception ex)
