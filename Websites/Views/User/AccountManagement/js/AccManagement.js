@@ -955,18 +955,18 @@ accManager.accounts = {
         colFirstName.parent().append("<input type='text' style='width:196px' editor='true' firstname='true' />").find("input[editor]").val(accManager.utils.decodeSpecifiedCharacter(accManager.utils.trimStartEnd(colFirstName.html())));
         colLastName.parent().append("<input type='text' style='width:196px' editor='true' lastname='true' />").find("input[editor]").val(accManager.utils.decodeSpecifiedCharacter(accManager.utils.trimStartEnd(colLastName.html())));
 
-        //        var arr = jlinq.from(window.viewModel.Accounts).equals("Id", id).select();
-        //        if (arr.length > 0) {
-        //            colDept.parent().append(this.createDeptDropDownBox()).find("select").val(arr[0].DeptId);
-        //        }
+        //var arr = jlinq.from(window.viewModel.Accounts).equals("Id", id).select();
+        //if (arr.length > 0) {
+        //    colDept.parent().append(this.createDeptDropDownBox()).find("select").val(arr[0].DeptId);
+        //}
 
         $(target).parents("tr:first").find("img[alt='Edit']").hide();
         $(target).parents("tr:first").find("img[alt='Save']").show();
         $(target).parents("tr:first").find("img[alt='Cancel']").show();
     },
-    saveClick: function (e, id) {
+    saveClick: function (e, id, deptId) {
         var target = e.target || e.srcElement;
-        this.saveEdit($(target).parents("tr:first"), id);
+        this.saveEdit($(target).parents("tr:first"), id, deptId);
     },
     cancelClick: function (e) {
         var target = e.target || e.srcElement;
@@ -981,7 +981,7 @@ accManager.accounts = {
         $(target).parents("tr:first").find("img[alt='Save']").hide();
         $(target).parents("tr:first").find("img[alt='Cancel']").hide();
     },
-    saveEdit: function (tr, id) {
+    saveEdit: function (tr, id, deptId) {
         var firstName = tr.find("input[editor][firstname]").val();
         var lastName = tr.find("input[editor][lastname]").val();
 
@@ -1002,7 +1002,7 @@ accManager.accounts = {
         });
         params.push({
             "Name": "groupid",
-            "Value": accManager.u3GroupId
+            "Value": deptId
         });
         params.push({
             "Name": "firstname",

@@ -39,6 +39,11 @@
                     <div class="c">
                         Policy
                     </div>
+                </td>
+                <td class="cellborder cellheader">
+                    <div class="c">
+                        Department
+                    </div>
                 </td>               
                 <td class="cellborder cellheader">
                     <div class="c">
@@ -100,6 +105,10 @@
                 <div class="c" style="color: #0066CC; cursor:pointer" onclick="javascript:accManager.accounts.policy(${Id}, '${Department}', ${DeptId}, '${UserName}');">
                     Policy
                 </div>           
+            </td><td class="cellborder">              
+                <div class="c" style="color: #0066CC; cursor:pointer" dept="true" onclick="javascript:accManager.accounts.filterByDepartment(${DeptId});">
+                    ${Department}
+                </div>
             </td><td class="cellborder">
                 <div class="c" style="color: #0066CC; cursor:pointer" onclick="javascript:OpenChangePwd(${Id},'${UserName}');">
                     Password
@@ -107,7 +116,7 @@
             </td><td class="cellborder">
                 <div class="c" style="height:16px;">
                     <img alt="Edit" title="Edit" src="../App_Themes/Images/icn_edit.png" style="cursor: pointer" onclick="javascript:accManager.accounts.editClick(event, ${Id});" />
-                    <img alt="Save" title="Save" border="0" src="../App_Themes/Images/save1.jpg" style="cursor: pointer; display:none" onclick="javascript:accManager.accounts.saveClick(event, ${Id});"/>
+                    <img alt="Save" title="Save" border="0" src="../App_Themes/Images/save1.jpg" style="cursor: pointer; display:none" onclick="javascript:accManager.accounts.saveClick(event, ${Id}, ${DeptId});"/>
                     <img alt="Cancel" title="Cancel" border="0" src="../App_Themes/Images/undo.png" style="cursor: pointer; display:none" onclick="javascript:accManager.accounts.cancelClick(event);"/>
                 </div>
             </td><td class="cellborder">
