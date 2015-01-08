@@ -114,13 +114,5 @@ namespace Fanex.Tarus.BetList.Controller
             AppSession.AddSession(System.Web.HttpContext.Current.Session, "TO_DATE", ToDate);
             return PartialView("~/Views/BetList/BetlistByCustInfo/Betlist/_BetList.cshtml", result);
         }
-
-        public ActionResult BetListByIP(bool IsLink, string FromDate, string IP)
-        {
-            ViewBag.FromDate = FromDate;
-            ViewBag.Ip= IP;
-            ViewBag.IsLink = IsLink;
-            return View("~/Views/BetList/BetListByIP/Index.cshtml");
-        }
     }
 }
