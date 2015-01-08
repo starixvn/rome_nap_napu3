@@ -306,8 +306,6 @@ namespace Sunplus.Accounting.Business.Statement
                             TemplateHandler.Assign(ref rowHtml, "{Total}", FormatHandler.FormatNumber20(row["runningtotal"]));
 
                             total += creditAmt - debitAmt;
-                            if (!CastAide.AsBoolean(row["allowdelete"], true) || !candelete)
-                                TemplateHandler.RemoveBlock(ref rowHtml, "DelLink");
 
                             htmlReport.Append(rowHtml);
                         }
@@ -426,9 +424,12 @@ namespace Sunplus.Accounting.Business.Statement
                         if (string.Compare(type.ToLowerInvariant(), "bet", true) == 0
                             && accDate >= balanceUpDay)
                         {
-                            TemplateHandler.Assign(ref rowHtml, "link",
-                                                   "class='canchange' onclick='viewDetail(\""
-                                                   + FormatHandler.FormatDateOptionalTime(accDate) + "\"," + entity.TransTypeId + ")' ");
+                            if (AppSession.IsShowBetlistOnStatement)
+                            {
+                                TemplateHandler.Assign(ref rowHtml, "link",
+                                                       "class='canchange' onclick='viewDetail(\""
+                                                       + FormatHandler.FormatDateOptionalTime(accDate) + "\"," + entity.TransTypeId + ")' ");
+                            }
                             strAccDate = accDate.DayOfWeek
                                          + " <!--nobr--><br><!--/nobr-->"
                                          + FormatHandler.FormatDateOptionalTime(accDate);
