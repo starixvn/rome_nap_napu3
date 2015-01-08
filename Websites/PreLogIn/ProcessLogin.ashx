@@ -90,12 +90,11 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                 AppSession.Username = username;
                 AppSession.AccUserName = username;
                 AppSession.AccId = custId;
-                AppSession.UserGroupId = userGroup.GroupId;
                 AppSession.CurrentSystemName = system;
                 AppSession.IsMrLamAccount = isMrLamAccount;
                 AppSession.IsU3Account = userGroup.GroupId == WebSettings.U3GroupId ? true : false;
-
-
+                AppSession.IsITAccount = !AppSession.IsMrLamAccount && !AppSession.IsU3Account ? true : false; 
+                
                 if (string.IsNullOrEmpty(system))
                 {
                     context.Session.Clear();
