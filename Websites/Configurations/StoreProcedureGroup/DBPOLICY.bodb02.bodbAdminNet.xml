@@ -17,7 +17,7 @@
     <Setting Key="GroupInfoSel" SpName="Acc_Con_GroupInfoSel" DbName="DBPOLICY.bodb02.bodbAdminNet" />
     <Setting Key="AdminSelByGroupID" SpName="Acc_Con_AdminNapU3SelByGroupID_xtest" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
     <Setting Key="GroupPolicySel" SpName="Acc_Con_GroupPolicySel" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
-    <Setting Key="AdminPolicySelByCustID" SpName="Acc_Con_AdminPolicySelByCustID" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
+    <Setting Key="AdminPolicySelByCustID" SpName="Acc_Con_AdminPolicySelByCustID_xtest" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
     <Setting Key="FuncInfoSelParent" SpName="Acc_Con_FuncInfoSelParent" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
     <Setting Key="FuncInfoSel" SpName="Acc_Con_FuncInfoSel" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
     <Setting Key="Con_CustomerSelByUserName" SpName="Acc_Con_CustomerSelByUserName" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
