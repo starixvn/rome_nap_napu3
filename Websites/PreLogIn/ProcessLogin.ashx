@@ -21,12 +21,10 @@ using Fanex.Tarus.User.Business.Services;
 
 public class ProcessLogin : IHttpHandler, IRequiresSessionState
 {
-
     public void ProcessRequest(HttpContext context)
     {
         try
         {
-
             context.Response.ContentType = "text/html";
             context.Response.Cache.SetCacheability(HttpCacheability.NoCache);
             string username = context.Request.Form["TxtUsername"];
@@ -36,23 +34,6 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
             int custId;
             string system;
             int roleId;
-
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
-                context.Response.Write("parent.signIn.loginError('Username and Password must not be empty!');\n");
-
-            if (LoginFailedHandler.IsLocked(username))
-            {
-                context.Response.Write(LoginFailedHandler.WriteJS(username));
-                goto end;
-            }
-            //string countryName = IpManagement.ReplaceCountryName("202.78.230.82");
-            //var ipManager = new Sunplus.Accounting.Core.Helper.IP.IpManager();
-            //string countryName = ipManager.GetCountryNameByIp(context.Request.UserHostAddress);
-
-            AppSession.CurrentSystemName = "accounting";
-
-            string browserName = context.Request.Browser.Browser + " " + context.Request.Browser.Version;
-            IbcError error = Sunplus.Accounting.DataAccess.IBCDLL.UserController.AccLoginAdmin(ref username, password, context.Request.UserHostAddress, context.Request.UrlReferrer.AbsoluteUri, out custId, out roleId, out system, context.Request.Url.Host, browserName, context.Request.Browser.Platform, "");
 
             UserGroup userGroup = new UserInfoService().GetAdminGroup(username);
             string[] allowedGroupsAccess = WebSettings.AllowedGroupsAccess;
@@ -82,7 +63,29 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                 }
             }
 
-            if (error.IsSuccess() && allowedAccess)
+            if (!allowedAccess)
+            {
+                context.Session.Clear();
+                FormsAuthentication.SignOut();
+                context.Response.Write("parent.signIn.loginError('" + Resources.ErrorMsg.DenyLoginAccount + "');\n");
+                goto end;
+            }            
+
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+                context.Response.Write("parent.signIn.loginError('Username and Password must not be empty!');\n");
+
+            if (LoginFailedHandler.IsLocked(username))
+            {
+                context.Response.Write(LoginFailedHandler.WriteJS(username));
+                goto end;
+            }
+
+            AppSession.CurrentSystemName = "accounting";
+
+            string browserName = context.Request.Browser.Browser + " " + context.Request.Browser.Version;
+            IbcError error = Sunplus.Accounting.DataAccess.IBCDLL.UserController.AccLoginAdmin(ref username, password, context.Request.UserHostAddress, context.Request.UrlReferrer.AbsoluteUri, out custId, out roleId, out system, context.Request.Url.Host, browserName, context.Request.Browser.Platform, "");
+
+            if (error.IsSuccess())
             {
                 LoginFailedHandler.LoginSuccess(username);
 
@@ -141,7 +144,15 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                     context.Response.Write("parent.signIn.loginError('Invalid Login');\n");
                     goto end;
                 }
+                
                 AuthManager.AssignRoles(custId);
+                if (AppSession.RoleAccess.Count < 1) //limit user have no permission access 
+                {
+                    context.Session.Clear();
+                    FormsAuthentication.SignOut();
+                    context.Response.Write("parent.signIn.loginError('" + Resources.ErrorMsg.DenyLoginAccount + "');\n");
+                    goto end;
+                } 
 
                 context.Response.Write("top.location.href='" + FormsAuthentication.DefaultUrl.Replace("https", "http") + "';\n");
                 IMenuManager menuService = CommonBootStrapper.Locator.GetInstance<IMenuManager>();
@@ -196,7 +207,6 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                 else
                 {
                     LoginFailedHandler.LoginFailed(username, error.ErrorCode);
-
                     //-----------------------------------------------------------------------
 
                     if (LoginFailedHandler.IsLocked(username))
@@ -233,7 +243,4 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
     //    var logContent = new Exception( userName + "\n" + DateTime.Now + "\n" + userBrowser);
     //    Sunplus.Accounting.Core.Extensions.LogExtensions.ExceptionHandler(logContent);
     //}
-
-
-
 }
