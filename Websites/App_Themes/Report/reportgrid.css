@@ -29,7 +29,7 @@
 .content-warper{   border:solid 1px #a2a2a2; line-height:18px; background-color:#576b9d}
 .content-toolbox{   border-bottom:solid 1px #a2a2a2;     height:18px; padding:2px;}
 .content-body{background-color:#fff;  border-bottom:solid 1px #a2a2a2}
-.content-pagination{border-top:solid 1px #a2a2a2;height:18px;  padding:2px;}
+.content-pagination{border-top:solid 1px #a2a2a2;height:18px;  padding:2px; color:#fff}
 .bgtitle{ background-color: #576b9d;}
 .header-frozen, .header-scroll, .body-frozen, .footer-frozen, .footer-scroll{   float:left; overflow:hidden}
 .btngroup{float:right}

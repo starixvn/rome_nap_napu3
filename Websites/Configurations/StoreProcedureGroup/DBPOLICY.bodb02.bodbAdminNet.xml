@@ -15,7 +15,7 @@
     
   <Function Name="User - Account Management">
     <Setting Key="GroupInfoSel" SpName="Acc_Con_GroupInfoSel" DbName="DBPOLICY.bodb02.bodbAdminNet" />
-    <Setting Key="AdminSelByGroupID" SpName="Acc_Con_AdminNapU3SelByGroupID" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
+    <Setting Key="AdminSelByGroupID" SpName="Acc_Con_AdminNapU3SelByGroupID_xtest" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
     <Setting Key="GroupPolicySel" SpName="Acc_Con_GroupPolicySel" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
     <Setting Key="AdminPolicySelByCustID" SpName="Acc_Con_AdminPolicySelByCustID" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
     <Setting Key="FuncInfoSelParent" SpName="Acc_Con_FuncInfoSelParent" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
@@ -26,7 +26,7 @@
   <Function Name="Policy">
     <Setting Key="AdminSelByListGroupNameUserName" SpName="Acc_Con_AdminSelByListGroupNameUserName" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
     <Setting Key="AdminPolicySel" SpName="Acc_Con_Batch_AdminPolicySel" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
-    <Setting Key="FileNameSelByCustID" SpName="Acc_Con_FileNameSelByCustID" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
+    <Setting Key="FileNameSelByCustID" SpName="Acc_Con_FileNameSelByCustID_xtest" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
     <Setting Key="Con_AdminSelByCustID" SpName="Acc_Con_AdminSelByCustID" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
     <Setting Key="Con_CheckPermission" SpName="Acc_Con_CheckPermission" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
     <Setting Key="Con_CheckPermission_All" SpName="Acc_Con_CheckPermission_All" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
