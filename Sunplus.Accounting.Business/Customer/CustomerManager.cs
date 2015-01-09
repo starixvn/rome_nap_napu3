@@ -268,7 +268,6 @@ namespace Sunplus.Accounting.Business.Customer
                                 AppSession.IsSyncLCSCurrentCust = WebSettings.EnableLiveCasino ? CastAide.AsBoolean(row1["synclivecasino"], false) : false;
                                 AppSession.IsHideVirtualSportsCurrentCust = WebSettings.EnableVirtualSports ? CastAide.AsBoolean(row1["hidevirtualsports"], false) : false;
 
-
                                 if (new SmartPunterPermissionService().IsDeniedViewSmartPunter(custId, userName))
                                 {
                                     htmlcontent = AlertMessage.GetMsg(ResourceExtension.GetResourceValue(ResourceExtension.Resources.Language, "smartPunterAtuthorized"), AlertMessage.MsgType.Error);
@@ -513,11 +512,12 @@ namespace Sunplus.Accounting.Business.Customer
 
                                     GenUplineBox(ref htmlcontent, roleId, row2);
 
-                                    //if (!Permissions.FinancePermission.IsViewFiAcc(isInternalUser))
-                                    //{
-                                    //    //return AlertMessage.GetMsg(ResourceExtension.GetResourceValue(ResourceExtension.Resources.Language, "thereisnodata"), AlertMessage.MsgType.Error);
-                                    //    htmlcontent = AlertMessage.GetMsg(ResourceExtension.GetResourceValue(ResourceExtension.Resources.Language, "thereisnodata"), AlertMessage.MsgType.Error);
-                                    //}
+                                    if (!Permissions.FinancePermission.IsViewFiAcc(isInternalUser) &&
+                                        !IsInternalSpecialCustomersOfMrLam())
+                                    {
+                                        //return AlertMessage.GetMsg(ResourceExtension.GetResourceValue(ResourceExtension.Resources.Language, "thereisnodata"), AlertMessage.MsgType.Error);
+                                        htmlcontent = AlertMessage.GetMsg(ResourceExtension.GetResourceValue(ResourceExtension.Resources.Language, "thereisnodata"), AlertMessage.MsgType.Error);
+                                    }
 
                                     if (WebSettings.OfferDoubleComm)
                                     {
@@ -617,9 +617,9 @@ namespace Sunplus.Accounting.Business.Customer
 
                                     #endregion BalanceInfo
 
-                                    if ((AppSession.IsITAccount || AppSession.IsMrLamAccount) && AppSession.IsInternal && AppSession.IsSpecialCustomersOfMrLam)
+                                    if (IsInternalSpecialCustomersOfMrLam())
                                     {
-                                        TemplateHandler.Assign(ref htmlcontent, "{BoxSettingDetailStyle}", " style='display:none;' ");
+                                        TemplateHandler.RemoveBlock(ref htmlcontent, "BoxSettingDetailLoginOnlineList");
                                     }
                                     else
                                     {
@@ -1063,6 +1063,11 @@ namespace Sunplus.Accounting.Business.Customer
                 return arrcontent;
             }
 
+        }
+
+        private static bool IsInternalSpecialCustomersOfMrLam()
+        {
+            return (AppSession.IsITAccount || AppSession.IsMrLamAccount) && AppSession.IsInternal && AppSession.IsSpecialCustomersOfMrLam;
         }
 
         private static bool CheckAndSetCustomerIsInternalOrNot(DataRow customerInformation)
