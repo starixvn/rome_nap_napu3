@@ -39,25 +39,25 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
             string[] allowedGroupsAccess = WebSettings.AllowedGroupsAccess;
             string[] allowedUsersAccess = WebSettings.AllowedUsersAccess;
             bool allowedAccess = false;
-            bool isMrLamAccount = false;
+            bool isMrXAccount = false;
 
-            for (int i = 0; i < allowedGroupsAccess.Length; i++)
+            for (int i = 0; i < allowedUsersAccess.Length; i++)
             {
-                if (userGroup.GroupId.ToString() == allowedGroupsAccess[i].Trim())
+                if (username == allowedUsersAccess[i].Trim())
                 {
                     allowedAccess = true;
+                    isMrXAccount = true;
                     break;
                 }
             }
 
             if (!allowedAccess)
             {
-                for (int i = 0; i < allowedUsersAccess.Length; i++)
+                for (int i = 0; i < allowedGroupsAccess.Length; i++)
                 {
-                    if (username == allowedUsersAccess[i].Trim())
+                    if (userGroup.GroupId.ToString() == allowedGroupsAccess[i].Trim())
                     {
                         allowedAccess = true;
-                        isMrLamAccount = true;
                         break;
                     }
                 }
@@ -69,7 +69,7 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                 FormsAuthentication.SignOut();
                 context.Response.Write("parent.signIn.loginError('" + Resources.ErrorMsg.DenyLoginAccount + "');\n");
                 goto end;
-            }            
+            }
 
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
                 context.Response.Write("parent.signIn.loginError('Username and Password must not be empty!');\n");
@@ -94,10 +94,10 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                 AppSession.AccUserName = username;
                 AppSession.AccId = custId;
                 AppSession.CurrentSystemName = system;
-                AppSession.IsMrLamAccount = isMrLamAccount;
+                AppSession.IsMrXAccount = isMrXAccount;
                 AppSession.IsU3Account = userGroup.GroupId == WebSettings.U3GroupId ? true : false;
-                AppSession.IsITAccount = !AppSession.IsMrLamAccount && !AppSession.IsU3Account ? true : false; 
-                AppSession.IsShowBetlistOnStatement = userGroup.GroupId.Equals(1) || isMrLamAccount;
+                AppSession.IsITAccount = !AppSession.IsMrXAccount && !AppSession.IsU3Account ? true : false;
+                AppSession.IsShowBetlistOnStatement = userGroup.GroupId.Equals(1) || isMrXAccount;
                 if (string.IsNullOrEmpty(system))
                 {
                     context.Session.Clear();
@@ -144,7 +144,7 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                     context.Response.Write("parent.signIn.loginError('Invalid Login');\n");
                     goto end;
                 }
-                
+
                 AuthManager.AssignRoles(custId);
                 if (AppSession.RoleAccess.Count < 1) //limit user have no permission access 
                 {
@@ -152,7 +152,7 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                     FormsAuthentication.SignOut();
                     context.Response.Write("parent.signIn.loginError('" + Resources.ErrorMsg.DenyLoginAccount + "');\n");
                     goto end;
-                } 
+                }
 
                 context.Response.Write("top.location.href='" + FormsAuthentication.DefaultUrl.Replace("https", "http") + "';\n");
                 //IMenuManager menuService = CommonBootStrapper.Locator.GetInstance<IMenuManager>();

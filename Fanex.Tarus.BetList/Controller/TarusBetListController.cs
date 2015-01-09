@@ -40,7 +40,7 @@ namespace Fanex.Tarus.BetList.Controller
         /// Betlist by refno
         /// </summary>
         /// <returns></returns>
-        
+
         public ActionResult BetListByRefNo_Main()
         {
             return View("~/Views/BetList/BetListByRefNo/Index.cshtml");
@@ -52,13 +52,13 @@ namespace Fanex.Tarus.BetList.Controller
         /// </summary>
         /// <param name="CustID"></param>
         /// <returns></returns>
-       
+
         public ActionResult BetListByCustInfo(int CustID)
         {
             ViewBag.CustID = CustID;
             var dateTmp = new DateTime(0001, 1, 1);
             DateTime fromDate = CastAide.AsDateTime(AppSession.GetSession(System.Web.HttpContext.Current.Session, "FROM_DATE"));
-            DateTime toDate = CastAide.AsDateTime(AppSession.GetSession(System.Web.HttpContext.Current.Session, "TO_DATE")) ;
+            DateTime toDate = CastAide.AsDateTime(AppSession.GetSession(System.Web.HttpContext.Current.Session, "TO_DATE"));
             ViewBag.FromDate = fromDate == dateTmp ? DateTime.Today.AddDays(-1) : fromDate;
             ViewBag.ToDate = toDate == dateTmp ? DateTime.Today : toDate;
             return View("~/Views/BetList/BetlistByCustInfo/Index.cshtml");
@@ -75,14 +75,15 @@ namespace Fanex.Tarus.BetList.Controller
         /// <param name="PageIndex">Index of the page.</param>
         /// <param name="IsCache">If set to <c>true</c> [is cache].</param>
         /// <returns></returns>
+        /// <exception cref="System.ArgumentException">CustID isn't valid.</exception>
         [SmartPunterFilter(SmartPunterFilter.AuthenticationType.Read)]
         public ActionResult GetBetListByCustInfo_DateRange(
-            int CustID, 
-            DateTime FromDate, 
-            DateTime ToDate, 
-            int Bettype, 
-            int PageSize, 
-            int PageIndex, 
+            int CustID,
+            DateTime FromDate,
+            DateTime ToDate,
+            int Bettype,
+            int PageSize,
+            int PageIndex,
             bool IsCache)
         {
             if (AppSession.CustID != CustID)
@@ -91,17 +92,18 @@ namespace Fanex.Tarus.BetList.Controller
             }
 
             int quantity = 0;
-            PageIndex= PageIndex <= 0 ? 1 : PageIndex;
+            PageIndex = PageIndex <= 0 ? 1 : PageIndex;
             var result = _betListService.GetBetListByCustInfo_DateRange(
-                CustID, 
-                FromDate, 
-                ToDate, 
-                Bettype, 
-                PageSize, 
-                PageIndex, 
-                ref quantity, 
-                IsCache, 
-                !AppSession.IsSpecialCustomersOfMrLam);
+                CustID,
+                FromDate,
+                ToDate,
+                Bettype,
+                PageSize,
+                PageIndex,
+                ref quantity,
+                IsCache,
+                (AppSession.IsU3Account && !AppSession.IsMrXAccount)
+                || (AppSession.IsMrXAccount && !AppSession.IsSpecialCustomersOfMrX));
             ViewBag.Quantity = quantity;
             ViewBag.NumberBegining = (PageSize * (PageIndex - 1)) + 1;
 

@@ -223,11 +223,15 @@ namespace Sunplus.Accounting.Business.Customer
                             bool isInternalUser = CheckAndSetCustomerIsInternalOrNot(row1);
                             CheckAndSetCustomerIsSpecialCustomerOfMrLamOrNot(row1);
 
-                            if (AppSession.IsU3Account && AppSession.IsInternal)
+                            if (AppSession.IsU3Account && !AppSession.IsMrXAccount && AppSession.IsInternal)
                             {
                                 htmlcontent = AlertMessage.GetMsg(ResourceExtension.GetResourceValue(ResourceExtension.Resources.Language, "thereisnodata"), AlertMessage.MsgType.Error);
                             }
-                            else if ((AppSession.IsMrLamAccount || AppSession.IsITAccount) && AppSession.IsInternal && !AppSession.IsSpecialCustomersOfMrLam)
+                            else if (AppSession.IsMrXAccount && AppSession.IsInternal && !AppSession.IsSpecialCustomersOfMrX)
+                            {
+                                htmlcontent = AlertMessage.GetMsg(ResourceExtension.GetResourceValue(ResourceExtension.Resources.Language, "thereisnodata"), AlertMessage.MsgType.Error);
+                            }
+                            else if (!Permissions.FinancePermission.IsViewFiAcc(isInternalUser) && AppSession.IsITAccount)
                             {
                                 htmlcontent = AlertMessage.GetMsg(ResourceExtension.GetResourceValue(ResourceExtension.Resources.Language, "thereisnodata"), AlertMessage.MsgType.Error);
                             }
@@ -512,13 +516,6 @@ namespace Sunplus.Accounting.Business.Customer
 
                                     GenUplineBox(ref htmlcontent, roleId, row2);
 
-                                    if (!Permissions.FinancePermission.IsViewFiAcc(isInternalUser) &&
-                                        !IsInternalSpecialCustomersOfMrLam())
-                                    {
-                                        //return AlertMessage.GetMsg(ResourceExtension.GetResourceValue(ResourceExtension.Resources.Language, "thereisnodata"), AlertMessage.MsgType.Error);
-                                        htmlcontent = AlertMessage.GetMsg(ResourceExtension.GetResourceValue(ResourceExtension.Resources.Language, "thereisnodata"), AlertMessage.MsgType.Error);
-                                    }
-
                                     if (WebSettings.OfferDoubleComm)
                                     {
                                         var doubleComm = CastAide.AsBoolean(row1["doublecommlosing"]);
@@ -565,13 +562,13 @@ namespace Sunplus.Accounting.Business.Customer
                                     TemplateHandler.Assign(ref balanceinfo, "{YesterdayCashBalCur}", string.Format("{0:n}", yesterdayCash));
                                     TemplateHandler.Assign(ref balanceinfo, "{CurYesterdayCashBalCur}", currency + " ");
 
-                                        TemplateHandler.Assign(ref balanceinfo, "{AccOutstandTxn}", string.Format("{0:n}",
-                                            "<span class=\"curency-label\">" + currency + "</span> " +
-                                            IBCUtils.FormatHandler.FormatNumber20(accOutstanding)));
+                                    TemplateHandler.Assign(ref balanceinfo, "{AccOutstandTxn}", string.Format("{0:n}",
+                                        "<span class=\"curency-label\">" + currency + "</span> " +
+                                        IBCUtils.FormatHandler.FormatNumber20(accOutstanding)));
                                     //Check Given Credit Permission
                                     bool isallowupdategivencredit = Permissions.GetHostPermission(Enumerations.Functions.Customer.Credit);
 
-                                        TemplateHandler.Assign(ref balanceinfo, "{GivenCreditCurrency}", "<span class=\"curency-label\">" + currency + "</span> ");
+                                    TemplateHandler.Assign(ref balanceinfo, "{GivenCreditCurrency}", "<span class=\"curency-label\">" + currency + "</span> ");
                                     TemplateHandler.Assign(ref balanceinfo, "{GivenCredit}", string.Format("{0:n}", credit));
 
                                     if (roleId > 1)
@@ -582,19 +579,19 @@ namespace Sunplus.Accounting.Business.Customer
                                         TemplateHandler.Assign(ref balanceinfo, "{colorTotalBal}", (totalBal >= 0) ? " b" : " hilight");
                                         TemplateHandler.Assign(ref balanceinfo, "{TotalBal}", string.Format("{0:####.##}", totalBal));
                                         TemplateHandler.Assign(ref balanceinfo, "{TotalBalCur}", string.Format("{0:n}", IBCUtils.FormatHandler.FormatNumber20(totalBal)));
-                                            TemplateHandler.Assign(ref balanceinfo, "{CurTotalBalCur}", "<span class=\"curency-label\">" + currency + "</span> ");
+                                        TemplateHandler.Assign(ref balanceinfo, "{CurTotalBalCur}", "<span class=\"curency-label\">" + currency + "</span> ");
 
                                         TemplateHandler.Assign(ref balanceinfo, "{colorYesterdayBal}", (yesterdayBal >= 0) ? " b" : " hilight");
                                         TemplateHandler.Assign(ref balanceinfo, "{YesterdayBal}", string.Format("{0:####.##}", yesterdayBal));
                                         TemplateHandler.Assign(ref balanceinfo, "{YesterdayBalCur}", string.Format("{0:n}", IBCUtils.FormatHandler.FormatNumber20(yesterdayBal)));
-                                            TemplateHandler.Assign(ref balanceinfo, "{CurYesterdayBalCur}", "<span class=\"curency-label\">" + currency + "</span> ");
+                                        TemplateHandler.Assign(ref balanceinfo, "{CurYesterdayBalCur}", "<span class=\"curency-label\">" + currency + "</span> ");
 
-                                            TemplateHandler.Assign(ref balanceinfo, "{OutstandTxn}", string.Format("{0:n}",
-                                                    "<span class=\"curency-label\">" + currency + "</span> " +
-                                                    IBCUtils.FormatHandler.FormatNumber20(outStanding)));
-                                            TemplateHandler.Assign(ref balanceinfo, "{UsedCredit}", string.Format("{0:n}",
+                                        TemplateHandler.Assign(ref balanceinfo, "{OutstandTxn}", string.Format("{0:n}",
                                                 "<span class=\"curency-label\">" + currency + "</span> " +
-                                                IBCUtils.FormatHandler.FormatNumber20(usedCredit)));
+                                                IBCUtils.FormatHandler.FormatNumber20(outStanding)));
+                                        TemplateHandler.Assign(ref balanceinfo, "{UsedCredit}", string.Format("{0:n}",
+                                            "<span class=\"curency-label\">" + currency + "</span> " +
+                                            IBCUtils.FormatHandler.FormatNumber20(usedCredit)));
                                         TemplateHandler.Assign(ref balanceinfo, "{AgentType}", downlinename);
                                         TemplateHandler.Assign(ref balanceinfo, "{hiddenbalance}", "");
                                         TemplateHandler.Assign(ref balanceinfo, "{ishiddenmember}", "hidden");
@@ -603,7 +600,7 @@ namespace Sunplus.Accounting.Business.Customer
                                     }
                                     else
                                     {
-                                            TemplateHandler.Assign(ref balanceinfo, "{BetCredit}", "<span class=\"curency-label\">" + currency + "</span> " + Sunplus.Accounting.Core.Helper.Utils.GetDecimalRoundDown(betCredit));
+                                        TemplateHandler.Assign(ref balanceinfo, "{BetCredit}", "<span class=\"curency-label\">" + currency + "</span> " + Sunplus.Accounting.Core.Helper.Utils.GetDecimalRoundDown(betCredit));
 
                                         TemplateHandler.Assign(ref balanceinfo, "{hiddenbalance}", "hidden");
                                         TemplateHandler.Assign(ref balanceinfo, "{ishiddenmember}", "");
@@ -1067,7 +1064,7 @@ namespace Sunplus.Accounting.Business.Customer
 
         private static bool IsInternalSpecialCustomersOfMrLam()
         {
-            return (AppSession.IsITAccount || AppSession.IsMrLamAccount) && AppSession.IsInternal && AppSession.IsSpecialCustomersOfMrLam;
+            return AppSession.IsMrXAccount && AppSession.IsInternal && AppSession.IsSpecialCustomersOfMrX;
         }
 
         private static bool CheckAndSetCustomerIsInternalOrNot(DataRow customerInformation)
@@ -1081,19 +1078,19 @@ namespace Sunplus.Accounting.Business.Customer
 
         private static void CheckAndSetCustomerIsSpecialCustomerOfMrLamOrNot(DataRow customerInformation)
         {
-            string[] internalCustomersOfMrLam = WebSettings.SpecialCustomersOfMrLam;
+            string[] internalCustomersOfMrLam = WebSettings.SpecialCustomersOfMrX;
             string customerId = Convert.ToString(customerInformation["custid"]);
 
             for (int i = 0; i < internalCustomersOfMrLam.Length; i++)
             {
                 if (customerId == internalCustomersOfMrLam[i].Trim())
                 {
-                    AppSession.IsSpecialCustomersOfMrLam = true;
+                    AppSession.IsSpecialCustomersOfMrX = true;
                     return;
                 }
             }
 
-            AppSession.IsSpecialCustomersOfMrLam = false;
+            AppSession.IsSpecialCustomersOfMrX = false;
         }
 
         private string GetSettingAbnormal(int roleId, bool isManageCustomerAccess, int currentLevel)
@@ -1246,7 +1243,7 @@ namespace Sunplus.Accounting.Business.Customer
                     minMaxPtRenovationUrl = "EditAgentMinMaxPt/EditAgentMinMaxPtPage?&custId=" + custId + "&uplineId=" + parentId + "&uname=" + userName;
                     minMaxPtUrl = WebSettings.IsShowCustomerSettingRenovation == 3 ? minMaxPtRenovationUrl : "Customer/v2/EditMinMaxPT.aspx?set=1&custId=" + custId + "&type=Agent";
                     //submenu3 = "<a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + minMaxPtUrl + "\");' target='centerFr'>Sport book</a>";
-                    
+
                     var agentMinMaxPT = "EditAgentMinMaxPt/EditAgentMinMaxPtPage?&custId=" + custId + "&uplineId=" + parentId + "&uname=" + userName + "&isDisplaySportbooks=false";
                     submenu3 += "<br><a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + agentMinMaxPT + "\");' target='centerFr'>Number Game</a>";
                     TemplateHandler.Assign(ref htmlcontent, "{contentminmax}", submenu3);

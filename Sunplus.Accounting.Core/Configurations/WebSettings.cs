@@ -549,11 +549,11 @@ namespace Sunplus.Accounting.Core.Configurations
             }
         }
 
-        public static string[] SpecialCustomersOfMrLam
+        public static string[] SpecialCustomersOfMrX
         {
             get
             {
-                return Convert.ToString(ConfigurationManager.AppSettings["SpecialCustomersOfMrLam"]).Split(',');
+                return Convert.ToString(ConfigurationManager.AppSettings["SpecialCustomersOfMrX"]).Split(',');
             }
         }
 

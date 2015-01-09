@@ -307,10 +307,10 @@ namespace Sunplus.Accounting.Core.Common
             sessionState[key] = value;
         }
 
-        public static bool IsMrLamAccount
+        public static bool IsMrXAccount
         {
-            get { return CastAide.AsBoolean(HttpContext.Current.Session["IsMrLamAccount"], false); }
-            set { HttpContext.Current.Session["IsMrLamAccount"] = value; }
+            get { return CastAide.AsBoolean(HttpContext.Current.Session["IsMrXAccount"], false); }
+            set { HttpContext.Current.Session["IsMrXAccount"] = value; }
         }
 
         public static bool IsU3Account
@@ -325,10 +325,10 @@ namespace Sunplus.Accounting.Core.Common
             set { HttpContext.Current.Session["IsITAccount"] = value; }
         }
 
-        public static bool IsSpecialCustomersOfMrLam
+        public static bool IsSpecialCustomersOfMrX
         {
-            get { return CastAide.AsBoolean(HttpContext.Current.Session["IsSpecialCustomersOfMrLam"], false); }
-            set { HttpContext.Current.Session["IsSpecialCustomersOfMrLam"] = value; }
+            get { return CastAide.AsBoolean(HttpContext.Current.Session["IsSpecialCustomersOfMrX"], false); }
+            set { HttpContext.Current.Session["IsSpecialCustomersOfMrX"] = value; }
         }
 
         public static bool IsShowBetlistOnStatement
