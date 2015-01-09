@@ -223,11 +223,11 @@ namespace Sunplus.Accounting.Business.Customer
                             bool isInternalUser = CheckAndSetCustomerIsInternalOrNot(row1);
                             CheckAndSetCustomerIsSpecialCustomerOfMrLamOrNot(row1);
 
-                            if ((AppSession.IsU3Account || AppSession.IsITAccount) && AppSession.IsInternal)
+                            if (AppSession.IsU3Account && AppSession.IsInternal)
                             {
                                 htmlcontent = AlertMessage.GetMsg(ResourceExtension.GetResourceValue(ResourceExtension.Resources.Language, "thereisnodata"), AlertMessage.MsgType.Error);
                             }
-                            else if (AppSession.IsMrLamAccount && AppSession.IsInternal && !AppSession.IsSpecialCustomersOfMrLam)
+                            else if ((AppSession.IsMrLamAccount || AppSession.IsITAccount) && AppSession.IsInternal && !AppSession.IsSpecialCustomersOfMrLam)
                             {
                                 htmlcontent = AlertMessage.GetMsg(ResourceExtension.GetResourceValue(ResourceExtension.Resources.Language, "thereisnodata"), AlertMessage.MsgType.Error);
                             }
