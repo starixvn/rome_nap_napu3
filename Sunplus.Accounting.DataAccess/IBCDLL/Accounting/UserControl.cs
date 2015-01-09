@@ -11,6 +11,7 @@ using Sunplus.Accounting.Core.Common;
 using Sunplus.Accounting.Core.Configurations;
 using Sunplus.Accounting.Core.Configurations.StoreProcedureGroup;
 using Sunplus.Accounting.Core.Extensions;
+using System.Configuration;
 
 namespace Sunplus.Accounting.DataAccess.IBCDLL.Accounting
 {
@@ -946,7 +947,7 @@ namespace Sunplus.Accounting.DataAccess.IBCDLL.Accounting
                 {
                     var param = new Hashtable();
                     param.Add("custid", custId);
-
+                    param.Add("system", ConfigurationManager.AppSettings["U3GroupName"].ToString());
                     db.AssignParamValues(param);
                     var ds = db.ExecuteDataSet();
                     var output = db.GetOuputParams();
