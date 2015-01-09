@@ -155,8 +155,9 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                 } 
 
                 context.Response.Write("top.location.href='" + FormsAuthentication.DefaultUrl.Replace("https", "http") + "';\n");
-                IMenuManager menuService = CommonBootStrapper.Locator.GetInstance<IMenuManager>();
-                menuService.GetUserMenu();
+                //IMenuManager menuService = CommonBootStrapper.Locator.GetInstance<IMenuManager>();
+                //menuService.GetUserMenu();
+                AppSession.UserMenu = new List<Sunplus.Accounting.Entities.MenuBO>();
 
                 if (Permissions.HasPermission("UserControl"))
                 {
