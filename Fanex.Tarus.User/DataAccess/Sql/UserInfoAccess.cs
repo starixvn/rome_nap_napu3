@@ -31,7 +31,7 @@ namespace Fanex.Tarus.User.DataAccess.Sql
             using (var objDb = new ObjectDb("AdminSelByGroupID"))
             {
                 var param = new Hashtable();
-                string group = AppSession.IsU3Account ? AppSession.IsU3Account.ToString() : ConfigurationManager.AppSettings["AllowedGroupsAccess"].ToString();
+                string group = AppSession.IsU3Account ? ConfigurationManager.AppSettings["U3GroupId"].ToString() : ConfigurationManager.AppSettings["AllowedGroupsAccess"].ToString();
                 param.Add("groupid", group);
                 objDb.AssignParamValues(param);
                 var dataSet = objDb.ExecuteDataSet();
