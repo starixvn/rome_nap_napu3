@@ -11,6 +11,9 @@ namespace Fanex.Tarus.User.Criteria
 {
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// The class of GetAdminGroupCriteria.
+    /// </summary>
     public class GetAdminGroupCriteria : CriteriaBase
     {
         public string UserName { get; set; }

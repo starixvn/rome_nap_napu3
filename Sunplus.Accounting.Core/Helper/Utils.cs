@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using DNAide.Core;
 using Sunplus.Accounting.Core.Common;
+using Sunplus.Accounting.Core.Configurations;
 using Sunplus.Accounting.Entities.ViewModel;
 
 namespace Sunplus.Accounting.Core.Helper
@@ -187,8 +188,26 @@ namespace Sunplus.Accounting.Core.Helper
             }
         }
 
-      
+        /// <summary>
+        /// Determines whether [is u3 special account] [the specified customer identifier].
+        /// </summary>
+        /// <param name="custId">The customer identifier.</param>
+        /// <returns>Is U3 special customer or not.</returns>
+        public static bool IsU3SpecialAccount(int custId)
+        {
+            string[] specialCustomersU3 = WebSettings.U3SpecialCustomers;
+            string customerId = Convert.ToString(custId);
 
+            for (int i = 0; i < specialCustomersU3.Length; i++)
+            {
+                if (customerId == specialCustomersU3[i].Trim())
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
 
     }
 }

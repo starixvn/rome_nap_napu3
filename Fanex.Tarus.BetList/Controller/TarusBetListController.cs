@@ -24,6 +24,7 @@ namespace Fanex.Tarus.BetList.Controller
     using Sunplus.Accounting.Core.Common;
 
     using DNAide.Core;
+    using Sunplus.Accounting.Core.Helper;
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
@@ -102,8 +103,8 @@ namespace Fanex.Tarus.BetList.Controller
                 PageIndex,
                 ref quantity,
                 IsCache,
-                (AppSession.IsU3Account && !AppSession.IsMrXAccount)
-                || (AppSession.IsMrXAccount && !AppSession.IsSpecialCustomersOfMrX));
+                (AppSession.IsU3Account && !AppSession.IsU3SpecialAccount)
+                || (AppSession.IsU3SpecialAccount && !Utils.IsU3SpecialAccount(CustID)));
             ViewBag.Quantity = quantity;
             ViewBag.NumberBegining = (PageSize * (PageIndex - 1)) + 1;
 

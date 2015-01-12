@@ -221,13 +221,13 @@ namespace Sunplus.Accounting.Business.Customer
                             DataRow row1 = ds.ResultSet.Tables[0].Rows[0];
 
                             bool isInternalUser = CheckAndSetCustomerIsInternalOrNot(row1);
-                            CheckAndSetCustomerIsSpecialCustomerOfMrLamOrNot(row1);
+                            bool isU3SpecialAccount = Utils.IsU3SpecialAccount(Convert.ToInt32(row1["custid"]));
 
-                            if (AppSession.IsU3Account && !AppSession.IsMrXAccount && AppSession.IsInternal)
+                            if (AppSession.IsU3Account && !AppSession.IsU3SpecialAccount && AppSession.IsInternal)
                             {
                                 htmlcontent = AlertMessage.GetMsg(ResourceExtension.GetResourceValue(ResourceExtension.Resources.Language, "thereisnodata"), AlertMessage.MsgType.Error);
                             }
-                            else if (AppSession.IsMrXAccount && AppSession.IsInternal && !AppSession.IsSpecialCustomersOfMrX)
+                            else if (AppSession.IsU3SpecialAccount && AppSession.IsInternal && !isU3SpecialAccount)
                             {
                                 htmlcontent = AlertMessage.GetMsg(ResourceExtension.GetResourceValue(ResourceExtension.Resources.Language, "thereisnodata"), AlertMessage.MsgType.Error);
                             }
@@ -614,7 +614,7 @@ namespace Sunplus.Accounting.Business.Customer
 
                                     #endregion BalanceInfo
 
-                                    if (IsInternalSpecialCustomersOfMrLam())
+                                    if (IsInternalSpecialCustomersOfMrLam(custId))
                                     {
                                         TemplateHandler.RemoveBlock(ref htmlcontent, "BoxSettingDetailLoginOnlineList");
                                     }
@@ -1062,9 +1062,9 @@ namespace Sunplus.Accounting.Business.Customer
 
         }
 
-        private static bool IsInternalSpecialCustomersOfMrLam()
+        private static bool IsInternalSpecialCustomersOfMrLam(int custId)
         {
-            return AppSession.IsMrXAccount && AppSession.IsInternal && AppSession.IsSpecialCustomersOfMrX;
+            return AppSession.IsU3SpecialAccount && AppSession.IsInternal && Utils.IsU3SpecialAccount(custId);
         }
 
         private static bool CheckAndSetCustomerIsInternalOrNot(DataRow customerInformation)
@@ -1074,23 +1074,6 @@ namespace Sunplus.Accounting.Business.Customer
                 isInternalUser = Convert.IsDBNull(customerInformation["IsInternal"]) ? false : Convert.ToBoolean(customerInformation["IsInternal"]);
             AppSession.IsInternal = isInternalUser;
             return isInternalUser;
-        }
-
-        private static void CheckAndSetCustomerIsSpecialCustomerOfMrLamOrNot(DataRow customerInformation)
-        {
-            string[] internalCustomersOfMrLam = WebSettings.SpecialCustomersOfMrX;
-            string customerId = Convert.ToString(customerInformation["custid"]);
-
-            for (int i = 0; i < internalCustomersOfMrLam.Length; i++)
-            {
-                if (customerId == internalCustomersOfMrLam[i].Trim())
-                {
-                    AppSession.IsSpecialCustomersOfMrX = true;
-                    return;
-                }
-            }
-
-            AppSession.IsSpecialCustomersOfMrX = false;
         }
 
         private string GetSettingAbnormal(int roleId, bool isManageCustomerAccess, int currentLevel)

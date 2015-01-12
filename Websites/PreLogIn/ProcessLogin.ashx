@@ -39,14 +39,14 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
             string[] allowedGroupsAccess = WebSettings.AllowedGroupsAccess;
             string[] allowedUsersAccess = WebSettings.AllowedUsersAccess;
             bool allowedAccess = false;
-            bool isMrXAccount = false;
+            bool isU3SpecialAccount = false;
 
             for (int i = 0; i < allowedUsersAccess.Length; i++)
             {
                 if (username == allowedUsersAccess[i].Trim())
                 {
                     allowedAccess = true;
-                    isMrXAccount = true;
+                    isU3SpecialAccount = true;
                     break;
                 }
             }
@@ -94,10 +94,10 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                 AppSession.AccUserName = username;
                 AppSession.AccId = custId;
                 AppSession.CurrentSystemName = system;
-                AppSession.IsMrXAccount = isMrXAccount;
+                AppSession.IsU3SpecialAccount = isU3SpecialAccount;
                 AppSession.IsU3Account = userGroup.GroupId == WebSettings.U3GroupId ? true : false;
-                AppSession.IsITAccount = !AppSession.IsMrXAccount && !AppSession.IsU3Account ? true : false;
-                AppSession.IsShowBetlistOnStatement = userGroup.GroupId.Equals(1) || isMrXAccount;
+                AppSession.IsITAccount = !AppSession.IsU3SpecialAccount && !AppSession.IsU3Account ? true : false;
+                AppSession.IsShowBetlistOnStatement = userGroup.GroupId.Equals(1) || isU3SpecialAccount;
                 if (string.IsNullOrEmpty(system))
                 {
                     context.Session.Clear();
