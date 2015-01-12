@@ -395,18 +395,8 @@ namespace Sunplus.Accounting.Business.Statement
 
                 int custId = userService.GetCustomerIdByUsername(customer.Username);
 
-                bool isSpecialMember = false;
-                string[] internalCustomersOfMrLam = WebSettings.SpecialCustomersOfMrX;
-
-                for (int i = 0; i < internalCustomersOfMrLam.Length; i++)
-                {
-                    if (internalCustomersOfMrLam[i].Trim().Equals(custId.ToString()))
-                    {
-                        isSpecialMember = true;
-                    }
-                    break;
-                }
-
+                bool isSpecialMember = Utils.IsU3SpecialAccount(custId);
+               
                 if (entityList.Count > 0)
                 {
                     int totalUnVerify = 0;
