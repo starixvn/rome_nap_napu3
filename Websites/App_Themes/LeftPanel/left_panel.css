@@ -115,9 +115,11 @@ body
     text-align:center;
     cursor: pointer;
     border-radius: 2px;
-    height: 24px;
     border: 1px solid #3f568e;
     width: 76px;
+    
+    height: 20px;
+    line-height: 18px;
 }
 .button:hover
 {
