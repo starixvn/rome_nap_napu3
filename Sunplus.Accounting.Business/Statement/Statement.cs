@@ -397,6 +397,16 @@ namespace Sunplus.Accounting.Business.Statement
 
                 bool isSpecialMember = Utils.IsU3SpecialAccount(custId);
                
+
+                for (int i = 0; i < internalCustomersOfMrLam.Length; i++)
+                {
+                    if (internalCustomersOfMrLam[i].Trim().Equals(custId.ToString()))
+                    {
+                        isSpecialMember = true;
+                    }
+                    break;
+                }
+
                 if (entityList.Count > 0)
                 {
                     int totalUnVerify = 0;
