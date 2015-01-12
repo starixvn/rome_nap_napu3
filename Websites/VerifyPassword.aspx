@@ -45,15 +45,15 @@
                             </td>
                         </tr>
                         <tr>
-                            <td width="120px" class="l b">
+                            <td width="120px" class="l medium-weight">
                                 UserName:
                             </td>
-                            <td width="120px" class="l b">
+                            <td width="120px" class="l medium-weight">
                                 <%=accname%>
                             </td>
                         </tr>
                         <tr>
-                            <td class="l b">
+                            <td class="l medium-weight">
                                 Password:
                             </td>
                             <td>

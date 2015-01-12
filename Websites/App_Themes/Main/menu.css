@@ -97,6 +97,7 @@
 	font-size:11px;
 	float:left;
 	line-height: 43px;
+	margin-left: 3px;
 	/*width:820px;*/
 }
 #mainmenu ul{
@@ -115,8 +116,6 @@
 	background:none no-repeat scroll right top #576b9d;
 	margin:0;
 	outline: none;
-	margin-right: 2px;
-	padding-left: 3px;
 	text-decoration:none;
 }
 #mainmenu a span{
@@ -132,7 +131,7 @@
 }
 #mainmenu a:hover span
 {
-    color: #c8e0fa;
+    background-color:#4d608c;
 }
 
 #mainmenu a span {

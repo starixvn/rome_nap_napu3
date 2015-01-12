@@ -312,3 +312,8 @@ span.cannotchangeinternal:hover
 {
     color: #FF0000 !important;
 }
+
+.medium-weight
+{
+    font-family: "Roboto Medium";
+}

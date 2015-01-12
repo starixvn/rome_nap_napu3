@@ -108,7 +108,7 @@ input.reversed
 
 .btn:hover
 {
-	color: #c8e0fa;
+	background-color:  #4d5f8c;
 }
 .btncurrent
 {
@@ -292,9 +292,8 @@ input[disabled].btn-dec1{background:url(../images/dec2_disable.gif) no-repeat !i
 .btn-dec10{cursor:pointer; width:16px; height:16px; background:url(../images/dec4.gif) no-repeat; border:none}
 input[disabled].btn-dec10{background:url(../images/dec4_disable.gif) no-repeat !important;}
 
-.custBtn1{background:none no-repeat scroll center center #3a456d; width:5px; height:24px; cursor:pointer; border-radius: 2px 0 0 2px;}
-.custBtn2{background:none no-repeat scroll center center #3a456d; text-align:left; width:60px; padding-left:12px; height:24px; font-size:10pt; font-weight:bold; color:#fff;cursor:pointer;border-radius: 0 2px 2px 0;}
-.custBtn2:hover{ color: #c8e0fa;}
+.custBtn2{background:none no-repeat scroll center center #3a456d; text-align:center; width:65px; height:24px; font-size:10pt; font-weight:bold; color:#fff;cursor:pointer;border-radius:  2px;}
+.custBtn2:hover{ background-color:  #4d5f8c;}
 
 #btntop td{height:21px}
 td.btnleft{background:transparent url(../images/ptL.gif) no-repeat top left; width:22px; height:21px}

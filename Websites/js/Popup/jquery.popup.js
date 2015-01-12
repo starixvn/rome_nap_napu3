@@ -25,8 +25,8 @@ function popup() {
     this.width = 0;
     this.height = 0;
     this.title = "";
-    this.titleColor = "black";
-    this.backgroundColor = "#E8F4FE";
+    this.titleColor = "#FFFFFF";
+    this.backgroundColor = "#FFFFFF";
 };
 
 popup.id = 0;
