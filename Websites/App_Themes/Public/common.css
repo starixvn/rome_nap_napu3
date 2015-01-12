@@ -240,14 +240,15 @@ span.cannotchangeinternal:hover
 }
 .maincontent_box
 {
-    border: solid 1px #a2a2a2;
+    border: solid 1px #c8cbd4;
     padding: 4px 2px;
     display: table;
-    width: 99%;
+    width: 98%;
     text-align: left;
     border-radius: 2px;
     padding: 10px;
     margin-top: 10px;
+    background-color: #f2f2f2;
 }
 .bg_table
 {

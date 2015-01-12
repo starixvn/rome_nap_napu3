@@ -152,9 +152,9 @@ popup.prototype.head = function (p) {
 };
 
 popup.prototype.headPartial1 = function (p) {
-    var height_head = 40;
-    var width_head_left = 22;
-    var width_head_right = 23;
+    var height_head = 36;
+    var width_head_left = 16;
+    var width_head_right = 11;
     var width_head_center = this.width - (width_head_left + width_head_right);
     jQuery(p).append
     ("\
@@ -167,7 +167,7 @@ popup.prototype.headPartial1 = function (p) {
     ");
     var ug_head_center = jQuery(p).find("div[ug_head_center]");
     //title
-    jQuery(ug_head_center).html("<span style='position:absolute; left:0px; top: 20px'>" + this.title + "</span>").css("color", this.titleColor).css("font-weight", "bold");
+    jQuery(ug_head_center).html("<span style='position:absolute; left:0px; top: 11px'>" + this.title + "</span>").css("color", this.titleColor).css("font-weight", "bold");
     jQuery(ug_head_center).disableTextSelect();
 
     var _moveTarget = jQuery(ug_head_center).get(0);
@@ -231,7 +231,7 @@ popup.prototype.headPartial1 = function (p) {
 popup.prototype.createCloseButton = function (p) {
     var ug_head_center = jQuery(p).find("div[ug_head_center]");
     //close image
-    jQuery(ug_head_center).append("<div ug_close_img='true' style='background-image:url(" + this.imgPath + "icon_close1.png" + "); background-position:0px 0px;cursor:pointer;position:absolute; right:0px; top:" + 18 + "px; width:19px; height:18px'></div>");
+    jQuery(ug_head_center).append("<div ug_close_img='true' style='background-image:url(" + this.imgPath + "icon_close1.png" + "); background-position:0px 0px;cursor:pointer;position:absolute; right:0px; top:" + 15 + "px; width:11px; height:12px'></div>");
     var ug_close_img = jQuery(ug_head_center).find("div[ug_close_img]");
     jQuery(ug_close_img).mouseover(jQuery.proxy(function () {
         jQuery(this.divPopup).find("div[ug_close_img]").css("background-position", "0px 18px");
@@ -248,8 +248,8 @@ popup.prototype.body = function (p) {
     var height_head = 40;
     var height_bottom = 47;
     var height_mid = this.height - (height_head + height_bottom);
-    var width_mid_left = 22;
-    var width_mid_right = 23;
+    var width_mid_left = 16;
+    var width_mid_right = 11;
     var width_mid_center = this.width - (width_mid_left + width_mid_right);
     jQuery(p).append
     ("\
@@ -274,8 +274,8 @@ popup.prototype.body = function (p) {
 
 popup.prototype.bottom = function (p) {
     var height_bottom = 47;
-    var width_bottom_left = 22;
-    var width_bottom_right = 22;
+    var width_bottom_left = 16;
+    var width_bottom_right = 11;
     var width_bottom_center = this.width - (width_bottom_left + width_bottom_right);
     jQuery(p).append
     ("\
@@ -377,10 +377,10 @@ popup.prototype.head2 = function (p) {
 popup.prototype.createCloseButton2 = function (p) {
     var ug_head_center = jQuery(p).find("div[ug_head_center]");
     //close image
-    jQuery(ug_head_center).append("<div ug_close_img='true' style='background-image:url(" + this.imgPath + "icon_close1.png" + "); background-position:0px 0px;cursor:pointer;position:absolute; right:0px; top:" + 18 + "px; width:19px; height:18px'></div>");
+    jQuery(ug_head_center).append("<div ug_close_img='true' style='background-image:url(" + this.imgPath + "icon_close1.png" + "); background-position:0px 0px;cursor:pointer;position:absolute; right:0px; top:" + 15 + "px; width:11px; height:18px'></div>");
     var ug_close_img = jQuery(ug_head_center).find("div[ug_close_img]");
     jQuery(ug_close_img).mouseover(jQuery.proxy(function () {
-        jQuery(this.divPopup).find("div[ug_close_img]").css("background-position", "0px 18px");
+        jQuery(this.divPopup).find("div[ug_close_img]").css("background-position", "0px 15px");
     }, this))
     .mouseout(jQuery.proxy(function () {
         jQuery(this.divPopup).find("div[ug_close_img]").css("background-position", "0px 0px");

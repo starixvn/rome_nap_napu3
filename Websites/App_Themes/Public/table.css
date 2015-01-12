@@ -32,16 +32,17 @@
 .tbllayout td, .tbllayout th 
 {
 	background-color:#fff;
-	padding:1px;
+	padding:2px;
+	line-height: 20px;
 	!padding-bottom:2px;
 }
 .tbllayout a{cursor:pointer}
 .tbllayout .title
 {
-	background-color: #3a456d !important;
+	background-color: #576b9d !important;
 	font-weight: bold;
 	color: #ffffff;
-	padding: 1px;
+	padding: 2px;
 	
 }
 .tbllayout .title td{background-color:#576b9d !important;}	
@@ -58,7 +59,7 @@
 	background-color:#7c98a4 !important;
 	font-weight:bold;
 	color:#fff;
-	padding:1px;
+	padding:2px;
 }
 .tbllayout .title1 td{background-color:#587281 !important;}	
 
@@ -66,7 +67,7 @@
 {
 	background-color:#dddddd !important;
 	color:#000;
-	padding:1px;
+	padding:2px;
 }
 
 .tbllayout .bgnobold1 td{background-color:#99cccc !important;}	
@@ -75,7 +76,7 @@
 {
 	background-color:#99cccc !important;
 	color:#000;
-	padding:1px;
+	padding:2px;
 }
 
 .tbllayout .bgnobold td{background:#dddddd !important;}	
@@ -95,7 +96,7 @@
 	background-color:#7c98a4 !important;
 	font-weight:bold;
 	color:#000;
-	padding:1px;
+	padding:2px;
 }
 .tbllayout .title2 td{background-color:#e1effa !important;}	
 
@@ -104,14 +105,14 @@
 	background-color:#7c98a4 !important;
 	font-weight:bold;
 	color:#000;
-	padding:1px;
+	padding:2px;
 }	
 .tbllayout .tdtitle
 {
 	background-color:#b5c4d0 !important;
 	font-weight:bold;
 	color:#000;
-	padding:1px;
+	padding:2px;
 }		
 /*table layout with border collapse*/
 .tblcollapse
@@ -129,14 +130,14 @@
 {
 	border:solid 1px #a2a2a2;
 	line-height:18px;
-	padding:1px;
+	padding:2px;
 }
 .tblcollapse a{cursor:pointer}
 .tblcollapse .title
 {
 	font-weight:bold;
 	color:#FFF;
-	padding:1px;
+	padding:2px;
 }
 .tblcollapse .title td, .tblcollapse .title th
 {
@@ -149,7 +150,7 @@
 {
 	font-weight:bold;
 	color:#fff;
-	padding:1px;
+	padding:2px;
 }
 .tblcollapse .title1 td{background-color:#587281 !important;}	
 
@@ -157,7 +158,7 @@
 {
 	font-weight:bold;
 	color:#000;
-	padding:1px;
+	padding:2px;
 }
 .tblcollapse .title2 td{background-color:#e1effa !important;}	
 
@@ -173,7 +174,7 @@
 	background-color:#b5c4d0 !important;
 	font-weight:bold;
 	color:#000;
-	padding:1px;
+	padding:2px;
 	}
 .whitebg
 {
@@ -188,8 +189,7 @@
 {
 	padding-right:2px;
 	}*/
-	
-.evenrow td{background-color:#DFEAFF;}	
+.evenrow td{background-color:#f5f5f5;}	
 .overrow td{background-color:#f8ff8d !important;}	
 .rowhighlight td{background-color:#f8ff8d !important;font-weight:bold !important;}		
 .new-rate-evenrow {background-color:#F7E9F8 !important;}/*Exchange rate format*/
@@ -275,7 +275,7 @@
 .tblfixed td, .tblfixed th 
 {
     border:solid 1px #7c98a4;
-	padding:1px;
+	padding:2px;
 	!padding-bottom:2px;
 }
 .tblfixed a{cursor:pointer}
@@ -296,7 +296,7 @@
 	background-color:#7c98a4 !important;
 	font-weight:bold;
 	color:#fff;
-	padding:1px;
+	padding:2px;
 }
 .tblfixed .title1 td{background-color:#587281 !important;}	
 
@@ -304,7 +304,7 @@
 {
 	background-color:#dddddd !important;
 	color:#000;
-	padding:1px;
+	padding:2px;
 }
 
 .tblfixed .bgnobold1 td{background-color:#99cccc !important;}	
@@ -313,7 +313,7 @@
 {
 	background-color:#99cccc !important;
 	color:#000;
-	padding:1px;
+	padding:2px;
 }
 
 .tblfixed .bgnobold td{background:#dddddd !important;}	
@@ -333,7 +333,7 @@
 	background-color:#7c98a4 !important;
 	font-weight:bold;
 	color:#000;
-	padding:1px;
+	padding:2px;
 }
 .tblfixed .title2 td{background-color:#e1effa !important;}	
 
@@ -342,14 +342,14 @@
 	background-color:#7c98a4 !important;
 	font-weight:bold;
 	color:#000;
-	padding:1px;
+	padding:2px;
 }	
 .tblfixed .tdtitle
 {
 	background-color:#b5c4d0 !important;
 	font-weight:bold;
 	color:#000;
-	padding:1px;
+	padding:2px;
 }		
 .rowactive td{background:#f8ff8d !important; cursor: pointer;}		
 /*end table fix with with */

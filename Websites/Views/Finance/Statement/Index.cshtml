@@ -70,7 +70,7 @@
                         <td style="width: 110px;">
                             <input id="txtfromdate" class="txt" value="@DateTime.Now.AddDays(-1).ToString("MM/dd/yyyy")" type="text" size="13" readonlyname="fdate" style="width: 80px;" />
                             <input onclick="return false;" alt="" id="fdateTrigger" title="Date selector" class="img-date-selector"
-                                height="17" src="../App_Themes/Images/calendar.png" width="18" type="image" />
+                                height="18" src="../App_Themes/Images/calendar.png" width="16" type="image" />
                         </td>
                         <td style="width: 43px;">
                             To Date:
@@ -78,7 +78,7 @@
                         <td style="width: 110px;">
                             <input id="txttodate" class="txt" value="@DateTime.Now.ToString("MM/dd/yyyy")" type="text" size="13" readonlyname="tdate" style="width: 80px;" />
                             <input onclick="return false;" alt="" id="tdateTrigger" title="Date selector" class="img-date-selector"
-                                height="17" src="../App_Themes/Images/calendar.png" width="18" type="image" />
+                                height="18" src="../App_Themes/Images/calendar.png" width="16" type="image" />
                         </td>
                         <td>
                             <input class="btn" type="button" id="btnReport" value="Submit" onclick="financeStatement.getFinanceStatement();" />

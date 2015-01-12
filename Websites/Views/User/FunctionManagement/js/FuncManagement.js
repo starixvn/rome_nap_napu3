@@ -182,7 +182,7 @@ funcManager.grid = {
         $("#divFuncGrid").show().reRenderScroller(this.width, this.height, true);
         var timerId = setTimeout(function () {
             $("#tbodyGridFunction").find("tr").mouseover(function () {
-                $(this).find("td").css("background-color", "#FFDDFE");
+                $(this).find("td").css("background-color", "#fcfbca");
             }).mouseout(function () {
                 $(this).find("td").css("background-color", "");
             });

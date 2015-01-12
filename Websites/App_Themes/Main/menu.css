@@ -137,9 +137,8 @@
 #mainmenu a span {
 	float:none;
 }
-#mainmenu .current a{
-	background-position:0 -22px !important;
-	
+#mainmenu .current a span{
+    background-color:#4d608c;	
 }
 /* end menu */
 .accOption

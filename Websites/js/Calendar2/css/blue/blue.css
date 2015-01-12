@@ -49,25 +49,25 @@
 
 .DynarchCalendar 
 {
-  background-color: #f6f5f2 !important;
+  background-color: #fff !important;
 }
 
 .DynarchCalendar-weekNumber {
   border-right: 1px solid #f92;
 }
 
-
-
 .DynarchCalendar-hover-date {
   background-position: 0 50%;
   background-repeat: repeat-x;
-  border-color: #f92;
+  
+  background-color:#e0e0e0;
+  color:#444;
+  border: solid 1px #ccc;
 }
 
 .DynarchCalendar-day-selected {
-  background-color: #357EC7 !important;
+  background-color: #ff7200 !important;
   color: #fff !important;
-  background-image: url("coolbg.png");
   background-position: 0 50%;
   background-repeat: repeat-x;
 }

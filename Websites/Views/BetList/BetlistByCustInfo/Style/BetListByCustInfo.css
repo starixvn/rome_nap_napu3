@@ -22,7 +22,6 @@
     font-family: "Roboto Medium";
     float: left;
     font-size: 11px;
-    font-weight: bold;
     line-height: 17px;
     margin: 5px 0 10px 5px;
     width: 100%;
@@ -55,6 +54,7 @@
     font-family: "Roboto Medium";
     text-align:left;
     height: 18px;
+    font-weight: normal;
 }
 .left_tab a span {
     float: none;
@@ -100,4 +100,8 @@
 #betListSystemParlayContent
 {
     margin-left: 5px;
+}
+
+.font-medium input[type="radio"], input[type="checkbox"] {
+   margin-bottom: 4px;
 }

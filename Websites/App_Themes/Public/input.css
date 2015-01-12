@@ -1,9 +1,10 @@
 ﻿select, input
 {
-	font-size:11px;
-	border:solid 1px #818181;
-	vertical-align: baseline;
-	color: #696969;
+	border: 1px solid #c8cbd4;
+    color: #696969;
+    font-size: 11px;
+    line-height: 18px;
+    vertical-align: middle;
 	!margin-bottom:1px;
 	!vertical-align: middle;
 	vertical-align  /*\**/: middle\9;
@@ -26,9 +27,9 @@ input[disabled].btn {
 	color:#696969;
 	font-size:12px;
 	padding-left:3px;
-	border:solid 1px #a2a2a2;
+	border:solid 1px #c8cbd4;
 	vertical-align:baseline;
-	height:18px;
+	height:21px;
 	!margin-top:1px;
 	!vertical-align: middle;
 	vertical-align  /*\**/: middle\9;
@@ -42,11 +43,11 @@ input[disabled].btn {
 	text-align:center;
 	font-size:11px;
 	color:#FFFFFF;
-	background:none repeat-x scroll left center #3a456d;	
+	background:none repeat-x scroll left center #576b9d;	
     border-radius: 2px;
     
 	cursor:pointer;
-	border: none;
+	border: solid 1px #3f568e;
 	margin:0px 2px 0px 0px;
 	vertical-align:baseline;
 	height:22px;
@@ -116,12 +117,12 @@ input.reversed
 }
 
 input.txtdate {
-    background:url(../Images/calendar1.png)  no-repeat right center; 
+    background:url(../Images/calendar1.png)  no-repeat right center #fff;
+    background: 
     padding:2px; 
     width:100px;
     cursor: pointer;
 }
-
 
 .btnExcel {
 background:transparent url(../images/excel.gif) no-repeat center center;
@@ -260,7 +261,7 @@ padding-right:6px;
 	width:120px;
 	color:#696969;
 	font-size:11px;
-	border:solid 1px #818181;
+	border:solid 1px #c8cbd4;
 	vertical-align:middle
 }
 .img-date-selector 
@@ -292,7 +293,7 @@ input[disabled].btn-dec1{background:url(../images/dec2_disable.gif) no-repeat !i
 .btn-dec10{cursor:pointer; width:16px; height:16px; background:url(../images/dec4.gif) no-repeat; border:none}
 input[disabled].btn-dec10{background:url(../images/dec4_disable.gif) no-repeat !important;}
 
-.custBtn2{background:none no-repeat scroll center center #3a456d; text-align:center; width:65px; height:24px; font-size:10pt; font-weight:bold; color:#fff;cursor:pointer;border-radius:  2px;}
+.custBtn2{background:none no-repeat scroll center center #576b9d; text-align:center; width:65px; height:24px; font-size:10pt; font-weight:bold; color:#fff;cursor:pointer;border-radius:  2px; border: 1px solid #3f568e;}
 .custBtn2:hover{ background-color:  #4d5f8c;}
 
 #btntop td{height:21px}
@@ -364,4 +365,10 @@ input.txtcalendar {
 #btnReset
 {
     background: none repeat-x scroll left center #858585;
+	border: solid 1px #79797a;
+}
+
+#btnSendMsg
+{
+    background-color: #3a456d;
 }

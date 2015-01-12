@@ -854,7 +854,7 @@ accManager.accounts = {
             this.initPager(this.getCurrentVMLength(), this.pageSize, this.pageIndex);
             var timerId = setTimeout(function () {
                 $("#tbodyViewAllAcc").find("tr").mouseover(function () {
-                    $(this).find("td").css("background-color", "#FFDDFE");
+                    $(this).find("td").css("background-color", "#fcfbca");
                 }).mouseout(function () {
                     $(this).find("td").css("background-color", "");
                 });
