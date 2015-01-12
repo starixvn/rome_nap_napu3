@@ -68,13 +68,13 @@
                     <asp:Literal ID="Literal7" Text="From" runat="server"></asp:Literal>:
                     <input type="text" class="date_no" id="txtFromDate" readonly="readonly" style="width:70px" />
                     <a href="#" class="imaLink">
-                        <img alt="" id="imgCalFrom" title="Date selector" class="img-date-selector" src="../App_Themes/images/calendar.gif"
+                        <img alt="" id="imgCalFrom" title="Date selector" class="img-date-selector" src="../App_Themes/images/calendar.png"
                             border="0" />
                     </a>&nbsp;&nbsp;
                     <asp:Literal ID="Literal8" Text="To" EnableViewState="false" runat="server"></asp:Literal>:
                     <input type="text" class="date_no" id="txtToDate" readonly="readonly" style="width:70px" />
                     <a href="#" class="imaLink">
-                        <img alt="" id="imgCalTo" title="Date selector" class="img-date-selector" src="../App_Themes/images/calendar.gif"
+                        <img alt="" id="imgCalTo" title="Date selector" class="img-date-selector" src="../App_Themes/images/calendar.png"
                             border="0" />
                     </a>&nbsp;&nbsp;
                     <span  id="ddlLogActionType" style="display: none">

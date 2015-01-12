@@ -30,7 +30,7 @@
 .grid-pager {
     border:0;
     border-top:solid 1px #7C98A4;
-    background: url("images/white-top-bottom.gif") repeat-x scroll 0 -2px transparent;
+    background-color:  #ededed;
     height:23px;
     vertical-align:middle;
     position:absolute;

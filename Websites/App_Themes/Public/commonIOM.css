@@ -470,7 +470,7 @@ ul li.current span
 
 input.txtdate
 {
-    background: url("../Images/calendar1.gif") no-repeat scroll right center #FFFFFF;
+    background: url("../Images/calendar1.png") no-repeat scroll right center #FFFFFF;
 }
 
 .ui-multiselect-state-default, .ui-multiselect-widget-content .ui-multiselect-state-default, .ui-multiselect-widget-header .ui-multiselect-state-default

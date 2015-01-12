@@ -29,30 +29,25 @@ accManager.tabs = {
             window.accManager.dept.renderGrid(window.viewModel.Departments);
             $("#divDeptFilter").show();
             $("#divAccFilter").hide();
-            $("#divMainHeader").height(63);
         });
         $("#left_tab1_2").click(function () {
             $("#divDeptFilter").hide();
             $("#divAccFilter").hide();
-            $("#divMainHeader").height(30);
         });
         $("#left_tab1_3").click(function () {
             accManager.accounts.fillDeptComboBoxs();
             $("#divDeptFilter").hide();
             $("#divAccFilter").hide();
-            $("#divMainHeader").height(30);
         });
         $("#left_tab1_4").click(function () {
             accManager.accounts.fillDeptComboBoxs();
             $("#divDeptFilter").hide();
             $("#divAccFilter").hide();
-            $("#divMainHeader").height(30);
         });
         $("#left_tab1_5").click(function () {
             $("#divHeaderUserName").removeClass("asc").removeClass("desc");
             $("#txtSearchAcc").val("");
             $("#listAlpha").val("All");
-            $("#divMainHeader").height(61);
             $("#divDeptFilter").hide();
             $("#divAccPath").hide();
             $("#divAccFilter").show();
@@ -64,14 +59,12 @@ accManager.tabs = {
         $("#left_tab1_6").click(function () {
             $("#divDeptFilter").hide();
             $("#divAccFilter").hide();
-            $("#divMainHeader").height(30);
         });
     },
     viewAllAccount: function () {
         $("#divHeaderUserName").removeClass("asc").removeClass("desc");
         $("#txtSearchAcc").val("");
         $("#listAlpha").val("All");
-        $("#divMainHeader").height(61);
         $("#divDeptFilter").hide();
         $("#divAccPath").hide();
         $("#divAccFilter").show();
@@ -718,7 +711,6 @@ accManager.accounts = {
     filterByDepartment: function (deptId) {
         $("#txtSearchAcc").val("");
         $("#listAlpha").val("All");
-        $("#divMainHeader").height(61);
         $("#left_tab1_1").removeAttr("class");
         $("#left_tab1_1_content").hide();
         $("#left_tab1_5").attr("class", "current");

@@ -215,33 +215,28 @@ span.cannotchangeinternal:hover
 .maincontent_header
 {
     height: 23px; /*display:inline; 	width:360px;*/
+    width:100%;
+    border-bottom: 1px solid #3a456d;
 }
 .maincontent_headerL
 {
     height: 23px;
-    width: 15px;
-    background: none no-repeat scroll right bottom #ededed;
-    border-top: solid 2px #3a456d;
-    border-left: solid 1px #a2a2a2;
+    width: 0px;
 }
 .maincontent_headerR
 {
     height: 23px;
-    width: 15px;
-    background: none no-repeat scroll right bottom #ededed;
-    border-top: solid 2px #3a456d;
-    border-right: solid 1px #a2a2a2;
+    width: 0px;
 }
 .maincontent_headerC
 {
     height: 23px;
     min-width: 80px;
     font-weight: normal;
-    color: #4b649b;
-    background: none repeat-x scroll center bottom #ededed;
-    text-align: center;
-    font-size:13px;
-    border-top: solid 2px #3a456d;
+    color: #000;
+    text-align: left;
+    font-size:16px;
+    font-family: "Roboto Medium";
 }
 .maincontent_box
 {
@@ -250,6 +245,9 @@ span.cannotchangeinternal:hover
     display: table;
     width: 99%;
     text-align: left;
+    border-radius: 2px;
+    padding: 10px;
+    margin-top: 10px;
 }
 .bg_table
 {

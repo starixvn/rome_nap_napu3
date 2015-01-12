@@ -3,6 +3,7 @@
 	font-size:11px;
 	border:solid 1px #818181;
 	vertical-align: baseline;
+	color: #696969;
 	!margin-bottom:1px;
 	!vertical-align: middle;
 	vertical-align  /*\**/: middle\9;
@@ -115,7 +116,7 @@ input.reversed
 }
 
 input.txtdate {
-    background:url(../Images/calendar1.gif)  no-repeat right center; 
+    background:url(../Images/calendar1.png)  no-repeat right center; 
     padding:2px; 
     width:100px;
     cursor: pointer;
@@ -356,7 +357,12 @@ font-size:11px;
 }
 
 input.txtcalendar {
-    background: url("../Images/calendar1.gif") no-repeat scroll right center transparent;
+    background: url("../Images/calendar1.png") no-repeat scroll right center transparent;
     padding: 2px;
     width: 125px;
+}
+
+#btnReset
+{
+    background: none repeat-x scroll left center #858585;
 }

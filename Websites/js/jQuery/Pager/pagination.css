@@ -1,7 +1,7 @@
 #pagination a{text-decoration:none;border:solid 1px #7C98A4;color:#000}
 #pagination a:hover{background:#ECE999;color:#000;border:solid 1px #7C98A4}
 #pagination a,#pagination span{display:block;float:left;margin-right:4px;line-height:14px;padding:0 4px}
-#pagination .current{float:left;background:#ECE999;color:#000;border:solid 1px #7C98A4;font-weight:700;padding:0 4px}
+#pagination .current{float:left;background:#3a456d;color:#FFF;border:solid 1px #3a456d;font-weight:700;padding:0 4px}
 #pagination a.prev{width:16px;height:16px;background:url(icon_page.gif) no-repeat -16px 0;border:none 0;padding:0}
 #pagination a.prev:hover{background-position:-16px -16px}
 #pagination a.next{width:16px;height:16px;background:url(icon_page.gif) no-repeat -32px 0;border:none 0;padding:0}

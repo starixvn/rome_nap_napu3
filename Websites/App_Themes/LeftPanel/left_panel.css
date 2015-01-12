@@ -265,11 +265,7 @@ body
 .left_tab a:hover span {
 	color:#ff7200;
 }
-.left_tab .current a{
-	background-position:0 -21px !important;
-}
 .left_tab .current a span{
-	background-position:100% -21px !important;
 	color:#4b649b;
 	border-top: solid 2px #3a456d;
 }
