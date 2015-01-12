@@ -103,15 +103,13 @@ body
 }
 .buttonLeft_main01
 {
-	background: transparent url('../Images/L_banner/R_btn_left.png') no-repeat right;
-	width:76px;
     margin-bottom: 3px;
     display:inline-block;
     margin-right:10px;
 }
 .button 
 {
-	background:none repeat-x scroll left center #576b9d;
+	background-color: #576b9d;
     color: #fff;
     text-decoration: none;
     text-align:center;
@@ -119,11 +117,7 @@ body
     border-radius: 2px;
     height: 24px;
     border: 1px solid #3f568e;
-}
-.buttonLeft_main01:hover
-{
-	background:transparent url('../Images/L_banner/R_btn_left_hover.png') no-repeat right;
-	width:76px;
+    width: 76px;
 }
 .button:hover
 {
@@ -325,7 +319,7 @@ body
 #de_left{font-size:10px; font-weight:bold; float:left; width:100%; line-height:14px}
 #de_left ul{list-style-type:none; margin:0 auto; margin-top:1px; padding:0px}
 #de_left li{display:inline}
-#de_left a{float:left; background:url(../images/de_01.png) no-repeat 0 -19px; margin:1px 1px 2px 1px; padding-left:15px; text-decoration:none}
+#de_left a{float:left; background:url(../images/de_01.png) no-repeat 0 0px; margin:1px 1px 2px 1px; padding-left:15px; text-decoration:none}
 #de_left a span{color:#1c69b7; float:left; display:block; background-color: #ededed; padding:1px 7px 1px 7px; border:solid 1px #c8cbd4; border-left: none;}
 #de_left a span{float:none}
 #de_left a:hover span{color:#000}
@@ -452,6 +446,6 @@ body
 
 #custInfoDetal
 {
-    border-bottom: 1px solid #a2a2a2;
+    border-bottom: 1px solid #c8cbd4;
     padding-bottom: 4px;
 }

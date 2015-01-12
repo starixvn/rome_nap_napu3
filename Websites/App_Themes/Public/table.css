@@ -21,13 +21,12 @@
 .tbllayout
 {
 	border-spacing: 1px;
-	background-color: #a2a2a2;
+	background-color: #c8cbd4;
 	width: 100%;
 	text-align: center;
 	line-height: 18px;
 	font-family: "Roboto Light",Tahoma,Arial ,helvetica ,sans-serif;
 	font-size: 11px;
-	
 }
 .tbllayout td, .tbllayout th 
 {
@@ -193,7 +192,7 @@
 .overrow td{background-color:#f8ff8d !important;}	
 .rowhighlight td{background-color:#f8ff8d !important;font-weight:bold !important;}		
 .new-rate-evenrow {background-color:#F7E9F8 !important;}/*Exchange rate format*/
-.statement-accu-row td{background-color:#fdf8b5;color:#4b649b}
+.statement-accu-row td{background-color: #f9f7de; color: #3e3ed2;}
 
 .limit td{background: #eaeaea  none repeat scroll 0%;}
 .limit-header td{background:  #fde9d9 none repeat scroll 0%;}

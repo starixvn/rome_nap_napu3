@@ -5,6 +5,7 @@
     font-size: 11px;
     line-height: 18px;
     vertical-align: middle;
+    height: 18px;
 	!margin-bottom:1px;
 	!vertical-align: middle;
 	vertical-align  /*\**/: middle\9;
@@ -29,7 +30,7 @@ input[disabled].btn {
 	padding-left:3px;
 	border:solid 1px #c8cbd4;
 	vertical-align:baseline;
-	height:21px;
+	height:18px;
 	!margin-top:1px;
 	!vertical-align: middle;
 	vertical-align  /*\**/: middle\9;
@@ -284,14 +285,14 @@ width:60px;
 	width:60px;
 	}
 
-.btn-inc1{cursor:pointer; width:16px; height:16px; background:url(../images/dec1.gif) no-repeat; border:none}
-input[disabled].btn-inc1{background:url(../images/dec1_disable.jpg) no-repeat !important;}
-.btn-inc10{cursor:pointer; width:16px; height:16px; background:url(../images/dec3.gif) no-repeat; border:none}
-input[disabled].btn-inc10{background:url(../images/dec3_disable.gif) no-repeat !important;}
-.btn-dec1{cursor:pointer; width:16px; height:16px; background:url(../images/dec2.gif) no-repeat; border:none}
-input[disabled].btn-dec1{background:url(../images/dec2_disable.gif) no-repeat !important;}
-.btn-dec10{cursor:pointer; width:16px; height:16px; background:url(../images/dec4.gif) no-repeat; border:none}
-input[disabled].btn-dec10{background:url(../images/dec4_disable.gif) no-repeat !important;}
+.btn-inc1{cursor:pointer; width:17px; height:17px; background:url(../images/dec1.png) no-repeat; border:none}
+input[disabled].btn-inc1{background:url(../images/dec1_disable.png) no-repeat !important;}
+.btn-inc10{cursor:pointer; width:17px; height:17px; background:url(../images/dec3.png) no-repeat; border:none}
+input[disabled].btn-inc10{background:url(../images/dec3_disable.png) no-repeat !important;}
+.btn-dec1{cursor:pointer; width:17px; height:17px; background:url(../images/dec2.png) no-repeat; border:none}
+input[disabled].btn-dec1{background:url(../images/dec2_disable.png) no-repeat !important;}
+.btn-dec10{cursor:pointer; width:17px; height:17px; background:url(../images/dec4.png) no-repeat; border:none}
+input[disabled].btn-dec10{background:url(../images/dec4_disable.png) no-repeat !important;}
 
 .custBtn2{background:none no-repeat scroll center center #576b9d; text-align:center; width:65px; height:24px; font-size:10pt; font-weight:bold; color:#fff;cursor:pointer;border-radius:  2px; border: 1px solid #3f568e;}
 .custBtn2:hover{ background-color:  #4d5f8c;}
