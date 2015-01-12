@@ -461,7 +461,10 @@ namespace Fanex.Tarus.Finance.Business.Statement
             {
                 var bgColor = Color.FromArgb(255, 255, 255);
                 if (statementDetail.IsAccummulated)
+                {
+                    statementDetail.WinLossDate = string.Empty;
                     bgColor = Color.FromArgb(253, 248, 181);
+                }
                 else if (statementDetail.IsReverse)
                 {
                     bgColor = Color.FromArgb(234, 196, 196);
@@ -528,6 +531,10 @@ namespace Fanex.Tarus.Finance.Business.Statement
                     #endregion accumulated total
 
                     #region transaction date
+                    if (statementDetail.IsAccummulated)
+                    {
+                        transaction.TransDate = string.Empty;
+                    }
 
                     wsReport.Cells[startRow + nextRow, startCol + (nextCol += 1)].Style = bgFormat;
                     wsReport.Cells[startRow + nextRow, startCol + (nextCol)].Value = transaction.TransDate.Replace("<br>", "\n");

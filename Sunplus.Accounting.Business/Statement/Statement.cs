@@ -393,6 +393,20 @@ namespace Sunplus.Accounting.Business.Statement
                 List<Entities.Statement> entityList = userService.GetCustomerStatement(
                     customer, fdt, tdt, balanceUpDay, includeAccBal);
 
+                int custId = userService.GetCustomerIdByUsername(customer.Username);
+
+                bool isSpecialMember = false;
+                string[] internalCustomersOfMrLam = WebSettings.SpecialCustomersOfMrX;
+
+                for (int i = 0; i < internalCustomersOfMrLam.Length; i++)
+                {
+                    if (internalCustomersOfMrLam[i].Trim().Equals(custId.ToString()))
+                    {
+                        isSpecialMember = true;
+                    }
+                    break;
+                }
+
                 if (entityList.Count > 0)
                 {
                     int totalUnVerify = 0;
@@ -424,7 +438,7 @@ namespace Sunplus.Accounting.Business.Statement
                         if (string.Compare(type.ToLowerInvariant(), "bet", true) == 0
                             && accDate >= balanceUpDay)
                         {
-                            if (AppSession.IsShowBetlistOnStatement)
+                            if (AppSession.IsShowBetlistOnStatement && isSpecialMember)
                             {
                                 TemplateHandler.Assign(ref rowHtml, "link",
                                                        "class='canchange' onclick='viewDetail(\""

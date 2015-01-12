@@ -115,7 +115,7 @@
         this.row = row;
         var winlossdate = row.WinLossDate;
         var html = '';
-        html = '<tr id="' + row.RefNo + '" name="' + row.RefNo + '_MainLeft"  class="' + cssClass + '"><td rowspan ="' + rowspan + '"><div class="c  table-cell" style="width:80px;' + (row.ListTrans[0].AccumTotal.search('NOT EQUAL') == -1 ? 'min-height:42px;' : 'height:56px;') + ' ">' + row.WinLossDate + '</div></td>';
+        html = '<tr id="' + row.RefNo + '" name="' + row.RefNo + '_MainLeft"  class="' + cssClass + '"><td rowspan ="' + rowspan + '"><div class="c  table-cell" style="width:80px;' + (row.ListTrans[0].AccumTotal.search('NOT EQUAL') == -1 ? 'min-height:42px;' : 'height:60px;') + ' ">' + row.WinLossDate + '</div></td>';
         var TransHTML = '';
         if (row.IsExpand) {
             TransHTML = '<td colspan="2"><div class="l b  table-cell" style="width:350px;' + (Helper.isExistLongWord(row.ListTrans[0].Remark) ? 'min-height:42px;display:block' : 'height:42px;') + '"><a winlostdate="' + winlossdate + '" onclick="financeStatement.getStatementDetail(true, this,' + row.RefNo + ')" class="tree-expand2"> </a>' + row.ListTrans[0].Remark + '</div></td></tr>';
@@ -175,30 +175,6 @@
 
         var ReverseHTML = '';
 
-        if (!row.IsShowReversal) {
-            var ActionHTML = '';
-            ActionHTML = '<td rowspan ="' + rowspanWinLoss + '"><div class="c " style="width:55px;">&nbsp;</div></td><td rowspan ="' + rowspanWinLoss + '"><div class="c " style="width:55px;">&nbsp;</div></td>';
-            html += ActionHTML;
-            ReverseHTML = '<td rowspan ="' + rowspanWinLoss + '"><div class="c" style="width:55px;">&nbsp;</div></td></tr>';
-
-        }
-        else {
-            var ActionHTML = '';
-            if (row.IsVerify) {
-                if (row.CheckerName == '') {
-                    ActionHTML = '<td rowspan ="' + rowspanWinLoss + '"><div class="c" style="width:55px;"><input id="' + row.RefNo + '" type="checkbox" onclick="financeStatement.checkSelectAll(this)"></div></td><td rowspan ="' + rowspanWinLoss + '"><div class="c" style="width:55px;"><input id="' + row.RefNo + '" class="verified" type="button" onclick="financeStatement.VerifyTrans(' + row.RefNo + ');" title="Verify" value="Verify"></div></td>';
-                }
-                else {
-                    ActionHTML = '<td rowspan ="' + rowspanWinLoss + '"><div class="c" style="width:55px;"><input id="' + row.RefNo + '" type="checkbox" disabled="disabled" checked = "checked" onclick="financeStatement.checkSelectAll(this)"</div></td><td rowspan ="' + rowspanWinLoss + '"><div class="c" style="width:55px;"><input id="' + row.RefNo + '" class="unverify" type="button" onclick="financeStatement.UnVerifyTrans(' + row.RefNo + ');" title="Verify" value="Unverify"></div></td>';
-                }
-            }
-            else {
-                ActionHTML = '<td rowspan ="' + rowspanWinLoss + '"><div class="c" style="width:55px;">&nbsp;</div></td><td rowspan ="' + rowspanWinLoss + '"><div class="c" style="width:55px;">&nbsp;</div></td>';
-            }
-            html += ActionHTML;
-            ReverseHTML = '<td rowspan ="' + rowspanWinLoss + '"><div class="c" style="width:55px;"><input id="' + row.RefNo + '" class="reversed" type="button" onclick="financeStatement.DeleteTrans(' + row.RefNo + ');" title="Reverse" value="Reverse"></div></td></tr>';
-        }
-        html += ReverseHTML;
 
         for (var i = 1; i < rowspanCreator; i++) {
             html += '<tr id="' + row.RefNo + '"  name="' + row.RefNo + '_Main" class="' + cssClass + '"><td colspan="2"><div class="l b table-cell" style="width:350px;' + (Helper.isExistLongWord(row.ListTrans[i].Remark) ? 'min-height:42px;display:block' : 'height:42px;') + '">' + row.ListTrans[i].Remark + '</div></td><td><div class="r" style="width:110px; ">' + Helper.formatCSS(row.ListTrans[i].Total) + '</div></td><td><div class="r" style="width:110px;">' + Helper.formatCSS(row.ListTrans[i].AccumTotal) + '</div></td><td><div class="c" style="width:70px;">' + row.ListTrans[i].TransDate + '</div></td></tr>';
@@ -298,119 +274,8 @@
 
         return refNos;
     },
-    VerifyTrans: function (id) {
-        var bCconfirm = window.confirm("Are you sure you want to verify the selected transaction(s)?");
-        if (!bCconfirm)
-            return bCconfirm;
 
-        var selectedRefNo;
-        if (id == "btnVerify") {
-            //verify multiple
-            selectedRefNo = financeStatement.GetSelectedRefNo();
-        }
-        else {
-            selectedRefNo = id;
-        }
-
-        financeStatement.VerifyParams.RefNo = selectedRefNo;
-        financeStatement.VerifyParams.IsVerify = true;
-        try { parent.BlockUI(); } catch (e) { }
-        $.ajax({
-            type: "POST",
-            url: window.rootUrl + "CustomerStatement/UpdateVerifyTrans",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            data: JSON.stringify(financeStatement.VerifyParams),
-            success: function (result) {
-                if (result.ErrorCode == 0) {
-                    window.alert("Update data successfully");
-                    setTimeout(financeStatement.getFinanceStatement(), 60000);
-
-                }
-                else {
-                    window.alert("Cannot update data! Please contact Adminstrator");
-                    parent.jQuery.unblockUI();
-                }
-            },
-            error: function () {
-                showAlertMessage("err", "There is no data.", 1);
-            },
-            complete: function () {
-                try { parent.jQuery.unblockUI(); } catch (e) { }
-            }
-        });
-    },
-    UnVerifyTrans: function (id) {
-        var bCconfirm = window.confirm("Are you sure you want to unverify the selected transaction(s)?");
-        if (!bCconfirm)
-            return bCconfirm;
-
-        selectedRefNo = id;
-
-        financeStatement.VerifyParams.RefNo = selectedRefNo;
-        financeStatement.VerifyParams.IsVerify = false;
-        try { parent.BlockUI(); } catch (e) { }
-        $.ajax({
-            type: "POST",
-            url: window.rootUrl + "CustomerStatement/UpdateVerifyTrans",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            data: JSON.stringify(financeStatement.VerifyParams),
-            success: function (result) {
-                if (result.ErrorCode == 0) {
-                    window.alert("Update data successfully");
-                    setTimeout(financeStatement.getFinanceStatement(), 60000);
-                }
-                else {
-                    window.alert("Cannot update data! Please contact Adminstrator");
-                    parent.jQuery.unblockUI();
-                }
-            },
-            error: function () {
-                showAlertMessage("err", "There is no data.", 1);
-            },
-            complete: function () {
-                try { parent.jQuery.unblockUI(); } catch (e) { }
-            }
-        });
-    },
-    DeleteTrans: function (refno) {
-        financeStatement.VerifyParams.RefNo = refno;
-        if (confirm("Do you want to delete the transaction with Ref.No: " + refno + "?")) {
-            if (confirm("To double check, do you want to delete the transaction with Ref.No: " + refno + "?")) {
-                try { parent.BlockUI(); } catch (e) { }
-                $.ajax({
-                    type: "POST",
-                    url: window.rootUrl + "CustomerStatement/DeleteTrans",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    data: JSON.stringify(financeStatement.VerifyParams),
-                    success: function (result) {
-                        if (result.ErrorCode == 0) {
-                            window.alert("Delete successfully");
-                            //                            var timeOutId = setTimeout(function () { },)
-                            setTimeout(financeStatement.getFinanceStatement(), 80000);
-
-                        }
-                        else {
-                            window.alert("Cannot Delete data! Please contact Adminstrator");
-                            parent.jQuery.unblockUI();
-                        }
-                    },
-                    error: function () {
-                        showAlertMessage("err", "There is no data.", 1);
-                    },
-                    complete: function () {
-                        try { parent.jQuery.unblockUI(); } catch (e) { }
-                    }
-                });
-
-            }
-        }
-    },
     Template: function () {
-
-
         var row = this.StatementDetail;
         var countTrans = row.ListTrans.length;
 
@@ -619,7 +484,7 @@
                 manualCopyHeader: true,
                 fullWidth: true,
                 fullHeight: true,
-                gridWidth: 1285,
+                gridWidth: 1105,
                 gridHeight: 113,
                 freezeWidth: 435,
                 numberFreezeCol: 2
@@ -631,7 +496,7 @@
                 manualCopyHeader: true,
                 fullWidth: true,
                 fullHeight: true,
-                gridWidth: 1285,
+                gridWidth: 1105,
                 gridHeight: 90,
                 freezeWidth: 435,
                 numberFreezeCol: 2
