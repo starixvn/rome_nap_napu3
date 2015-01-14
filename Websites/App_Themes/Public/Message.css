@@ -18,8 +18,8 @@
 .alertboxerr div, .alertboxscc div,.alertboxwrn div, .msgerror, .msgcorrect, .msgwarning
 {padding:6px 6px 6px 24px;margin-left:5px;text-align:left;}
 
-.alertboxerr div, .msgerror{background:#f6f5f2 url(../images/error.gif) no-repeat center left;color:#f40000;  }
-.alertboxscc div, .msgcorrect{background:#f6f5f2 url(../images/sucess.gif) no-repeat center left;color:#618e11; }
+.alertboxerr div, .msgerror{background:transparent url(../images/error.gif) no-repeat center left;color:#f40000;  }
+.alertboxscc div, .msgcorrect{background:transparent url(../images/sucess.gif) no-repeat center left;color:#618e11; }
 .alertboxwrn div, .msgwarning{background:transparent url(../images/error.png) no-repeat center left;color:#bf1d02; }
 .msgdenied{position: absolute; top:50%; left:50%; margin-top:45px; margin-left:60px;}
 

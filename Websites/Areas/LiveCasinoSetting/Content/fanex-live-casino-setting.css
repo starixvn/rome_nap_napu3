@@ -1,22 +1,22 @@
 ﻿/* File Created: July 18, 2014 */
 @font-face {
     font-family: Roboto;
-    src: url(../Fonts/Roboto/Roboto-Regular.ttf);
+    src: url(../../../App_Themes/Fonts/Roboto/Roboto-Regular.ttf);
 }
 
 @font-face {
     font-family: "Roboto Light";
-    src: url(../Fonts/Roboto/Roboto-Light.ttf);
+    src: url(../../../App_Themes/Fonts/Roboto/Roboto-Light.ttf);
 }
 
 @font-face {
     font-family: "Roboto Bold";
-    src: url(../Fonts/Roboto/Roboto-Bold.ttf);
+    src: url(../../../App_Themes/Fonts/Roboto/Roboto-Bold.ttf);
 }
 
 @font-face {
     font-family: "Roboto Medium";
-    src: url(../Fonts/Roboto/Roboto-Medium.ttf);
+    src: url(../../../App_Themes/Fonts/Roboto/Roboto-Medium.ttf);
 }
 
 body

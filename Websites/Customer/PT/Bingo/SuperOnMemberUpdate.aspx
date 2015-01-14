@@ -9,17 +9,14 @@
     <link href="../../../App_Themes/Public/table.css" rel="stylesheet" type="text/css" />
     <link href="../../../App_Themes/Public/input.css" rel="stylesheet" type="text/css" />
     <link href="../../../App_Themes/Public/Message.css" rel="stylesheet" type="text/css" />
-
     <script src="../../../js/jQuery/jquery.min.js" type="text/javascript"></script>
     <script src="../../../js/jQuery/json2.js" type="text/javascript"></script>
-
     <script src="../../../js/jQuery/json2.js" type="text/javascript"></script>
     <script src="../../../js/jQuery/jquery-jtemplates.js" type="text/javascript"></script>
     <script src="../../../js/common.js" type="text/javascript"></script>
     <script src="JS/SuperOnMemberUpdate.js" type="text/javascript"></script>
     <script src="JS/CommonPT.js" type="text/javascript"></script>
     <script src="../../../js/showhidepopup.js" type="text/javascript"></script>
-  
 </head>
 <body>
     <form id="form1" runat="server">
@@ -38,12 +35,11 @@
                     </tr>
                 </tbody>
             </table>
-            <div class="maincontent_box">
-                <div class="errMsg" id="err">
-                </div>
+            <div class="errMsg" id="err">
             </div>
             <div class="bg_table">
-                <div id="SettingContent">Loading...</div>
+                <div id="SettingContent">
+                    Loading...</div>
             </div>
         </div>
     </div>

@@ -32,7 +32,7 @@
                     </td>
                 </tr>
             </table>
-            <div class="maincontent_box ">
+            <div style="margin-top: 3px;">
                 <div class="alertboxwrn"><div>To protect your account, you need to change your password periodically.</div></div>  
             </div>
             <div class="bg_table">
