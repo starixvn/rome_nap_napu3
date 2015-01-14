@@ -234,7 +234,7 @@ popup.prototype.createCloseButton = function (p) {
     jQuery(ug_head_center).append("<div ug_close_img='true' style='background-image:url(" + this.imgPath + "icon_close1.png" + "); background-position:0px 0px;cursor:pointer;position:absolute; right:0px; top:" + 15 + "px; width:11px; height:12px'></div>");
     var ug_close_img = jQuery(ug_head_center).find("div[ug_close_img]");
     jQuery(ug_close_img).mouseover(jQuery.proxy(function () {
-        jQuery(this.divPopup).find("div[ug_close_img]").css("background-position", "0px 18px");
+        jQuery(this.divPopup).find("div[ug_close_img]").css("background-position", "0px 14px");
     }, this))
     .mouseout(jQuery.proxy(function () {
         jQuery(this.divPopup).find("div[ug_close_img]").css("background-position", "0px 0px");
@@ -380,7 +380,7 @@ popup.prototype.createCloseButton2 = function (p) {
     jQuery(ug_head_center).append("<div ug_close_img='true' style='background-image:url(" + this.imgPath + "icon_close1.png" + "); background-position:0px 0px;cursor:pointer;position:absolute; right:0px; top:" + 15 + "px; width:11px; height:18px'></div>");
     var ug_close_img = jQuery(ug_head_center).find("div[ug_close_img]");
     jQuery(ug_close_img).mouseover(jQuery.proxy(function () {
-        jQuery(this.divPopup).find("div[ug_close_img]").css("background-position", "0px 15px");
+        jQuery(this.divPopup).find("div[ug_close_img]").css("background-position", "0px 14px");
     }, this))
     .mouseout(jQuery.proxy(function () {
         jQuery(this.divPopup).find("div[ug_close_img]").css("background-position", "0px 0px");

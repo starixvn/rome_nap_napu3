@@ -944,8 +944,8 @@ accManager.accounts = {
         var colLastName = $(target).parents("tr:first").find("div[lastname]").hide();
         //var colDept = $(target).parents("tr:first").find("div[dept]").hide();
 
-        colFirstName.parent().append("<input type='text' style='width:196px' editor='true' firstname='true' />").find("input[editor]").val(accManager.utils.decodeSpecifiedCharacter(accManager.utils.trimStartEnd(colFirstName.html())));
-        colLastName.parent().append("<input type='text' style='width:196px' editor='true' lastname='true' />").find("input[editor]").val(accManager.utils.decodeSpecifiedCharacter(accManager.utils.trimStartEnd(colLastName.html())));
+        colFirstName.parent().append("<input type='text' style='width:180px' editor='true' firstname='true' />").find("input[editor]").val(accManager.utils.decodeSpecifiedCharacter(accManager.utils.trimStartEnd(colFirstName.html())));
+        colLastName.parent().append("<input type='text' style='width:180px' editor='true' lastname='true' />").find("input[editor]").val(accManager.utils.decodeSpecifiedCharacter(accManager.utils.trimStartEnd(colLastName.html())));
 
         //var arr = jlinq.from(window.viewModel.Accounts).equals("Id", id).select();
         //if (arr.length > 0) {
