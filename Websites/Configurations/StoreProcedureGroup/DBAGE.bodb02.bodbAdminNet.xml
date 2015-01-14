@@ -210,7 +210,7 @@
     <Setting Key="Customer_AutoSuspend_GetCustomerStatus" SpName="Acc_CustomerSelAutoSuspendStatus" DbName="DBAGE.bodb02.bodbAdminNet"/>
     <Setting Key="Acc_CustomerSelSEditCustomerVS" SpName="Acc_CustomerSelSEditCustomerVS" DbName="DBAGE.bodb02.bodbAdminNet" Plain="0" />
     <Setting Key="Acc_CustomerSelKenoStatus" SpName="Acc_CustomerSelKenoStatus" DbName="DBAGE.bodb02.bodbAdminNet"  />
-    <Setting Key="Acc_AdminGroupSel" SpName="Acc_AdminGroupSel" DbName="DBAGE.bodb02.bodbAdminNet"  />
+   
   </Function>
 
   <Function Name="User Control">
