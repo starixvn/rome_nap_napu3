@@ -165,10 +165,10 @@
         html += TransHTML;
         html += '<td><div class="r" style="width:110px;">' + Helper.formatCSS(firstTran.Total) + '</div></td>';
         if (row.IsOpeningBalance) {
-            html += ' <td><div class="r table-cell" style="width:110px;' + (row.ListTrans[0].AccumTotal.search('NOT EQUAL') == -1 ? 'min-height:42px;' : 'height:56px;') + '">' + firstTran.AccumTotal + '</div></td>';
+            html += ' <td><div class="r table-cell" style="width:110px;' + (row.ListTrans[0].AccumTotal.search('NOT EQUAL') == -1 ? 'min-height:42px;' : 'height:60px;') + '">' + firstTran.AccumTotal + '</div></td>';
         }
         else {
-            html += ' <td><div class="r table-cell" style="width:110px;' + (row.ListTrans[0].AccumTotal.search('NOT EQUAL') == -1 ? 'min-height:42px;' : 'height:56px;') + '">' + Helper.formatCSS(firstTran.AccumTotal) + '</div></td>';
+            html += ' <td><div class="r table-cell" style="width:110px;' + (row.ListTrans[0].AccumTotal.search('NOT EQUAL') == -1 ? 'min-height:42px;' : 'height:60px;') + '">' + Helper.formatCSS(firstTran.AccumTotal) + '</div></td>';
         }
 
         html += '<td><div class="c" style="width:70px;font-size: 10px;">' + firstTran.TransDate + '</div></td><td rowspan ="' + rowspanWinLoss + '"><div class="c" style="width:100px;">' + row.RefNo + '</div></td><td rowspan ="' + rowspanCreator + '"><div class="c" style="width:80px;">' + firstTran.Creator + '</div></td><td rowspan ="' + rowspanWinLoss + '"><div class="c" style="width:80px;">' + row.CheckerName + '</div></td><td rowspan ="' + rowspanWinLoss + '"><div class="c" style="width:80px;">' + row.CheckerTime + '</div></td>';
