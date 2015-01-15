@@ -485,7 +485,7 @@
                 fullWidth: true,
                 fullHeight: true,
                 gridWidth: 1105,
-                gridHeight: 113,
+                gridHeight: 140,
                 freezeWidth: 435,
                 numberFreezeCol: 2
             };
@@ -497,7 +497,7 @@
                 fullWidth: true,
                 fullHeight: true,
                 gridWidth: 1105,
-                gridHeight: 90,
+                gridHeight: 117,
                 freezeWidth: 435,
                 numberFreezeCol: 2
             };
