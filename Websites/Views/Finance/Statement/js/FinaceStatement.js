@@ -103,7 +103,7 @@
         $('#tbstatement tbody').empty().append(arr.join(''));
         var isChrome = window.chrome;
         if (isChrome) {
-             $('#tbstatement tbody tr:first').attr('style', 'height: 47px !important');
+            $('#tbstatement tbody tr:first').attr('style', 'height: 47px !important');
         }
         this.recalcuGrid(false);
         mainreport.removeClass("hidden");
@@ -307,7 +307,7 @@
                 for (var j = 0; j < subrowspan; j++) {
                     subTran = tran.ListSubTrans[j];
                     if (j == 0) {
-                        tplMain += '<td><div style="width:235px;' + (Helper.isExistLongWord(subTran.Remark) ? 'min-height:42px;display:block' : 'height:42px;') + '" class="b table-cell" ><a onclick="financeStatement.showHide(false, this,' + row.RefNo + ')"  class="tree-expanded"> </a>' + subTran.Remark + '</div></td><td><div class="r" style="width:110px;">' + Helper.formatCSS(subTran.Amount) + '</div></td><td rowspan=' + subrowspan + '><div class="r" style="width:110px;">' + Helper.formatCSS(tran.Total) + '</div></td><td rowspan=' + subrowspan + '><div class="r" style="width:110px;">' + Helper.formatCSS(tran.AccumTotal) + '</div></td><td ><div class="c" style="width:70px;font-size: 10px;">' + tran.TransDate + '</div></td><td rowspan=' + rowspanWinLoss + '><div class="c" style="width:100px;">' + row.RefNo + '</div></td><td rowspan=' + rowspanCreator + '><div class="c" style="width:80px;">' + tran.Creator + '</div></td><td rowspan=' + rowspanWinLoss + '><div class="c" style="width:80px;">' + row.CheckerName + '</div></td><td rowspan=' + rowspanWinLoss + '><div class="c" style="width:80px;">' + row.CheckerTime + '</div></td><td rowspan=' + rowspanWinLoss + '><div class="c" style="width:55px;"></div></td><td rowspan=' + rowspanWinLoss + '><div class="c" style="width:55px;"></div></td><td rowspan=' + rowspanWinLoss + '><div class="c" style="width:55px;"></div></td></tr>';
+                        tplMain += '<td><div style="width:235px;' + (Helper.isExistLongWord(subTran.Remark) ? 'min-height:42px;display:block' : 'height:42px;') + '" class="b table-cell" ><a onclick="financeStatement.showHide(false, this,' + row.RefNo + ')"  class="tree-expanded"> </a>' + subTran.Remark + '</div></td><td><div class="r" style="width:110px;">' + Helper.formatCSS(subTran.Amount) + '</div></td><td rowspan=' + subrowspan + '><div class="r" style="width:110px;">' + Helper.formatCSS(tran.Total) + '</div></td><td rowspan=' + subrowspan + '><div class="r" style="width:110px;">' + Helper.formatCSS(tran.AccumTotal) + '</div></td><td ><div class="c" style="width:70px;font-size: 10px;">' + tran.TransDate + '</div></td><td rowspan=' + rowspanWinLoss + '><div class="c" style="width:100px;">' + row.RefNo + '</div></td><td rowspan=' + rowspanCreator + '><div class="c" style="width:80px;">' + tran.Creator + '</div></td><td rowspan=' + rowspanWinLoss + '><div class="c" style="width:80px;">' + row.CheckerName + '</div></td><td rowspan=' + rowspanWinLoss + '><div class="c" style="width:80px;">' + row.CheckerTime + '</div></td></tr>';
                     }
                     else {
                         tplMain += '<tr name="' + row.RefNo + '_Detail"><td><div style="width:235px;' + (Helper.isExistLongWord(subTran.Remark) ? 'min-height:42px;display:block' : 'height:42px;') + '" class="b table-cell">' + subTran.Remark + '</div></td><td><div class="r" style="width:110px;">' + Helper.formatCSS(subTran.Amount) + '</div></td><td><div class="c" style="width:70px; font-size: 10px;">' + Helper.formatCSS(tran.TransDate) + '</div></td></tr>';
@@ -573,20 +573,20 @@ var Helper = {
 };
 
 head.ready(function (event) {
-      Calendar.setup({
-         animation: false,
-         showTime :false,
-         bottomBar:true,
-         trigger: "fdateTrigger",
-         inputField: "txtfromdate",
-         dateFormat: "%m/%d/%Y",
-         min: "01012008",
-         max: _maxDate,
-         selection: [_selectFromDate],
-         onSelect: function() {
+    Calendar.setup({
+        animation: false,
+        showTime: false,
+        bottomBar: true,
+        trigger: "fdateTrigger",
+        inputField: "txtfromdate",
+        dateFormat: "%m/%d/%Y",
+        min: "01012008",
+        max: _maxDate,
+        selection: [_selectFromDate],
+        onSelect: function () {
             ""
             this.hide();
-            }
+        }
     });
 
     Calendar.setup({
