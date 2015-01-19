@@ -27,7 +27,7 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
         {
             for (var i = 0; i < 24; i++)
             {
-                updateParameters.Add(i, (i.Equals(12) || i.Equals(23)) ? "1" : "0");
+                updateParameters.Add(i, (i.Equals(1) || i.Equals(12) || i.Equals(23)) ? "1" : "0");
             }
         }
 
