@@ -1255,7 +1255,7 @@ namespace Sunplus.Accounting.DataAccess.IBCDLL.Accounting
                 p.Add("language", "E");
                 p.Add("errcode", 0);
                 p.Add("errmsg", string.Empty);
-
+                p.Add("system", ConfigurationManager.AppSettings["U3GroupName"].ToString());
                 using (ObjectDb db = new ObjectDb("Con_CheckPermission", 600))
                 {
                     db.AssignParamValues(p);
@@ -1298,7 +1298,7 @@ namespace Sunplus.Accounting.DataAccess.IBCDLL.Accounting
                     p.Add("language", "E");
                     p.Add("errcode", 0);
                     p.Add("errmsg", string.Empty);
-
+                    p.Add("system", ConfigurationManager.AppSettings["U3GroupName"].ToString());
                     db.AssignParamValues(p);
                     var ds = db.ExecuteDataSet();
                     var output = db.GetOuputParams();

@@ -96,8 +96,8 @@ public partial class ChangePassword_ChangePassword : System.Web.UI.Page
             {
                 str = AlertMessage.GetMsg(errMsg, AlertMessage.MsgType.Error);
             }
-            string strUname = Session["CustUname"] as string ?? string.Empty;
-            html.Append(Sunplus.Accounting.Core.Web.WebUtils.LoadHtml("ChangePassword/ChangePassword.htm", new string[] { "{username}", "{hidden}" }, new string[] { strUname, strCustID }));
+            //string strUname = Session["CustUname"] as string ?? string.Empty;
+            html.Append(Sunplus.Accounting.Core.Web.WebUtils.LoadHtml("ChangePassword/ChangePassword.htm", new string[] { "{username}", "{hidden}" }, new string[] { strUsername, strCustID }));
             content.Text = html.ToString();
             msg = str;
         }

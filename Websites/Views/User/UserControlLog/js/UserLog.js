@@ -157,7 +157,7 @@ userLog.mainGrid = {
             content: $("#divUserLogNewAccountInfo"),
             title: "Individual Information : " + param,
             width: 400,
-            height: 190,
+            height: 240,
             multiple: false, dialog: true
         });
     },
@@ -171,7 +171,7 @@ userLog.mainGrid = {
             content: $("#divUserLogUpdateGroupInfo"),
             title: "Group Information : " + param,
             width: 839,
-            height: 180,
+            height: 240,
             multiple: false, dialog: true
         });
     },
@@ -185,7 +185,7 @@ userLog.mainGrid = {
             content: $("#divUserLogUpdateAccountInfo"),
             title: "Individual Information : " + param,
             width: 839,
-            height: 180,
+            height: 240,
             multiple: false, dialog: true
         });
     },
