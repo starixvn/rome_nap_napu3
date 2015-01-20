@@ -39,7 +39,7 @@
 	table-layout: fixed;
 	cursor: default;
 	width: 100%;
-	border: solid 1px #000000;
+	border: solid 1px #a2a2a2;
 	padding: 0px 0px 0px 0px;
 	margin: 0px 0px 0px 0px;	
 }
@@ -79,6 +79,7 @@
 	line-height: 0px;
 	display: block;
 	cursor: pointer;
+	margin-right: 5px;
 }
 
 .IBCWndCloseButton:hover
