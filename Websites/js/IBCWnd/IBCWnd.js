@@ -95,7 +95,7 @@ IBCWnd.prototype.open = function(url, titleText, left, top, width, height, windo
         td1.className = (titleCss ? (titleCss) : "IBCWndTitle");
         this.maskTitle = td1;
         var div1 = IBCWnd_createElement("div", td1); div1.style.height = "20px"; div1.style.display = "block"; div1.style.zIndex = 1000;
-        div1.style.paddingLeft = "10px"; div1.style.lineHeight = "18px"; div1.style.color = "#ffffff"; div1.style.textAlign = "center";
+        div1.style.paddingLeft = "10px"; div1.style.lineHeight = "18px"; div1.style.color = "#ffffff"; div1.style.textAlign = "left";
         this.title = div1;
 
         var td2 = IBCWnd_createElement("td", tr); td2.className = "IBCWndTitleButton";

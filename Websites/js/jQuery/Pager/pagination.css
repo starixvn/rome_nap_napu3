@@ -9,9 +9,9 @@
 #pagination .current.prev{width:16px;height:16px;background:url(icon_page.gif) no-repeat -16px -32px;border:none 0;padding:0}
 #pagination .current.next{width:16px;height:16px;background:url(icon_page.gif) no-repeat -32px -32px;border:none 0;padding:0}
 #itemperpage{float:left;padding:0}
-#pagination span.itemperpage{padding:0}
+#pagination span.itemperpage{padding:0; color: #696969;}
 #pagination span.btnseparator{border-left:1px solid #ccc;border-right:1px solid #fff;float:left;height:16px;margin:0 8px;padding:0!important}
-#pagination span.detailtext{float:right;margin:0;padding:0}
+#pagination span.detailtext{float:right;margin:0;padding:0; color: #696969;}
 
 
 #pagination .gotopage_box{border: solid 1px #7c98a4;padding:2px 2px; position:absolute; display:none; background:#fff; z-index:999; }
