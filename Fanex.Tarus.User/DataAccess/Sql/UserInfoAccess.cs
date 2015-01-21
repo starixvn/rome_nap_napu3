@@ -78,7 +78,8 @@ namespace Fanex.Tarus.User.DataAccess.Sql
                 {"userid", userId},
                 {"username", userName},
                 {"userpwd", password},
-                {"custid", 0}
+                {"custid", 0},
+                {"system", ConfigurationManager.AppSettings["U3GroupName"].ToString()}
             };
             using (ObjectDb objDB = new ObjectDb("Con_AdminIns"))
             {
@@ -159,6 +160,7 @@ namespace Fanex.Tarus.User.DataAccess.Sql
                 param.Add("oldmempolicys", oldMemberPolicies);
                 param.Add("userid", AppSession.AccId);
                 param.Add("custid", custId);
+                param.Add("system", ConfigurationManager.AppSettings["U3GroupName"].ToString());
                 param.Add("language", "E");
                 param.Add("errcode", 0);
                 param.Add("errmsg", string.Empty);
@@ -222,6 +224,7 @@ namespace Fanex.Tarus.User.DataAccess.Sql
                 param.Add("custid", id);
                 param.Add("language", "E");
                 param.Add("userid", AppSession.AccId);
+                param.Add("system", ConfigurationManager.AppSettings["U3GroupName"].ToString());
                 param.Add("errcode", 0);
                 param.Add("errmsg", string.Empty);
 
