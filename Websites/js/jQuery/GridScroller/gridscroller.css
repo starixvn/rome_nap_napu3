@@ -52,15 +52,13 @@
     padding-top: 2px;
     }
 .grid-title-lable {
-    background:url(images/report_check.png) no-repeat scroll left center transparent;
+    background:url(images/report_check.png) no-repeat scroll left center #576b9d;
     float:left;
     padding-left:18px;
     height:18px;
-    color:#000;
+    color:#FFF;
     padding-top:4px;
 }
-
-
 
 .free-cell {
 background-color:#576b9d;

@@ -426,7 +426,11 @@ table#tbl-content td {
 }
 
 .event{
-    background: none repeat scroll 0 0 #FFFFCC !important;
+    background-color: #FFFFCC !important;
+}
+
+.event th{
+    background-color: #FFFFCC !important;
 }
 
 .none-border-right
