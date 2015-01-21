@@ -30,7 +30,8 @@
 .content-toolbox{   border-bottom:solid 1px #a2a2a2;     height:18px; padding:2px;}
 .content-body{background-color:#fff;  border-bottom:solid 1px #a2a2a2}
 .content-pagination{border-top:solid 1px #a2a2a2;height:18px;  padding:2px; color:#696969}
-.bgtitle{ background-color: #ededed;}
+.bgtitle{ background-color: #576b9d;}
+#pagination.bgtitle{ background-color: #ededed;}
 .header-frozen, .header-scroll, .body-frozen, .footer-frozen, .footer-scroll{   float:left; overflow:hidden}
 .btngroup{float:right}
 .gridtitle{   margin-left:2px;  background:url(../images/report_check.png) no-repeat left center;  padding-left:18px;  float:left;  font-family:"Roboto Medium",Tahoma,Arial,helvetica,sans-serif; color: #FFF;}

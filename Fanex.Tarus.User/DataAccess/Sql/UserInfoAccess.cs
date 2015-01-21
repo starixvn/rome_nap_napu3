@@ -135,6 +135,7 @@ namespace Fanex.Tarus.User.DataAccess.Sql
                 if (postParam.Name == "lastname" && postParam.Value == null) postParam.Value = string.Empty;
                 param.Add(postParam.Name, postParam.Value);
             }
+            param.Add("system", ConfigurationManager.AppSettings["U3GroupName"].ToString());
             using (ObjectDb objDB = new ObjectDb("Con_AdminUpd"))
             {
                 param.Add("userid", AppSession.AccId);
