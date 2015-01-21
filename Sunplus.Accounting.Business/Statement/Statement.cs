@@ -394,9 +394,9 @@ namespace Sunplus.Accounting.Business.Statement
                     customer, fdt, tdt, balanceUpDay, includeAccBal);
 
                 int custId = userService.GetCustomerIdByUsername(customer.Username);
-
                 bool isSpecialMember = Utils.IsU3SpecialAccount(custId);
-
+                bool isShowBetlistOnStatement = AppSession.GroupID.Equals(1) || (AppSession.IsU3SpecialAccount && isSpecialMember);
+                
                 if (entityList.Count > 0)
                 {
                     int totalUnVerify = 0;
@@ -428,7 +428,7 @@ namespace Sunplus.Accounting.Business.Statement
                         if (string.Compare(type.ToLowerInvariant(), "bet", true) == 0
                             && accDate >= balanceUpDay)
                         {
-                            if (AppSession.IsShowBetlistOnStatement && isSpecialMember)
+                            if (isShowBetlistOnStatement)
                             {
                                 TemplateHandler.Assign(ref rowHtml, "link",
                                                        "class='canchange' onclick='viewDetail(\""

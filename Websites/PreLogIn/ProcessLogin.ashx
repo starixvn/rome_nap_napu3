@@ -95,9 +95,10 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                 AppSession.AccId = custId;
                 AppSession.CurrentSystemName = system;
                 AppSession.IsU3SpecialAccount = isU3SpecialAccount;
+                AppSession.GroupID = userGroup.GroupId;
                 AppSession.IsU3Account = userGroup.GroupId == WebSettings.U3GroupId ? true : false;
                 AppSession.IsITAccount = !AppSession.IsU3SpecialAccount && !AppSession.IsU3Account ? true : false;
-                AppSession.IsShowBetlistOnStatement = userGroup.GroupId.Equals(1) || isU3SpecialAccount;
+                
                 if (string.IsNullOrEmpty(system))
                 {
                     context.Session.Clear();
