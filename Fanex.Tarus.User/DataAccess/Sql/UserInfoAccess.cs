@@ -271,7 +271,7 @@ namespace Fanex.Tarus.User.DataAccess.Sql
                 param.Add("userid", AppSession.AccId);
                 param.Add("errcode", 0);
                 param.Add("errmsg", string.Empty);
-
+                param.Add("system", ConfigurationManager.AppSettings["U3GroupName"].ToString());
                 objDB.AssignParamValues(param);
                 objDB.ExecuteNonQuery();
 
