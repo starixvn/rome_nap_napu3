@@ -221,17 +221,17 @@ namespace Sunplus.Accounting.Business.Customer
                             DataRow row1 = ds.ResultSet.Tables[0].Rows[0];
 
                             bool isInternalUser = CheckAndSetCustomerIsInternalOrNot(row1);
-                            bool isU3SpecialAccount = Utils.IsU3SpecialAccount(Convert.ToInt32(row1["custid"]));
+                            bool isU3SpecialCustomer = Utils.IsU3SpecialAccount(Convert.ToInt32(row1["custid"]));
 
-                            if (AppSession.IsU3Account && !AppSession.IsU3SpecialAccount && AppSession.IsInternal)
+                            if (AppSession.IsITAccount && !isU3SpecialCustomer && !Permissions.FinancePermission.IsViewFiAcc(isInternalUser))
                             {
                                 htmlcontent = AlertMessage.GetMsg(ResourceExtension.GetResourceValue(ResourceExtension.Resources.Language, "thereisnodata"), AlertMessage.MsgType.Error);
                             }
-                            else if (AppSession.IsU3SpecialAccount && AppSession.IsInternal && !isU3SpecialAccount)
+                            else if (AppSession.IsU3Account && AppSession.IsU3SpecialAccount && isInternalUser && !isU3SpecialCustomer)
                             {
                                 htmlcontent = AlertMessage.GetMsg(ResourceExtension.GetResourceValue(ResourceExtension.Resources.Language, "thereisnodata"), AlertMessage.MsgType.Error);
                             }
-                            else if (!Permissions.FinancePermission.IsViewFiAcc(isInternalUser) && AppSession.IsITAccount)
+                            else if (AppSession.IsU3Account && !AppSession.IsU3SpecialAccount && isInternalUser)
                             {
                                 htmlcontent = AlertMessage.GetMsg(ResourceExtension.GetResourceValue(ResourceExtension.Resources.Language, "thereisnodata"), AlertMessage.MsgType.Error);
                             }

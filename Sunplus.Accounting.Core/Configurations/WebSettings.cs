@@ -564,5 +564,13 @@ namespace Sunplus.Accounting.Core.Configurations
                 return Convert.ToInt32(ConfigurationManager.AppSettings["U3GroupId"]);
             }
         }
+
+        public static int ITGroupId
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["ITGroupId"] != null ? Convert.ToInt32(ConfigurationManager.AppSettings["ITGroupId"]) : 1;
+            }
+        }
     }
 }

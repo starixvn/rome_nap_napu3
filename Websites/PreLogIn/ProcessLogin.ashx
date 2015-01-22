@@ -97,7 +97,7 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                 AppSession.IsU3SpecialAccount = isU3SpecialAccount;
                 AppSession.GroupID = userGroup.GroupId;
                 AppSession.IsU3Account = userGroup.GroupId == WebSettings.U3GroupId ? true : false;
-                AppSession.IsITAccount = !AppSession.IsU3SpecialAccount && !AppSession.IsU3Account ? true : false;
+                AppSession.IsITAccount = userGroup.GroupId == WebSettings.ITGroupId ? true : false;
                 
                 if (string.IsNullOrEmpty(system))
                 {
