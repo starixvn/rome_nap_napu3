@@ -44,6 +44,7 @@ popup.prototype.showPopup = function (options) {
     if (typeof options.dialog == "undefined" || options.dialog == null) options.dialog = false;
     if (typeof options.onload == "undefined" || options.onload == null) options.onload = function () { };
     if (typeof options.onclose == "undefined" || options.onclose == null) options.onclose = function () { };
+    if (typeof options.rootPath == "undefined" || options.rootPath == null) options.rootPath = this.getAppPath();
 
     this.content = options.content;
     this.title = options.title;
@@ -55,7 +56,7 @@ popup.prototype.showPopup = function (options) {
     this.onload = options.onload;
     this.onclose = options.onclose;
 
-    this.imgPath = this.getAppPath() + "js/Popup/Images/";
+    this.imgPath = options.rootPath + "js/Popup/Images/";
 
     popup.id += 1;
 
@@ -306,7 +307,7 @@ popup.prototype.getAppPath = function () {
     var rootURL = location.protocol + "//" + location.host;
     var start = rootURL.indexOf('https') != -1 ? 9 : 8;
     var isLocal = (baseURL.indexOf("localhost") != -1) ? "/Websites/" : "/";
-    if (location.port == "") {
+    if (location.port == "" || baseURL.indexOf("10.18.200") != -1) {
         return rootURL + baseURL.substring(baseURL.indexOf('/', start), baseURL.indexOf('/', baseURL.indexOf('/', start) + 1)) + isLocal;
     }
     else {

@@ -25,7 +25,8 @@ funcManager.operationAddFunction = {
                     $("#slsystem").change(function () {
                         funcManager.operationAddFunction.fillParentFunction($(this).val());
                     });
-                }
+                },
+                rootPath: rootPath
             });
         });
         this.fillParentFunction();
@@ -122,7 +123,8 @@ funcManager.grid = {
                 $("#slsystem").change(function () {
                     funcManager.operationAddFunction.fillParentFunction($(this).val());
                 });
-            }
+            },
+            rootPath: rootPath
         });
     },
     submitEdit: function (funcId, popuid) {

@@ -239,7 +239,8 @@ accManager.accounts = {
                         if (accManager.utils.getMessageType() == "alertboxerr") {
                             accManager.utils.hideMsg();
                         }
-                    }
+                    },
+                    rootPath: rootPath
                 });
             this.bindDataPolicy(json);
             accManager.accounts.policiesDataBeforeEdit = accManager.accounts.getCurrentPoliciesData();
@@ -1224,7 +1225,8 @@ accManager.dept = {
                     if (accManager.utils.getMessageType() == "alertboxerr") {
                         accManager.utils.hideMsg();
                     }
-                }
+                },
+                rootPath: rootPath
             });
 
             $("#deptPolicyGrid").removeClass("hidden").reRenderScroller(569, 343, true);

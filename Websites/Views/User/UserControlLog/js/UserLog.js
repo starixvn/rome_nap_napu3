@@ -158,7 +158,9 @@ userLog.mainGrid = {
             title: "Individual Information : " + param,
             width: 400,
             height: 240,
-            multiple: false, dialog: true
+            multiple: false,
+            dialog: true,
+            rootPath: rootPath
         });
     },
     showLogUpdateGroupInfo: function (logId, param) {
@@ -172,7 +174,9 @@ userLog.mainGrid = {
             title: "Group Information : " + param,
             width: 839,
             height: 240,
-            multiple: false, dialog: true
+            multiple: false,
+            dialog: true,
+            rootPath: rootPath
         });
     },
     showLogUpdateAccountInfo: function (logId, param) {
@@ -186,7 +190,9 @@ userLog.mainGrid = {
             title: "Individual Information : " + param,
             width: 839,
             height: 240,
-            multiple: false, dialog: true
+            multiple: false,
+            dialog: true,
+            rootPath: rootPath
         });
     },
     showLogUpdateGroupPolicies: function (logId, param) {
@@ -225,7 +231,9 @@ userLog.mainGrid = {
             title: "Group Member : " + param,
             width: 250,
             height: dialogHeight,
-            multiple: false, dialog: true
+            multiple: false,
+            dialog: true,
+            rootPath: rootPath
         });
         $("#divUserLogMembersEffected").show().reRenderScroller(width, height, true);
 
@@ -237,7 +245,9 @@ userLog.mainGrid = {
             title: "Group Member : " + param,
             width: 250,
             height: dialogHeight,
-            multiple: false, dialog: true
+            multiple: false,
+            dialog: true,
+            rootPath: rootPath
         });
     }
 };
@@ -379,7 +389,9 @@ userLog.groupPolicy = {
                 title: "Group Permissions : " + param,
                 width: 840,
                 height: 300,
-                multiple: false, dialog: true
+                multiple: false,
+                dialog: true,
+                rootPath: rootPath
             });
             $("#scriptTmpUserLogGroupPolicy_NoInfo").tmpl([{ noinfo: true}]).appendTo($("#tbodyUserLogDeptPolicy").empty());
             $("#divUserLogGroupPolicy").show().reRenderScroller(775, 543, true);
@@ -408,7 +420,9 @@ userLog.groupPolicy = {
                 title: "Group Permissions : " + param,
                 width: 840,
                 height: 400,
-                multiple: false, dialog: true
+                multiple: false,
+                dialog: true,
+                rootPath: rootPath
             });
 
             $("#divUserLogGroupPolicy").show().reRenderScroller(775, 400, true);
@@ -421,7 +435,9 @@ userLog.groupPolicy = {
                 title: "Group Permissions : " + param,
                 width: 840,
                 height: dialogHeight,
-                multiple: false, dialog: true
+                multiple: false,
+                dialog: true,
+                rootPath: rootPath
             });
 
             $("#tbodyUserLogDeptPolicy").find("tr").each(function () {
@@ -580,7 +596,9 @@ userLog.adminPolicy = {
                 title: "Admin Individual Permissions : " + param,
                 width: 840,
                 height: 300,
-                multiple: false, dialog: true
+                multiple: false,
+                dialog: true,
+                rootPath: rootPath
             });
             $("#scriptTmpUserLogAdminPolicy_NoInfo").tmpl([{ noinfo: true}]).appendTo($("#tbodyUserLogAdminPolicy").empty());
             $("#divUserLogAdminPolicy").show().reRenderScroller(775, 543, true);
@@ -610,7 +628,9 @@ userLog.adminPolicy = {
                 title: "Admin Individual Permissions : " + param,
                 width: 840,
                 height: 400,
-                multiple: false, dialog: true
+                multiple: false,
+                dialog: true,
+                rootPath: rootPath
             });
 
             $("#divUserLogAdminPolicy").show().reRenderScroller(775, 400, true);
@@ -623,7 +643,9 @@ userLog.adminPolicy = {
                 title: "Admin Individual Permissions : " + param,
                 width: 840,
                 height: dialogHeight,
-                multiple: false, dialog: true
+                multiple: false,
+                dialog: true,
+                rootPath: rootPath
             });
 
             $("#tbodyUserLogAdminPolicy").find("tr").each(function () {
