@@ -99,6 +99,11 @@ var edm = {
                             }
                         }
                     }
+                    else {
+                        if (result.ErrorCode && result.ErrorCode > 0) {
+                            showAlertMessage("err", result.ErrorMessage, 1);
+                        }
+                    }
                 }, error: function (e) {
                     showAlertMessage("err", "Request Error", 1);
                 },

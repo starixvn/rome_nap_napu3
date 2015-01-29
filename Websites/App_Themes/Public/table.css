@@ -1,31 +1,51 @@
-﻿.tbllayout
+﻿@font-face {
+    font-family: Roboto;
+    src: url(../Fonts/Roboto/Roboto-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Roboto Light";
+    src: url(../Fonts/Roboto/Roboto-Light.ttf);
+}
+
+@font-face {
+    font-family: "Roboto Bold";
+    src: url(../Fonts/Roboto/Roboto-Bold.ttf);
+}
+
+@font-face {
+    font-family: "Roboto Medium";
+    src: url(../Fonts/Roboto/Roboto-Medium.ttf);
+}
+
+.tbllayout
 {
 	border-spacing: 1px;
-	background-color: #7c98a4;
+	background-color: #c8cbd4;
 	width: 100%;
 	text-align: center;
 	line-height: 18px;
-	font-family: Tahoma,Arial ,helvetica ,sans-serif;
+	font-family: "Roboto Light",Tahoma,Arial ,helvetica ,sans-serif;
 	font-size: 11px;
-	
 }
 .tbllayout td, .tbllayout th 
 {
 	background-color:#fff;
-	padding:1px;
+	padding:2px;
+	line-height: 20px;
 	!padding-bottom:2px;
 }
 .tbllayout a{cursor:pointer}
 .tbllayout .title
 {
-	background-color: #7c98a4 !important;
+	background-color: #576b9d !important;
 	font-weight: bold;
-	color: #000;
-	padding: 1px;
+	color: #ffffff;
+	padding: 2px;
 	
 }
-.tbllayout .title td{background-color:#b5c4d0 !important;}	
-.tbllayout .title th{background-color:#b5c4d0 !important;}	
+.tbllayout .title td{background-color:#576b9d !important;}	
+.tbllayout .title th{background-color:#576b9d !important;}	
 
 .a1 {background-color:#CCFFFF !important;}
 .a2 {background-color:#CCFFFF !important;}
@@ -38,7 +58,7 @@
 	background-color:#7c98a4 !important;
 	font-weight:bold;
 	color:#fff;
-	padding:1px;
+	padding:2px;
 }
 .tbllayout .title1 td{background-color:#587281 !important;}	
 
@@ -46,7 +66,7 @@
 {
 	background-color:#dddddd !important;
 	color:#000;
-	padding:1px;
+	padding:2px;
 }
 
 .tbllayout .bgnobold1 td{background-color:#99cccc !important;}	
@@ -55,7 +75,7 @@
 {
 	background-color:#99cccc !important;
 	color:#000;
-	padding:1px;
+	padding:2px;
 }
 
 .tbllayout .bgnobold td{background:#dddddd !important;}	
@@ -75,7 +95,7 @@
 	background-color:#7c98a4 !important;
 	font-weight:bold;
 	color:#000;
-	padding:1px;
+	padding:2px;
 }
 .tbllayout .title2 td{background-color:#e1effa !important;}	
 
@@ -84,53 +104,52 @@
 	background-color:#7c98a4 !important;
 	font-weight:bold;
 	color:#000;
-	padding:1px;
+	padding:2px;
 }	
 .tbllayout .tdtitle
 {
 	background-color:#b5c4d0 !important;
 	font-weight:bold;
 	color:#000;
-	padding:1px;
+	padding:2px;
 }		
 /*table layout with border collapse*/
 .tblcollapse
 {
 	background-color:#fff;
 	border-collapse: collapse;
-	border:solid 1px #7c98a4;
 	width:100%;
 	text-align:center;
 	line-height:18px;
-	font-family:Tahoma,Arial ,helvetica ,sans-serif;
+	font-family: "Roboto Light", Tahoma,Arial ,helvetica ,sans-serif;
 	font-size:11px;
-	border:solid 1px #7c98a4;
+	border:solid 1px #a2a2a2;
 }
 .tblcollapse td, .tblcollapse th 
 {
-	border:solid 1px #7c98a4;
+	border:solid 1px #a2a2a2;
 	line-height:18px;
-	padding:1px;
+	padding:2px;
 }
 .tblcollapse a{cursor:pointer}
 .tblcollapse .title
 {
 	font-weight:bold;
-	color:#000;
-	padding:1px;
+	color:#FFF;
+	padding:2px;
 }
 .tblcollapse .title td, .tblcollapse .title th
 {
-	border:solid 1px #7c98a4;
+	border:solid 1px #a2a2a2;
 }
-.tblcollapse .title td{background-color:#b5c4d0 !important;}	
-.tblcollapse .title th{background-color:#b5c4d0 !important;}	
+.tblcollapse .title td{background-color:#576b9d  !important;}	
+.tblcollapse .title th{background-color:#576b9d  !important;}	
 
 .tblcollapse .title1
 {
 	font-weight:bold;
 	color:#fff;
-	padding:1px;
+	padding:2px;
 }
 .tblcollapse .title1 td{background-color:#587281 !important;}	
 
@@ -138,7 +157,7 @@
 {
 	font-weight:bold;
 	color:#000;
-	padding:1px;
+	padding:2px;
 }
 .tblcollapse .title2 td{background-color:#e1effa !important;}	
 
@@ -154,7 +173,7 @@
 	background-color:#b5c4d0 !important;
 	font-weight:bold;
 	color:#000;
-	padding:1px;
+	padding:2px;
 	}
 .whitebg
 {
@@ -169,12 +188,11 @@
 {
 	padding-right:2px;
 	}*/
-	
-.evenrow td{background-color:#DFEAFF;}	
+.evenrow td{background-color:#f5f5f5;}	
 .overrow td{background-color:#f8ff8d !important;}	
 .rowhighlight td{background-color:#f8ff8d !important;font-weight:bold !important;}		
 .new-rate-evenrow {background-color:#F7E9F8 !important;}/*Exchange rate format*/
-.statement-accu-row td{background-color:#fdf8b5;color:#0000ff}
+.statement-accu-row td{background-color: #f9f7de; color: #3e3ed2;}
 
 .limit td{background: #eaeaea  none repeat scroll 0%;}
 .limit-header td{background:  #fde9d9 none repeat scroll 0%;}
@@ -256,7 +274,7 @@
 .tblfixed td, .tblfixed th 
 {
     border:solid 1px #7c98a4;
-	padding:1px;
+	padding:2px;
 	!padding-bottom:2px;
 }
 .tblfixed a{cursor:pointer}
@@ -277,7 +295,7 @@
 	background-color:#7c98a4 !important;
 	font-weight:bold;
 	color:#fff;
-	padding:1px;
+	padding:2px;
 }
 .tblfixed .title1 td{background-color:#587281 !important;}	
 
@@ -285,7 +303,7 @@
 {
 	background-color:#dddddd !important;
 	color:#000;
-	padding:1px;
+	padding:2px;
 }
 
 .tblfixed .bgnobold1 td{background-color:#99cccc !important;}	
@@ -294,7 +312,7 @@
 {
 	background-color:#99cccc !important;
 	color:#000;
-	padding:1px;
+	padding:2px;
 }
 
 .tblfixed .bgnobold td{background:#dddddd !important;}	
@@ -314,7 +332,7 @@
 	background-color:#7c98a4 !important;
 	font-weight:bold;
 	color:#000;
-	padding:1px;
+	padding:2px;
 }
 .tblfixed .title2 td{background-color:#e1effa !important;}	
 
@@ -323,14 +341,14 @@
 	background-color:#7c98a4 !important;
 	font-weight:bold;
 	color:#000;
-	padding:1px;
+	padding:2px;
 }	
 .tblfixed .tdtitle
 {
 	background-color:#b5c4d0 !important;
 	font-weight:bold;
 	color:#000;
-	padding:1px;
+	padding:2px;
 }		
 .rowactive td{background:#f8ff8d !important; cursor: pointer;}		
 /*end table fix with with */

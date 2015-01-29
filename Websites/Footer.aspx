@@ -5,14 +5,12 @@
 <head id="Head1" runat="server">
     <title>Admin Site</title>
     <style type="text/css">
-        div.copyright
-        {
-            float: right;
-            color: #434343;
+        div.copyright {
+            color: #96a5bc;
             font-family: Tahoma;
             font-size: 11px;
-            text-align: right;
             padding-right: 6px;
+            text-align: center;
             vertical-align: bottom;
         }
         a
@@ -66,7 +64,7 @@
         }
 </script>
 </head>
-<body style="margin: 0px">
+<body style="margin: 0px; background-color: #2c334d;">
     <div style="padding-left:6px;"></div>
     <div class="copyright" >
        &nbsp; Copyright &copy;2010

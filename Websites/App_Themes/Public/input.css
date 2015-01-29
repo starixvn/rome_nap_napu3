@@ -1,8 +1,11 @@
 ﻿select, input
 {
-	font-size:11px;
-	border:solid 1px #818181;
-	vertical-align: baseline;
+	border: 1px solid #c8cbd4;
+    color: #696969;
+    font-size: 11px;
+    line-height: 18px;
+    vertical-align: middle;
+    height: 18px;
 	!margin-bottom:1px;
 	!vertical-align: middle;
 	vertical-align  /*\**/: middle\9;
@@ -22,12 +25,12 @@ input[disabled].btn {
 	background-color:#ffffff;
 	border-radius: 2px;
 	width:158px;
-	color:#000000;
+	color:#696969;
 	font-size:12px;
 	padding-left:3px;
-	border:solid 1px #8db4cf;
+	border:solid 1px #c8cbd4;
 	vertical-align:baseline;
-	height:20px;
+	height:18px;
 	!margin-top:1px;
 	!vertical-align: middle;
 	vertical-align  /*\**/: middle\9;
@@ -41,11 +44,11 @@ input[disabled].btn {
 	text-align:center;
 	font-size:11px;
 	color:#FFFFFF;
-	background:none repeat-x scroll left center #3a456d;	
+	background:none repeat-x scroll left center #576b9d;	
     border-radius: 2px;
     
 	cursor:pointer;
-	border: none;
+	border: solid 1px #3f568e;
 	margin:0px 2px 0px 0px;
 	vertical-align:baseline;
 	height:22px;
@@ -60,7 +63,7 @@ input.unverify, input.verified, input.verifiedDisabled, input.reversed
 	background-position: left; text-align: center;
 	font-size: 11px;
 	font-weight: bold;
-	color: #000;
+	color: #fff;
 	cursor: pointer;
 	margin: 0px;
 	vertical-align: baseline;
@@ -69,10 +72,14 @@ input.unverify, input.verified, input.verifiedDisabled, input.reversed
 	padding: 1px 4px;
 	text-decoration: none; !vertical-align:middle;
 	vertical-align/*\**/:middle\9;
-	
-
  }
  
+ 
+input.unverify:hover, input.verified:hover, input.verifiedDisabled:hover, input.reversed:hover
+{
+	color: #c8e0fa;
+}
+
  input.verifiedDisabled 
  {
 	color: Gray;	
@@ -81,29 +88,29 @@ input.unverify, input.verified, input.verifiedDisabled, input.reversed
  
  input.unverify
  {
- 	background: url(../images/buttons/bgred_btn.jpg) repeat-x left;
- 	border: 1px solid #CC3300; 	
+	background: none repeat-x scroll left center #CC3300;	
+	border: 1px solid #7C98A4;	
+	border-radius: 2px;
  	
  }
 
 input.verified , input.reversed
-{
-	
-	background: url(../images/buttons/bg_btn.jpg) repeat-x left;	
+{	
+	background: none repeat-x scroll left center #3a456d;	
 	border: 1px solid #7C98A4;	
-	
+	border-radius: 2px;
 }
 input.reversed
  {
- 	background: url(../images/buttons/bgred1_btn.jpg) repeat-x left;
- 	border: 1px solid #CC3300; 	
- 	
+	background: none repeat-x scroll left center #CC3300;	
+	border: 1px solid #7C98A4;	
+	border-radius: 2px;
  }
 
 
 .btn:hover
 {
-	color: #c8e0fa;
+	background-color:  #4d5f8c;
 }
 .btncurrent
 {
@@ -111,12 +118,12 @@ input.reversed
 }
 
 input.txtdate {
-    background:url(../Images/calendar1.gif)  no-repeat right center; 
+    background:url(../Images/calendar1.png)  no-repeat right center #fff;
+    background: 
     padding:2px; 
     width:100px;
     cursor: pointer;
 }
-
 
 .btnExcel {
 background:transparent url(../images/excel.gif) no-repeat center center;
@@ -253,9 +260,9 @@ padding-right:6px;
 .txt{
 	background-color:#fff;
 	width:120px;
-	color:#000;
+	color:#696969;
 	font-size:11px;
-	border:solid 1px #818181;
+	border:solid 1px #c8cbd4;
 	vertical-align:middle
 }
 .img-date-selector 
@@ -278,17 +285,17 @@ width:60px;
 	width:60px;
 	}
 
-.btn-inc1{cursor:pointer; width:16px; height:16px; background:url(../images/dec1.gif) no-repeat; border:none}
-input[disabled].btn-inc1{background:url(../images/dec1_disable.jpg) no-repeat !important;}
-.btn-inc10{cursor:pointer; width:16px; height:16px; background:url(../images/dec3.gif) no-repeat; border:none}
-input[disabled].btn-inc10{background:url(../images/dec3_disable.gif) no-repeat !important;}
-.btn-dec1{cursor:pointer; width:16px; height:16px; background:url(../images/dec2.gif) no-repeat; border:none}
-input[disabled].btn-dec1{background:url(../images/dec2_disable.gif) no-repeat !important;}
-.btn-dec10{cursor:pointer; width:16px; height:16px; background:url(../images/dec4.gif) no-repeat; border:none}
-input[disabled].btn-dec10{background:url(../images/dec4_disable.gif) no-repeat !important;}
+.btn-inc1{cursor:pointer; width:17px; height:17px; background:url(../images/dec1.png) no-repeat; border:none}
+input[disabled].btn-inc1{background:url(../images/dec1_disable.png) no-repeat !important;}
+.btn-inc10{cursor:pointer; width:17px; height:17px; background:url(../images/dec3.png) no-repeat; border:none}
+input[disabled].btn-inc10{background:url(../images/dec3_disable.png) no-repeat !important;}
+.btn-dec1{cursor:pointer; width:17px; height:17px; background:url(../images/dec2.png) no-repeat; border:none}
+input[disabled].btn-dec1{background:url(../images/dec2_disable.png) no-repeat !important;}
+.btn-dec10{cursor:pointer; width:17px; height:17px; background:url(../images/dec4.png) no-repeat; border:none}
+input[disabled].btn-dec10{background:url(../images/dec4_disable.png) no-repeat !important;}
 
-.custBtn1{background:transparent url(../images/btUpdateL.gif) no-repeat top left; width:26px; height:24px; cursor:pointer;}
-.custBtn2{background:transparent url(../images/btUpdateR.gif) no-repeat top left; text-align:left; width:96px; padding-left:12px; height:24px; font-size:10pt; font-weight:bold; color:#fff;cursor:pointer;}
+.custBtn2{background:none no-repeat scroll center center #576b9d; text-align:center; width:65px; height:20px; font-size:10pt; font-weight:bold; color:#fff;cursor:pointer;border-radius:  2px; border: 1px solid #3f568e;}
+.custBtn2:hover{ background-color:  #4d5f8c;}
 
 #btntop td{height:21px}
 td.btnleft{background:transparent url(../images/ptL.gif) no-repeat top left; width:22px; height:21px}
@@ -351,7 +358,18 @@ font-size:11px;
 }
 
 input.txtcalendar {
-    background: url("../Images/calendar1.gif") no-repeat scroll right center transparent;
+    background: url("../Images/calendar1.png") no-repeat scroll right center transparent;
     padding: 2px;
     width: 125px;
+}
+
+#btnReset
+{
+    background: none repeat-x scroll left center #858585;
+	border: solid 1px #79797a;
+}
+
+#btnSendMsg
+{
+    background-color: #3a456d;
 }

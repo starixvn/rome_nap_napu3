@@ -80,7 +80,7 @@
                             +'<\/div>'
                             +'<div class="calendar_container" >'
                                 +'<input onclick="return false;" alt="" id="news_date_trigger" title="Date selector"'
-                                    +'width="18" height="17" src="../../App_Themes/Images/calendar.gif" type="image" class="img-date-selector" \/>'
+                                    + 'width="16" height="18" src="../../App_Themes/Images/calendar.png" type="image" class="img-date-selector" \/>'
                             +'<\/div>'
                         +'<\/td>'
                     + '<\/tr>'

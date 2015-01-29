@@ -119,7 +119,7 @@
                 <br />
                 @if (ip != "-")
                 {
-                    <a href="@Url.Action("BetListByIP", "TarusBetList", new { IsLink = true, FromDate = betdetail.Ticket.WinlostDate.ToString("MM/dd/yyyy"), IP = betdetail.Ticket.IP })">@ip</a>
+                    <span>@ip</span>
                    @* <a href="../BetList/BetListByIP.aspx?bltype=3&fdate=@betdetail.Ticket.WinlostDate.ToShortDateString()&ip=@betdetail.Ticket.IP">@ip</a>*@
                 }
             </div>
@@ -254,7 +254,7 @@
                                 &nbsp;</div>
                         </th>
                         <th>
-                            <div class=" height17 table-cell r" style="width: 165px;">
+                            <div class=" height17 table-cell r" style="width: 165px; color: Black;">
                                 @{
                                     string subTotalTmp = totalWinlost > 0 ? "SubTotal (win)" : "SubTotal (loss)";
                                 }
@@ -275,7 +275,7 @@
                                 &nbsp;</div>
                         </th>
                         <th>
-                            <div class=" height17 table-cell r" style="width: 165px;">
+                            <div class=" height17 table-cell r" style="width: 165px; color: Black;">
                                 SubTotal (com)</div>
                         </th>
                         <th>

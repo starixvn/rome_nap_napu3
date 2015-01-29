@@ -21,12 +21,10 @@ using Fanex.Tarus.User.Business.Services;
 
 public class ProcessLogin : IHttpHandler, IRequiresSessionState
 {
-
     public void ProcessRequest(HttpContext context)
     {
         try
         {
-
             context.Response.ContentType = "text/html";
             context.Response.Cache.SetCacheability(HttpCacheability.NoCache);
             string username = context.Request.Form["TxtUsername"];
@@ -37,6 +35,42 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
             string system;
             int roleId;
 
+            UserGroup userGroup = new UserInfoService().GetAdminGroup(username);
+            string[] allowedGroupsAccess = WebSettings.AllowedGroupsAccess;
+            string[] allowedUsersAccess = WebSettings.AllowedUsersAccess;
+            bool allowedAccess = false;
+            bool isU3SpecialAccount = false;
+
+            for (int i = 0; i < allowedUsersAccess.Length; i++)
+            {
+                if (username == allowedUsersAccess[i].Trim())
+                {
+                    allowedAccess = true;
+                    isU3SpecialAccount = true;
+                    break;
+                }
+            }
+
+            if (!allowedAccess)
+            {
+                for (int i = 0; i < allowedGroupsAccess.Length; i++)
+                {
+                    if (userGroup.GroupId.ToString() == allowedGroupsAccess[i].Trim())
+                    {
+                        allowedAccess = true;
+                        break;
+                    }
+                }
+            }
+
+            if (!allowedAccess)
+            {
+                context.Session.Clear();
+                FormsAuthentication.SignOut();
+                context.Response.Write("parent.signIn.loginError('" + Resources.ErrorMsg.DenyLoginAccount + "');\n");
+                goto end;
+            }
+
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
                 context.Response.Write("parent.signIn.loginError('Username and Password must not be empty!');\n");
 
@@ -45,44 +79,13 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                 context.Response.Write(LoginFailedHandler.WriteJS(username));
                 goto end;
             }
-            //string countryName = IpManagement.ReplaceCountryName("202.78.230.82");
-            //var ipManager = new Sunplus.Accounting.Core.Helper.IP.IpManager();
-            //string countryName = ipManager.GetCountryNameByIp(context.Request.UserHostAddress);
 
             AppSession.CurrentSystemName = "accounting";
 
             string browserName = context.Request.Browser.Browser + " " + context.Request.Browser.Version;
             IbcError error = Sunplus.Accounting.DataAccess.IBCDLL.UserController.AccLoginAdmin(ref username, password, context.Request.UserHostAddress, context.Request.UrlReferrer.AbsoluteUri, out custId, out roleId, out system, context.Request.Url.Host, browserName, context.Request.Browser.Platform, "");
 
-            UserGroup userGroup = new UserInfoService().GetAdminGroup(username);
-            string[] allowedGroupsAccess = WebSettings.AllowedGroupsAccess;
-            string[] allowedUsersAccess = WebSettings.AllowedUsersAccess;
-            bool allowedAccess = false;
-            bool isMrLamAccount = false;
-
-            for (int i = 0; i < allowedGroupsAccess.Length; i++)
-            {
-                if (userGroup.GroupId.ToString() == allowedGroupsAccess[i].Trim())
-                {
-                    allowedAccess = true;
-                    break;
-                }
-            }
-
-            if (!allowedAccess)
-            {
-                for (int i = 0; i < allowedUsersAccess.Length; i++)
-                {
-                    if (username == allowedUsersAccess[i].Trim())
-                    {
-                        allowedAccess = true;
-                        isMrLamAccount = true;
-                        break;
-                    }
-                }
-            }
-
-            if (error.IsSuccess() && allowedAccess)
+            if (error.IsSuccess())
             {
                 LoginFailedHandler.LoginSuccess(username);
 
@@ -90,12 +93,12 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                 AppSession.Username = username;
                 AppSession.AccUserName = username;
                 AppSession.AccId = custId;
-                AppSession.UserGroupId = userGroup.GroupId;
                 AppSession.CurrentSystemName = system;
-                AppSession.IsMrLamAccount = isMrLamAccount;
+                AppSession.IsU3SpecialAccount = isU3SpecialAccount;
+                AppSession.GroupID = userGroup.GroupId;
                 AppSession.IsU3Account = userGroup.GroupId == WebSettings.U3GroupId ? true : false;
-
-
+                AppSession.IsITAccount = userGroup.GroupId == WebSettings.ITGroupId ? true : false;
+                
                 if (string.IsNullOrEmpty(system))
                 {
                     context.Session.Clear();
@@ -115,20 +118,9 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                         FormsAuthentication.SignOut();
                         context.Response.Write("parent.signIn.loginError('" + Resources.ErrorMsg.DenyLoginAccount + "');\n");
                         goto end;
-
                     }
                 }
                 #endregion checking - denied systems
-
-                if (system.ToUpper() != "ACCOUNTING")
-                {
-                    system = "EXTERNAL";
-                    context.Session.Clear();
-                    FormsAuthentication.SignOut();
-                    context.Response.Clear();
-                    context.Response.Write("<script type='text/javascript'>top.location.href='https://www.726872.com/accext';</script>");
-                    return;
-                }
 
                 AppSession.CurrentSystemNAME = Enumerations.ToAccountingSystem(system);
                 AppSession.OnAccId = Sunplus.Accounting.DataAccess.IBCDLL.UserController.AccLoginAdminOnuser(custId, WebSettings.ServerId, context.Request.UserHostAddress);
@@ -142,11 +134,20 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                     context.Response.Write("parent.signIn.loginError('Invalid Login');\n");
                     goto end;
                 }
+
                 AuthManager.AssignRoles(custId);
+                if (AppSession.RoleAccess.Count < 1) //limit user have no permission access 
+                {
+                    context.Session.Clear();
+                    FormsAuthentication.SignOut();
+                    context.Response.Write("parent.signIn.loginError('" + Resources.ErrorMsg.DenyLoginAccount + "');\n");
+                    goto end;
+                }
 
                 context.Response.Write("top.location.href='" + FormsAuthentication.DefaultUrl.Replace("https", "http") + "';\n");
-                IMenuManager menuService = CommonBootStrapper.Locator.GetInstance<IMenuManager>();
-                menuService.GetUserMenu();
+                //IMenuManager menuService = CommonBootStrapper.Locator.GetInstance<IMenuManager>();
+                //menuService.GetUserMenu();
+                AppSession.UserMenu = new List<Sunplus.Accounting.Entities.MenuBO>();
 
                 if (Permissions.HasPermission("UserControl"))
                 {
@@ -197,7 +198,6 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                 else
                 {
                     LoginFailedHandler.LoginFailed(username, error.ErrorCode);
-
                     //-----------------------------------------------------------------------
 
                     if (LoginFailedHandler.IsLocked(username))
@@ -234,7 +234,4 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
     //    var logContent = new Exception( userName + "\n" + DateTime.Now + "\n" + userBrowser);
     //    Sunplus.Accounting.Core.Extensions.LogExtensions.ExceptionHandler(logContent);
     //}
-
-
-
 }

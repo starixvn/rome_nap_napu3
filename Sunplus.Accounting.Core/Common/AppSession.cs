@@ -307,22 +307,28 @@ namespace Sunplus.Accounting.Core.Common
             sessionState[key] = value;
         }
 
-        public static int UserGroupId
+        public static bool IsU3SpecialAccount
         {
-            get { return CastAide.AsInt32(HttpContext.Current.Session["UserGroupId"], 0); }
-            set { HttpContext.Current.Session["UserGroupId"] = value; }
-        }
-
-        public static bool IsMrLamAccount
-        {
-            get { return CastAide.AsBoolean(HttpContext.Current.Session["IsMrLamAccount"], false); }
-            set { HttpContext.Current.Session["IsMrLamAccount"] = value; }
+            get { return CastAide.AsBoolean(HttpContext.Current.Session["IsU3SpecialAccount"], false); }
+            set { HttpContext.Current.Session["IsU3SpecialAccount"] = value; }
         }
 
         public static bool IsU3Account
         {
             get { return CastAide.AsBoolean(HttpContext.Current.Session["IsU3Account"], false); }
             set { HttpContext.Current.Session["IsU3Account"] = value; }
+        }
+
+        public static bool IsITAccount
+        {
+            get { return CastAide.AsBoolean(HttpContext.Current.Session["IsITAccount"], false); }
+            set { HttpContext.Current.Session["IsITAccount"] = value; }
+        }
+
+        public static bool IsShowBetlistOnStatement
+        {
+            get { return CastAide.AsBoolean(HttpContext.Current.Session["IsShowBetlistOnStatement"], false); }
+            set { HttpContext.Current.Session["IsShowBetlistOnStatement"] = value; }
         }
     }
 }

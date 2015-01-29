@@ -4,6 +4,7 @@
 <link href="~/App_Themes/Report/reportgrid.css" rel="stylesheet" type="text/css" />
 <link href="~/js/jQuery/Pager/pagination.css" rel="stylesheet" type="text/css" />
 <link href="~/App_Themes/Ocean/StyleSheet.css" rel="stylesheet" type="text/css" />
+<link href="~/App_Themes/TabMenu.css" rel="stylesheet" type="text/css" />
 <script src="~/js/jQuery/jquery-latest.js" type="text/javascript"></script>
 <script src="~/js/jQuery/gridscroller.js" type="text/javascript"></script>
 <script src="~/js/jQuery/Template/jquery.tmpl.js" type="text/javascript"></script>
@@ -18,35 +19,38 @@
 <script src="~/Views/User/AccountManagement/js/AccManagement.js?version=@Sunplus.Accounting.Core.Configurations.WebSettings.Version" type="text/javascript"></script>
 <script type="text/javascript">
 var viewModel = @Html.Raw(Json.Encode(Model));
+
 </script>
 <div id="err">
 </div>
 <div class="main">
     <div class="maincontent">
-
-        <div id="divMainHeader" style="height:63px; background-color:#fff; position:fixed; width:100%; margin-top:-4px; padding-top:10px;">
-
+        <div id="divMainHeader" style="height: 28px; background-color: #fff; position: fixed;
+            width: 100%; margin-top: -4px; padding-top: 10px;">
             <div class="box_header" style="width: 100%;">
                 <div id="left_tab1" class="left_tab" style="width: 100%">
                     <ul>
                         <li id="left_tab1_3" style="position: relative"><a href="javascript:;"><span>Add Account</span></a></li>
-                        <li id="left_tab1_5" class="current" style="position: relative"><a href="javascript:;"><span>View All Accounts</span></a></li>
-                        <li id="left_tab1_6" style="position: relative"><a href="javascript:;"><span>User Control Log</span></a></li>
+                        <li id="left_tab1_5" class="current" style="position: relative"><a href="javascript:;">
+                            <span>View All Accounts</span></a></li>
+                        <li id="left_tab1_6" style="position: relative"><a href="javascript:;"><span>User Control
+                            Log</span></a></li>
                     </ul>
                 </div>
             </div>
+        </div>
+        <div class="tab-content-box">
             @Html.Partial("~/Views/User/AccountManagement/DeptFilter.cshtml")
             @Html.Partial("~/Views/User/AccountManagement/AccFilter.cshtml")
-        </div>      
-        <div id="left_tab1_3_content" style="display: none;margin-top:40px">
-            @Html.Partial("~/Views/User/AccountManagement/AddAccount.cshtml")
-        </div>       
-        <div id="left_tab1_5_content" style="margin-top:70px">
-            @Html.Partial("~/Views/User/AccountManagement/Account.cshtml")
+            <div id="left_tab1_3_content" style="display: none;">
+                @Html.Partial("~/Views/User/AccountManagement/AddAccount.cshtml")
+            </div>
+            <div id="left_tab1_5_content" >
+                @Html.Partial("~/Views/User/AccountManagement/Account.cshtml")
+            </div>
+            <div id="left_tab1_6_content" style="display: none;">
+                @Html.Partial("~/Views/User/UserControlLog/Index.cshtml")
+            </div>
         </div>
-        <div id="left_tab1_6_content" style="display: none;margin-top:40px">
-            @Html.Partial("~/Views/User/UserControlLog/Index.cshtml")
-        </div>
-
     </div>
 </div>

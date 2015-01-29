@@ -87,7 +87,7 @@ $(document).ready(function () {
             changeMonth: true,
             buttonImageOnly: true,
             buttonText: "",
-            buttonImage: $("#currentDomain").val() + "/App_Themes/" + currentTheme + "/Images/calendar.gif"
+            buttonImage: $("#currentDomain").val() + "/App_Themes/" + currentTheme + "/Images/calendar.png"
         });
         if (mindate != undefined && mindate != 'null') {
             mindate = mindate.split("/");
@@ -235,7 +235,7 @@ Core.registerWeekPicker = function () {
             $.extend(defaults, options);
 
             $this.addClass("datepicker hasDatepicker");
-            $this.after("<div class='weekcalendar'></div><img style='position: relative;margin-top: 1px' class='ui-datepicker-trigger' src='" + $("#currentDomain").val() + "/App_Themes/" + currentTheme + "/Images/calendar.gif' alt='' title=''>");
+            $this.after("<div class='weekcalendar'></div><img style='position: relative;margin-top: 1px' class='ui-datepicker-trigger' src='" + $("#currentDomain").val() + "/App_Themes/" + currentTheme + "/Images/calendar.png' alt='' title=''>");
             $calendar = $this.next();
 
             $calendar.css({ "position": "absolute", "z-index": 1000, "margin-top": "22px", "float": "left" });
@@ -245,7 +245,7 @@ Core.registerWeekPicker = function () {
                 showOn: null,
                 buttonImageOnly: true,
                 buttonText: "",
-                buttonImage: $("#currentDomain").val() + "/App_Themes/" + currentTheme + "/Images/calendar.gif",
+                buttonImage: $("#currentDomain").val() + "/App_Themes/" + currentTheme + "/Images/calendar.png",
                 firstDay: 1,
                 showOtherMonths: true,
                 selectOtherMonths: true,

@@ -25,9 +25,9 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
         public EditSuperOnMemberController()
             : base()
         {
-            for (var i = 0; i < 24; i++)
+            for (var i = 0; i < 12; i++)
             {
-                updateParameters.Add(i, (i.Equals(12) || i.Equals(23)) ? "1" : "0");
+                updateParameters.Add(i, i.Equals(11) ? "1" : "0");
             }
         }
 
@@ -100,7 +100,7 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
         /// <returns>Return a result message</returns>
         [AuthenticateHost]
         [HttpPost]
-        public JsonResult DoEditMember(string stringcustomer, RequestContext currentContext)
+        public JsonResult DoEditMember(string stringcustomer, RequestContext currentContext, bool isDisplaySportbooks = true)
         {
             Result result;
             try
@@ -112,7 +112,7 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
                 customer.Language = "E";
                 currentContext.IP = System.Web.HttpContext.Current.Request.UserHostAddress;
                 result = _customerService.SuperUpdateMember(customer, currentContext);
-
+                result = isDisplaySportbooks ? _customerService.SuperUpdateMember(customer, currentContext) : _customerService.SuperUpdateMultipleMembers(customer, currentContext, updateParameters);
                 int tempErrorCode = 0;
                 string tempErrorMessage = "";
 

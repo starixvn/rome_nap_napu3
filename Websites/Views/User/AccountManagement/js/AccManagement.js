@@ -29,30 +29,25 @@ accManager.tabs = {
             window.accManager.dept.renderGrid(window.viewModel.Departments);
             $("#divDeptFilter").show();
             $("#divAccFilter").hide();
-            $("#divMainHeader").height(63);
         });
         $("#left_tab1_2").click(function () {
             $("#divDeptFilter").hide();
             $("#divAccFilter").hide();
-            $("#divMainHeader").height(30);
         });
         $("#left_tab1_3").click(function () {
             accManager.accounts.fillDeptComboBoxs();
             $("#divDeptFilter").hide();
             $("#divAccFilter").hide();
-            $("#divMainHeader").height(30);
         });
         $("#left_tab1_4").click(function () {
             accManager.accounts.fillDeptComboBoxs();
             $("#divDeptFilter").hide();
             $("#divAccFilter").hide();
-            $("#divMainHeader").height(30);
         });
         $("#left_tab1_5").click(function () {
             $("#divHeaderUserName").removeClass("asc").removeClass("desc");
             $("#txtSearchAcc").val("");
             $("#listAlpha").val("All");
-            $("#divMainHeader").height(61);
             $("#divDeptFilter").hide();
             $("#divAccPath").hide();
             $("#divAccFilter").show();
@@ -64,14 +59,12 @@ accManager.tabs = {
         $("#left_tab1_6").click(function () {
             $("#divDeptFilter").hide();
             $("#divAccFilter").hide();
-            $("#divMainHeader").height(30);
         });
     },
     viewAllAccount: function () {
         $("#divHeaderUserName").removeClass("asc").removeClass("desc");
         $("#txtSearchAcc").val("");
         $("#listAlpha").val("All");
-        $("#divMainHeader").height(61);
         $("#divDeptFilter").hide();
         $("#divAccPath").hide();
         $("#divAccFilter").show();
@@ -246,7 +239,8 @@ accManager.accounts = {
                         if (accManager.utils.getMessageType() == "alertboxerr") {
                             accManager.utils.hideMsg();
                         }
-                    }
+                    },
+                    rootPath: rootPath
                 });
             this.bindDataPolicy(json);
             accManager.accounts.policiesDataBeforeEdit = accManager.accounts.getCurrentPoliciesData();
@@ -718,7 +712,6 @@ accManager.accounts = {
     filterByDepartment: function (deptId) {
         $("#txtSearchAcc").val("");
         $("#listAlpha").val("All");
-        $("#divMainHeader").height(61);
         $("#left_tab1_1").removeAttr("class");
         $("#left_tab1_1_content").hide();
         $("#left_tab1_5").attr("class", "current");
@@ -862,7 +855,7 @@ accManager.accounts = {
             this.initPager(this.getCurrentVMLength(), this.pageSize, this.pageIndex);
             var timerId = setTimeout(function () {
                 $("#tbodyViewAllAcc").find("tr").mouseover(function () {
-                    $(this).find("td").css("background-color", "#FFDDFE");
+                    $(this).find("td").css("background-color", "#fcfbca");
                 }).mouseout(function () {
                     $(this).find("td").css("background-color", "");
                 });
@@ -952,21 +945,21 @@ accManager.accounts = {
         var colLastName = $(target).parents("tr:first").find("div[lastname]").hide();
         //var colDept = $(target).parents("tr:first").find("div[dept]").hide();
 
-        colFirstName.parent().append("<input type='text' style='width:196px' editor='true' firstname='true' />").find("input[editor]").val(accManager.utils.decodeSpecifiedCharacter(accManager.utils.trimStartEnd(colFirstName.html())));
-        colLastName.parent().append("<input type='text' style='width:196px' editor='true' lastname='true' />").find("input[editor]").val(accManager.utils.decodeSpecifiedCharacter(accManager.utils.trimStartEnd(colLastName.html())));
+        colFirstName.parent().append("<input type='text' style='width:180px' editor='true' firstname='true' />").find("input[editor]").val(accManager.utils.decodeSpecifiedCharacter(accManager.utils.trimStartEnd(colFirstName.html())));
+        colLastName.parent().append("<input type='text' style='width:180px' editor='true' lastname='true' />").find("input[editor]").val(accManager.utils.decodeSpecifiedCharacter(accManager.utils.trimStartEnd(colLastName.html())));
 
-        //        var arr = jlinq.from(window.viewModel.Accounts).equals("Id", id).select();
-        //        if (arr.length > 0) {
-        //            colDept.parent().append(this.createDeptDropDownBox()).find("select").val(arr[0].DeptId);
-        //        }
+        //var arr = jlinq.from(window.viewModel.Accounts).equals("Id", id).select();
+        //if (arr.length > 0) {
+        //    colDept.parent().append(this.createDeptDropDownBox()).find("select").val(arr[0].DeptId);
+        //}
 
         $(target).parents("tr:first").find("img[alt='Edit']").hide();
         $(target).parents("tr:first").find("img[alt='Save']").show();
         $(target).parents("tr:first").find("img[alt='Cancel']").show();
     },
-    saveClick: function (e, id) {
+    saveClick: function (e, id, deptId) {
         var target = e.target || e.srcElement;
-        this.saveEdit($(target).parents("tr:first"), id);
+        this.saveEdit($(target).parents("tr:first"), id, deptId);
     },
     cancelClick: function (e) {
         var target = e.target || e.srcElement;
@@ -981,7 +974,7 @@ accManager.accounts = {
         $(target).parents("tr:first").find("img[alt='Save']").hide();
         $(target).parents("tr:first").find("img[alt='Cancel']").hide();
     },
-    saveEdit: function (tr, id) {
+    saveEdit: function (tr, id, deptId) {
         var firstName = tr.find("input[editor][firstname]").val();
         var lastName = tr.find("input[editor][lastname]").val();
 
@@ -1002,7 +995,7 @@ accManager.accounts = {
         });
         params.push({
             "Name": "groupid",
-            "Value": accManager.u3GroupId
+            "Value": deptId
         });
         params.push({
             "Name": "firstname",
@@ -1232,7 +1225,8 @@ accManager.dept = {
                     if (accManager.utils.getMessageType() == "alertboxerr") {
                         accManager.utils.hideMsg();
                     }
-                }
+                },
+                rootPath: rootPath
             });
 
             $("#deptPolicyGrid").removeClass("hidden").reRenderScroller(569, 343, true);

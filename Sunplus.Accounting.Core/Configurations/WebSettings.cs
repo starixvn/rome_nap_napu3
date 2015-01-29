@@ -549,11 +549,11 @@ namespace Sunplus.Accounting.Core.Configurations
             }
         }
 
-        public static string[] InternalCustomersOfMrLam
+        public static string[] U3SpecialCustomers
         {
             get
             {
-                return Convert.ToString(ConfigurationManager.AppSettings["InternalCustomersOfMrLam"]).Split(',');
+                return Convert.ToString(ConfigurationManager.AppSettings["U3SpecialCustomers"]).Split(',');
             }
         }
 
@@ -562,6 +562,14 @@ namespace Sunplus.Accounting.Core.Configurations
             get
             {
                 return Convert.ToInt32(ConfigurationManager.AppSettings["U3GroupId"]);
+            }
+        }
+
+        public static int ITGroupId
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["ITGroupId"] != null ? Convert.ToInt32(ConfigurationManager.AppSettings["ITGroupId"]) : 1;
             }
         }
     }

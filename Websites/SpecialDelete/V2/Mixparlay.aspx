@@ -70,10 +70,10 @@
 		    <tr>
 			    <td colspan="2">                
 			        <div id="bettype-bidding" style="float:left;width:1005px;padding:3px 0px;">
-			            <div class="bettype-header" style="float:left;width:1005px; background-color:#B5C4D0;border:1px solid #7C98A4;">
+			            <div class="bettype-header" style="float:left;width:1005px; background-color:#B5C4D0;border:1px solid #a2a2a2;">
 			                <input id="chk-bettype-all" class="chk-bettype" type="checkbox"><span class="check bettype" rel="all"><b>All Bet types</b></span>
 			            </div>
-			            <div class="bettype-cont" style="float:left;width:1005px;border:1px solid #7C98A4;border-top:none;background-color:#FFF">
+			            <div class="bettype-cont" style="float:left;width:1005px;border:1px solid #a2a2a2;border-top:none;background-color:#FFF">
 			                {{if Rows.length}}
 			                {{each(index, row) Rows}}
 			                    <div class="bettype-item {{if (index+1)%5==0}}brnone{{/if}} {{if (index+1)>(5*Math.floor(Count/5))}}bbnone{{/if}}">

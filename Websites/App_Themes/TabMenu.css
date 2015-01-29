@@ -1,0 +1,76 @@
+﻿.box_header
+{
+    background: none;
+    border: none;
+    height: 27px;
+    border-bottom: solid 1px #c8cbd4;
+}
+
+.left_tab a 
+{
+    border: 1px solid #c8cbd4;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    padding: 3px;
+    background-color:#ededed;
+}
+
+.left_tab a span 
+{
+    border: none;
+}
+
+.left_tab .current a
+{
+    border-bottom: 1px solid #fff;
+    background-color:#fff;
+}
+
+.left_tab .current a span
+{
+    border-top: none;
+}
+
+.tab-content-box
+{
+    border: solid 1px #c8cbd4;
+    border-top: none;
+    padding-bottom: 10px;
+    margin-top: 33px;
+}
+
+#left_tab1_3_content,
+#left_tab1_5_content,
+#left_tab1_6_content
+{
+    margin-top: 0px;
+    padding-top: 10px;
+}
+
+#divAccFilter
+{
+    padding-top: 10px;
+    width: 99%;
+    padding-left:5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

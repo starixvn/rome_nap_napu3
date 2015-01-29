@@ -730,7 +730,7 @@
                                         </thead>
                                     </table>
                                 </div>
-                                <div style="border-right:1px solid #7C98A4">
+                                <div style="border-right:1px solid #a2a2a2">
                                     <div style="height: 550px; overlow-y: auto; overflow-x: hidden">
                                         <div style="overflow-y:auto; height:550px; overflow-x:hidden">
                                         <table class="tbllayout2">
@@ -740,7 +740,7 @@
                                         </div>
                                     </div>
                                 <div>
-                                <div style="background-color:#B5C4D0; border:1px solid #7C98A4; border-right:0px none">
+                                <div style="background-color:#B5C4D0; border:1px solid #a2a2a2; border-right:0px none">
                                     <table>
                                         <tr>
                                             <td>

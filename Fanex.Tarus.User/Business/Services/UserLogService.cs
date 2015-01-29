@@ -14,6 +14,7 @@ namespace Fanex.Tarus.User.Business.Services
     using System.Data;
     using DNAide.Core;
     using System.Configuration;
+    using Sunplus.Accounting.Core.Common;
 
     public class UserLogService : IUserLogService
     {
@@ -34,7 +35,8 @@ namespace Fanex.Tarus.User.Business.Services
                 if (custId == -1) return new { Logs = new List<UserLog>(), RowsTotal = 0, Message = message };
 
                 UserGroup userGroup = new UserInfoService().GetAdminGroup(userName);
-                if (!userGroup.GroupId.ToString().Equals(ConfigurationManager.AppSettings["U3GroupId"].ToString()))
+                
+                if (!userGroup.GroupId.ToString().Equals(ConfigurationManager.AppSettings["U3GroupId"].ToString()) && AppSession.GroupID!=1)
                 {
                     return new { Logs = new List<UserLog>(), RowsTotal = 0, Message = "Invalid Username." };
                 }

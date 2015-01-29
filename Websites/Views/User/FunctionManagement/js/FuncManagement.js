@@ -25,7 +25,8 @@ funcManager.operationAddFunction = {
                     $("#slsystem").change(function () {
                         funcManager.operationAddFunction.fillParentFunction($(this).val());
                     });
-                }
+                },
+                rootPath: rootPath
             });
         });
         this.fillParentFunction();
@@ -122,7 +123,8 @@ funcManager.grid = {
                 $("#slsystem").change(function () {
                     funcManager.operationAddFunction.fillParentFunction($(this).val());
                 });
-            }
+            },
+            rootPath: rootPath
         });
     },
     submitEdit: function (funcId, popuid) {
@@ -182,7 +184,7 @@ funcManager.grid = {
         $("#divFuncGrid").show().reRenderScroller(this.width, this.height, true);
         var timerId = setTimeout(function () {
             $("#tbodyGridFunction").find("tr").mouseover(function () {
-                $(this).find("td").css("background-color", "#FFDDFE");
+                $(this).find("td").css("background-color", "#fcfbca");
             }).mouseout(function () {
                 $(this).find("td").css("background-color", "");
             });

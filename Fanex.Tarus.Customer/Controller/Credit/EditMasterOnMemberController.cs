@@ -25,9 +25,9 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
         public EditMasterOnMemberController()
             : base()
         {
-            for (var i = 0; i < 24; i++)
+            for (var i = 0; i < 12; i++)
             {
-                updateParameters.Add(i, (i.Equals(12) || i.Equals(23)) ? "1" : "0");
+                updateParameters.Add(i, (i.Equals(11)) ? "1" : "0");
             }
         }
 

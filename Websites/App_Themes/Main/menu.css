@@ -97,6 +97,7 @@
 	font-size:11px;
 	float:left;
 	line-height: 43px;
+	margin-left: 3px;
 	/*width:820px;*/
 }
 #mainmenu ul{
@@ -115,8 +116,6 @@
 	background:none no-repeat scroll right top #576b9d;
 	margin:0;
 	outline: none;
-	margin-right: 2px;
-	padding-left: 3px;
 	text-decoration:none;
 }
 #mainmenu a span{
@@ -132,15 +131,14 @@
 }
 #mainmenu a:hover span
 {
-    color: #c8e0fa;
+    background-color:#4d608c;
 }
 
 #mainmenu a span {
 	float:none;
 }
-#mainmenu .current a{
-	background-position:0 -22px !important;
-	
+#mainmenu .current a span{
+    background-color:#4d608c;	
 }
 /* end menu */
 .accOption
@@ -206,7 +204,7 @@
 .ssmenu
 {
 	position:absolute;
-	border:1px solid #7C98A4;
+	border:1px solid #a2a2a2;
 	background:#F6F5F2;
 	margin-left:2px;
 	padding:1px 4px;

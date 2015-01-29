@@ -306,8 +306,6 @@ namespace Sunplus.Accounting.Business.Statement
                             TemplateHandler.Assign(ref rowHtml, "{Total}", FormatHandler.FormatNumber20(row["runningtotal"]));
 
                             total += creditAmt - debitAmt;
-                            if (!CastAide.AsBoolean(row["allowdelete"], true) || !candelete)
-                                TemplateHandler.RemoveBlock(ref rowHtml, "DelLink");
 
                             htmlReport.Append(rowHtml);
                         }
@@ -395,6 +393,10 @@ namespace Sunplus.Accounting.Business.Statement
                 List<Entities.Statement> entityList = userService.GetCustomerStatement(
                     customer, fdt, tdt, balanceUpDay, includeAccBal);
 
+                int custId = userService.GetCustomerIdByUsername(customer.Username);
+                bool isSpecialMember = Utils.IsU3SpecialAccount(custId);
+                bool isShowBetlistOnStatement = AppSession.GroupID.Equals(1) || (AppSession.IsU3SpecialAccount && isSpecialMember);
+                
                 if (entityList.Count > 0)
                 {
                     int totalUnVerify = 0;
@@ -426,9 +428,12 @@ namespace Sunplus.Accounting.Business.Statement
                         if (string.Compare(type.ToLowerInvariant(), "bet", true) == 0
                             && accDate >= balanceUpDay)
                         {
-                            TemplateHandler.Assign(ref rowHtml, "link",
-                                                   "class='canchange' onclick='viewDetail(\""
-                                                   + FormatHandler.FormatDateOptionalTime(accDate) + "\"," + entity.TransTypeId + ")' ");
+                            if (isShowBetlistOnStatement)
+                            {
+                                TemplateHandler.Assign(ref rowHtml, "link",
+                                                       "class='canchange' onclick='viewDetail(\""
+                                                       + FormatHandler.FormatDateOptionalTime(accDate) + "\"," + entity.TransTypeId + ")' ");
+                            }
                             strAccDate = accDate.DayOfWeek
                                          + " <!--nobr--><br><!--/nobr-->"
                                          + FormatHandler.FormatDateOptionalTime(accDate);

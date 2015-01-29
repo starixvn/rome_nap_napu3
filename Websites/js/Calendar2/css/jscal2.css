@@ -8,13 +8,13 @@
   line-height: 14px;
   position: relative;
   cursor: default;
-  background-color: #f6f5f2;
+  background-color: #3a456d;
 }
 
 .DynarchCalendar-bodyTable td
 {
-	border: solid 1px #dfdfdf;
-	}
+	border: solid 1px transparent;
+}
 
 .DynarchCalendar table {
   border-collapse: collapse;
@@ -140,7 +140,7 @@ table.DynarchCalendar-titleCont {
 	}
 .DynarchCalendar-dayNames td
 {
-	border-left:solid 1px #dfdfdf;
+	border-left:solid 1px transparent;
 }
 .DynarchCalendar-dayNames table td:first-child
 {
@@ -286,7 +286,10 @@ table.DynarchCalendar-titleCont {
 }
 
 .DynarchCalendar-day {
-  text-align: right; color: #222;
+  text-align: right; 
+  color: #696969;
+  background-color: #ededec;
+  border: 1px solid #ccc;
 }
 .DynarchCalendar-day-othermonth { color: #888; }
 .DynarchCalendar-weekend { color: #c22; }

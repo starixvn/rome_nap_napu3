@@ -7,6 +7,7 @@ using System.Data;
 using DNAide.Core;
 using Fanex.Data;
 using Fanex.Tarus.Entities;
+using Fanex.Tarus.User.Business.Services;
 using Fanex.Tarus.User.Criteria;
 using Fanex.Tarus.User.Entities;
 using Sunplus.Accounting.Core.Common;
@@ -30,7 +31,8 @@ namespace Fanex.Tarus.User.DataAccess.Sql
             using (var objDb = new ObjectDb("AdminSelByGroupID"))
             {
                 var param = new Hashtable();
-                param.Add("groupid", Convert.ToInt32(ConfigurationManager.AppSettings["U3GroupId"]));
+                string group = AppSession.IsU3Account ? ConfigurationManager.AppSettings["U3GroupId"].ToString() : ConfigurationManager.AppSettings["AllowedGroupsAccess"].ToString();
+                param.Add("groupid", group);  
                 objDb.AssignParamValues(param);
                 var dataSet = objDb.ExecuteDataSet();
                 return dataSet.Tables.Count > 0 ? dataSet.Tables[0] : null;
@@ -76,7 +78,8 @@ namespace Fanex.Tarus.User.DataAccess.Sql
                 {"userid", userId},
                 {"username", userName},
                 {"userpwd", password},
-                {"custid", 0}
+                {"custid", 0},
+                {"system", ConfigurationManager.AppSettings["U3GroupName"].ToString()}
             };
             using (ObjectDb objDB = new ObjectDb("Con_AdminIns"))
             {
@@ -132,6 +135,7 @@ namespace Fanex.Tarus.User.DataAccess.Sql
                 if (postParam.Name == "lastname" && postParam.Value == null) postParam.Value = string.Empty;
                 param.Add(postParam.Name, postParam.Value);
             }
+            param.Add("system", ConfigurationManager.AppSettings["U3GroupName"].ToString());
             using (ObjectDb objDB = new ObjectDb("Con_AdminUpd"))
             {
                 param.Add("userid", AppSession.AccId);
@@ -157,6 +161,7 @@ namespace Fanex.Tarus.User.DataAccess.Sql
                 param.Add("oldmempolicys", oldMemberPolicies);
                 param.Add("userid", AppSession.AccId);
                 param.Add("custid", custId);
+                param.Add("system", ConfigurationManager.AppSettings["U3GroupName"].ToString());
                 param.Add("language", "E");
                 param.Add("errcode", 0);
                 param.Add("errmsg", string.Empty);
@@ -220,6 +225,7 @@ namespace Fanex.Tarus.User.DataAccess.Sql
                 param.Add("custid", id);
                 param.Add("language", "E");
                 param.Add("userid", AppSession.AccId);
+                param.Add("system", ConfigurationManager.AppSettings["U3GroupName"].ToString());
                 param.Add("errcode", 0);
                 param.Add("errmsg", string.Empty);
 
@@ -265,7 +271,7 @@ namespace Fanex.Tarus.User.DataAccess.Sql
                 param.Add("userid", AppSession.AccId);
                 param.Add("errcode", 0);
                 param.Add("errmsg", string.Empty);
-
+                param.Add("system", ConfigurationManager.AppSettings["U3GroupName"].ToString());
                 objDB.AssignParamValues(param);
                 objDB.ExecuteNonQuery();
 

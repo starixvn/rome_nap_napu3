@@ -9,6 +9,9 @@
 
 namespace Fanex.Tarus.User.Entities
 {
+    /// <summary>
+    /// The class of UserGroup.
+    /// </summary>
     public class UserGroup
     {
         public int GroupId { get; set; }

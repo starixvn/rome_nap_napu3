@@ -24,6 +24,7 @@ namespace Fanex.Tarus.BetList.Controller
     using Sunplus.Accounting.Core.Common;
 
     using DNAide.Core;
+    using Sunplus.Accounting.Core.Helper;
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
@@ -40,7 +41,7 @@ namespace Fanex.Tarus.BetList.Controller
         /// Betlist by refno
         /// </summary>
         /// <returns></returns>
-        
+
         public ActionResult BetListByRefNo_Main()
         {
             return View("~/Views/BetList/BetListByRefNo/Index.cshtml");
@@ -52,35 +53,58 @@ namespace Fanex.Tarus.BetList.Controller
         /// </summary>
         /// <param name="CustID"></param>
         /// <returns></returns>
-       
+
         public ActionResult BetListByCustInfo(int CustID)
         {
             ViewBag.CustID = CustID;
             var dateTmp = new DateTime(0001, 1, 1);
             DateTime fromDate = CastAide.AsDateTime(AppSession.GetSession(System.Web.HttpContext.Current.Session, "FROM_DATE"));
-            DateTime toDate = CastAide.AsDateTime(AppSession.GetSession(System.Web.HttpContext.Current.Session, "TO_DATE")) ;
+            DateTime toDate = CastAide.AsDateTime(AppSession.GetSession(System.Web.HttpContext.Current.Session, "TO_DATE"));
             ViewBag.FromDate = fromDate == dateTmp ? DateTime.Today.AddDays(-1) : fromDate;
             ViewBag.ToDate = toDate == dateTmp ? DateTime.Today : toDate;
             return View("~/Views/BetList/BetlistByCustInfo/Index.cshtml");
         }
 
         /// <summary>
-        /// Render partial detail for  Customer Info -  BetList Tab with date range
+        /// Render partial detail for  Customer Info -  BetList Tab with date range.
         /// </summary>
-        /// <param name="CustID"></param>
-        /// <param name="FromDate"></param>
-        /// <param name="ToDate"></param>
-        /// <param name="Bettype"></param>
-        /// <param name="PageSize"></param>
-        /// <param name="PageIndex"></param>
-        /// <param name="IsCache"></param>
+        /// <param name="CustID">The customer identifier.</param>
+        /// <param name="FromDate">From date.</param>
+        /// <param name="ToDate">To date.</param>
+        /// <param name="Bettype">The bettype.</param>
+        /// <param name="PageSize">Size of the page.</param>
+        /// <param name="PageIndex">Index of the page.</param>
+        /// <param name="IsCache">If set to <c>true</c> [is cache].</param>
         /// <returns></returns>
+        /// <exception cref="System.ArgumentException">CustID isn't valid.</exception>
         [SmartPunterFilter(SmartPunterFilter.AuthenticationType.Read)]
-        public ActionResult GetBetListByCustInfo_DateRange(int CustID, DateTime FromDate, DateTime ToDate, int Bettype, int PageSize, int PageIndex, bool IsCache)
+        public ActionResult GetBetListByCustInfo_DateRange(
+            int CustID,
+            DateTime FromDate,
+            DateTime ToDate,
+            int Bettype,
+            int PageSize,
+            int PageIndex,
+            bool IsCache)
         {
+            if (AppSession.CustID != CustID)
+            {
+                throw new ArgumentException("CustID isn't valid.");
+            }
+
             int quantity = 0;
-            PageIndex= PageIndex <= 0 ? 1 : PageIndex;
-            var result = _betListService.GetBetListByCustInfo_DateRange(CustID, FromDate, ToDate, Bettype, PageSize, PageIndex, ref quantity, IsCache);
+            PageIndex = PageIndex <= 0 ? 1 : PageIndex;
+            var result = _betListService.GetBetListByCustInfo_DateRange(
+                CustID,
+                FromDate,
+                ToDate,
+                Bettype,
+                PageSize,
+                PageIndex,
+                ref quantity,
+                IsCache,
+                (AppSession.IsU3Account && !AppSession.IsU3SpecialAccount)
+                || (AppSession.IsU3SpecialAccount && !Utils.IsU3SpecialAccount(CustID)));
             ViewBag.Quantity = quantity;
             ViewBag.NumberBegining = (PageSize * (PageIndex - 1)) + 1;
 
@@ -92,16 +116,6 @@ namespace Fanex.Tarus.BetList.Controller
             AppSession.AddSession(System.Web.HttpContext.Current.Session, "FROM_DATE", FromDate);
             AppSession.AddSession(System.Web.HttpContext.Current.Session, "TO_DATE", ToDate);
             return PartialView("~/Views/BetList/BetlistByCustInfo/Betlist/_BetList.cshtml", result);
-        }
-
-
- 
-        public ActionResult BetListByIP(bool IsLink, string FromDate, string IP)
-        {
-            ViewBag.FromDate = FromDate;
-            ViewBag.Ip= IP;
-            ViewBag.IsLink = IsLink;
-            return View("~/Views/BetList/BetListByIP/Index.cshtml");
         }
     }
 }

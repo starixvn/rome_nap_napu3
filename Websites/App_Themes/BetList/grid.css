@@ -6,7 +6,7 @@
 
 .gridtitle th
 {
-	border:1px solid #7C98A4;
+	border:1px solid #a2a2a2;
 	vertical-align:middle;
 }
 
@@ -18,9 +18,9 @@
 
 .gridrowdata td
 {
-	border-left:1px solid #7C98A4;
-	border-right:1px solid #7C98A4;
-	border-bottom:1px solid #7C98A4;
+	border-left:1px solid #a2a2a2;
+	border-right:1px solid #a2a2a2;
+	border-bottom:1px solid #a2a2a2;
 }
 
 .gridrow tr

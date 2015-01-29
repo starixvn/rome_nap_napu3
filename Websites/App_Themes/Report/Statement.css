@@ -1,4 +1,24 @@
-﻿.f3green
+﻿@font-face {
+    font-family: Roboto;
+    src: url(../Fonts/Roboto/Roboto-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Roboto Light";
+    src: url(../Fonts/Roboto/Roboto-Light.ttf);
+}
+
+@font-face {
+    font-family: "Roboto Bold";
+    src: url(../Fonts/Roboto/Roboto-Bold.ttf);
+}
+
+@font-face {
+    font-family: "Roboto Medium";
+    src: url(../Fonts/Roboto/Roboto-Medium.ttf);
+}
+
+.f3green
 {
 	text-align:center;
 	color:#adff2f;		
@@ -35,5 +55,23 @@ font-size:12px;
 }
 .text_red
 {
-	color:#EE0000;
+	color:#da0404;
 	}
+
+#titleStatement,
+#titleDetail
+{
+	color:#ff7200;    
+}
+
+#lkStatement,
+#titleStatement
+{
+    margin-left: 5px;
+}
+
+#rptMemberStatement .remark,
+#statementCotent .remark
+{
+    font-family:"Roboto Medium",Tahoma,Arial,helvetica,sans-serif;
+}

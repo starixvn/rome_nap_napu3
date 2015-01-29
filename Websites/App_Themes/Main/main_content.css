@@ -72,7 +72,7 @@ input[type="file"] >input[type="button"]::-moz-focus-inner{border:none}
     width: 0px;
     height: 100%;
     display:none;
-    border-right: 1px solid #000000;  
+    border-right: 1px solid #c8cbd4;  
 }
 .rightcontent
 {

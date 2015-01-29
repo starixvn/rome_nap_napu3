@@ -105,7 +105,7 @@ Core.registerWeekPicker = function () {
                 showOn: null,
                 buttonImageOnly: true,
                 buttonText: "",
-                //buttonImage: "../App_Themes/Images/calendar1.gif",
+                //buttonImage: "../App_Themes/Images/calendar1.png",
                 firstDay: 1,
                 showOtherMonths: true,
                 selectOtherMonths: true,

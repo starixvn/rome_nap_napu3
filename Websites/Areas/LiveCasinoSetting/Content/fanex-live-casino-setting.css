@@ -1,7 +1,27 @@
 ﻿/* File Created: July 18, 2014 */
+@font-face {
+    font-family: Roboto;
+    src: url(../../../App_Themes/Fonts/Roboto/Roboto-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Roboto Light";
+    src: url(../../../App_Themes/Fonts/Roboto/Roboto-Light.ttf);
+}
+
+@font-face {
+    font-family: "Roboto Bold";
+    src: url(../../../App_Themes/Fonts/Roboto/Roboto-Bold.ttf);
+}
+
+@font-face {
+    font-family: "Roboto Medium";
+    src: url(../../../App_Themes/Fonts/Roboto/Roboto-Medium.ttf);
+}
+
 body
 {
-    font-family: Tahoma;
+    font-family: "Roboto Light", Tahoma;
     font-size: 12px;
 }
 
@@ -18,8 +38,8 @@ select:disabled
 
 .edit-setting-livecs
 {
-    width: 850px;
-    padding: 10px 0px 0px 10px;
+    width: 100%;
+    padding: 0px;
 }
 
 .edit-setting-livecs .left
@@ -46,13 +66,13 @@ select:disabled
 {
     font-weight: bold;
     color: White;
-    background-color: #587281;
+    background-color: #576b9d;
     padding-left: 10px;
 }
 
 .edit-setting-livecs table, .edit-setting-livecs table tr, .edit-setting-livecs table td
 {
-    border: 1px solid #7c98a4;
+    border: 1px solid #a2a2a2;
     border-collapse: collapse;
 }
 
@@ -109,7 +129,7 @@ select:disabled
 
 .edit-setting-livecs .update-setting-accounting-submit
 {
-    background: url("Images/btn-update-setting.jpg") no-repeat scroll center center transparent;
+    background: none no-repeat scroll center center #3a456d;
     border: 0 none;
     color: #FFFFFF;
     cursor: pointer;
@@ -118,7 +138,13 @@ select:disabled
     height: 24px;
     margin-top: 6px;
     text-align: center;
-    width: 122px;
+    width: 80px;
+    border-radius: 2px;
+}
+
+.edit-setting-livecs .update-setting-accounting-submit:hover
+{
+    background-color:  #4d5f8c;
 }
 
 .edit-setting-livecs .update-setting-agency-submit
@@ -177,7 +203,7 @@ select:disabled
 /*PT Style*/
 .pt-setting table, .pt-setting tr, .pt-setting td, .pt-setting th
 {
-    border: 1px solid #587281;
+    border: 1px solid #a2a2a2;
     border-collapse: collapse;
 }
 
@@ -193,8 +219,8 @@ label.clearfix
 }
 .pt-container .pt-title
 {
-    border-left: 1px solid #587281;
-    border-right: 1px solid #587281;
+    border-left: 1px solid #a2a2a2;
+    border-right: 1px solid #a2a2a2;
 }
 .pt-container select
 {
@@ -367,9 +393,7 @@ label.clearfix
 {
     float: left;
     display: inline-block;
-    height: 23px;
-    width: 24px;
-    background: url(Images/left-header.png) no-repeat right bottom;
+    height: 23px; 
 }
 
 .setting-header-accounting .setting-header-text
@@ -378,18 +402,17 @@ label.clearfix
     height: 23px;
     min-width: 120px;
     font-weight: bold;
-    color: #fff;
-    text-align: left;
+    color: #000;
+    text-align: center;
     padding-top: 3px;
-    background: url(Images/center-header.png) repeat-x bottom;
+    font-size: 16px;
+    font-family: "Roboto Medium";
 }
 
 .setting-header-accounting .setting-header-last-icon
 {
     float: left;
-    background: url(Images/right-header.png) no-repeat right bottom;
     height: 23px;
-    width: 5px;
 }
 
 .setting-header-agency .setting-header-text
@@ -461,7 +484,7 @@ label.clearfix
 .member-win-limit
 {
     cursor: pointer;
-    color: Blue;
+    color: #4b649b;
 }
 
 .current-win-limit
@@ -474,4 +497,22 @@ label.clearfix
 .text-red
 {
     color: Red;
+}
+
+.setting-header-accounting 
+{
+    border-bottom: 1px solid #3a456d;
+    margin-left: 15px;
+    margin-bottom: 10px;
+    padding: 0px;
+    width: 99%;
+}
+
+#tblCustInfo,
+#tblPtComSetting,
+#tblMaxWinLimit,
+#tblGameSetting,
+.warning-result
+{
+    width: 850px;
 }

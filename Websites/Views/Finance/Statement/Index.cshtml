@@ -28,7 +28,7 @@
                     </td>
                 </tr>
             </table>
-            <div id="filter" class="maincontent_box" style="border: none !important; width: 100%;">
+            <div id="filter" class="maincontent_box">
                 <table style="width: 100%">
                     <tr>
                         <td style="width: 85px;">
@@ -70,7 +70,7 @@
                         <td style="width: 110px;">
                             <input id="txtfromdate" class="txt" value="@DateTime.Now.AddDays(-1).ToString("MM/dd/yyyy")" type="text" size="13" readonlyname="fdate" style="width: 80px;" />
                             <input onclick="return false;" alt="" id="fdateTrigger" title="Date selector" class="img-date-selector"
-                                height="17" src="../App_Themes/Images/calendar.gif" width="18" type="image" />
+                                height="18" src="../App_Themes/Images/calendar.png" width="16" type="image" />
                         </td>
                         <td style="width: 43px;">
                             To Date:
@@ -78,7 +78,7 @@
                         <td style="width: 110px;">
                             <input id="txttodate" class="txt" value="@DateTime.Now.ToString("MM/dd/yyyy")" type="text" size="13" readonlyname="tdate" style="width: 80px;" />
                             <input onclick="return false;" alt="" id="tdateTrigger" title="Date selector" class="img-date-selector"
-                                height="17" src="../App_Themes/Images/calendar.gif" width="18" type="image" />
+                                height="18" src="../App_Themes/Images/calendar.png" width="16" type="image" />
                         </td>
                         <td>
                             <input class="btn" type="button" id="btnReport" value="Submit" onclick="financeStatement.getFinanceStatement();" />
@@ -96,12 +96,6 @@
                     <div class="free-cell free-top-left">
                         <table class="grid-fixed-table free-cell-top-left">
                             <thead>
-                                <tr class="title">
-                                    <th colspan="3">
-                                        <div class="table-cell" style="height: 17px;">
-                                            &nbsp;</div>
-                                    </th>
-                                </tr>
                                 <tr>
                                     <th>
                                         <div class="table-cell" style="width: 80px; height: 34px;">
@@ -119,12 +113,6 @@
                         <div class="row_header row-headers-background">
                             <table id="tbstatementrowheader" class="grid-fixed-table row_header_content">
                                 <thead>
-                                    <tr class="title">
-                                        <th colspan="3">
-                                            <div class="table-cell" style="height: 17px;">
-                                                &nbsp;</div>
-                                        </th>
-                                    </tr>
                                     <tr>
                                         <th>
                                             <div class="table-cell" style="width: 80px; height: 34px;">
@@ -145,26 +133,6 @@
                         <div class="header-container">
                             <table class="grid-fixed-table col_header_content">
                                 <thead>
-                                    <tr class="title">
-                                        <th colspan="3">
-                                            <div class="table-cell" style="height: 17px;">
-                                                &nbsp;</div>
-                                        </th>
-                                        <th colspan="7">
-                                            <div class="table-cell" style="height: 17px;">
-                                                &nbsp;</div>
-                                        </th>
-                                        <th>
-                                            <div style="height: 17px;">
-                                                <input type="button" value="Verify" class="verified" onclick="financeStatement.VerifyTrans('btnVerify');"
-                                                    id="btnVerify">
-                                            </div>
-                                        </th>
-                                        <th colspan="2">
-                                            <div class="table-cell" style="height: 17px;">
-                                                &nbsp;</div>
-                                        </th>
-                                    </tr>
                                     <tr>
                                         <th>
                                             <div class="table-cell" style="width: 80px; height: 34px;">
@@ -207,19 +175,6 @@
                                             <div class="table-cell" style="width: 80px; height: 34px;">
                                                 Checked time</div>
                                         </th>
-                                        <th>
-                                            <div class="table-cell" style="width: 55px; height: 34px;">
-                                                <input type="checkbox" onclick="financeStatement.itemAllClicked()" id="chkAll">
-                                            </div>
-                                        </th>
-                                        <th>
-                                            <div class="table-cell" style="width: 55px; height: 34px;">
-                                                Action</div>
-                                        </th>
-                                        <th>
-                                            <div class="table-cell" style="width: 55px; height: 34px;">
-                                                Reverse</div>
-                                        </th>
                                     </tr>
                                 </thead>
                             </table>
@@ -229,28 +184,6 @@
                         <div class="content-container">
                             <table id="tbstatement" class="grid-fixed-table col_header_content">
                                 <thead>
-                                    <tr>
-                                        <th colspan="3">
-                                            <div class="table-cell" style="height: 17px;">
-                                                &nbsp;</div>
-                                        </th>
-                                        <th colspan="7">
-                                            <div class="table-cell" style="height: 17px;">
-                                                &nbsp;</div>
-                                        </th>
-                                        <th>
-                                            <div class="table-cell" style="height: 17px;">
-                                                &nbsp;</div>
-                                        </th>
-                                        <th>
-                                            <div class="table-cell" style="height: 17px;">
-                                                &nbsp;</div>
-                                        </th>
-                                        <th>
-                                            <div class="table-cell" style="height: 17px;">
-                                                &nbsp;</div>
-                                        </th>
-                                    </tr>
                                     <tr>
                                         <th>
                                             <div class="table-cell" style="width: 80px; height: 34px;">
@@ -291,18 +224,6 @@
                                         </th>
                                         <th rowspan="2">
                                             <div class="table-cell" style="width: 80px; height: 34px;">
-                                                &nbsp;</div>
-                                        </th>
-                                        <th>
-                                            <div class="table-cell" style="width: 55px; height: 34px;">
-                                                &nbsp;</div>
-                                        </th>
-                                        <th>
-                                            <div class="table-cell" style="width: 55px; height: 34px;">
-                                                &nbsp;</div>
-                                        </th>
-                                        <th>
-                                            <div class="table-cell" style="width: 55px; height: 34px;">
                                                 &nbsp;</div>
                                         </th>
                                     </tr>
