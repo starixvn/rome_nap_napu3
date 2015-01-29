@@ -80,6 +80,8 @@
     <Setting Key="Acc_BetList_SelMatchResult" SpName="Acc_BetList_SelMatchResult" DbName="DBAGE.bodb02.bodbAdminNet"  />
     <Setting Key="Age_BetList_SelMatchResultParlay" SpName="Age_BetList_SelMatchResultParlay" DbName="DBAGE.bodb02.bodbAdminNet"  />
     <Setting Key="Age_BetList_SelMatchResultFinance" SpName="Age_BetList_SelMatchResultFinance" DbName="DBAGE.bodb02.bodbAdminNet"  />
+    <Setting Key="Acc_BetList_SelMatchResult2" SpName="Acc_BetList_SelMatchResult2" DbName="DBACC.bodb02.bodbAdminNet"  />
+    <Setting Key="Acc_BetList_HRSelMatchResult2" SpName="Acc_BetList_HRSelMatchResult2" DbName="DBACC.bodb02.bodbAdminNet"  />
     <Setting Key="SelMatchResultNumberGame" SpName="Age_BetList_SelMatchResultNumberGame" DbName="DBAGE.bodb02.bodbAdminNet"  />
 
     <Setting Key="BetList_CustInfo_SystemParlay" SpName="Acc_BetlistCombinationParlay_ByTransID" DbName="DBAGE.bodb02.bodbAdminNet"  />
@@ -184,7 +186,7 @@
 
   <Function Name="Customer">
     <Setting Key="CustomerSelStatus" SpName="Acc_CustomerSelStatus" DbName="DBAGE.bodb02.bodbAdminNet"  />
-    <Setting Key="SelAllInfo" SpName="Acc_CustomerSelAllInfo" DbName="DBAGE.bodb02.bodbAdminNet"  />
+    <Setting Key="SelAllInfo" SpName="Acc_CustomerSelAllInfo_xtest" DbName="DBAGE.bodb02.bodbAdminNet"  />
     <Setting Key="Acc_CustomerSelSiteByUserName" SpName="Acc_CustomerSelSiteByUserName" DbName="DBAGE.bodb02.bodbAdminNet"  />
     <Setting Key="CustomerSelDownLineList" SpName="Acc_CustomerSelList" DbName="DBAGE.bodb02.bodbAdminNet"  />
     <Setting Key="CustomerSelUserInfo" SpName="Acc_CustomerSelUserInfo" DbName="DBAGE.bodb02.bodbAdminNet"  />
