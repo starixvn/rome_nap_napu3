@@ -472,27 +472,25 @@ function left_Tab2_Click(item) {
     $("#left_tab2 .current").removeClass("current");
     $("#" + item.id).addClass("current");
 
-    for (var i = 1; i <= 4; i++) {
+    for (var i = 1; i <= 5; i++) {
         $("#box_05_content_" + i).addClass("hidden");
     }
 
     if (item.id.indexOf("_1") >= 0) {
         $("#box_05_content_1").removeClass("hidden");
-
-
     }
     else if (item.id.indexOf("_2") >= 0) {
         $("#box_05_content_2").removeClass("hidden");
-
     }
     else if (item.id.indexOf("_3") >= 0) {
         $("#box_05_content_3").removeClass("hidden");
-
+    }
+    else if (item.id.indexOf("_4") >= 0) {
+        $("#box_05_content_4").removeClass("hidden");
+        $('#pane21').jScrollPane({ showArrows: true, scrollbarWidth: 15, arrowSize: 16 });
     }
     else {
-        $("#box_05_content_4").removeClass("hidden");
-
-        $('#pane21').jScrollPane({ showArrows: true, scrollbarWidth: 15, arrowSize: 16 });
+        $("#box_05_content_5").removeClass("hidden");        
     }
 }
 

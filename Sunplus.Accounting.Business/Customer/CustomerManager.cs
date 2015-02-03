@@ -200,6 +200,8 @@ namespace Sunplus.Accounting.Business.Customer
                     var customerService = new CustomerService();
                     var ds = customerService.GetCustomerInfo(userName, AppSession.SYSTEM);
 
+
+
                     if (ds == null || ds.ResultSet.Tables.Count == 0)
                     {
                         //return AlertMessage.GetMsg(ResourceExtension.GetResourceValue(ResourceExtension.Resources.Language, "thereisnodata"), AlertMessage.MsgType.Error);
@@ -237,6 +239,7 @@ namespace Sunplus.Accounting.Business.Customer
                             }
                             else
                             {
+
                                 DataRow row2 = ds.ResultSet.Tables[1].Rows[0];
                                 DataRow row3 = null;
                                 if (ds.ResultSet.Tables.Count > 2)
@@ -279,6 +282,7 @@ namespace Sunplus.Accounting.Business.Customer
                                     return arrcontent;
                                 }
 
+                              
 
                                 string firstname = Convert.IsDBNull(row1["firstname"]) ? "" : row1["firstname"].ToString();
                                 string lastname = Convert.IsDBNull(row1["lastname"]) ? "" : row1["lastname"].ToString();
@@ -457,6 +461,7 @@ namespace Sunplus.Accounting.Business.Customer
 
                                 if (roleId <= UserInfo.ROLE_SUPER)
                                 {
+                                  
                                     string name = "";
                                     string fullname = firstname + " - " + lastname;
                                     //name=fullname.Length < 26 ? fullname : fullname.Substring(0,26) + "...";
@@ -473,12 +478,23 @@ namespace Sunplus.Accounting.Business.Customer
                                     if (roleId == 1)
                                     {
                                         TemplateHandler.Assign(ref htmlcontent, "{memberClass}", "memberClass");
-                                        TemplateHandler.Assign(ref htmlcontent, "{onclickUName}", "onclick=\"parent.submitSearch('" + userName + "');\" ");
+                                        TemplateHandler.Assign(ref htmlcontent, "{onclickUName}", "onclick=\"parent.submitSearch('" + userName + "');\" ");                                       
+                                        TemplateHandler.RemoveBlock(ref htmlcontent, "alphareportcontent");
+                                        TemplateHandler.RemoveBlock(ref htmlcontent, "alphareport");                                       
                                     }
                                     else
                                     {
                                         TemplateHandler.Assign(ref htmlcontent, "{cursorhand}", "");
                                         TemplateHandler.Assign(ref htmlcontent, "{onclickUName}", " ");
+
+                                        if (!Permissions.HasPermission("ViewInfo") || isInternalUser)
+                                        {
+                                            TemplateHandler.RemoveBlock(ref htmlcontent, "alphareportcontent");
+                                            TemplateHandler.RemoveBlock(ref htmlcontent, "alphareport");
+                                        }
+                                        else {
+                                            // Assign Alpha report url
+                                        }
                                     }
 
                                     TemplateHandler.Assign(ref htmlcontent, "{statusClass}", statusClass);
@@ -1050,6 +1066,7 @@ namespace Sunplus.Accounting.Business.Customer
                         }
                     }
                 }
+
 
                 arrcontent.Add("strcontent", htmlcontent);
                 return arrcontent;
