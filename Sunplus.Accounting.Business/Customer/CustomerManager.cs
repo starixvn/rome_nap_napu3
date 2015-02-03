@@ -493,7 +493,20 @@ namespace Sunplus.Accounting.Business.Customer
                                             TemplateHandler.RemoveBlock(ref htmlcontent, "alphareport");
                                         }
                                         else {
-                                            // Assign Alpha report url
+                                            switch (roleId)
+                                            {
+                                                case 4:
+                                                    TemplateHandler.Assign(ref htmlcontent, "{Level}", "Super");
+                                                    break;
+                                                case 3:
+                                                    TemplateHandler.Assign(ref htmlcontent, "{Level}", "Master");
+                                                    break;
+                                                case 2:
+                                                    TemplateHandler.Assign(ref htmlcontent, "{Level}", "Agent");
+                                                    break;
+                                                default:
+                                                    break;
+                                            }
                                         }
                                     }
 
