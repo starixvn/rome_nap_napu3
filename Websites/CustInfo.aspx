@@ -70,10 +70,6 @@
               $('#pane2').jScrollPane({ showArrows: true, scrollbarWidth: 15, arrowSize: 16 });
               if (custid != null && roleid != null) {
                   ajaxGetDownlinelist(custid, roleid, 1);
-                  window.setTimeout(function () {
-                      ajaxOnlinelist(custid);
-                  }, 5000);
-
               }
               try { parent.jQuery.unblockUI(); } catch (e) { }
               $('.button_left02').click(function () {
@@ -189,12 +185,10 @@
         function pageritemclick(pageindex) {
             ajaxGetDownlinelist(custid, roleid, pageindex, "")
         }
-
-
+        
         function ajaxOnlinelist(custid) {
-
             var params = '{"custId":' + custid + '}';
-            $.ajax({
+            window.loadOnlineListRequest = $.ajax({
                 type: "POST",
                 url: "Services/WCF/Customer/ServiceCustomerInfo.svc/GenOnlineList",
                 contentType: "application/json; charset=utf-8",
@@ -206,6 +200,9 @@
                     var t = setTimeout(function () {
                         $('#pane21').jScrollPane({ showArrows: true, scrollbarWidth: 15, arrowSize: 16 });
                     }, 1000);
+
+                    window.loadOnlineListRequest = null;
+                    window.isLoadedOnlineList = true;
                 }
             });
         }
