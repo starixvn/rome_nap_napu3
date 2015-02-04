@@ -219,10 +219,17 @@ html {
 .bg_eb2 {
     background-color: #F7F0E4;
 }
-.positive {
+.positive,
+.footer-container .event .positive  {
     color: #2673CE;
     font-weight: 700;
 }
+
+.footer-container .positive 
+{
+    color: #FFFFFF;
+}
+
 .blue
 {
     color: #2673CE;
