@@ -115,6 +115,7 @@
                     <li id="left_tab2_2" onclick="left_Tab2_Click(this)"><a href="javascript:;"><span>Detail</span></a></li>
                     <li id="left_tab2_3" onclick="left_Tab2_Click(this)"><a href="javascript:;"><span>Login</span></a></li>
                     <li id="left_tab2_4" onclick="left_Tab2_Click(this)"><a href="javascript:;"><span>Online List</span></a></li>
+                    <!--alphareport--><li id="left_tab2_5" onclick="left_Tab2_Click(this)"><a href="javascript:;"><span>Report</span></a></li><!--/alphareport-->
                 </ul>
             </div>
         </div>
@@ -171,6 +172,23 @@
             </div>
         </div>
         <!--/BoxSettingDetailLoginOnlineList-->
+        <!--alphareportcontent-->
+        <div class="tab_left_content hidden" id="box_05_content_5">
+            <div>
+                <div id="reportWL" class="tab_left_content">
+                    <a class="button_left02" target="centerFr" href="InternalView.aspx?accId={AccId}&custName={UserName}&accKey={AccKey}&roleId={RoleId}&reportKey=reportWL&isViewSportbook={isShowSportbook}&chalengeStr={RndStr}">{Report-Level} Win Loss</a>
+                </div>
+                <div id="reportWLD" class="tab_left_content">
+                    <a class="button_left02" target="centerFr" href="InternalView.aspx?accId={AccId}&custName={UserName}&accKey={AccKey}&roleId={RoleId}&reportKey=reportWLD&isViewSportbook={isShowSportbook}&chalengeStr={RndStr}">{Report-Level} Win Loss Detail</a>
+                </div>
+                <!--reportMatchWL-->
+                <div id="reportMatchWL" class="tab_left_content">
+                    <a class="button_left02" target="centerFr" href="InternalView.aspx?accId={AccId}&custName={UserName}&accKey={AccKey}&roleId={RoleId}&reportKey=reportMatchWL&isViewSportbook={isShowSportbook}&chalengeStr={RndStr}">Match Win Loss</a>
+                </div>
+                <!--/reportMatchWL-->
+            </div>
+        </div>
+        <!--/alphareportcontent-->
         <div class="spacing">
         </div>
     </div>
@@ -185,6 +203,10 @@ target="_blank">
 <input type="hidden" id="accKey" name="accKey" value="{AccKey}" />
 <input type="hidden" id="custName" name="custName" value="" />
 <input type="hidden" id="accId" name="accId" value="{AccId}" />
+<input type="hidden" id="roleId" name="roleId" value="{RoleId}" />
+<input type="hidden" id="reportKey" name="reportKey" value="" />
+<input type="hidden" id="isViewSportbook" name="isViewSportbook" value="" />
+
 <!--checkbox-oldvalue-->
 <input type="hidden" id="chkOldValueSATote" name="chkOldValueSATote" value="{chkSATote}" />
 <input type="hidden" id="chkOldValueUKTote" name="chkOldValueUKTote" value="{chkUKTote}" />

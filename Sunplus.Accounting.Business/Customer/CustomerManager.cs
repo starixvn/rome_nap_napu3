@@ -5,13 +5,13 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Security;
 using DNAide.Core;
 using DNAide.Data;
 using DNAide.Utils;
 using DNAide.Web;
-using Fanex.Common;
 using Fanex.CustomerSetting.Module.KenoStatus.Configurations;
 using Fanex.CustomerSetting.Module.ProgressiveBonus.Configurations;
 using Fanex.CustomerSetting.Module.ProgressiveBonus.Criteria;
@@ -20,8 +20,6 @@ using Fanex.LiveCasino.CoreSetting.Services;
 using Fanex.Tarus.DataAccess.Implement.Customer;
 using Fanex.Tarus.Security.Permission;
 using IBCUtils.Objects;
-using Sunplus.Accounting.Business.Criteria;
-using Sunplus.Accounting.Business.Customer.ConfigureDirectAccount;
 using Sunplus.Accounting.Business.CustSetting;
 using Sunplus.Accounting.Business.Security;
 using Sunplus.Accounting.Core.Common;
@@ -200,6 +198,8 @@ namespace Sunplus.Accounting.Business.Customer
                     var customerService = new CustomerService();
                     var ds = customerService.GetCustomerInfo(userName, AppSession.SYSTEM);
 
+
+
                     if (ds == null || ds.ResultSet.Tables.Count == 0)
                     {
                         //return AlertMessage.GetMsg(ResourceExtension.GetResourceValue(ResourceExtension.Resources.Language, "thereisnodata"), AlertMessage.MsgType.Error);
@@ -237,6 +237,7 @@ namespace Sunplus.Accounting.Business.Customer
                             }
                             else
                             {
+
                                 DataRow row2 = ds.ResultSet.Tables[1].Rows[0];
                                 DataRow row3 = null;
                                 if (ds.ResultSet.Tables.Count > 2)
@@ -278,6 +279,7 @@ namespace Sunplus.Accounting.Business.Customer
                                     arrcontent.Add("strcontent", htmlcontent);
                                     return arrcontent;
                                 }
+
 
 
                                 string firstname = Convert.IsDBNull(row1["firstname"]) ? "" : row1["firstname"].ToString();
@@ -457,6 +459,7 @@ namespace Sunplus.Accounting.Business.Customer
 
                                 if (roleId <= UserInfo.ROLE_SUPER)
                                 {
+
                                     string name = "";
                                     string fullname = firstname + " - " + lastname;
                                     //name=fullname.Length < 26 ? fullname : fullname.Substring(0,26) + "...";
@@ -474,11 +477,36 @@ namespace Sunplus.Accounting.Business.Customer
                                     {
                                         TemplateHandler.Assign(ref htmlcontent, "{memberClass}", "memberClass");
                                         TemplateHandler.Assign(ref htmlcontent, "{onclickUName}", "onclick=\"parent.submitSearch('" + userName + "');\" ");
+                                        TemplateHandler.RemoveBlock(ref htmlcontent, "alphareportcontent");
+                                        TemplateHandler.RemoveBlock(ref htmlcontent, "alphareport");
                                     }
                                     else
                                     {
                                         TemplateHandler.Assign(ref htmlcontent, "{cursorhand}", "");
                                         TemplateHandler.Assign(ref htmlcontent, "{onclickUName}", " ");
+
+                                        if (!Permissions.HasPermission("ViewInfo") || isInternalUser)
+                                        {
+                                            TemplateHandler.RemoveBlock(ref htmlcontent, "alphareportcontent");
+                                            TemplateHandler.RemoveBlock(ref htmlcontent, "alphareport");
+                                        }
+                                        else
+                                        {
+                                            switch (roleId)
+                                            {
+                                                case 4:
+                                                    TemplateHandler.Assign(ref htmlcontent, "{Report-Level}", "Master");
+                                                    break;
+                                                case 3:
+                                                    TemplateHandler.Assign(ref htmlcontent, "{Report-Level}", "Agent");
+                                                    break;
+                                                case 2:
+                                                    TemplateHandler.Assign(ref htmlcontent, "{Report-Level}", "Member");
+                                                    break;
+                                                default:
+                                                    break;
+                                            }
+                                        }
                                     }
 
                                     TemplateHandler.Assign(ref htmlcontent, "{statusClass}", statusClass);
@@ -498,6 +526,11 @@ namespace Sunplus.Accounting.Business.Customer
                                     TemplateHandler.Assign(ref htmlcontent, "{AccKey}", accKey);
                                     TemplateHandler.Assign(ref htmlcontent, "{AccId}", AppSession.AccId.ToString());
                                     TemplateHandler.Assign(ref htmlcontent, "{InternalAgent}", WebSettings.InternalAgentUrl);
+                                    TemplateHandler.Assign(ref htmlcontent, "{isShowSportbook}", IsShowSportbook(isU3SpecialCustomer, isInternalUser, custId));
+                                    if (roleId != 2)
+                                    {
+                                        TemplateHandler.RemoveBlock(ref htmlcontent, "reportMatchWL");
+                                    }
 
                                     //Render Enabled
                                     if (isOpenStatus)
@@ -1051,6 +1084,7 @@ namespace Sunplus.Accounting.Business.Customer
                     }
                 }
 
+
                 arrcontent.Add("strcontent", htmlcontent);
                 return arrcontent;
             }
@@ -1226,7 +1260,7 @@ namespace Sunplus.Accounting.Business.Customer
                     minMaxPtRenovationUrl = "EditAgentMinMaxPt/EditAgentMinMaxPtPage?&custId=" + custId + "&uplineId=" + parentId + "&uname=" + userName;
                     minMaxPtUrl = WebSettings.IsShowCustomerSettingRenovation == 3 ? minMaxPtRenovationUrl : "Customer/v2/EditMinMaxPT.aspx?set=1&custId=" + custId + "&type=Agent";
                     //submenu3 = "<a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + minMaxPtUrl + "\");' target='centerFr'>Sport book</a>";
-                    
+
                     var agentMinMaxPT = "EditAgentMinMaxPt/EditAgentMinMaxPtPage?&custId=" + custId + "&uplineId=" + parentId + "&uname=" + userName + "&isDisplaySportbooks=false";
                     submenu3 += "<br><a class='button_left02' href='javascript:;' onclick='parent.gotoURL(\"centerFr\",\"" + agentMinMaxPT + "\");' target='centerFr'>Number Game</a>";
                     TemplateHandler.Assign(ref htmlcontent, "{contentminmax}", submenu3);
@@ -2453,6 +2487,12 @@ namespace Sunplus.Accounting.Business.Customer
             var dtLicensee = licenseeAccess.SelAllLicensee();
             bool result = dtLicensee.Select().Where(s => CastAide.AsString(s["LicenseeName"]) == siteName).Count() > 0;
             return result;
+        }
+
+        private string IsShowSportbook(bool isU3SpecialCustomer, bool isInternalUser, int custId)
+        {
+            var isShowSportbook = AppSession.IsITAccount || (AppSession.IsU3SpecialAccount && isU3SpecialCustomer) ? 1 : 0;
+            return WebUtility.HtmlEncode(Encryption.CfsEnCrypt(custId.ToString() + isShowSportbook.ToString() + Sunplus.Accounting.DataAccess.IBCDLL.SystemInfo.GetDBTime().Ticks));
         }
     }
 }

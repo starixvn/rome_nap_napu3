@@ -18,10 +18,43 @@ function ClearUsername() {
     obj('username').value = "";
     window.location.reload(true);
 }
-function LoginAgent(agentName) {
+function LoginAgent(agentName, reportKey, isViewSportbook) {
     document.AgLoginForm.custName.value = agentName;
+    document.AgLoginForm.reportKey.value = reportKey;
+    document.AgLoginForm.isViewSportbook.value = isViewSportbook;
     document.AgLoginForm.submit();
 }
+
+function OpenAgentReport(accId, custName, accKey,
+    roleId, reportKey, isViewSportbook,
+    chalengeStr) {
+    var params = 'custId=' + custid + '&' +
+            'custName=' + custName + '&' +
+            'accKey=' + accKey + '&' +
+            'roleId=' + roleId + '&' +
+            'reportKey=' + reportKey + '&' +
+            'isViewSportbook=' + isViewSportbook + '&' +
+            'chalengeStr=' + chalengeStr;
+    $.ajax({
+        type: "GET",
+        url: "InternalView.aspx",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        data: params,
+        success: function (rs) {
+            $('#centerFr').html(rs);
+        }
+    });
+}
+
+function pauseRequestForLogInAgent(accId, custName, accKey,
+    roleId, reportKey, isViewSportbook,
+    chalengeStr) {
+    if (window.activeRequest) {
+        window.activeRequest.abort();
+    }
+}
+
 function ChangeGivenCredit(ischanging) {
     try {
 
@@ -468,31 +501,39 @@ function left_Tab1_Click(item) {
     }
 }
 
+window.isLoadedOnlineList = false;
 function left_Tab2_Click(item) {
     $("#left_tab2 .current").removeClass("current");
     $("#" + item.id).addClass("current");
 
-    for (var i = 1; i <= 4; i++) {
+    for (var i = 1; i <= 5; i++) {
         $("#box_05_content_" + i).addClass("hidden");
     }
 
     if (item.id.indexOf("_1") >= 0) {
         $("#box_05_content_1").removeClass("hidden");
-
-
     }
     else if (item.id.indexOf("_2") >= 0) {
         $("#box_05_content_2").removeClass("hidden");
-
     }
     else if (item.id.indexOf("_3") >= 0) {
         $("#box_05_content_3").removeClass("hidden");
-
     }
-    else {
+    else if (item.id.indexOf("_4") >= 0) {
         $("#box_05_content_4").removeClass("hidden");
+        if (!window.isLoadedOnlineList && !window.loadOnlineListRequest) {
+            ajaxOnlinelist(custid);
+        }
 
         $('#pane21').jScrollPane({ showArrows: true, scrollbarWidth: 15, arrowSize: 16 });
+    }
+    else {
+        if (window.loadOnlineListRequest) {
+            window.loadOnlineListRequest.abort();
+            window.loadOnlineListRequest = null;
+        }
+
+        $("#box_05_content_5").removeClass("hidden");
     }
 }
 
