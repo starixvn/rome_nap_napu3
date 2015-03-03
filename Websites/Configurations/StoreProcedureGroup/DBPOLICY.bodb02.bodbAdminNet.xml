@@ -16,9 +16,9 @@
   <Function Name="User - Account Management">
     <Setting Key="GroupInfoSel" SpName="Acc_Con_GroupInfoSel" DbName="DBPOLICY.bodb02.bodbAdminNet" />
     <Setting Key="Acc_AdminGroupSel" SpName="Acc_AdminGroupSel" DbName="DBAGE.bodb02.bodbAdminNet"  />
-    <Setting Key="AdminSelByGroupID" SpName="Acc_Con_AdminNapU3SelByGroupID_xtest" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
+    <Setting Key="AdminSelByGroupID" SpName="Acc_Con_AdminNapU3SelByGroupID" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
     <Setting Key="GroupPolicySel" SpName="Acc_Con_GroupPolicySel" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
-    <Setting Key="AdminPolicySelByCustID" SpName="Acc_Con_AdminPolicySelByCustID_xtest" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
+    <Setting Key="AdminPolicySelByCustID" SpName="Acc_Con_AdminPolicySelByCustID" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
     <Setting Key="FuncInfoSelParent" SpName="Acc_Con_FuncInfoSelParent" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
     <Setting Key="FuncInfoSel" SpName="Acc_Con_FuncInfoSel" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
     <Setting Key="Con_CustomerSelByUserName" SpName="Acc_Con_CustomerSelByUserName" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
@@ -44,7 +44,7 @@
     <Setting Key="GroupInfoIns" SpName="Acc_Con_GroupInfoIns" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
     <Setting Key="GroupInfoUpd" SpName="Acc_Con_GroupInfoUpd" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
     <Setting Key="GroupPolicy" SpName="Acc_Con_GroupPolicyUpd" DbName="DBPOLICY.bodb02.bodbAdminNet"/>
-	<Setting Key="Acc_Con_FileNameSelByCustID" SpName="Acc_Con_FileNameSelByCustID_xtest" DbName="DBPOLICY.bodb02.bodbAdminNet_ex" Plain="0" />  
+	<Setting Key="Acc_Con_FileNameSelByCustID" SpName="Acc_Con_FileNameSelByCustID" DbName="DBPOLICY.bodb02.bodbAdminNet_ex" Plain="0" />  
   </Function>
 
   <Function Name="Left Menu - Credit term">
