@@ -18,12 +18,7 @@ public partial class InternalView : System.Web.UI.Page
 
         string _chalengeStr = Request["chalengeStr"] + "-" + Sunplus.Accounting.DataAccess.IBCDLL.SystemInfo.GetDBTime().Ticks;
         string strParams = string.Empty, strPath = string.Empty, url = string.Empty;
-        strParams = _custName + "&" +
-            _accId + "&" +
-            roleId + "&" +
-            reportKey + "&" +
-            isViewSportbook + "&" +
-            Sunplus.Accounting.DataAccess.IBCDLL.SystemInfo.GetDBTime().Ticks;
+        strParams = _custName + "&" + _accId + "&" + Sunplus.Accounting.DataAccess.IBCDLL.SystemInfo.GetDBTime().Ticks;
 
         strPath = Request.PhysicalApplicationPath + "/IbcKeys/ibcpkey.snk";
         strParams = AccountingCoreUtils.EncryptString(strParams, 1024, strPath);

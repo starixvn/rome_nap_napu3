@@ -5,7 +5,7 @@ using Sunplus.Accounting.Core.Extensions;
 
 public partial class Customer_V2_UpdateTransferTime : RequiredAuthorizationPage
 {
-    protected override bool HasPermission()
+    protected bool HasPermission()
     {
         return true;
     }
