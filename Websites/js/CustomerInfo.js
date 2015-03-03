@@ -20,8 +20,6 @@ function ClearUsername() {
 }
 function LoginAgent(agentName, reportKey, isViewSportbook) {
     document.AgLoginForm.custName.value = agentName;
-    document.AgLoginForm.reportKey.value = reportKey;
-    document.AgLoginForm.isViewSportbook.value = isViewSportbook;
     document.AgLoginForm.submit();
 }
 

@@ -1079,6 +1079,13 @@ namespace Sunplus.Accounting.Business.Customer
                                 {
                                     TemplateHandler.RemoveBlock(ref htmlcontent, "hideonmember");
                                 }
+
+                                if (!WebSettings.IsShowInternalLoginIcon)
+                                {
+                                    TemplateHandler.RemoveBlock(ref htmlcontent, "SuperLogin");
+                                    TemplateHandler.RemoveBlock(ref htmlcontent, "MasterLogin");
+                                    TemplateHandler.RemoveBlock(ref htmlcontent, "AgentLogin");
+                                }
                             }
                         }
                     }
