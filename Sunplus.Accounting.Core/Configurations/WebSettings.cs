@@ -572,5 +572,13 @@ namespace Sunplus.Accounting.Core.Configurations
                 return ConfigurationManager.AppSettings["ITGroupId"] != null ? Convert.ToInt32(ConfigurationManager.AppSettings["ITGroupId"]) : 1;
             }
         }
+
+        public static bool IsShowInternalLoginIcon
+        {
+            get
+            {
+                return (ConfigurationManager.AppSettings["IsShowInternalLoginIcon"] == "1");
+            }
+        }
     }
 }
