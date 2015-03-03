@@ -2499,7 +2499,7 @@ namespace Sunplus.Accounting.Business.Customer
         private string IsShowSportbook(bool isU3SpecialCustomer, bool isInternalUser, int custId)
         {
             var isShowSportbook = AppSession.IsITAccount || (AppSession.IsU3SpecialAccount && isU3SpecialCustomer) ? 1 : 0;
-            return WebUtility.HtmlEncode(Encryption.CfsEnCrypt(custId.ToString() + isShowSportbook.ToString() + Sunplus.Accounting.DataAccess.IBCDLL.SystemInfo.GetDBTime().Ticks));
+            return WebUtility.HtmlEncode(Encryption.CfsEnCrypt(isShowSportbook.ToString() + Sunplus.Accounting.DataAccess.IBCDLL.SystemInfo.GetDBTime().Ticks));
         }
     }
 }
