@@ -14,7 +14,12 @@ public partial class AlphaReportView : System.Web.UI.Page
         string _accKey = Request["accKey"];
         string roleId = Request["roleId"];
         string reportKey = Request["reportKey"];
-        string isViewSportbook = Encryption.CfsDeCrypt(WebUtility.HtmlDecode(Request["isViewSportbook"].Replace(' ', '+'))).Substring(0, 1);
+        var isViewSportbookRequest = Request["isViewSportbook"];
+
+        string isViewSportbook =
+            string.IsNullOrEmpty(isViewSportbookRequest) ?
+            "0" :
+            Encryption.CfsDeCrypt(WebUtility.HtmlDecode(isViewSportbookRequest.Replace(' ', '+'))).Substring(_accId.Length, 1);
 
         string _chalengeStr = Request["chalengeStr"] + "-" + Sunplus.Accounting.DataAccess.IBCDLL.SystemInfo.GetDBTime().Ticks;
         string strParams = string.Empty, strPath = string.Empty, url = string.Empty;
@@ -35,6 +40,5 @@ public partial class AlphaReportView : System.Web.UI.Page
         url = (internalAgentUrl.StartsWith("http") ? internalAgentUrl : "http://" + internalAgentUrl) + "?params=" + strParams;
         Response.Redirect(url);
         Response.End();
-
     }
 }
