@@ -296,7 +296,6 @@ namespace Sunplus.Accounting.Business.Customer
                                 string pwdExpiryDate = Convert.IsDBNull(row1["pwdexpiry"]) ? "" : Convert.ToDateTime(row1["pwdexpiry"]).ToShortDateString();
                                 string pwdExpiryTime = Convert.IsDBNull(row1["pwdexpiry"]) ? "" : " " + Convert.ToDateTime(row1["pwdexpiry"]).ToShortTimeString();
                                 decimal credit = Convert.ToDecimal(row1["credit"]);
-                                decimal virtualRate = Convert.ToDecimal(row1["virtualmultiplier"]);
                                 decimal actualRate = Convert.ToDecimal(row1["actualrate"]);
                                 string currency = row1["currency"].ToString();
                                 bool important = Convert.IsDBNull(row1["important"]) ? false : Convert.ToBoolean(row1["important"]);
@@ -316,11 +315,7 @@ namespace Sunplus.Accounting.Business.Customer
                                 string mobile = row1["mobilephone"] + "";
                                 string fax = row1["fax"] + "";
                                 string nickname = CastAide.AsString(row1["username2"], string.Empty);
-
-
-                                virtualRate = virtualRate * 100;
-                                actualRate = (virtualRate + 100) * actualRate / 100;
-                                string vRate = ((virtualRate > 0) ? "+" : string.Empty) + IBCUtils.FormatHandler.FormatNumber4(virtualRate) + " (" + IBCUtils.FormatHandler.FormatNumber4(actualRate) + ")";
+                                
                                 if (row3 != null && roleId <= 4)
                                 {
                                     lastTxnDate = Convert.IsDBNull(row3["lastTxn"]) ? "" : Convert.ToDateTime(row3["lastTxn"]).ToShortDateString();
