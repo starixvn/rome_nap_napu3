@@ -290,7 +290,8 @@ var StatementReportManager = function () {
             for (var i = 0; i < statementListLength; i++) {
                 var dataRowIndex = ' data-rowindex="' + i + '"';
                 var statement = rs.StatementList[i];
-                var canViewBetList = new Date(balanceUpDay) <= new Date(statement.StatementDateString);
+                var canViewBetList = canViewBetListStatement &&
+                    new Date(balanceUpDay) <= new Date(statement.StatementDateString);
                 var currentRow = {
                     Columns: [
                         {

@@ -22,6 +22,7 @@ public partial class Statement_CustomerStatement : PageBase
     public string balanceUpDay = string.Format("{0:MM/dd/yyyy}", ReportUtils.BalanceUp.BalanceUpDay);
     public string moveBetsDay = string.Format("{0:MM/dd/yyyy}", ReportUtils.BalanceUp.MoveBetsDay);
     public string rootUrl = string.Empty;
+    public string canViewBetListStatement = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -29,6 +30,7 @@ public partial class Statement_CustomerStatement : PageBase
         {
             isInternalCustomer = Converter.ToBool(Request.QueryString["isinternal"]) ? 1 : 0;
             rootUrl = Request.Url.GetLeftPart(UriPartial.Authority) + Request.ApplicationPath + "/";
+            canViewBetListStatement = DNAide.Utils.Encryption.CfsDeCrypt(System.Net.WebUtility.HtmlDecode(Request.QueryString["canviewbetliststatement"].Replace(' ', '+'))).Substring(0, 1);
 
             WebUtils.SetNoCache();
 
