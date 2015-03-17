@@ -147,7 +147,8 @@ function ViewCustomerStatement(reportNo) {
     var url = "CustomerStatement.aspx?repno=" + reportNo.toString()
     + "&fdate=" + fdate.toString()
     + "&tdate=" + tdate.toString()
-    + "&custname=" + encodeURIComponent($("#txtCustName").attr("value"));
+    + "&custname=" + encodeURIComponent($("#txtCustName").attr("value"))
+    + "&canviewbetliststatement=" + canViewBetListStatementRequest;
 
     window.location.href = url;
 }
@@ -166,7 +167,8 @@ function VBL(fdate) {
 
 function ViewStatement(repno) {
     url = "CustomerStatement.aspx?repno=" + repno
-    + "&custname=" + encodeURIComponent($("#txtCustName").attr("value"));
+    + "&custname=" + encodeURIComponent($("#txtCustName").attr("value"))
+    + "&canviewbetliststatement=" + canViewBetListStatementRequest;
     document.location.href = url;
 }
 
@@ -212,7 +214,8 @@ function ExportToExcel() {
             }
 
             location.href = 'CustomerStatement.aspx?fdate=' + fdate + '&tdate=' + tdate + '&repno=' + obj('repno').value + '&IsExport=1'
-                + "&custname=" + encodeURIComponent($("#txtCustName").attr("value"));
+                + "&custname=" + encodeURIComponent($("#txtCustName").attr("value"))
+                + "&canviewbetliststatement=" + canViewBetListStatementRequest;
         });
 }
 

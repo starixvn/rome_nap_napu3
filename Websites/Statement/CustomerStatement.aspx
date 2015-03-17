@@ -66,6 +66,7 @@
     <script language="javascript" type="text/javascript">
         window.rootUrl = '<%=rootUrl%>'; 
         var isInternalCustomer = <%=isInternalCustomer%>;
+        var canViewBetListStatementRequest = '<%=canViewBetListStatementRequest%>';
         var canViewBetListStatement = <%=canViewBetListStatement%>;
         var balanceUpDay = '<%=balanceUpDay%>';
         var moveBetsDay = '<%=moveBetsDay%>'; 
