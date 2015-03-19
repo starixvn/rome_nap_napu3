@@ -32,12 +32,11 @@ public partial class AlphaReportView : System.Web.UI.Page
 
         strPath = Request.PhysicalApplicationPath + "/IbcKeys/ibcpkey.snk";
         strParams = AccountingCoreUtils.EncryptString(strParams, 1024, strPath);
-        var internalAgentForExAcccUrl = ConfigurationManager.AppSettings["int_agent_url_exacc"];
-        var internalAgentUrl =
-            !AccountingCoreAppSession.CurrentSystemNAME.Equals(AccountingCoreAppSession.AccountingSystem.Accounting) ?
-            internalAgentForExAcccUrl :
-            ConfigurationManager.AppSettings["int_agent_url_report"];
-        url = (internalAgentUrl.StartsWith("http") ? internalAgentUrl : "http://" + internalAgentUrl) + "?params=" + strParams;
+        
+        var internalAgentUrl = string.Format(ConfigurationManager.AppSettings["int_agent_url_report"], Request.Url.GetLeftPart(UriPartial.Scheme) + Request.Headers["Host"]);
+
+        url = internalAgentUrl + "?params=" + strParams;
+
         Response.Redirect(url);
         Response.End();
     }
