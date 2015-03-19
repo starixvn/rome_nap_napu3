@@ -1,4 +1,4 @@
-﻿"use strict";
+﻿// "use strict";
 
 KenoModule.controller('mainController', function ($scope, $timeout, kenoRepositories, ngDialog, commonService) {
     kenoRepositories.getData().then(
