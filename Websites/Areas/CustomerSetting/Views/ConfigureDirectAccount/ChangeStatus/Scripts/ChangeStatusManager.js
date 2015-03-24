@@ -1,4 +1,4 @@
-﻿"use strict";
+﻿// "use strict";
 /* jshint unused: vars,
 camelcase: false */
 /* global custInfo,

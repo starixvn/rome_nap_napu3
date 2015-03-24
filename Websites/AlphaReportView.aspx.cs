@@ -3,6 +3,7 @@ using System;
 using System.Configuration;
 using System.Net;
 using DNAide.Utils;
+using Fanex.Tarus.Infrastructure.Helper;
 using Sunplus.Accounting.Business;
 
 public partial class AlphaReportView : System.Web.UI.Page
@@ -32,9 +33,13 @@ public partial class AlphaReportView : System.Web.UI.Page
 
         strPath = Request.PhysicalApplicationPath + "/IbcKeys/ibcpkey.snk";
         strParams = AccountingCoreUtils.EncryptString(strParams, 1024, strPath);
-        
-        var internalAgentUrl = string.Format(ConfigurationManager.AppSettings["int_agent_url_report"], Request.Url.GetLeftPart(UriPartial.Scheme) + Request.Headers["Host"]);
 
+        var isWebVpnAccess = IPHelper.IsWebVpnAccess();
+        var host = isWebVpnAccess ? ConfigurationManager.AppSettings["InternalIPReport"] : Request.Headers["Host"];
+        var urlScheme = Request.Url.GetLeftPart(UriPartial.Scheme);
+        var internalAgentUrl = string.Format(
+            ConfigurationManager.AppSettings["int_agent_url_report"],
+            host.StartsWith(urlScheme) ? host : urlScheme + host);
         url = internalAgentUrl + "?params=" + strParams;
 
         Response.Redirect(url);
