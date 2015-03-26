@@ -30,7 +30,7 @@ public partial class Statement_CustomerStatement : PageBase
         try
         {
             isInternalCustomer = Converter.ToBool(Request.QueryString["isinternal"]) ? 1 : 0;
-            rootUrl = Request.Url.GetLeftPart(UriPartial.Authority) + Request.ApplicationPath + "/";
+            rootUrl = Request.Url.GetLeftPart(UriPartial.Scheme) + Request.Headers["Host"] + Request.ApplicationPath + "/";
             canViewBetListStatementRequest = Request.QueryString["canviewbetliststatement"];
             canViewBetListStatement = DNAide.Utils.Encryption.CfsDeCrypt(System.Net.WebUtility.HtmlDecode(canViewBetListStatementRequest.Replace(' ', '+'))).Substring(0, 1);
 
