@@ -426,7 +426,8 @@ function viewGuidelines() {
         parent.OpenPopup(
             window.rootUrl + "NapStatement/StatementReport/Guideline?" +
             $.param({
-                roleId: rs.RoleId
+                roleId: rs.RoleId,
+                canViewBetListStatement: canViewBetListStatement ? true : false
             }),
             statementResources.Statement_Guidelines,
             900,
