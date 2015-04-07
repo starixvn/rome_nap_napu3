@@ -315,7 +315,7 @@ namespace Sunplus.Accounting.Business.Customer
                                 string mobile = row1["mobilephone"] + "";
                                 string fax = row1["fax"] + "";
                                 string nickname = CastAide.AsString(row1["username2"], string.Empty);
-                                
+
                                 if (row3 != null && roleId <= 4)
                                 {
                                     lastTxnDate = Convert.IsDBNull(row3["lastTxn"]) ? "" : Convert.ToDateTime(row3["lastTxn"]).ToShortDateString();
@@ -554,6 +554,7 @@ namespace Sunplus.Accounting.Business.Customer
                                         GenTransLinskBox(ref htmlcontent, custId, roleId, !WebSettings.disabledHR, isInternalUser, userName, isDeposit, false);
                                     }
 
+                                    TemplateHandler.Assign(ref htmlcontent, "{canviewbetliststatement}", CanViewBetListStatement(isU3SpecialCustomer));
                                     GenLoginDetail(ref htmlcontent, custId, roleId, row1, row3, userName);
 
                                     try
@@ -2197,11 +2198,11 @@ namespace Sunplus.Accounting.Business.Customer
                 string statementLink = string.Empty;
                 if (!isInternal)
                 {
-                    statementLink = "Statement/CustomerStatement.aspx?custname={custname}";
+                    statementLink = "Statement/CustomerStatement.aspx?custname={custname}&canviewbetliststatement={canviewbetliststatement}";
                 }
                 else
                 {
-                    statementLink = "CustomerStatement/Index?CustID=" + custId + "&CustName={custname}";
+                    statementLink = "CustomerStatement/Index?CustID=" + custId + "&CustName={custname}&canviewbetliststatement={canviewbetliststatement}";
                 }
                 TemplateHandler.Assign(ref tplTransLink, "statementLink", statementLink);
 
@@ -2495,6 +2496,11 @@ namespace Sunplus.Accounting.Business.Customer
         {
             var isShowSportbook = AppSession.IsITAccount || (AppSession.IsU3SpecialAccount && isU3SpecialCustomer) ? 1 : 0;
             return WebUtility.HtmlEncode(Encryption.CfsEnCrypt(isShowSportbook.ToString() + Sunplus.Accounting.DataAccess.IBCDLL.SystemInfo.GetDBTime().Ticks));
+        }
+
+        private string CanViewBetListStatement(bool isU3SpecialCustomer)
+        {
+            return WebUtility.HtmlEncode(Encryption.CfsEnCrypt((AppSession.IsITAccount || (isU3SpecialCustomer && AppSession.IsU3SpecialAccount) ? 1 : 0).ToString() + DateTime.Now.Ticks));
         }
     }
 }
