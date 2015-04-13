@@ -77,7 +77,7 @@ function completeUpdateIsInternal(rs) {
                 },
                 function (options) {
                     var criteria = {
-                        username: custName,
+                        username: unescape(custName),
                         transType: options.transactionType,
                         fromDate: options.statementDate
                     };
@@ -412,7 +412,7 @@ jQuery(document).ready(function () {
 
 function viewDetail(fdate, transtypeid) {
     var username = $('#txtCustName').val();
-    url = 'BetList/GetBetListStatement?Username=' + username + '&TransType=' + transtypeid + '&FromDate=' + fdate;
+    url = 'BetList/GetBetListStatement?Username=' + unescape(username) + '&TransType=' + transtypeid + '&FromDate=' + fdate;
     parent.OpenNextPopup("popupStatement", url, "Bet list", 1050, 700, true, true, window, 2000, null, null);
 
 }
