@@ -2,6 +2,6 @@
 <Functions>
   <Function Name="Bet List - Result">
     <Setting Key="U3_BetsSelBetList_Old" SpName="U3_BetsSelBetList_Old" DbName="DBARC.bodb_Archive.bodbAdminNet" />
-    <Setting Key="Acc_BetsSelBetList_Old" SpName="Acc_BetsSelBetList_Old" DbName="DBARC.bodb_Archive.bodbAdminNet" />
+    <Setting Key="Acc_BetsSelBetList_Old" SpName="Acc_BetsSelBetList_Old_xtest" DbName="DBARC.bodb_Archive.bodbAdminNet" />
   </Function>
 </Functions>
