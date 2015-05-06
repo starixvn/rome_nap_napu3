@@ -530,7 +530,8 @@ span.ui-dialog-title-dialog-modal-TennisResult
     margin-left: 25px;
 }
 
-#tblContent .handicap, #tblContent .favorite, #tblContent .odds
+#tblContent .handicap, #tblContent .favorite, #tblContent .odds,
+#tblContent .favorite span
 {
     vertical-align: text-top;
 }
