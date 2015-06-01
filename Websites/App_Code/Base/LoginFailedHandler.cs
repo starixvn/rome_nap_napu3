@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using DNAide.Core;
 using Fanex.Tarus.Business.Implement;
 using Sunplus.Data.DataAbstract.Storage.Cache;
+using Fanex.Tarus.Infrastructure.Caching;
 
 /// <summary>
 /// Summary description for LoginFailedHandler
@@ -76,7 +77,7 @@ public class LoginFailedHandler
 
     public static void Test(string username)
     {
-        CacheService.Set(
+        CacheHelper.Set(
             GetKey(username),
             new LogFailedInformation()
                 {
@@ -122,7 +123,7 @@ public class LoginFailedHandler
     }
     private static LogFailedInformation GetInformation(string username)
     {
-        return CacheService.Get<LogFailedInformation>(GetKey(username));
+        return CacheHelper.Get<LogFailedInformation>(GetKey(username));
     }
 
     private static char[] ForbiddenChars()
@@ -162,12 +163,12 @@ public class LoginFailedHandler
     private static string GetKey(string username)
     {
         username = ReplaceForbiddenChars(username);
-        return "login_failed_" + username.ToLower();
+        return "u3_login_failed_" + username.ToLower();
     }
 
     private static void AddLoginInformation(string username)
     {
-        CacheService.Set(
+        CacheHelper.Set(
             GetKey(username),
             new LogFailedInformation() { UserName = username, Count = 1, LoginTime = DateTime.Now },
             new TimeSpan(0, 100, 0));
@@ -181,7 +182,7 @@ public class LoginFailedHandler
         }
         else
         {
-            CacheService.Set(GetKey(username), new LogFailedInformation()
+            CacheHelper.Set(GetKey(username), new LogFailedInformation()
             {
                 UserName = username,
                 Count = GetCount(username) + 1,
@@ -208,7 +209,7 @@ public class LoginFailedHandler
 
     private static bool RemoveLoginInformation(string username)
     {
-        CacheService.Delete(GetKey(username));
+        CacheHelper.Remove(GetKey(username));
         return true;
     }
 
