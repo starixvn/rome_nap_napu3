@@ -173,7 +173,7 @@
     <Setting Key="CustomerSelClearBalance" SpName="Acc_CustomerSelClearBalance" DbName="DBAGE.bodb02.bodbAdminNet" />
     <Setting Key="CustomerSelDisableHR" SpName="Acc_CustomerSelDisableHR" DbName="DBCUST.CustDB.bodbAdminNet" />
     <Setting Key="CustomerSelDisableFI" SpName="Acc_CustomerSelDisableFI" DbName="DBAGE.bodb02.bodbAdminNet" />
-    <Setting Key="CustomerSelDisableOutright" SpName="Acc_CustomerSelDisableOutright" DbName="Acc_CustomerSelDisableOutRight" />
+    <Setting Key="CustomerSelDisableOutright" SpName="Acc_CustomerSelDisableOutright" DbName="DBCUST.CustDB.bodbAdminNet" />
     <Setting Key="CustomerSelSuspended" SpName="Acc_CustomerSelSuspended" DbName="DBCUST.CustDB.bodbAdminNet" />
     <Setting Key="CustomerSelMultipleTransfer" SpName="CustomerSelMultipleTransfer" DbName="DBAGE.bodb02.bodbAdminNet" />
     <Setting Key="CustomerSelMemberSearch_AutoSuspend" SpName="Acc_CustomerSelMemberSearch_AutoSuspend" DbName="DBCUST.CustDB.bodbAdminNet" />
