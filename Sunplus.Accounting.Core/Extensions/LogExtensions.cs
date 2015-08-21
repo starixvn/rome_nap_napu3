@@ -3,8 +3,9 @@
 namespace Sunplus.Accounting.Core.Extensions
 {
     using System;
-    using System.Collections.Generic;
     using System.Web;
+    using Sunplus.Accounting.Core.Configurations;
+    using Sunplus.UMControllerLibrary;
 
     /**
      * public class Log Extensions
@@ -14,13 +15,17 @@ namespace Sunplus.Accounting.Core.Extensions
 
     public static class LogExtensions
     {
-        private static Queue<Exception> _queueEx = new Queue<Exception>();
-        /**
-         * Function: Exception Handler
-         */
-
         public static void ExceptionHandler(Exception ex)
         {
+            var um = new UMBusiness();
+            var isUM = um.isUnderMaintainence(Sites.AccountSite, WebSettings.LbServiceUrl);
+
+            // Has check UM time and is UM time.
+            if (WebSettings.IsUMTime && isUM)
+            {
+                return;
+            }
+
             string message = ex.Message +
                              "\r\nSOURCE: " + ex.Source +
                              "\r\nDOMAIN: " + HttpContext.Current.Request.Headers["Host"] +
