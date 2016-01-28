@@ -63,3 +63,4 @@ _ReSharper*/
 *Settings.StyleCop
 Websites/[Bb]in/*.xml
 
+.vs/config/applicationhost.config
