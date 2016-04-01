@@ -163,7 +163,9 @@
     <Compile Include="Report\MatchAnalysisController.cs" />
     <Compile Include="Report\RedirectController\ReportRedirectController.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.Tarus.Business.Implement\Fanex.Tarus.Business.Implement.csproj">
       <Project>{BE4A5642-A3B6-4329-BB8F-4973446E7FA9}</Project>
