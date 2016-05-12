@@ -100,22 +100,5 @@
         signIn.system = theme.toLowerCase();
         signIn.bindingLoginTheme();
     </script>
-
-    <!-- Piwik -->
-    <% if (Fanex.Tarus.Infrastructure.Configurations.PiwikSetting.PiwikEnabled)
-        { %>
-    <script type="text/javascript" async>
-        var _pkUrl = '<%=Fanex.Tarus.Infrastructure.Configurations.PiwikSetting.PiwikUrl%>',
-            _pkScript = '<%=Fanex.Tarus.Infrastructure.Configurations.PiwikSetting.PiwikScript%>',
-        _pkSiteId = '<%=Fanex.Tarus.Infrastructure.Configurations.PiwikSetting.PiwikSiteId%>';
-    </script>
-    <script src="<%= ResolveClientUrl("~/js/piwikLoader.js") %>" type="text/javascript"></script>
-    <noscript>
-        <p>
-            <img src="<%=Fanex.Tarus.Infrastructure.Configurations.PiwikSetting.PiwikUrl%>?idsite=<%=Fanex.Tarus.Infrastructure.Configurations.PiwikSetting.PiwikSiteId%>" style="border: 0;" alt="" />
-        </p>
-    </noscript>
-    <% } %>
-    <!-- End Piwik Code -->
 </body>
 </html>
