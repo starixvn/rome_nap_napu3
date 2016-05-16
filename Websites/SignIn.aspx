@@ -100,6 +100,5 @@
         signIn.system = theme.toLowerCase();
         signIn.bindingLoginTheme();
     </script>
-    
 </body>
 </html>
