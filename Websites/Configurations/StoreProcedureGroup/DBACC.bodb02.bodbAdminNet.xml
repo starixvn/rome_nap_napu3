@@ -23,8 +23,8 @@
     <Setting Key="DailyWLDirect_Sporttype_OtherSports_14" SpName="Acc_Rpt_DailyWLDirect_Sporttype_OtherSports14" DbName="DBACC.bodb02.bodbAdminNet" />
     <Setting Key="DailyWLDirect_MixParlay" SpName="Acc_Rpt_DailyWLDirect_MixParlay" DbName="DBACC.bodb02.bodbAdminNet" />
     <Setting Key="DailyWLDirect_MixParlay_14" SpName="Acc_Rpt_DailyWLDirect_MixParlay14" DbName="DBACC.bodb02.bodbAdminNet" />
-    <Setting Key="DailyWLDirectRacing" SpName="Acc_Rpt_DailyWLDirect_Racing" DbName="DBACC.bodb02.bodbAdminNet" />
-    <Setting Key="DailyWLDirectRacing_14" SpName="Acc_Rpt_DailyWLDirect_Racing14" DbName="DBACC.bodb02.bodbAdminNet" />
+    <Setting Key="DailyWLDirectRacing" SpName="Acc_Rpt_DailyWLDirect_Racing_xtest" DbName="DBACC.bodb02.bodbAdminNet" />
+    <Setting Key="DailyWLDirectRacing_14" SpName="Acc_Rpt_DailyWLDirect_Racing14_xtest" DbName="DBACC.bodb02.bodbAdminNet" />
     <Setting Key="DailyWLDirectRacingBySport" SpName="Acc_Rpt_DailyWLDirect_RacingBySport" DbName="DBACC.bodb02.bodbAdminNet" />
     <Setting Key="DailyWLDirectRacingBySport_14" SpName="Acc_Rpt_DailyWLDirect_RacingBySport14" DbName="DBACC.bodb02.bodbAdminNet" />
     <Setting Key="DailyWLDirectRacingBySportDetails" SpName="Acc_Rpt_DailyWLDirect_RacingBySport_Details" DbName="DBACC.bodb02.bodbAdminNet" />
@@ -45,7 +45,7 @@
     <Setting Key="DailyWLDirect_LiveCasino_14" SpName="Acc_Rpt_DailyWLDirect_LiveCasino14" DbName="DBACC.bodb02.bodbAdminNet" />
     <Setting Key="DailyWLDirect_MixParlayAdvance" SpName="Acc_Rpt_MixParlay_Advance" DbName="DBACC.bodb02.bodbAdminNet" />
     <Setting Key="DailyWLDirect_MixParlayAdvance_14" SpName="Acc_Rpt_MixParlay_Advance14" DbName="DBACC.bodb02.bodbAdminNet" />
-    <Setting Key="DailyWLDirect_othersport" SpName="Acc_Rpt_DailyWLDirect_OtherSport" DbName="DBACC.bodb02.bodbAdminNet" />
+    <Setting Key="DailyWLDirect_othersport" SpName="Acc_Rpt_DailyWLDirect_OtherSport_xtest" DbName="DBACC.bodb02.bodbAdminNet" />
     <Setting Key="DailyWLDirect_othersport_14" SpName="Acc_Rpt_DailyWLDirect_OtherSport14" DbName="DBACC.bodb02.bodbAdminNet" />
     <Setting Key="DailyWLDirect_othersport_bettype" SpName="Acc_Rpt_DailyWLDirect_OtherSport_Bettype" DbName="DBACC.bodb02.bodbAdminNet" />
     <Setting Key="DailyWLDirect_othersport_bettype_14" SpName="Acc_Rpt_DailyWLDirect_OtherSport_Bettype14" DbName="DBACC.bodb02.bodbAdminNet" />
@@ -89,9 +89,9 @@
     <Setting Key="LeagueWL_Sporttype" SpName="Acc_Rpt_LeagueWL_Sporttype" DbName="DBACC.bodb02.bodbAdminNet" />
     <Setting Key="LeagueWL_Sporttype_14" SpName="Acc_Rpt_LeagueWL_Sporttype14" DbName="DBACC.bodb02.bodbAdminNet" />
     <Setting Key="LeagueWL_Sporttype_WH" SpName="Acc_Rpt_LeagueWL_Sporttype" DbName="DBACC.bodb02.bodbAdminNet" />
-    <Setting Key="LeagueWL_Bettype" SpName="Acc_Rpt_LeagueWL_Bettype" DbName="DBACC.bodb02.bodbAdminNet" />
-    <Setting Key="LeagueWL_Bettype_14" SpName="Acc_Rpt_LeagueWL_Bettype14" DbName="DBACC.bodb02.bodbAdminNet" />
-    <Setting Key="LeagueWL_Bettype_WH" SpName="Acc_Rpt_LeagueWL_Bettype14" DbName="DBACC.bodb02.bodbAdminNet" />
+    <Setting Key="LeagueWL_Bettype" SpName="Acc_Rpt_LeagueWL_Bettype_xtest" DbName="DBACC.bodb02.bodbAdminNet" />
+    <Setting Key="LeagueWL_Bettype_14" SpName="Acc_Rpt_LeagueWL_Bettype14_xtest" DbName="DBACC.bodb02.bodbAdminNet" />
+    <Setting Key="LeagueWL_Bettype_WH" SpName="Acc_Rpt_LeagueWL_Bettype14_xtest" DbName="DBACC.bodb02.bodbAdminNet" />
     <Setting Key="LeagueWL_BettypeDetail" SpName="Acc_Rpt_LeagueWL_Details" DbName="DBACC.bodb02.bodbAdminNet" />
     <Setting Key="LeagueWL_BettypeDetail_14" SpName="Acc_Rpt_LeagueWL_Details14" DbName="DBACC.bodb02.bodbAdminNet" />
     <Setting Key="LeagueWL_BettypeDetail_WH" SpName="Acc_Rpt_LeagueWL_Details14" DbName="DBACC.bodb02.bodbAdminNet" />

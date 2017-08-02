@@ -220,7 +220,7 @@ namespace Sunplus.Accounting.DataAccess.IBCDLL.Accounting
             }
         }
 
-        public static DataSet BetList_SelDetailCombinationMP(int custid, string refno, double transid, string betid, DateTime movebetday, DateTime balanceupday, ref double outStading)
+        public static DataSet BetList_SelDetailCombinationMP(int custid, string refno, string transid, string betid, DateTime movebetday, DateTime balanceupday, ref double outStading)
         {
             var result = new DataSet();
             try
