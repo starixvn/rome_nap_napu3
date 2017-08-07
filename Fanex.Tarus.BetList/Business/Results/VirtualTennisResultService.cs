@@ -12,6 +12,7 @@ namespace Fanex.Tarus.BetList.Business.Results
     using Fanex.Result.Core;
     using Fanex.Tarus.BetList.Criteria.Results;
     using Fanex.Tarus.BetList.DataAccess.Results;
+    using Result.Core.Base;
 
     /// <summary>
     /// The class VirtualTennisResultService.
@@ -58,7 +59,7 @@ namespace Fanex.Tarus.BetList.Business.Results
             return new ResultSetting
             {
                 SportType = (SportType)sportType,
-                IsOutRight = false,
+                IsOutright = false,
                 IsParlayPopUp = false,
                 IsPopUp = true,
                 VisiblePopUpTitle = false,

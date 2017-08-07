@@ -94,45 +94,45 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
         /// <param name="stringcustomer">String will be deserialized to a customer object</param>
         /// <param name="currentContext">Current context</param>
         /// <returns>Return a result message</returns>
-        [AuthenticateHost]
-        [HttpPost]
-        public JsonResult DoEditSuper(string stringcustomer, RequestContext currentContext)
-        {
-            Fanex.PTEngine.BusinessObjects.Result result;
-            try
-            {
-                ICustomer customer = GetCustomerFromDeserializeJsonString(stringcustomer);
+        //[AuthenticateHost]
+        //[HttpPost]
+        //public JsonResult DoEditSuper(string stringcustomer, RequestContext currentContext)
+        //{
+        //    Fanex.PTEngine.BusinessObjects.Result result;
+        //    try
+        //    {
+        //        ICustomer customer = GetCustomerFromDeserializeJsonString(stringcustomer);
 
-                // Do edit super
-                currentContext.CustId = AppSession.AccId;
-                currentContext.AdminId = AppSession.AccId;
-                currentContext.IP = System.Web.HttpContext.Current.Request.UserHostAddress;
-                result = _customerService.CompanyUpdateSuper(customer, currentContext);
-                // format template of error message
-                int tempErrorCode = 0;
-                string tempErrorMessage = "";
-                AlertMessage.ParseError(ref tempErrorCode, ref tempErrorMessage, result.ErrorCode, result.ErrorMessage);
-                result.ErrorCode = tempErrorCode.ToString();
-                result.ErrorMessage = tempErrorMessage;
+        //        // Do edit super
+        //        currentContext.CustId = AppSession.AccId;
+        //        currentContext.AdminId = AppSession.AccId;
+        //        currentContext.IP = System.Web.HttpContext.Current.Request.UserHostAddress;
+        //        result = _customerService.CompanyUpdateSuper(customer, currentContext);
+        //        // format template of error message
+        //        int tempErrorCode = 0;
+        //        string tempErrorMessage = "";
+        //        AlertMessage.ParseError(ref tempErrorCode, ref tempErrorMessage, result.ErrorCode, result.ErrorMessage);
+        //        result.ErrorCode = tempErrorCode.ToString();
+        //        result.ErrorMessage = tempErrorMessage;
 
-                if (tempErrorCode == 0)
-                {
-                    //update sync casino
-                    customer.SiteName = _customerSettingService.GetRNGSiteNameByCustId(customer.CustId);
-                    _customerSettingService.UpdateSyncCasinoAfterEditCustomer(customer, currentContext);
-                }
-            }
-            catch (Exception ex)
-            {
-                result = new Fanex.PTEngine.BusinessObjects.Result
-                {
-                    ErrorCode = "1000",
-                    ErrorMessage = ex.Message
-                };
-            }
+        //        if (tempErrorCode == 0)
+        //        {
+        //            //update sync casino
+        //            customer.SiteName = _customerSettingService.GetRNGSiteNameByCustId(customer.CustId);
+        //            _customerSettingService.UpdateSyncCasinoAfterEditCustomer(customer, currentContext);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        result = new Fanex.PTEngine.BusinessObjects.Result
+        //        {
+        //            ErrorCode = "1000",
+        //            ErrorMessage = ex.Message
+        //        };
+        //    }
 
-            // Return result
-            return Json(result);
-        }
+        //    // Return result
+        //    return Json(result);
+        //}
     }
 }

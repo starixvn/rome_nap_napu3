@@ -100,6 +100,7 @@ function confirm_delete(betid, betfrom, matchid, bettype) {
     var NewWindow = window.open(url, 'DeleteBet', 'toolbar=no,location=no,status=no,menubar=no,resizable=yes,scrollbars=yes,width=720,height=450,left=400');
     if (NewWindow) NewWindow.focus();
 }
+
 function OpenByIP(custid, fdate, ip, type) {
     //window.location= 'BetList.aspx?custid='+custid+'&fdate='+fdate+'&ip='+ip+'&bltype=3&type='+type;
     try { parent.BlockUI(); } catch (e) { }
@@ -107,50 +108,6 @@ function OpenByIP(custid, fdate, ip, type) {
     GeneralAjaxCall(urlLink);
 }
 
-function ViewMixParlayResult(refno, matchid, bettype, betid) {
-    var width = 945;
-    var url = 'Report/ViewMixParlayResult.aspx?refno=' + refno + '&matchid=' + matchid + '&bettype=' + bettype + '&betid=' + betid;
-    parent.OpenNextPopup("ViewMixParlayResult", url, 'Mix Parlay', width, 500, true, false, window, 0, null, null);
-
-//    window.top.frames["content"].frames["innerFrameViewCombinationMixParlayResult"];
-}
-
-
-function ViewCombinationMixParlayResult(refno, matchid, bettype, betid) {
-    var width = 945;
-    //OpenPopup('../Report/ViewMixParlayResult.aspx?refno=' + refno + '&matchid=' + matchid + '&bettype=' + bettype + '&betid=' + betid, 'System Parlay', width, 500, true, false, window, 0, null, null);
-    var url = 'Report/ViewMixParlayResult.aspx?refno=' + refno + '&matchid=' + matchid + '&bettype=' + bettype + '&betid=' + betid;
-    parent.OpenNextPopup("ViewCombinationMixParlayResult", url, "System Parlay", width, 500, true, false, window, 1000, null, null);
-
-    //var maxWidth = getMaxChildWidth("innerFrameViewCombinationMixParlayResult");
-    //$("#innerFrameViewCombinationMixParlayResult").width(maxWidth);
-}
-
-//function ViewResult(matchid, bettype, betid) {
-//    var width = 750;
-//    parent.OpenNextPopup("VirtualResult", 'Report/ViewResult.aspx?matchid=' + matchid + (bettype ? '&bettype=' + bettype : '') + '&betid=' + betid, 'Result', width, 500, true, false, window, 0, null, null);
-//}
-
-function ViewResult(matchid, bettype, betid, sporttype) {
-    var width = 750;
-    parent.OpenNextPopup("VirtualResult", 'Report/ViewResult.aspx?matchid=' + matchid + (bettype ? '&bettype=' + bettype : '') + '&betid=' + betid + '&sporttype=' + sporttype, 'Result', width, 500, true, false, window, 0, null, null);
-}
-
-function ViewResultHR(url) {
-    OpenPopup(url, '', 300, 100, true, false, window, 0, null, null);
-}
-
-function openHRresult(url, title, width, heigh) {
-    parent.OpenNextPopup("HRPopup", url, title, 750, 250, true, false, window, 0, null, null);
-}
-
-function ViewResultNumberGame(url) {
-    parent.OpenNextPopup("NumberGamePopup", url, 'Number Game', 750, 200, true, false, window, 0, null, null);
-}
-
-function ViewResultLiveCasino(url) {
-    parent.OpenNextPopup("LiveCasinoPopup", url, 'Live Casino', 760, 200, true, false, window, 0, null, null);
-}
 function viewFinanceResult(transid) {
     var width = 420;
     if (parent.ibcWnd)
@@ -158,26 +115,32 @@ function viewFinanceResult(transid) {
     else
         ibcWnd.open('../Report/ViewFinanceResult.aspx?transid=' + transid, '', 50, 100, width, 200, 'class1', 'class2');
 }
+
 function ViewMainReportByBettype(fdate, tdate, bettype) {
     var urlLink = '../Handlers/GenBetList.ashx?fdate=' + fdate + '&tdate=' + tdate + '&bettype=' + bettype + '&requesttype=1';
     GeneralAjaxCall(urlLink);
 }
+
 function ViewMainReportByBettype2(fdate, tdate, bettype, page) {
     var urlLink = '../Handlers/GenBetList.ashx?fdate=' + fdate + '&tdate=' + tdate + '&bettype=' + bettype + '&requesttype=1' + '&page=' + page;
     GeneralAjaxCall(urlLink);
 }
+
 function ViewMainReportByTransID(transid) {
     var urlLink = '../Handlers/GenBetList.ashx?transid=' + transid + '&requesttype=2';
     GeneralAjaxCall(urlLink);
 }
+
 function ViewMainReportByTransIDFromCheckBet(transid, custId) {
     var urlLink = '../Handlers/GenBetList.ashx?transid=' + transid + '&custId=' + custId + '&requesttype=2';
     GeneralAjaxCall(urlLink);
 }
+
 function ViewMainReportByTransID(transid, page) {
     var urlLink = '../Handlers/GenBetList.ashx?transid=' + transid + '&requesttype=2' + '&page=' + page;
     GeneralAjaxCall(urlLink);
 }
+
 function ViewMainReport() {
     try { parent.BlockUI(); } catch (e) { }
     var requesttype = 1;
@@ -216,6 +179,7 @@ function ViewMainReport() {
         obj('txtTransID').value = '';
     }
 }
+
 function IsNumeric(sText) {
     var ValidChars = "0123456789";
     var IsNumber = true;
@@ -288,17 +252,18 @@ function PreSubmit(e) {
         obj("btnSubmit").click();
 }
 
-String.prototype.trimLeft = function() {
+String.prototype.trimLeft = function () {
     return this.replace(/^\s*/, "");
 }
 
-String.prototype.trimRight = function() {
+String.prototype.trimRight = function () {
     return this.replace(/\s*$/, "");
 }
 
-String.prototype.trim = function() {
+String.prototype.trim = function () {
     return this.trimRight().trimLeft();
 }
+
 function ViewBLIPReport() {
     try { parent.BlockUI(); } catch (e) { }
     var ip = obj('ip').value;
@@ -313,6 +278,7 @@ function ViewBLIPReport() {
         GeneralAjaxCall(urlLink);
     }
 }
+
 function ViewBLByStatement(fdate) {
     try { parent.BlockUI(); } catch (e) { }
     var userName = gup("custname");
@@ -321,14 +287,15 @@ function ViewBLByStatement(fdate) {
     var urlLink = '../Handlers/GenBetList.ashx?requesttype=5' + '&fdate=' + fdate + "&username=" + userName + "&transtypeid=" + transTypeId;
     GeneralAjaxCall(urlLink);
 }
+
 function GeneralAjaxCall(urlLink) {
     $.ajax({
         url: urlLink + '&nocache=' + new Date().getTime(),
         dataType: 'html',
-        success: function(data) {
+        success: function (data) {
             obj('sContent').innerHTML = data;
 
-            $(".pagenav_ibtn").click(function() {
+            $(".pagenav_ibtn").click(function () {
                 if (isNumberNotNull("txtpage")) {
                     var pageIndex = $("#txtpage").val();
                     GotoPage(pageIndex);
@@ -370,7 +337,6 @@ function GotoPage(num) {
     ViewMainReport2(num);
 }
 
-
 function BL_ChangeOption() {
     var rdTransID = obj('rdTransID').checked;
     var rdBettype = obj('rdBetType').checked;
@@ -391,6 +357,7 @@ function BL_ChangeOption() {
         obj('txtTransID').disabled = true;
     }
 }
+
 function ChangeDateTime() {
     var fdate = obj('fdate').value;
     var tdate = obj('tdate').value;
@@ -398,7 +365,7 @@ function ChangeDateTime() {
     $.ajax({
         url: urlLink + '&nocache=' + new Date().getTime(),
         dataType: 'html',
-        success: function(data) {
+        success: function (data) {
             if (data != "") {
                 obj('spanBettype').innerHTML = "<select id='dlBettype'><option value='0'>All</option>" + data + "</select>";
                 obj('bettypeArea').style.display = 'inline';
@@ -408,6 +375,7 @@ function ChangeDateTime() {
         }
     });
 }
+
 function reset_date() {
     var dayNoReset = 7;
     var fdateId = 'fdate';
@@ -418,8 +386,6 @@ function reset_date() {
     document.getElementById(tdateId).value = (td.getMonth() + 1) + "/" + td.getDate() + "/" + td.getFullYear();
 }
 
-
-
 function GetBetListFromCheckBet(transId, custId) {
     $('#boxheader').addClass('hidden');
     $('#maincontent_betlist').addClass('hidden');
@@ -427,7 +393,6 @@ function GetBetListFromCheckBet(transId, custId) {
     ViewMainReportByTransIDFromCheckBet(transId, custId);
 
 }
-
 
 function ExportBetListToExcel() {
     //try { parent.BlockUI(); } catch (e) { }
@@ -439,5 +404,215 @@ function ExportBetListToExcel() {
     var iframe = $('<iframe width="0px" height="0px" class="display-none"></iframe>');
     iframe.appendTo('body').attr('src', downloadUrl);
     setTimeout(function () { iframe.remove(); }, 5000);
-   // GeneralAjaxCall(urlLink);
+    // GeneralAjaxCall(urlLink);
+}
+
+function showLucky3Details(transId, custId) {
+    parent.OpenNextPopup(
+        "Lucky3Details",
+        "Lucky3/ViewDetail?TransactionId=" + transId + "&CustomerId=" + custId,
+        "Lucky 3 Details",
+        830,
+        500,
+        true,
+        false,
+        window,
+        0,
+        null,
+        null);
+}
+
+// --------------------
+function ViewResult(matchid, race, bettype, sporttype, refno, username, winlostdate, refno_mixparlay, league, is_outright, betid, matchcode, betcheck, transdesc) {
+    var resultParam = getResultParamBySportType(matchid, race, bettype, sporttype, league, betid, matchcode, transdesc);
+
+    resultParam = resultParam || getResultParamByBetType(matchid, race, bettype, sporttype, refno, username, winlostdate, refno_mixparlay, league, is_outright, betid);
+
+    var defaultResultParam = {
+        url: "Report/ViewResult.aspx",
+        jsonParam: { matchid: matchid, bettype: bettype, betid: betid, sporttype: sporttype },
+        title: "Result",
+        width: 750,
+        height: 300
+    };
+
+    if (resultParam) {
+        $.extend(defaultResultParam, resultParam);
+    }
+
+    openResultsPopUp(defaultResultParam);
+}
+
+function getResultParamBySportType(matchid, race, bettype, sporttype, league, betid, matchcode, transdesc) {
+    switch (sporttype) {
+        case 5: // Tennis.
+            return getTennisParam();
+
+        case 8: // Baseball.
+            return getBaseballParam();
+
+        case 160: // Lucky 3.
+            return getLucky3Param(matchid);
+
+        case 161: // Number Game.
+            return getNumberGameParam(matchid);
+
+        case 162: // Live Casino.
+            return getLiveCasinoParam(matchid, bettype, league);
+
+        case 181:
+        case 182:
+        case 183:
+        case 184:
+        case 185:
+            return getVirtualHRParam(matchid, race, sporttype);
+
+        case 186: // Virtual Tennis.
+            return getVirtualHRAndTennisParam(matchid, race, sporttype);
+
+        case 211: // Allbet.
+            return getAllbetParam(transdesc, matchcode, bettype);
+
+        default:
+            return undefined;
+    }
+}
+
+function getResultParamByBetType(matchid, race, bettype, sporttype, refno, username, winlostdate, refno_mixparlay, league, is_outright, betid) {
+    switch (true) {
+        case bettype === 9 || bettype === 29: // System Parlay
+            return getSystemParlayParam(matchid, refno_mixparlay, bettype, betid);
+
+        case bettype === 31 || bettype === 32 || bettype === 31 ||
+            bettype === 41 || bettype === 42 || bettype === 43: // Horse Racing.
+            return getHRParam(race, winlostdate, league, betid);
+
+        case bettype === 1701 || bettype === 1702 || bettype === 1703: // Gold Deluxe.
+            return getGoldDeluxeParam(bettype, refno);
+
+        case bettype === 1231 || bettype === 1232 || bettype === 1233: // Virtual Horse Racing.
+            return getVirtualHRAndTennisParam(matchid, race, sporttype);
+
+        default:
+            return undefined;
+    }
+}
+
+function getTennisParam() {
+    return {
+        title: "Tennis"
+    };
+}
+
+function getBaseballParam() {
+    return {
+        title: "Baseball"
+    };
+}
+
+function getLucky3Param(matchid) {
+    return {
+        url: "Betlist/BetListLucky3Result.aspx",
+        title: "Lucky 3",
+        jsonParam: { matchid: matchid }
+    };
+}
+
+function getNumberGameParam(matchid) {
+    return {
+        url: "Betlist/BetListNumberGameResult.aspx",
+        title: "Number Game",
+        jsonParam: { matchid: matchid }
+    };
+}
+
+function getLiveCasinoParam(matchid, bettype, league) {
+    return {
+        url: "LiveCasino/Betlist/BetListLiveCasinoResult.aspx",
+        title: "Live Casino",
+        jsonParam: { matchid: matchid, bettype: bettype, league: league }
+    };
+}
+
+function getVirtualHRParam(matchid, race, sporttype) {
+    var resultParam = {
+        url: "Report/GetVirtualHRPopup.aspx",
+        title: "",
+        jsonParam: { matchid: matchid, raceno: race, sporttype: sporttype }
+    };
+
+    switch (sporttype) {
+        case 181:
+            resultParam.title = "Virtual Horse Racing";
+            break;
+        case 182:
+            resultParam.title = "Virtual Greyhound";
+            break;
+        case 183:
+            resultParam.title = "Virtual Speedway";
+            break;
+        case 184:
+            resultParam.title = "Virtual Motor Racing";
+            break;
+        case 185:
+            resultParam.title = "Virtual Cycling";
+            break;
+    }
+
+    return resultParam;
+}
+
+function getVirtualHRAndTennisParam(matchid, race, sporttype) {
+    return {
+        url: "Report/GetVirtualHRPopup.aspx",
+        title: "Tennis - Virtual Tennis",
+        jsonParam: { matchid: matchid, raceno: race, sporttype: sporttype }
+    };
+}
+
+function getAllbetParam(transdesc, betcheck, bettype) {
+    return {
+        url: "Report/ViewAllBetResult.aspx",
+        title: "Allbet Result",
+        jsonParam: { transDesc: transdesc, matchCode: betcheck, betTypeId: bettype },
+        width: 945,
+        height: 500
+    };
+}
+
+function getSystemParlayParam(matchid, refno, bettype, betid) {
+    return {
+        url: "Report/ViewMixParlayResult.aspx",
+        title: "System Parlay",
+        jsonParam: { refno: refno, matchid: matchid, bettype: bettype, betid: betid },
+        width: 945,
+        height: 500
+    };
+}
+
+function getHRParam(race, winlostdate, league, betid) {
+    return {
+        url: "Report/HRRaceResult.aspx",
+        title: "Race Result",
+        jsonParam: { leagueid: league, raceno: race, eventdate: winlostdate, hrbettype: betid }
+    };
+}
+
+function getGoldDeluxeParam(bettype, refno) {
+    return {
+        url: "Report/ViewGoldDeluxeResult.aspx",
+        title: "Gold Deluxe",
+        jsonParam: { transId: refno, bettype: bettype },
+        width: 945,
+        height: 500
+    };
+}
+
+function openResultsPopUp(resultParam) {
+    var url = resultParam.url + "?" + $.param(resultParam.jsonParam);
+    var width = resultParam.width || 600;
+    var height = resultParam.height || 500;
+    var popupName = resultParam.title.replace(/\s/g, "").replace(/\//g, "");
+
+    parent.OpenNextPopup(popupName, url, resultParam.title, width, height, true, false, window, 0, null, null);
 }

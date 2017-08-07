@@ -1,10 +1,8 @@
-﻿@using Fanex.BetList.Accounting.Models;
-@using Fanex.BetList.Accounting.Extensions;
+﻿@using Fanex.BetList.Accounting.Extensions;
 @using Fanex.BetList.Accounting.Core;
 @{
     var betdetail = Model;
     string statusTemp = betdetail.Ticket.Status.ToLower();
-    BetListHelper betlistHelper = new BetListHelper();
 
     decimal PT = betdetail.Ticket.MasterPositionTaking;
     decimal PT2 = betdetail.MasterPositionTaking2;
@@ -14,18 +12,18 @@
     string doubleCom = betdetail.Ticket.CommStatus == "1" ? "2x" : string.Empty;
    
 }
-@if (betlistHelper.IsHRWinPlaceBettype(betdetail.Ticket.BetTypeId))
+@if (BetListHelper.IsHRWinPlaceBettype(betdetail.Ticket.BetTypeId))
 {
     <div class="blue">
-        <span>Win: </span><span class="b">@betlistHelper.PercentFormat(PT)
+        <span>Win: </span><span class="b">@BetListHelper.PercentFormat(PT)
         </span>
     </div>
     <div class="margin-top-5">
-        <span>Place: </span><span class="b">@betlistHelper.PercentFormat(PT2)</span></div>
+        <span>Place: </span><span class="b">@BetListHelper.PercentFormat(PT2)</span></div>
 }
 else
 {
-    <div class="@betlistHelper.IsNegative(PT)">
+    <div class="@BetListHelper.IsNegative(PT)">
     @*casino, bingo*@
       @if (betdetail.Ticket.BetTypeId == 71 || betdetail.Ticket.BetTypeId == 73)
       {
@@ -33,13 +31,13 @@ else
       }
       else
       {
-            <span>@betlistHelper.PercentFormat(PT)</span>
+            <span>@BetListHelper.PercentFormat(PT)</span>
       }
     </div>
 }
 @if (statusTemp != "running")
 {
-    <div class="@betlistHelper.IsNegative(winlost) margin-top-5">
+    <div class="@BetListHelper.IsNegative(winlost) margin-top-5">
         @winlost.Format(2)
     </div>
 }
@@ -51,7 +49,7 @@ else
     }
     else
     {
-        <span>@doubleCom @betlistHelper.PercentFormat(discount)</span>
+        <span>@doubleCom @BetListHelper.PercentFormat(discount)</span>
     }
 </div>
 @if (statusTemp != "running")

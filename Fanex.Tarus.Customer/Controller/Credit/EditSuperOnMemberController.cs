@@ -98,47 +98,47 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
         /// <param name="stringcustomer">String will be deserialized to a customer object</param>
         /// <param name="currentContext">Current context</param>
         /// <returns>Return a result message</returns>
-        [AuthenticateHost]
-        [HttpPost]
-        public JsonResult DoEditMember(string stringcustomer, RequestContext currentContext, bool isDisplaySportbooks = true)
-        {
-            Result result;
-            try
-            {
-                ICustomer customer = GetCustomerFromDeserializeJsonString(stringcustomer);
+        //[AuthenticateHost]
+        //[HttpPost]
+        //public JsonResult DoEditMember(string stringcustomer, RequestContext currentContext, bool isDisplaySportbooks = true)
+        //{
+        //    Result result;
+        //    try
+        //    {
+        //        ICustomer customer = GetCustomerFromDeserializeJsonString(stringcustomer);
 
-                //do insert new agent
-                currentContext.CustId = AppSession.AccId;
-                customer.Language = "E";
-                currentContext.IP = System.Web.HttpContext.Current.Request.UserHostAddress;
-                result = _customerService.SuperUpdateMember(customer, currentContext);
-                result = isDisplaySportbooks ? _customerService.SuperUpdateMember(customer, currentContext) : _customerService.SuperUpdateMultipleMembers(customer, currentContext, updateParameters);
-                int tempErrorCode = 0;
-                string tempErrorMessage = "";
+        //        //do insert new agent
+        //        currentContext.CustId = AppSession.AccId;
+        //        customer.Language = "E";
+        //        currentContext.IP = System.Web.HttpContext.Current.Request.UserHostAddress;
+        //        result = _customerService.SuperUpdateMember(customer, currentContext);
+        //        result = isDisplaySportbooks ? _customerService.SuperUpdateMember(customer, currentContext) : _customerService.SuperUpdateMultipleMembers(customer, currentContext, updateParameters);
+        //        int tempErrorCode = 0;
+        //        string tempErrorMessage = "";
 
-                AlertMessage.ParseError(ref tempErrorCode, ref tempErrorMessage, result.ErrorCode, result.ErrorMessage);
-                result.ErrorCode = tempErrorCode.ToString();
-                result.ErrorMessage = tempErrorMessage;
+        //        AlertMessage.ParseError(ref tempErrorCode, ref tempErrorMessage, result.ErrorCode, result.ErrorMessage);
+        //        result.ErrorCode = tempErrorCode.ToString();
+        //        result.ErrorMessage = tempErrorMessage;
 
-                if (tempErrorCode == 0)
-                {
-                    //update sync casino
-                    customer.SiteName = _customerSettingService.GetRNGSiteNameByCustId(customer.CustId);
-                    _customerSettingService.UpdateSyncCasinoAfterEditCustomer(customer, currentContext);
-                }
-            }
-            catch (Exception ex)
-            {
-                result = new Result
-                {
-                    ErrorCode = "1000",
-                    ErrorMessage = ex.Message
-                };
-                LogExtensions.ExceptionHandler(ex);
-            }
+        //        if (tempErrorCode == 0)
+        //        {
+        //            //update sync casino
+        //            customer.SiteName = _customerSettingService.GetRNGSiteNameByCustId(customer.CustId);
+        //            _customerSettingService.UpdateSyncCasinoAfterEditCustomer(customer, currentContext);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        result = new Result
+        //        {
+        //            ErrorCode = "1000",
+        //            ErrorMessage = ex.Message
+        //        };
+        //        LogExtensions.ExceptionHandler(ex);
+        //    }
 
-            //return result
-            return Json(result);
-        }
+        //    //return result
+        //    return Json(result);
+        //}
     }
 }

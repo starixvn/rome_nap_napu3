@@ -236,11 +236,11 @@ public class UpdateCustomerStatus : BaseHandler
                     s = "parent.changeDisplayStatus();";
                     break;
                 case "disabledNumberGame"://NumberGame
-                    isUpdDownline = false;
-                    if (!Boolean.TryParse(context.Request["isupddownline"] as string ?? string.Empty, out isUpdDownline))
-                        throw new AccException("Invalid isupddownline parameters");
-                    Sunplus.Accounting.DataAccess.IBCDLL.Accounting.CustomerUpdateStatus.CustomerUpdateDisabledNumberGame(_accid, _custid, status, context.Request.UserHostAddress, isUpdDownline);
-                    s = "parent.changeDisplayStatus();";
+                    //isUpdDownline = false;
+                    //if (!Boolean.TryParse(context.Request["isupddownline"] as string ?? string.Empty, out isUpdDownline))
+                    //    throw new AccException("Invalid isupddownline parameters");
+                    //Sunplus.Accounting.DataAccess.IBCDLL.Accounting.CustomerUpdateStatus.CustomerUpdateDisabledNumberGame(_accid, _custid, status, context.Request.UserHostAddress, isUpdDownline);
+                    //s = "parent.changeDisplayStatus();";
                     break;
                 case "SelectedBetting"://Selected Betting
                     isUpdDownline = false;
@@ -282,7 +282,7 @@ public class UpdateCustomerStatus : BaseHandler
                         throw new AccException("Invalid isupddonwline parameters");
                     new CustomerUpdateStatus().CustomerUpdateDisabledEsport(_accid, _custid, status, context.Request.UserHostAddress, isUpdDownline);
                     s = "parent.changeDisplayStatus();";
-                    break;    
+                    break;
 
                 case "enableHorseRacingFixedOdds":
                     // Louis.Nguyen: Enable Horse Racing Fixed Odds

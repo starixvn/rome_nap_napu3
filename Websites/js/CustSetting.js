@@ -106,6 +106,7 @@ function UpdateSettingStatus(chk1, chk2, type) {
     }
 }
 function changeDisable(obj, type) {
+    if (type === "NumberGame") return;
     if (type == 'SelectedBetting') {
         if ($("#" + obj.id + "DL") != null) {
             if ($("#" + obj.id).attr('checked'))//Selected
@@ -205,13 +206,13 @@ function changeDisable(obj, type) {
         } else {
             $("#disabledBingoGamePop .btn:first").attr("disabled", "disabled");
         }
-    if (type == "NumberGame")
-        if (($("#" + chk1).attr('checked') == true && $('#chkOldValueNumberGame').val() == "1") ||
-        ($("#" + chk1).attr('checked') == false && $('#chkOldValueNumberGame').val() == "0")) {
-            $("#disabledNumberGamePop .btn:first").removeAttr("disabled");
-        } else {
-            $("#disabledNumberGamePop .btn:first").attr("disabled", "disabled");
-        }
+    //if (type == "NumberGame")
+    //    if (($("#" + chk1).attr('checked') == true && $('#chkOldValueNumberGame').val() == "1") ||
+    //    ($("#" + chk1).attr('checked') == false && $('#chkOldValueNumberGame').val() == "0")) {
+    //        $("#disabledNumberGamePop .btn:first").removeAttr("disabled");
+    //    } else {
+    //        $("#disabledNumberGamePop .btn:first").attr("disabled", "disabled");
+    //    }
 
     if (type == "LCS")
         if (($("#" + chk1).attr('checked') == true && $('#chkOldValueLiveCasino').val() == '1') ||
@@ -356,7 +357,9 @@ function DisabeAllCheckBox() {
     $("#disabledHROpenTotePop .btn:first").attr("disabled", "disabled");
     $("#disabledFinancialPop .btn:first").attr("disabled", "disabled");
     $("#disabledBingoGamePop .btn:first").attr("disabled", "disabled");
-    $("#disabledNumberGamePop .btn:first").attr("disabled", "disabled");
+    $("#disabledNumberGamePop .btn:first").attr("disabled", "disabled").hide();
+    $("#disabledNumberGamechk").attr("disabled", "disabled");
+    $("#disabledNumberGameboxDL").attr("disabled", "disabled");
     $("#disabledCSPop .btn:first").attr("disabled", "disabled");
     $("#disabledLCSPop .btn:first").attr("disabled", "disabled");
     $("#disabledVSPop .btn:first").attr("disabled", "disabled");

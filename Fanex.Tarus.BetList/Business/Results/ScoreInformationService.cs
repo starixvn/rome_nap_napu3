@@ -11,9 +11,10 @@ namespace Fanex.Tarus.BetList.Business.Results
 {
     using System.Collections.Generic;
     using Fanex.Result.Core;
-    using Fanex.Result.Core.DTO;
     using Fanex.Tarus.BetList.Criteria.Results;
     using Fanex.Tarus.BetList.DataAccess.Results;
+    using Result.Core.Base;
+    using Result.Core.Sportsbook.DTO;
 
     /// <summary>
     /// The class ScoreInformationService.
@@ -90,7 +91,7 @@ namespace Fanex.Tarus.BetList.Business.Results
             return new ResultSetting
             {
                 SportType = (SportType)criteria.SportType,
-                IsOutRight = false,
+                IsOutright = false,
                 IsParlayPopUp = false,
                 IsPopUp = true,
                 LanguageCode = "en-US",

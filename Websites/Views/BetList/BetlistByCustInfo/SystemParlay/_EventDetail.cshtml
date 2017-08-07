@@ -5,7 +5,6 @@
 @{
     var systemParlayDetail = Model.SystemParlayDetail;
     decimal subtotal = Model.SystemParlayDetail.SubTotal;
-    BetListHelper betlistHelper = new BetListHelper();
 }
 
 <div id="EventDetail" class="freegrid" style="margin-top: 10px;">
@@ -99,7 +98,7 @@
                                     {
                                         var match = eventTmp.MatchList[j];
                                         <div>
-                                            <span>@Fanex.BetList.Accounting.Core.CacheRef.GetTeamName(match.HomeID) </span>- <span>@Fanex.BetList.Accounting.Core.CacheRef.GetTeamName(match.AwayID)
+                                            <span>@CacheRef.GetTeamName(match.HomeID) </span>- <span>@CacheRef.GetTeamName(match.AwayID)
                                             </span>
                                         </div>
                                     }
@@ -107,14 +106,14 @@
                             </td>
                             <td >
                                 <div class="width60 height34 table-cell r">
-                                  @String.Format("{0:0.00#}", eventTmp.Odds)</div>
+                                  @string.Format("{0:0.00#}", eventTmp.Odds)</div>
                             </td>
                             <td >
                                 <div class="width50 height34 table-cell r">
                                     @eventTmp.Stake.Format(2)</div>
                             </td>
                             <td >
-                                <div class="width60 height34 table-cell r  @betlistHelper.IsNegative(systemParlayDetail.EventList[i].WinLoss)">
+                                <div class="width60 height34 table-cell r  @BetListHelper.IsNegative(systemParlayDetail.EventList[i].WinLoss)">
                                     @eventTmp.WinLoss.Format(2)</div>
                             </td>
                             <td>
@@ -137,7 +136,7 @@
                                 Sub total</div>
                         </th>
                         <th>
-                            <div class="width60  table-cell r @betlistHelper.IsNegative(systemParlayDetail.SubTotal)">
+                            <div class="width60  table-cell r @BetListHelper.IsNegative(systemParlayDetail.SubTotal)">
                                 @subtotal.Format(2)
                             </div>
                         </th>
