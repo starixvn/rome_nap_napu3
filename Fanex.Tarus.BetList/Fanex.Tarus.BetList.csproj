@@ -213,6 +213,10 @@
       <Project>{23ca0605-90e8-4839-8def-976a31a68563}</Project>
       <Name>BetList</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fanex.BetList.Accounting\BetList.csproj">
+      <Project>{23ca0605-90e8-4839-8def-976a31a68563}</Project>
+      <Name>BetList</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fanex.Tarus.Business.Implement\Fanex.Tarus.Business.Implement.csproj">
       <Project>{BE4A5642-A3B6-4329-BB8F-4973446E7FA9}</Project>
       <Name>Fanex.Tarus.Business.Implement</Name>
@@ -241,6 +245,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\BetListResources.resx" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
