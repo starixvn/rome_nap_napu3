@@ -62,7 +62,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetListDetail.Lucky3, Version=1.0.0.12, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.BetListDetail.Lucky3.1.0.0.0-beta14\lib\Fanex.BetListDetail.Lucky3.dll</HintPath>
+      <HintPath>..\packages\Fanex.BetListDetail.Lucky3.1.0.0.0-beta17\lib\Fanex.BetListDetail.Lucky3.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Common, Version=1.0.404.97, Culture=neutral, processorArchitecture=MSIL">
@@ -241,7 +241,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\BetListResources.resx" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
