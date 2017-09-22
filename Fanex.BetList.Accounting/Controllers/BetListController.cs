@@ -6,8 +6,8 @@ using Fanex.BetList.Accounting.Core;
 using Fanex.BetList.Accounting.Criteria;
 using Fanex.BetList.Accounting.Models;
 using Fanex.BetList.Accounting.Services;
-using Fanex.BetListDetail.Lucky3.Criteria;
-using Fanex.BetListDetail.Lucky3.Services;
+using Fanex.BetDetails.Lucky3.Criteria;
+using Fanex.BetDetails.Lucky3.Services;
 using SmartPunterFilter = Fanex.AuthenticationFilter.AuthenticateSmartPunterAction;
 
 namespace Fanex.BetList.Accounting.Controllers

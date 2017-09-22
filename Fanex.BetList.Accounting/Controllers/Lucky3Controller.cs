@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using Fanex.BetList.Accounting.Repositories;
-using Fanex.BetListDetail.Lucky3.Criteria;
-using Fanex.BetListDetail.Lucky3.Services;
+using Fanex.BetDetails.Lucky3.Criteria;
+using Fanex.BetDetails.Lucky3.Services;
 
 namespace Fanex.BetList.Accounting.Controllers
 {
