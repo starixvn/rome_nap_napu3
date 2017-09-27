@@ -95,34 +95,34 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
         /// <param name="stringcustomer">String will be deserialized to a customer object</param>
         /// <param name="currentContext">Current context</param>
         /// <returns>Return a result message</returns>
-        [AuthenticateHost]
-        [HttpPost]
-        public JsonResult DoEditAgent(string stringcustomer, RequestContext currentContext)
-        {
-            IList<Result> result = new List<Result>();
-            try
-            {
-                ICustomer customer = GetCustomerFromDeserializeJsonString(stringcustomer);
+        //[AuthenticateHost]
+        //[HttpPost]
+        //public JsonResult DoEditAgent(string stringcustomer, RequestContext currentContext)
+        //{
+        //    IList<Result> result = new List<Result>();
+        //    try
+        //    {
+        //        ICustomer customer = GetCustomerFromDeserializeJsonString(stringcustomer);
 
-                // Do edit agent
-                currentContext.CustId = AppSession.AccId;
-                currentContext.IP = System.Web.HttpContext.Current.Request.UserHostAddress;
-                var updateResult = _customerService.CompanyUpdateMinMaxPTAgent(customer, currentContext);
-                // format template of error message
-                result = ParseError(updateResult.ErrorCode, updateResult.ErrorMessage);
-            }
-            catch (Exception ex)
-            {
-                result.Add(new Result()
-                {
-                    ErrorCode = "1000",
-                    ErrorMessage = ex.Message
-                });
-                LogExtensions.ExceptionHandler(ex);
-            }
+        //        // Do edit agent
+        //        currentContext.CustId = AppSession.AccId;
+        //        currentContext.IP = System.Web.HttpContext.Current.Request.UserHostAddress;
+        //        var updateResult = _customerService.CompanyUpdateMinMaxPTAgent(customer, currentContext);
+        //        // format template of error message
+        //        result = ParseError(updateResult.ErrorCode, updateResult.ErrorMessage);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        result.Add(new Result()
+        //        {
+        //            ErrorCode = "1000",
+        //            ErrorMessage = ex.Message
+        //        });
+        //        LogExtensions.ExceptionHandler(ex);
+        //    }
 
-            // Return result
-            return Json(result);
-        }
+        //    // Return result
+        //    return Json(result);
+        //}
     }
 }

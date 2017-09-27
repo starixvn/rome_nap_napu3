@@ -100,6 +100,12 @@
     getBetListByCustInfo: function (isCache) {
         var params = BetListByCustInfo.getParams();
         BetListByCustInfo.paramGetBetBetlist.isCache = isCache;
+
+        if (!isCache) {
+            params.pageIndex = 1;
+            BetListByCustInfo.paramGetBetBetlist.pageIndex = 1;
+        }
+
         try { parent.BlockUI(); } catch (e) { }
         $.ajax({
             type: "POST",

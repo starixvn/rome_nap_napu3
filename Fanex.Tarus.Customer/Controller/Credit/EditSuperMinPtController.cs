@@ -93,35 +93,35 @@ namespace Fanex.Tarus.Customer.Credit.Controllers
         /// <param name="stringcustomer">String will be deserialized to a customer object</param>
         /// <param name="currentContext">Current context</param>
         /// <returns>Return a result message</returns>
-        [AuthenticateHost]
-        [HttpPost]
-        public JsonResult DoEditSuper(string stringcustomer, RequestContext currentContext)
-        {
-            IList<Result> result = new List<Result>();
-            try
-            {
-                ICustomer customer = GetCustomerFromDeserializeJsonString(stringcustomer);
+        //[AuthenticateHost]
+        //[HttpPost]
+        //public JsonResult DoEditSuper(string stringcustomer, RequestContext currentContext)
+        //{
+        //    IList<Result> result = new List<Result>();
+        //    try
+        //    {
+        //        ICustomer customer = GetCustomerFromDeserializeJsonString(stringcustomer);
 
-                // Do edit super
-                currentContext.CustId = AppSession.AccId;
-                customer.Language = "E";
-                currentContext.IP = System.Web.HttpContext.Current.Request.UserHostAddress;
-                var updateResult = _customerService.CompanyUpdateMinPTSuper(customer, currentContext);
-                // format template of error message
-                result = ParseError(updateResult.ErrorCode, updateResult.ErrorMessage);
-            }
-            catch (Exception ex)
-            {
-                result.Add(new Result()
-                {
-                    ErrorCode = "1000",
-                    ErrorMessage = ex.Message
-                });
-                LogExtensions.ExceptionHandler(ex);
-            }
+        //        // Do edit super
+        //        currentContext.CustId = AppSession.AccId;
+        //        customer.Language = "E";
+        //        currentContext.IP = System.Web.HttpContext.Current.Request.UserHostAddress;
+        //        var updateResult = _customerService.CompanyUpdateMinPTSuper(customer, currentContext);
+        //        // format template of error message
+        //        result = ParseError(updateResult.ErrorCode, updateResult.ErrorMessage);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        result.Add(new Result()
+        //        {
+        //            ErrorCode = "1000",
+        //            ErrorMessage = ex.Message
+        //        });
+        //        LogExtensions.ExceptionHandler(ex);
+        //    }
 
-            // Return result
-            return Json(result);
-        }
+        //    // Return result
+        //    return Json(result);
+        //}
     }
 }

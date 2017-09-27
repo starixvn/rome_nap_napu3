@@ -1,7 +1,5 @@
 ﻿@using Fanex.BetList.Accounting.Models
 @using Fanex.BetList.Core.Entities;
-@using Fanex.BetList.Accounting.Core;
-@using Fanex.BetList.Accounting.Extensions;
 @using DNAide.Core;
 
 @{
@@ -39,19 +37,8 @@
             </div>
         </td>
         <td class="c">
-            <div class="width120 table-cell">
-                <div class="refno ">
-                    @if (betdetail.Ticket.BetTypeId == 73 || betdetail.Ticket.BetTypeId == 71 || betdetail.Ticket.SportTypeId == 202)
-                    {
-                        <span>Ref No: @betdetail.Ticket.RefNo </span>
-                    }
-                    else
-                    {
-                        <span>Ref No: @betdetail.Ticket.TransId </span>
-                    }
-                </div>
-                <div class="c">
-                    @betdetail.Ticket.TransDate</div>
+            <div class="width120 table-cell refno">
+                @Html.Raw(betdetail.TransDateHtml)
             </div>
         </td>
         <td id ="td_right_@betdetail.Ticket.TransId"  class='r bl_evt'>

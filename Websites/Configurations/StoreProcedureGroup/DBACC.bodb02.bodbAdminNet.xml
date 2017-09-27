@@ -267,4 +267,8 @@
     <Setting Key="Acc_DailyTxn_FinanceBettype_Sel" SpName="Acc_DailyTxn_FinanceBettype_Sel" DbName="DBACC.bodb02.bodbAdminNet" />
     <Setting Key="Acc_CustomerSelFITransferStatus" SpName="Acc_CustomerSelFITransferStatus" DbName="DBACC.bodb02.bodbAdminNet" />
   </Function>
+
+  <Function Name="Lucky 3 Bet List Detail">
+    <Setting Key="Acc_BetList_Lucky3_Detail" SpName="Acc_BetList_Lucky3_Detail" DbName="DBACC.bodb02.bodbAdminNet" />
+  </Function>
 </Functions>

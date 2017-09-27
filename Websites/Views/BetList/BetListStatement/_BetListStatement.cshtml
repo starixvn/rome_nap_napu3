@@ -28,7 +28,7 @@
     var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
     TicketDetail betdetail = new TicketDetail();
     int NumberBegining = ViewBag.NumberBegining;
-    BetListHelper betlistHelper = new BetListHelper();
+
     long[] arrTransID = new long[Model.Count];
     decimal totalWinlost = ViewBag.TotalWinLos;
     decimal totalComm = ViewBag.TotalComm;
@@ -57,7 +57,7 @@
 @helper renderContent(TicketDetail betdetail, int NumberBegining)
     {
         var liveRow = betdetail.Ticket.IsLive ? "event-live" : string.Empty;
-        BetListHelper _betlistHelper = new BetListHelper();
+
     <tr class="c @liveRow">
         <td>
             <div class="c width30">
@@ -261,7 +261,7 @@
                                 @subTotalTmp</div>
                         </th>
                         <th>
-                            <div class="@betlistHelper.IsNegative(totalWinlost) height17 table-cell r width80">
+                            <div class="@BetListHelper.IsNegative(totalWinlost) height17 table-cell r width80">
                                 @totalWinlost.Format(2)</div>
                         </th>
                         <th>
@@ -279,7 +279,7 @@
                                 SubTotal (com)</div>
                         </th>
                         <th>
-                            <div class="@betlistHelper.IsNegative(totalComm) height17 table-cell r width80">
+                            <div class="@BetListHelper.IsNegative(totalComm) height17 table-cell r width80">
                                 @totalComm.Format(2)</div>
                         </th>
                         <th>
@@ -297,7 +297,7 @@
                                 Total</div>
                         </th>
                         <th>
-                            <div  class="@betlistHelper.IsNegative(total) width80 height17 table-cell r">
+                            <div  class="@BetListHelper.IsNegative(total) width80 height17 table-cell r">
                                 @total.Format(2)</div>
                         </th>
                         <th>

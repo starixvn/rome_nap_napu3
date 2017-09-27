@@ -10,8 +10,8 @@
 namespace Fanex.Tarus.BetList.DataAccess.Results
 {
     using System.Collections.Generic;
-    using Fanex.Result.Core.DTO;
     using Fanex.Tarus.BetList.Criteria.Results;
+    using Result.Core.Sportsbook.DTO;
 
     /// <summary>
     /// The interface IParlayResultDataAccess.

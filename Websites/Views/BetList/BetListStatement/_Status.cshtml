@@ -1,14 +1,11 @@
-﻿@using Fanex.BetList.Accounting.Models;
-@using Fanex.BetList.Accounting.Extensions;
-@using Fanex.BetList.Accounting.Core;
+﻿@using Fanex.BetList.Accounting.Core;
 @{
     var betdetail = Model;
     string statusTemp = betdetail.Ticket.Status.ToLower();
-    BetListHelper betlistHelper = new BetListHelper();
     int _liveAwayScore = betdetail.Ticket.LiveAwayScore;
     int _liveHomeScore = betdetail.Ticket.LiveHomeScore;
 }
-@if (betlistHelper.IsHRWinPlaceBettype(betdetail.Ticket.BetTypeId) && (statusTemp.Equals("won") || statusTemp.Equals("lose")))
+@if (BetListHelper.IsHRWinPlaceBettype(betdetail.Ticket.BetTypeId) && (statusTemp.Equals("won") || statusTemp.Equals("lose")))
 {
     var _homeTemp = string.Empty;
     switch (_liveHomeScore)

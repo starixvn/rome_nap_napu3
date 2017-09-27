@@ -1,11 +1,8 @@
-﻿@using Fanex.BetList.Accounting.Models;
-@using Fanex.BetList.Accounting.Extensions;
+﻿@using Fanex.BetList.Accounting.Extensions;
 @using Fanex.BetList.Accounting.Core;
-@using Fanex.BetList.Core.TicketHelper;
 @{
     var betdetail = Model;
     string statusTemp = betdetail.Ticket.Status.ToLower();
-    BetListHelper betlistHelper = new BetListHelper();
     decimal winlost = betdetail.Ticket.Winlost;
     decimal playerComm = betdetail.Ticket.PlayerComm;
 }
@@ -24,7 +21,7 @@ else if (statusTemp == "void" || statusTemp == "reject")
 else
 {
     <div>
-        <div class="@betlistHelper.IsNegative(betdetail.Ticket.Winlost) margin-top-5">
+        <div class="@BetListHelper.IsNegative(betdetail.Ticket.Winlost) margin-top-5">
             @winlost.Format(2)
         </div>
         <div class="margin-top-5">
