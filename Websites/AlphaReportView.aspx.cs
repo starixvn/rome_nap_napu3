@@ -5,6 +5,7 @@ using System.Net;
 using DNAide.Utils;
 using Fanex.Tarus.Infrastructure.Helper;
 using Sunplus.Accounting.Business;
+using System.Web;
 
 public partial class AlphaReportView : System.Web.UI.Page
 {
@@ -16,6 +17,7 @@ public partial class AlphaReportView : System.Web.UI.Page
         string roleId = Request["roleId"];
         string reportKey = Request["reportKey"];
         var isViewSportbookRequest = Request["isViewSportbook"];
+        Uri uri = HttpContext.Current.Request.Url;
 
         string isViewSportbook =
             string.IsNullOrEmpty(isViewSportbookRequest) ?
@@ -36,10 +38,11 @@ public partial class AlphaReportView : System.Web.UI.Page
 
         var isWebVpnAccess = IPHelper.IsWebVpnAccess();
         var host = isWebVpnAccess ? ConfigurationManager.AppSettings["InternalIPReport"] : Request.Headers["Host"];
-        var urlScheme = Request.Url.GetLeftPart(UriPartial.Scheme);
+        var urlScheme = (uri.Host.Contains("oneops.net") ? "https" : uri.Scheme) + Uri.SchemeDelimiter;
+        
         var internalAgentUrl = string.Format(
             ConfigurationManager.AppSettings["int_agent_url_report"],
-            host.StartsWith(urlScheme) ? host : urlScheme + host);
+            host.StartsWith("http") ? host : urlScheme + host);
         url = internalAgentUrl + "?params=" + strParams;
 
         Response.Redirect(url);
