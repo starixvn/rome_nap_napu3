@@ -176,12 +176,9 @@
     <Setting Key="WinLoss_Sporttype" SpName="Acc_Rpt_WinLoss_Sporttype" DbName="DBACC.bodb02.bodbAdminNet" />
   </Function>
   <Function Name="Licensee">
-    <add alias="LicWinlossDetailBetlist" name="Acc_BetList_SelWinloss_Mem" db="DBACC.bodb02.bodbAdminNet" function="">
-    </add>
-    <add alias="LicWinlossDetailBetlist2" name="Acc_BetList_SelWinloss_Mem2" db="DBACC.bodb02.bodbAdminNet" function="">
-    </add>
-    <add alias="LicNegativeBalanceMember" name="Acc_Rpt_NegativeBalanceMember_Dep" db="DBACC.bodb02.bodbAdminNet" function="">
-    </add>
+    <add alias="LicWinlossDetailBetlist" name="Acc_BetList_SelWinloss_Mem" db="DBACC.bodb02.bodbAdminNet" function=""></add>
+    <add alias="LicWinlossDetailBetlist2" name="Acc_BetList_SelWinloss_Mem2" db="DBACC.bodb02.bodbAdminNet" function=""></add>
+    <add alias="LicNegativeBalanceMember" name="Acc_Rpt_NegativeBalanceMember_Dep" db="DBACC.bodb02.bodbAdminNet" function=""></add>
   </Function>
   <Function Name="Others">
     <Setting Key="Acc_DailyCreatedCustomer" SpName="Acc_DailyCreatedCustomer" DbName="DBACC.bodb02.bodbAdminNet" />
@@ -205,8 +202,7 @@
     <Setting Key="WinLossDaily_AgEx_14" SpName="Acc_Rpt_WinLossDaily_AgEx14" DbName="DBACC.bodb02.bodbAdminNet" />
     <Setting Key="WinLossDaily_AgEx_WH" SpName="Acc_Rpt_WinLossDaily_AgEx14" DbName="DBACC.bodb02.bodbAdminNet" />
   </Function>
-  <Function Name="Daily Turnover">
-  </Function>
+  <Function Name="Daily Turnover"></Function>
   <Function Name="Betlist">
     <Setting Key="BetList_IP_OtherSports" SpName="Acc_BetListByIP_OtherSports" DbName="DBACC.bodb02.bodbAdminNet" />
     <Setting Key="BetList_IP_Soccer" SpName="Acc_BetListByIP_Soccer" DbName="DBACC.bodb02.bodbAdminNet" />
@@ -223,18 +219,15 @@
     <Setting Key="Admin_SecurityCode_GetUserList" SpName="ACC_CustomerValidation" DbName="DBACC.bodb02.bodbAdminNet" />
   </Function>
   <Function Name="Transaction - Automate Finance Transfer">
-    <Setting Key="Acc_FinanceCrossTransferMulInsTmpExcel" SpName="Acc_FinanceCrossTransferMulInsTmpExcel" DbName="DBACC.bodb02.bodbAdminNet">
-    </Setting>
-    <Setting Key="Acc_FinanceTransferMulDelTmpExcel" SpName="Acc_FinanceTransferMulDelTmpExcel" DbName="DBACC.bodb02.bodbAdminNet">
-    </Setting>
-    <Setting Key="Acc_FinanceTransferMulInsTmpExcel" SpName="Acc_FinanceTransferMulInsTmpExcel" DbName="DBACC.bodb02.bodbAdminNet">
-    </Setting>
+    <Setting Key="Acc_FinanceCrossTransferMulInsTmpExcel" SpName="Acc_FinanceCrossTransferMulInsTmpExcel_UAT4" DbName="DBACC.bodb02.bodbAdminNet"></Setting>
+    <Setting Key="Acc_FinanceTransferMulDelTmpExcel" SpName="Acc_FinanceTransferMulDelTmpExcel_UAT4" DbName="DBACC.bodb02.bodbAdminNet"></Setting>
+    <Setting Key="Acc_FinanceTransferMulInsTmpExcel" SpName="Acc_FinanceTransferMulInsTmpExcel_UAT4" DbName="DBACC.bodb02.bodbAdminNet"></Setting>
   </Function>
   <Function Name="Special delete - Ticket Listing">
     <Setting Key="Acc_Rpt_TicketsListingDetail" SpName="Acc_Rpt_TicketsListingDetail" DbName="DBACC.bodb02.bodbAdminNet" />
   </Function>
   <Function Name="Admin - SMA Management">
-    <Setting Key="Acc_CustomerSelByGroupHeadline" SpName="Acc_CustomerSelByGroupHeadline" DbName="DBACC.bodb02.bodbAdminNet" />
+    <Setting Key="Acc_CustomerSelByGroupHeadline" SpName="Acc_CustomerSelByGroupHeadline_UAT4" DbName="DBACC.bodb02.bodbAdminNet" />
   </Function>
   <Function Name="Customer - Update Live Casino Comm">
     <Setting Key="GetCustIdByUsername" SpName="Acc_GetCustIdByUsername" DbName="DBACC.bodb02.bodbAdminNet" />
@@ -267,7 +260,6 @@
     <Setting Key="Acc_DailyTxn_FinanceBettype_Sel" SpName="Acc_DailyTxn_FinanceBettype_Sel" DbName="DBACC.bodb02.bodbAdminNet" />
     <Setting Key="Acc_CustomerSelFITransferStatus" SpName="Acc_CustomerSelFITransferStatus" DbName="DBACC.bodb02.bodbAdminNet" />
   </Function>
-
   <Function Name="Lucky 3 Bet List Detail">
     <Setting Key="Acc_BetList_Lucky3_Detail" SpName="Acc_BetList_Lucky3_Detail" DbName="DBACC.bodb02.bodbAdminNet" />
   </Function>
