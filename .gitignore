@@ -66,4 +66,4 @@ Websites/[Bb]in/*.xml
 .vs/config/applicationhost.config
 Websites/vwd.webinfo
 packages/
-bin/
+[Bb]in/
