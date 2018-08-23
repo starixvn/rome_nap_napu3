@@ -18,6 +18,7 @@ namespace Fanex.Tarus.Business.Implement.Report
     using Sunplus.Accounting.Core.Extensions;
     using ExcelUtil.Spreadsheet;
     using System.Drawing;
+    using Fanex.Tarus.Infrastructure.Caching;
 
     public class LiveCasinoWinLossService : ILiveCasinoWinLossService
     {
@@ -253,10 +254,10 @@ namespace Fanex.Tarus.Business.Implement.Report
                     result = CastAide.AsString(Row["username"]);
                     break;
                 case (int)FilterGameCondition.GameType:
-                    result = RemotingRef.RefData.GetBetTypeName(CastAide.AsString(Row["GameType"]), "E");
+                    result = CacheRef.GetBettype(CastAide.AsString(Row["GameType"]));
                     break;
                 case (int)FilterGameCondition.GameTable:
-                    result = RemotingRef.RefData.GetLeagueName(CastAide.AsString(Row["GameTable"]), "E");
+                    result = CacheRef.GetLeagueName(CastAide.AsString(Row["GameTable"]));
                     break;
                 case (int)FilterGameCondition.Agency:
                     result = CastAide.AsString(Row["username"]);

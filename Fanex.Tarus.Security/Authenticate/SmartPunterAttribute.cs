@@ -59,12 +59,12 @@ namespace Fanex.Tarus.Security.Authenticate
         /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         public bool AllowRead()
         {
-            if(this.ParamHastable.ContainsKey("custId"))
+            if(this.ParamHastable != null && this.ParamHastable.ContainsKey("custId"))
             {
                 int custId = Converter.To<int>(this.ParamHastable["custId"]);
                 return !_permissionService.IsDeniedViewSmartPunter(custId, string.Empty);
             }
-            else if (this.ParamHastable.ContainsKey("username"))
+            else if (this.ParamHastable != null && this.ParamHastable.ContainsKey("username"))
             {
                 var username = Converter.ToString2(this.ParamHastable["username"]);
                 return !_permissionService.IsDeniedViewSmartPunter(null, username);

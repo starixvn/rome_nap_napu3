@@ -2986,7 +2986,7 @@ namespace Sunplus.Accounting.Business.Report
                         var realLineReal = CastAide.AsDouble(dr["WinLost"]) + CastAide.AsDouble(dr["Position"]) +
                                            CastAide.AsDouble(dr["Commission"]);
                         var margin = (Math.Round(CastAide.AsDouble(dr["TurnOver"]), 2) == 0) ? 0 : ((realLineReal / CastAide.AsDouble(dr["TurnOver"])) * 100);
-                        var bettypeName = RemotingRef.RefData.GetBetTypeName(CastAide.AsString(dr["bettype"]), "E");
+                        var bettypeName = CacheRef.GetBettype(CastAide.AsString(dr["bettype"]));
 
                         var item = new BettypesWinLossRow()
                                        {

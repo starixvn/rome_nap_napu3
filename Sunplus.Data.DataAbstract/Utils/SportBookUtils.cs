@@ -3,6 +3,7 @@ using System;
 using Sunplus.Data.DataAbstract.Configurations;
 using Sunplus.Data.DataAbstract.Log;
 using Sunplus.Data.DataAbstract.Storage;
+using Fanex.Tarus.Infrastructure.Caching;
 
 namespace Sunplus.Data.DataAbstract.Utils
 {
@@ -15,7 +16,7 @@ namespace Sunplus.Data.DataAbstract.Utils
             {
                 if (string.IsNullOrEmpty(oddType))
                     return string.Empty;
-                return RemotingRef.RefData.GetOddsTypeName(oddType, "en");
+                return CacheRef.GetOddsTypeName(oddType);
             }
             catch (Exception exception)
             {
@@ -35,7 +36,7 @@ namespace Sunplus.Data.DataAbstract.Utils
                 //var teamname = teamQuery.Where(t => t.Teamid == teamId).Select(t => t.Teamname).FirstOrDefault();
                 //return teamname;
 
-                var result = RemotingRef.RefData.GetTeamName(teamId, "en"); //DataStorage.Select<Team>(teamId).Teamname;
+                var result = CacheRef.GetTeamName(teamId); //DataStorage.Select<Team>(teamId).Teamname;
                 return result;
             }
             catch (Exception exception)
@@ -53,7 +54,7 @@ namespace Sunplus.Data.DataAbstract.Utils
                 if (string.IsNullOrEmpty(leagueId))
                     return string.Empty;
 
-                var result = RemotingRef.RefData.GetLeagueName(leagueId, "en"); //DataStorage.Select<League>(leagueId).Leaguename;
+                var result = CacheRef.GetLeagueName(leagueId); //DataStorage.Select<League>(leagueId).Leaguename;
 
                 return result;
             }
@@ -70,7 +71,7 @@ namespace Sunplus.Data.DataAbstract.Utils
             {
                 if (string.IsNullOrEmpty(sportId))
                     return string.Empty;
-                var result = RemotingRef.RefData.GetSportName(sportId, "en"); //DataStorage.Select<Sport>(sportId).SportName;
+                var result = CacheRef.GetSportName(sportId); //DataStorage.Select<Sport>(sportId).SportName;
                 return result;
             }
             catch (Exception exception)
@@ -87,7 +88,7 @@ namespace Sunplus.Data.DataAbstract.Utils
                 if (string.IsNullOrEmpty(bettypeId))
                     return string.Empty;
 
-                var result = RemotingRef.RefData.GetBetTypeName(bettypeId, "en"); //DataStorage.Select<BetType>(bettypeId).Typenamee;
+                var result = CacheRef.GetBettype(bettypeId); //DataStorage.Select<BetType>(bettypeId).Typenamee;
                 //if (1201 <= CastAide.AsInt32(bettypeId) && CastAide.AsInt32(bettypeId) <= 1299)
                 //{
                 //    result += " (Virtual Sports)";

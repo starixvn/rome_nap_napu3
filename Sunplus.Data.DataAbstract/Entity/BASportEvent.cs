@@ -4,6 +4,7 @@ using DNAide.Core;
 using DNAide.Utils;
 using Sunplus.Bingo.Core;
 using Sunplus.Data.DataAbstract.Utils;
+using Fanex.Tarus.Infrastructure.Caching;
 
 namespace Sunplus.Data.DataAbstract.Entity
 {
@@ -429,7 +430,7 @@ namespace Sunplus.Data.DataAbstract.Entity
             sportEvent.LiveScore = "";
             sportEvent.Choice = "-";
             sportEvent.Hdp = "";
-            sportEvent.BetType = "<span class='lnk' onclick='LatestBet.showCombinationMP(\"" + _bettran.Refno + "\",\"" + _bettran.Transid + "\")' >" + " " + RemotingRef.RefData.GetBetTypeName(_bettran.Bettype.ToString(), "en-EN") + "- <span class='MPType'>" + getCombinationType(_bettran.Betteam) + "</span></span>";
+            sportEvent.BetType = "<span class='lnk' onclick='LatestBet.showCombinationMP(\"" + _bettran.Refno + "\",\"" + _bettran.Transid + "\")' >" + " " + CacheRef.GetBettype(_bettran.Bettype) + "- <span class='MPType'>" + getCombinationType(_bettran.Betteam) + "</span></span>";
             sportEvent.Event = "-";
         }
 

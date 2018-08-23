@@ -22,7 +22,6 @@ namespace Fanex.Tarus.Reports.Business.DailyWinLoss2h
     using Fanex.Tarus.Reports.Constants;
     using Fanex.Tarus.Reports.Entities.DailyWinLoss2h;
     using Fanex.Tarus.Reports.Entities.Sport;
-    using RemotingRef;
     using Sunplus.Accounting.Core.Cache;
     using Sunplus.Accounting.Core.Extensions;
     using Sunplus.Accounting.Core.Helper;
@@ -114,7 +113,7 @@ namespace Fanex.Tarus.Reports.Business.DailyWinLoss2h
                             }
                         };
 
-                        dailyWinLoss2hItemX.Name = RefData.GetBetTypeName(dailyWinLoss2hItemX.Bettype.Id.ToString(), "EN") + "(" + dailyWinLoss2hItemX.Status + ")";
+                        dailyWinLoss2hItemX.Name = CacheRef.GetBettype(dailyWinLoss2hItemX.Bettype.Id) + "(" + dailyWinLoss2hItemX.Status + ")";
                         dailyWinLoss2hItemX.Margin = ReportService.CalculateMargin(dailyWinLoss2hItemX.LineTotal,
                             dailyWinLoss2hItemX.Turnover) * 100;
                         result.ReportTotal.NormalTotal.Add(dailyWinLoss2hItemX);

@@ -63,7 +63,7 @@ namespace BLL.Report.FI
                 dtFI.Columns.Add("IndexName", typeof(string));
                 foreach (DataRow dr in dtFI.Rows)
                 {
-                    dr["IndexName"] = CacheRef.GetFncIndexName(dr["homeid"]);
+                    dr["IndexName"] = dr["homeid"].ToString();
                 }
 
                 DataView dvFI = dtFI.DefaultView;
@@ -99,14 +99,14 @@ namespace BLL.Report.FI
                         rows.Replace("{rowspan}", countIndex.ToString());
                         TemplateHandler.Assign(ref row, "RowsSpanIndex",
                                                "<td class='c' rowspan='{rowspan}'>" +
-                                               CacheRef.GetFncIndexName(indexName_p) + "</td>");
+                                               indexName_p + "</td>");
                         if (index.Length > 0)
                         {
                             strIndexTotal = tplTotal;
                             TemplateHandler.Assign(ref strIndexTotal, "{bgcolor}", "footer2");
 
                             TemplateHandler.Assign(ref strIndexTotal, "TotalIndex",
-                                                   CacheRef.GetFncIndexName(indexName) + " Total");
+                                                   indexName + " Total");
                             TemplateHandler.Assign(ref strIndexTotal, "Turnover",
                                                    NumberFormat.DecFormat(
                                                        dt.Compute("sum(Turnover)", "homeid ='" + index + "'"), 2));
@@ -154,7 +154,7 @@ namespace BLL.Report.FI
 
                 strIndexTotal = tplTotal;
                 TemplateHandler.Assign(ref strIndexTotal, "{bgcolor}", "footer1");
-                TemplateHandler.Assign(ref strIndexTotal, "TotalIndex", CacheRef.GetFncIndexName(indexName_p) + " Total");
+                TemplateHandler.Assign(ref strIndexTotal, "TotalIndex", indexName_p + " Total");
                 TemplateHandler.Assign(ref strIndexTotal, "Turnover",
                                        NumberFormat.DecFormat(dt.Compute("sum(Turnover)", "homeid ='" + index + "'"), 2));
                 TemplateHandler.Assign(ref strIndexTotal, "WinLoss",

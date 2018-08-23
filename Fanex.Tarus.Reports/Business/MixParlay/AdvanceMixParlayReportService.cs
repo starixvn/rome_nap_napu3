@@ -12,6 +12,7 @@ using Fanex.Tarus.Reports.Helpers;
 using Sunplus.Accounting.Core.Common;
 using Sunplus.Accounting.Core.Extensions;
 using Sunplus.Accounting.Core.Helper;
+using Fanex.Tarus.Infrastructure.Caching;
 
 namespace Fanex.Tarus.Reports.Business.MixParlay
 {
@@ -110,7 +111,7 @@ namespace Fanex.Tarus.Reports.Business.MixParlay
                         reportDetailX = new ReportDetail
                         {
                             Id = CastAide.AsInt32(row["BetType"]),
-                            Name = RemotingRef.RefData.GetBetTypeName(CastAide.AsString(row["BetType"]), "EN"),
+                            Name = CacheRef.GetBettype(CastAide.AsString(row["BetType"])),
                             Status = CastAide.AsString(row["Status"]),
                             WinLoss = CastAide.AsDecimal(row["WinLost"]),
                             Position = CastAide.AsDecimal(row["Position"]),

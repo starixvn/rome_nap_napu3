@@ -10,7 +10,6 @@ using Fanex.Tarus.Reports.Business.Constants;
 using Fanex.Tarus.Reports.Entities.MixParlay;
 using Fanex.Tarus.Reports.Entities.Sport;
 using Fanex.Tarus.Reports.Helpers;
-using RemotingRef;
 using Sunplus.Accounting.Core.Cache;
 using Sunplus.Accounting.Core.Extensions;
 using Sunplus.Accounting.Core.Helper;
@@ -102,7 +101,7 @@ namespace Fanex.Tarus.Reports.Business.MixParlay
                             }
                         };
 
-                        reportDetailX.Name = RefData.GetBetTypeName(reportDetailX.BetType.Id.ToString(), "EN") + "(" + reportDetailX.Status + ")";
+                        reportDetailX.Name = CacheRef.GetBettype(reportDetailX.BetType.Id) + "(" + reportDetailX.Status + ")";
                         reportDetailX.Margin = CalculateMargin(reportDetailX);
                         #region CalculateReportTotal
 

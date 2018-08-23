@@ -22,6 +22,7 @@ namespace Fanex.Tarus.Reports.Business.DailyWinLoss2h
     using Sunplus.Accounting.Core.Common;
     using Sunplus.Accounting.Core.Extensions;
     using Sunplus.Accounting.Core.Helper;
+    using Infrastructure.Caching;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public partial class DailyWinLoss2hService : IDailyWinLoss2hService
@@ -121,7 +122,7 @@ namespace Fanex.Tarus.Reports.Business.DailyWinLoss2h
                         dailyWinLoss2hItemX = new DailyWinLoss2hItem
                         {
                             Id = CastAide.AsInt32(row["BetType"]),
-                            Name = RemotingRef.RefData.GetBetTypeName(CastAide.AsString(row["BetType"]), "EN"),
+                            Name = CacheRef.GetBettype(CastAide.AsString(row["BetType"])),
                             Status = CastAide.AsString(row["Status"]),
                             WinLoss = CastAide.AsDouble(row["WinLost"]),
                             Position = CastAide.AsDouble(row["Position"]),
