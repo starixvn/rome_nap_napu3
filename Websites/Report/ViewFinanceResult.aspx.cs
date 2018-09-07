@@ -33,7 +33,7 @@ public partial class Report_ViewFinanceResult : System.Web.UI.Page
                 DataRow row = tblFIResult.Rows[0];
                 string marketName = CacheRef.GetLeagueName(row["leagueid"]);
                 //string indexName = CastAide.AsString(row["indexName"]);
-                string indexName = CacheRef.GetFncIndexName(row["homeid"]);
+                string indexName = CacheRef.GetTeamName(row["homeid"]);
                 string settleTime = CastAide.AsString(row["settleTime"]);
                 decimal result = CastAide.AsDecimal(row["hdp2"]);
 

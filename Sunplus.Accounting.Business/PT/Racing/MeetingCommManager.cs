@@ -8,6 +8,7 @@ using DNAide.Core;
 using Sunplus.Accounting.Business.CacheManager;
 using Sunplus.Accounting.DataAccess.PositionTaking.Racing;
 using Sunplus.Accounting.Entities.PositionTaking.Racing;
+using Fanex.Tarus.Infrastructure.Caching;
 
 namespace Sunplus.Accounting.Business.PT.Racing
 {
@@ -58,7 +59,7 @@ namespace Sunplus.Accounting.Business.PT.Racing
                     partnerDetail.AddRange(from DataRow row in rows
                                            select new PartnerItem()
                                            {
-                                               MeetingName = CastAide.AsString(RemotingRef.RefData.GetLeagueName(row["meetingid"].ToString(), "EN")),
+                                               MeetingName = CastAide.AsString(CacheRef.GetLeagueName(row["meetingid"])),
                                                PoolCurrency = CacheUtils.GetExchangeName(lsExchange, CastAide.AsInt32(row["PoolCurrency"])),
                                                CommWin = CastAide.AsDecimal(row["totecommwin"]),
                                                CommPlace = CastAide.AsDecimal(row["totecommplace"]),

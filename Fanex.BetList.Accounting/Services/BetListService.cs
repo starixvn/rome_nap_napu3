@@ -18,6 +18,7 @@ using Fanex.BetList.Core.Factories;
 using Fanex.BetList.Core.TicketHelper;
 using NPOI.SS.UserModel;
 using Sunplus.Accounting.Core.Common;
+using Sunplus.Accounting.Core.Cache;
 
 namespace Fanex.BetList.Accounting.Services
 {

@@ -356,7 +356,7 @@ namespace Sunplus.Accounting.Business.BetList
             string bettypeName = Fanex.Tarus.Infrastructure.Helper.SportHelper.Bettype.GetBettype(bl.Bettype);
             string sportypeName = CacheRef.GetSportName(bl.Sporttype);
             string leagueName = CacheRef.GetLeagueName(bl.LeagueID);
-            string indexName = CacheRef.GetFncIndexName(bl.HomeID);
+            string indexName = bl.HomeID.ToString();
 
             string choice = GetFIBettypeName(betteam, bl.Bettype) + " <font color='#606060'>" + DNAide.Utils.FormatHandler.FormatNumber2C(hdp1, "E") + "</font>";
 

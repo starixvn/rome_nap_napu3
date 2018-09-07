@@ -68,8 +68,7 @@ namespace Fanex.Agent.UI
 			protected static string s27 = "</div><div id=\"detail_tab_content_3\" class=\"l detail_tab_content \"><!-- Detail menu --><!--edit-bingo--><a class=\"button_left02\" href=\"javascript:;\" onclick=\"parent.gotoURL('centerFr','";
 			public string bingoLinkSetting = "{bingoLinkSetting}";
 			protected static string s28 = "');\">Edit Bingo</a><br /><!--/edit-bingo--><!--edit-LiveCasino--><a class=\"button_left02\" href=\"javascript:;\" onclick=\"parent.gotoURL('centerFr','";
-			public string livecasinoLinkSetting = "{livecasinoLinkSetting}";
-			protected static string s29 = "');\">Edit Live Casino</a><br /><!--/edit-LiveCasino--><a class=\"button_left02\" href=\"javascript:;\" onclick=\"parent.gotoURL('centerFr','";
+			
 			public string numberGameLinkSetting = "{numberGameLinkSetting}";
 			protected static string s30 = "');\">Edit Number Game</a><br /><!-- Detail menu --></div></div></div></div><div class=\"tab_left_content hidden\" id=\"box_05_content_3\">";
 			public string logindetail = "{logindetail}";
@@ -168,8 +167,6 @@ namespace Fanex.Agent.UI
 					bd.Append(s27);
 					bd.Append(bingoLinkSetting);
 					bd.Append(s28);
-					bd.Append(livecasinoLinkSetting);
-					bd.Append(s29);
 					bd.Append(numberGameLinkSetting);
 					bd.Append(s30);
 					bd.Append(logindetail);

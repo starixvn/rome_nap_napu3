@@ -186,8 +186,6 @@ namespace Sunplus.Accounting.Business.Customer
         public Hashtable GetHtmlCustInfoContent(string userName)
         {
             Hashtable arrcontent = new Hashtable();
-            try
-            {
                 string htmlcontent = "";
                 if (string.IsNullOrEmpty(userName))
                 {
@@ -959,7 +957,7 @@ namespace Sunplus.Accounting.Business.Customer
                                         }
 
                                         TemplateHandler.Assign(ref htmlcontent, "{bingoLinkSetting}", bingoLinkSetting);
-                                        TemplateHandler.Assign(ref htmlcontent, "{livecasinoLinkSetting}", liveCasinoSetting);
+                                        //TemplateHandler.Assign(ref htmlcontent, "{livecasinoLinkSetting}", liveCasinoSetting);
                                         TemplateHandler.Assign(ref htmlcontent, "{numberGameLinkSetting}", numberGameLinkSetting);
                                         if (!WebSettings.EnableAGCasino || roleId != 4 || !isLicensee)
                                         {
@@ -1090,12 +1088,6 @@ namespace Sunplus.Accounting.Business.Customer
 
                 arrcontent.Add("strcontent", htmlcontent);
                 return arrcontent;
-            }
-            catch (Exception ex)
-            {
-                Sunplus.Accounting.Core.Extensions.LogExtensions.ExceptionHandler(ex);
-                return arrcontent;
-            }
 
         }
 
@@ -1174,10 +1166,10 @@ namespace Sunplus.Accounting.Business.Customer
                                            ? false
                                            : Convert.ToBoolean(row1["DisableDownlinesLiveCS"])
                                      : true;
-            sg.Add(GetSettingControlLiveCasino(roleId, isManageCustomerAccess, "disabledLCS", !disabledLiveCasino,
-                                               (roleId > 1), syncLiveCasino, isAllowEditLCS,
-                                               CastAide.AsBoolean(row1["Enabled"].ToString()), disableLiveCasinoParent,
-                                               !disabledLCSDL));
+            //sg.Add(GetSettingControlLiveCasino(roleId, isManageCustomerAccess, "disabledLCS", !disabledLiveCasino,
+            //                                   (roleId > 1), syncLiveCasino, isAllowEditLCS,
+            //                                   CastAide.AsBoolean(row1["Enabled"].ToString()), disableLiveCasinoParent,
+            //                                   !disabledLCSDL));
             TemplateHandler.Assign(ref htmlcontent, "{chkLiveCasino}", disabledLiveCasino ? 1 : 0);
 
             #endregion live casino

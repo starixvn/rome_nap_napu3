@@ -1,4 +1,4 @@
-<%@ Import Namespace="System.Diagnostics"%>
+<%@ Import Namespace="System.Diagnostics" %>
 <%@ Import Namespace="LiveCasinoLibrary.Common" %>
 <%@ Import Namespace="Sunplus.Accounting.Business" %>
 <%@ Import Namespace="Sunplus.Accounting.Business.BootStrappers" %>
@@ -7,7 +7,7 @@
 <%@ Import Namespace="System.Xml" %>
 <%@ Import Namespace="System.Collections" %>
 <%@ Import Namespace="System.Collections.Generic" %>
-<%@ Import Namespace="System.Security.Principal"%>
+<%@ Import Namespace="System.Security.Principal" %>
 
 <%@ Import Namespace="Sunplus.Accounting.Core.Common" %>
 <%@ Import Namespace="System.Linq" %>
@@ -16,10 +16,14 @@
 
 <%@ Import Namespace="Fanex.Tarus.Web.Controllers.Areas" %>
 <%@ Import Namespace="Fanex.Tarus.Web.Controllers.Filters" %>
+<%@ Import Namespace="Fanex.BetList.Core" %>
+<%@ Import Namespace="Fanex.BetList.Core.RemotingRef" %>
+<%@ Import Namespace="Fanex.Result.Core.Base" %>
+<%@ Import Namespace="Fanex.Result.Core.RemotingRef" %>
 
-<script runat="server">
+<script RunAt="server">
 
-    void Application_Start(object sender, EventArgs e) 
+    void Application_Start(object sender, EventArgs e)
     {
         // Code that runs on application startup    
         BootStrapperManager.Initialize(new UnityBootStrapper());
@@ -31,7 +35,7 @@
         string pattern = "AutoInsert*|Update*|Insert*|Move*|Reset*|FullSettlementResetMaxTransfer|Rollback*";
         manager.Register(typeof(CasinoLibrary.SBAgent.Customer), pattern);
         manager.Register(typeof(CasinoLibrary.SBAgent.BasicInfo), pattern);
-        
+
         RegisterRouteMiscController(RouteTable.Routes);
 
         AreaRegistration.RegisterAllAreas();
@@ -39,7 +43,13 @@
         RegisterGlobalFilters(GlobalFilters.Filters);
         RegisterRoutes(RouteTable.Routes);
         // ViewEngines.Engines.Add(new CustomView());
-      
+        Fanex.RemotingRef.RefDataTypeContainer
+            .ConnectTo(new Uri(ConfigurationManager.AppSettings["Fanex.RemotingRef.Service"]))
+            .FromApplication("NAP U3")
+            .SupportOnlyDefaultLanguage();
+        BetListManager.RegisterRemotingRef(new CacheRef());
+        ResultCoreManager.RegisterRefDataHelper(new RefDataHelper());
+
     }
 
 
@@ -57,14 +67,14 @@
         routes.IgnoreRoute("{*allaspx}", new { allaspx = @".*\.aspx(/.*)?" });
         routes.IgnoreRoute("{*allashx}", new { allashx = @".*\.ashx(/.*)?" });
         routes.IgnoreRoute("{*favicon}", new { favicon = @"(.*/)?favicon.ico(/.*)?" });
-        
+
         routes.MapRoute(
           "FixBetListMissingArea",
           "BetList/{action}",
           new { controller = "BetList", action = "Index", id = UrlParameter.Optional }
           );
     }
-    
+
     static void RegisterRoutes(RouteCollection routes)
     {
         routes.MapRoute(
@@ -83,19 +93,19 @@
                 "{controller}/{action}/{id}",
                 new { action = "Index", controller = "Home", id = "" }));
 
-        routes.IgnoreRoute("defaultwebpage", new { action = "Index", controller = "accounting"});
+        routes.IgnoreRoute("defaultwebpage", new { action = "Index", controller = "accounting" });
 
     }
 
 
-    void Application_End(object sender, EventArgs e) 
+    void Application_End(object sender, EventArgs e)
     {
         //  Code that runs on application shutdown
 
     }
-        
-    void Application_Error(object sender, EventArgs e) 
-    { 
+
+    void Application_Error(object sender, EventArgs e)
+    {
         //Phuong.Nguyen, handler system error
         // Code that runs when an unhandled error occurs
         Exception ex = Server.GetLastError().GetBaseException();
@@ -103,7 +113,7 @@
         if (ex.GetType() != typeof(HttpException))
         {
             var downTimeInfo = new Fanex.Tarus.Business.Implement.CommonService().GetDowntimeInfo();
-            if(!downTimeInfo.IsDowntime)
+            if (!downTimeInfo.IsDowntime)
                 Sunplus.Accounting.Core.Extensions.LogExtensions.ExceptionHandler(ex);
         }
         else
@@ -115,15 +125,15 @@
 
             }
         }
-        
+
 
         #region MyRegion
-       
+
         #endregion
-       
-    }   
-    
-    void Session_Start(object sender, EventArgs e) 
+
+    }
+
+    void Session_Start(object sender, EventArgs e)
     {
         // Code that runs when a new session is started
         Application.Lock();
@@ -134,7 +144,7 @@
         Application.UnLock();
     }
 
-    void Session_End(object sender, EventArgs e) 
+    void Session_End(object sender, EventArgs e)
     {
         // Code that runs when a session ends. 
         // Note: The Session_End event is raised only when the sessionstate mode
@@ -145,14 +155,14 @@
             Application["UserOnlineNo"] = (int)Application["UserOnlineNo"] - 1;
         Application.UnLock();
         Response.Redirect("~/SignIn.aspx");
-        
+
     }
 
     void Application_AcquireRequestState(object sender, EventArgs e)
     {
-        
+
         string url = Request.RawUrl.ToLower();
-       
+
         var isDowntime = ConfigurationManager.AppSettings["UM"] == "1";
         try
         {
@@ -181,17 +191,17 @@
         }
 
     }
-    
- 
+
+
 
     private void OnRemoveRolePermissionCache(String k, Object v, CacheItemRemovedReason r)
     {
         //InitRolePermission();
     }
-    
-    
 
-   
+
+
+
     #region Kill session and write log
     public void InsertSessionCacheItem(string onUserId, string username, string roleId, string serverId)
     {
@@ -241,8 +251,8 @@
     //Temporarily deny U3 account from access un-limited pages
     bool U3Limit(string url)
     {
-        string UnLimitPage=";Others/Default.aspx;Settle/Index.aspx;Customer/default.aspx";
-        UnLimitPage=UnLimitPage.ToLower();
+        string UnLimitPage = ";Others/Default.aspx;Settle/Index.aspx;Customer/default.aspx";
+        UnLimitPage = UnLimitPage.ToLower();
         return (AppSession.Username.IndexOf("U3") == 0 && UnLimitPage.Contains(";" + url.ToLower()));
     }
 </script>

@@ -3,6 +3,7 @@ using System;
 using DNAide.Core;
 using DNAide.Utils;
 using Sunplus.Data.DataAbstract.Utils;
+using Fanex.Tarus.Infrastructure.Caching;
 
 namespace Sunplus.Data.DataAbstract.Entity
 {
@@ -504,7 +505,7 @@ namespace Sunplus.Data.DataAbstract.Entity
             sportEvent.LiveScore = "";
             sportEvent.Choice = "";
             sportEvent.Hdp = "";
-            sportEvent.BetType = "<span style='color:blue' >" + RemotingRef.RefData.GetBetTypeName(_bettran.Bettype.ToString(), "en-EN") + " - <span class='MPType'>" + selection + "</span></span><br />";
+            sportEvent.BetType = "<span style='color:blue' >" + CacheRef.GetBettype(_bettran.Bettype) + " - <span class='MPType'>" + selection + "</span></span><br />";
             sportEvent.Event = "<span class='detailMP' onclick='LatestBet.showCombinationDetailMP(\"" + _bettran.Refno + "\",\"" + selection + "\")' >" + "Details</span>"; ;
             sportEvent.SportType = "";
             sportEvent.LeagueName = "";

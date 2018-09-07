@@ -199,7 +199,7 @@ namespace Sunplus.Accounting.Business.BetList
                 case 64:
                 case 65:
                 case 66:
-                    _home = CacheRef.GetFncIndexName(row["homeid"]);
+                    _home = row["homeid"].ToString();
                     GenFinancialRow(ref eventItem);
                     break;
 

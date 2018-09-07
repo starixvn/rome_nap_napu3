@@ -12,7 +12,7 @@ using DNAide.Utils;
 using DNAide.Data;
 using System.Collections;
 using Sunplus.Accounting.Core.Extensions;
-
+using Sunplus.Accounting.Core.Cache;
 
 namespace Fanex.Tarus.LiveCasino.DataAccess.Report
 {
@@ -340,10 +340,10 @@ namespace Fanex.Tarus.LiveCasino.DataAccess.Report
                     result = CastAide.AsString(row["Username"]);
                     break;
                 case (int)FilterGameCondition.GameType:
-                    result = RemotingRef.RefData.GetBetTypeName(CastAide.AsString(row["GameTypeID"]), "E");
+                    result = CacheRef.GetBettype(CastAide.AsString(row["GameTypeID"]));
                     break;
                 case (int)FilterGameCondition.GameTable:
-                    result = RemotingRef.RefData.GetLeagueName(CastAide.AsString(row["GameTableID"]), "E");
+                    result = CacheRef.GetLeagueName(CastAide.AsString(row["GameTableID"]));
                     break;
                 case (int)FilterGameCondition.Company:
                     result = CastAide.AsString(row["Company"]);
