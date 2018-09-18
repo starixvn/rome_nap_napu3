@@ -4,13 +4,13 @@
     <Setting Key="Acc_CustomerSelAgentInfo" SpName="Acc_CustomerSelAgentInfo" DbName="DBCUST.CustDB.bodbAdminNet" />
     <Setting Key="Acc_CustomerSelMAgentInfo" SpName="Acc_CustomerSelMAgentInfo" DbName="DBCUST.CustDB.bodbAdminNet" />
     <Setting Key="Acc_CustomerSelSAgentInfo" SpName="Acc_CustomerSelSAgentInfo" DbName="DBCUST.CustDB.bodbAdminNet" />
-    <Setting Key="Acc_CustomerSelSAg" SpName="Acc_CustomerSelSAg_UAT4" DbName="DBCUST.CustDB.bodbAdminNet" />
+    <Setting Key="Acc_CustomerSelSAg" SpName="Acc_CustomerSelSAg" DbName="DBCUST.CustDB.bodbAdminNet" />
   </Function>
   <Function Name="Customer List">
     <Setting Key="Acc_CustomerSelByAg" SpName="Acc_CustomerSelByAg" DbName="DBCUST.CustDB.bodbAdminNet" />
-    <Setting Key="Acc_CustomerSelByMAg" SpName="Acc_CustomerSelByMAg_UAT4" DbName="DBCUST.CustDB.bodbAdminNet" />
+    <Setting Key="Acc_CustomerSelByMAg" SpName="Acc_CustomerSelByMAg" DbName="DBCUST.CustDB.bodbAdminNet" />
     <Setting Key="Acc_CustomerSelBySAg" SpName="Acc_CustomerSelBySAg" DbName="DBCUST.CustDB.bodbAdminNet" />
-    <Setting Key="Acc_CustomerSelMAgByCom" SpName="Acc_CustomerSelMAgByCom_UAT4" DbName="DBCUST.CustDB.bodbAdminNet" />
+    <Setting Key="Acc_CustomerSelMAgByCom" SpName="Acc_CustomerSelMAgByCom" DbName="DBCUST.CustDB.bodbAdminNet" />
   </Function>
   <Function Name="New Customer Setting">
     <Setting Key="Acc_CustomerSelEditCustomer" SpName="Acc_CustomerSelEditCustomer" DbName="DBCUST.CustDB.bodbAdminNet" />
