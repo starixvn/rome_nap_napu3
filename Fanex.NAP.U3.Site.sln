@@ -38,7 +38,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Tarus.LiveCasino", "F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Tarus.Settlement", "Fanex.Tarus.Settlement\Fanex.Tarus.Settlement.csproj", "{ED61A61E-4805-405A-8A5F-44E933DE874A}"
 EndProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Tarus.SpecialDelete", "Fanex.Tarus.SpecialDelete\Fanex.Tarus.SpecialDelete.csproj", "{6F5889CA-CC0E-4A4D-9824-C811AEFCEC4E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Tarus.Business.Interface", "Fanex.Tarus.Business.Interface\Fanex.Tarus.Business.Interface.csproj", "{98993382-DB96-4EF7-932B-0C384A31199F}"
@@ -111,6 +110,10 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Websites(1)", "Websites\", 
 		VWDDynamicPort = "true"
 		SlnRelativePath = "Websites\"
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{1318B0B2-62B8-42E4-AF86-9ADA7AE3E501}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dependencies", "Dependencies\Dependencies.csproj", "{7A3C2E38-B4E3-4D17-B3DE-094332459268}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -245,6 +248,10 @@ Global
 		{7EF6B61B-7588-4353-B523-8D0178BDBDE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7EF6B61B-7588-4353-B523-8D0178BDBDE2}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{7EF6B61B-7588-4353-B523-8D0178BDBDE2}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{7A3C2E38-B4E3-4D17-B3DE-094332459268}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A3C2E38-B4E3-4D17-B3DE-094332459268}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A3C2E38-B4E3-4D17-B3DE-094332459268}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A3C2E38-B4E3-4D17-B3DE-094332459268}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -286,5 +293,6 @@ Global
 		{9E60FAEF-0C05-4506-BE45-8A1C8FDD0AD3} = {A1D5D746-4A11-4B6A-B1EB-955D09544652}
 		{0DD8B22B-0A04-41BA-A5EC-E60FE682DB57} = {78CF7258-A6DD-4CD1-8662-FF83E5945B5A}
 		{23CA0605-90E8-4839-8DEF-976A31A68563} = {78CF7258-A6DD-4CD1-8662-FF83E5945B5A}
+		{7A3C2E38-B4E3-4D17-B3DE-094332459268} = {1318B0B2-62B8-42E4-AF86-9ADA7AE3E501}
 	EndGlobalSection
 EndGlobal
