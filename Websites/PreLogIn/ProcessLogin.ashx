@@ -5,17 +5,10 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
-using BLL;
-using Sunplus.Accounting.Business;
-using Sunplus.Accounting.Business.BootStrappers;
 using Sunplus.Accounting.Business.Security;
 using Sunplus.Accounting.Core.Common;
 using Sunplus.Accounting.Core.Configurations;
-using Sunplus.Accounting.Services;
 using IBCUtils;
-using System.Data;
-using Fanex.Nap.SSO.Repositories;
-using Fanex.Nap.SSO.Criteria;
 using Fanex.Tarus.User.Entities;
 using Fanex.Tarus.User.Business.Services;
 
@@ -163,27 +156,7 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                         IsHide = false,
                         SubMenu = null
                     });
-                }
-
-                bool isShowNap = (new LoginRepository()).CheckUserSiteAccess(new CheckUserSiteAccessCriteria());
-                if (isShowNap)
-                {
-                    AppSession.UserMenu.Add(new Sunplus.Accounting.Entities.MenuBO
-                    {
-                        Id = 0,
-                        Name = "NAP",
-                        Url = System.Configuration.ConfigurationManager.AppSettings["NapHomeSSOController"],
-                        System = "accounting",
-                        ParentId = 0,
-                        FunctionName = "",
-                        Target = "_blank",
-                        IsHide = false,
-                        SubMenu = null
-                    });
-                }
-
-                //menuService.GetReportMenu("ACC-REPORT");
-                //menuService.GetBAMenu();
+                }              
 
                 // Progressive Bonus
                 Fanex.CustomerSetting.Module.Core.Web.AppSession.AdminId = custId;
@@ -226,12 +199,4 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
             return false;
         }
     }
-
-    //private static void LogUserInfo(HttpContext context, string userName)
-    //{
-    //    var userBrowser = context.Request.Browser.Browser + "\n";
-    //    userBrowser += context.Request.Browser.Version + "\n";
-    //    var logContent = new Exception( userName + "\n" + DateTime.Now + "\n" + userBrowser);
-    //    Sunplus.Accounting.Core.Extensions.LogExtensions.ExceptionHandler(logContent);
-    //}
 }
