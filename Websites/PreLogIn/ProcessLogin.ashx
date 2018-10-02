@@ -156,7 +156,20 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                         IsHide = false,
                         SubMenu = null
                     });
-                }              
+                } 
+                
+                 AppSession.UserMenu.Add(new Sunplus.Accounting.Entities.MenuBO
+                    {
+                        Id = 0,
+                        Name = "NAP",
+                        Url = System.Configuration.ConfigurationManager.AppSettings["NapHomeSSOUrl"],
+                        System = "accounting",
+                        ParentId = 0,
+                        FunctionName = "",
+                        Target = "_blank",
+                        IsHide = false,
+                        SubMenu = null
+                    });             
 
                 // Progressive Bonus
                 Fanex.CustomerSetting.Module.Core.Web.AppSession.AdminId = custId;

@@ -440,11 +440,7 @@
     <ProjectReference Include="..\Fanex.BetList.Accounting\BetList.csproj">
       <Project>{23ca0605-90e8-4839-8def-976a31a68563}</Project>
       <Name>BetList</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fanex.Nap.SSO\Fanex.Nap.SSO.csproj">
-      <Project>{0dd8b22b-0a04-41ba-a5ec-e60fe682db57}</Project>
-      <Name>Fanex.Nap.SSO</Name>
-    </ProjectReference>
+    </ProjectReference> 
     <ProjectReference Include="..\Fanex.Tarus.Admin\Fanex.Tarus.Admin.csproj">
       <Project>{b7fd958b-43db-45ee-895e-2105971893e3}</Project>
       <Name>Fanex.Tarus.Admin</Name>
