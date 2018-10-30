@@ -157,12 +157,13 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                         SubMenu = null
                     });
                 } 
+                 Uri uri = context.Request.Url;
                 
                  AppSession.UserMenu.Add(new Sunplus.Accounting.Entities.MenuBO
                     {
                         Id = 0,
                         Name = "NAP",
-                        Url = System.Configuration.ConfigurationManager.AppSettings["NapHomeSSOUrl"],
+                        Url = string.Format(System.Configuration.ConfigurationManager.AppSettings["NapHomeSSOUrl"], uri.Scheme + Uri.SchemeDelimiter + context.Request.Headers["Host"].ToString()),
                         System = "accounting",
                         ParentId = 0,
                         FunctionName = "",
