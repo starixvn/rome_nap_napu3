@@ -158,7 +158,7 @@
   </Function>
   <Function Name="Left Panel - Customer Info">
     <Setting Key="GetCommSuper" SpName="Acc_CustomerSelSuperLiveCS_Commission" DbName="DBCUST.CustDB.bodbAdminNet" />
-    <Setting Key="UpdateUserSearch" SpName="Acc_CustomerUpdUserSearch" DbName="DBAGE.bodb02.bodbAdminNet" />
+    <Setting Key="UpdateUserSearch" SpName="Acc_CustomerUpdUserSearch" DbName="DBCUST.CustDB.bodbAdminNet" />
   </Function>
   <Function Name="Customer">
     <Setting Key="CustomerSelStatus" SpName="U3_CustomerSelStatus" DbName="DBACC.bodb02.bodbAdminNet" />
