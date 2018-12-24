@@ -129,5 +129,7 @@ namespace Fanex.BetList.Accounting.Services
 
             return 0;
         }
+        public static bool IsHappy5Bettype(int bettypeId)
+            => bettypeId >= 8101 && bettypeId <= 8105;
     }
 }

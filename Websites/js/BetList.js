@@ -10,12 +10,12 @@ function showMP(refno, listType) {
             $.ajax({
                 url: '../Handlers/GenMixParlay.ashx?refno=' + refno + '&listType=' + listType + '&type=1',
                 dataType: 'html',
-                success: function(data) {
+                success: function (data) {
                     spEvent.innerHTML = data;
                     spEvent.className = '';
                     $.unblockUI();
                 }
-                , error: function() {
+                , error: function () {
                     $.unblockUI();
                 }
             });
@@ -33,7 +33,7 @@ function showMP(refno, listType) {
 function showCMP(event, refno, listType) {
     var spEvent = obj('spEvent_' + refno);
     var target = event.target ? event.target : event.srcElement;
-    $(target).parents("td:first").find("div").each(function(index, element) {
+    $(target).parents("td:first").find("div").each(function (index, element) {
         if ($(element).attr("id").indexOf("spEvent") >= 0) {
             spEvent = element;
         }
@@ -44,17 +44,17 @@ function showCMP(event, refno, listType) {
             $.ajax({
                 url: '../Handlers/GenMixParlay.ashx?refno=' + refno + '&listType=' + listType + '&type=1',
                 dataType: 'html',
-                success: function(data) {
+                success: function (data) {
                     spEvent.innerHTML = data;
                     spEvent.className = '';
 
-                    $(event.target).parents("tr:first").find("td").each(function(index, element) {
+                    $(event.target).parents("tr:first").find("td").each(function (index, element) {
                         element.style.verticalAlign = "top";
                     });
 
                     $.unblockUI();
                 }
-                , error: function() {
+                , error: function () {
                     $.unblockUI();
                 }
             });
@@ -62,14 +62,14 @@ function showCMP(event, refno, listType) {
         }
         else {
             spEvent.className = '';
-            $(event.target).parents("tr:first").find("td").each(function(index, element) {
+            $(event.target).parents("tr:first").find("td").each(function (index, element) {
                 element.style.verticalAlign = "top";
             });
         }
     }
     else {
         spEvent.className = 'hide';
-        $(event.target).parents("tr:first").find("td").each(function(index, element) {
+        $(event.target).parents("tr:first").find("td").each(function (index, element) {
             element.style.verticalAlign = "middle";
         });
     }
@@ -78,7 +78,7 @@ function showCMP(event, refno, listType) {
 function showDetailsCMP(refno, title, transid, betid, custid) {
     //OpenPopup(url, title, width, height, modal, resizable, currWindow, duration, fnRecall, fnOnClose) {
     if (custid == null) {
-        parent.OpenNextPopup("systemPartlay","BetList/CombinationMPDetail.aspx?refno=" + refno + "&transid=" + transid + "&betid=" + betid, title, 720, 500, true, false, window, 0, null, null);
+        parent.OpenNextPopup("systemPartlay", "BetList/CombinationMPDetail.aspx?refno=" + refno + "&transid=" + transid + "&betid=" + betid, title, 720, 500, true, false, window, 0, null, null);
     }
     else {
         parent.OpenNextPopup("systemPartlay", "BetList/CombinationMPDetail.aspx?refno=" + refno + "&transid=" + transid + "&betid=" + betid + "&custid=" + custid, title, 720, 500, true, false, window, 0, null, null);
@@ -460,6 +460,9 @@ function getResultParamBySportType(matchid, race, bettype, sporttype, league, be
         case 162: // Live Casino.
             return getLiveCasinoParam(matchid, bettype, league);
 
+        case 164: // Happy5
+            return getHappy5Param(matchid);
+
         case 181:
         case 182:
         case 183:
@@ -523,6 +526,16 @@ function getNumberGameParam(matchid) {
         url: "Betlist/BetListNumberGameResult.aspx",
         title: "Number Game",
         jsonParam: { matchid: matchid }
+    };
+}
+
+function getHappy5Param(matchid) {
+    return {
+        url: "Betlist/BetListHappy5Result.aspx",
+        title: "Happy 5",
+        jsonParam: { matchid: matchid },
+        width: 800,
+        height: 300
     };
 }
 
