@@ -501,6 +501,11 @@ namespace Fanex.BetList.Accounting.Services
                 sportName += CacheRef.GetSportName(ReportService.GetNG2SportType(betTypeId));
             }
 
+            else if (ReportService.IsHappy5Bettype(betTypeId))
+            {
+                sportName = CacheRef.GetSportName(SportContants.Happy5);
+            }
+
             return string.IsNullOrEmpty(sportName) ? string.Empty : " (" + sportName + ")";
         }
 

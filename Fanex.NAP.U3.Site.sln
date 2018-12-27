@@ -15,6 +15,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{BDB42C3B-A3FA-433F-AF01-DC1FD51049C8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{78CF7258-A6DD-4CD1-8662-FF83E5945B5A}"
+	ProjectSection(SolutionItems) = preProject
+		Fanex.Tarus.BetList\Business\Results\Happy5PopupResultService.cs = Fanex.Tarus.BetList\Business\Results\Happy5PopupResultService.cs
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{19B3D7D1-DE44-4A4C-B3E5-9DD76060FE50}"
 EndProject
@@ -82,7 +85,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.AuthenticationFilter"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetList", "Fanex.BetList.Accounting\BetList.csproj", "{23CA0605-90E8-4839-8DEF-976A31A68563}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Websites", "Websites\", "{7EF6B61B-7588-4353-B523-8D0178BDBDE2}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Websites(1)", "Websites\", "{7EF6B61B-7588-4353-B523-8D0178BDBDE2}"
 	ProjectSection(WebsiteProperties) = preProject
 		SccProjectName = ""
 		SccAuxPath = ""
