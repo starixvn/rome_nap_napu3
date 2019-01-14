@@ -282,7 +282,7 @@
     <Setting Key="Acc_CustomerSelCheckEnable" SpName="Acc_CustomerSelCheckEnable" DbName="DBCUST.CustDB.bodbAdminNet" />
   </Function>
   <Function Name="External Betting Limit">
-    <Setting Key="Age_CustomerSelBetSetting" SpName="Age_CustomerSelBetSetting" DbName="DBCUST.CustDB.bodbAdminNet_ex" Plain="0" />
-    <Setting Key="Age_CustomerSelUserInfo" SpName="Age_CustomerSelUserInfo" DbName="DBCUST.CustDB.bodbAdminNet_ex" Plain="0" />
+    <Setting Key="Age_CustomerSelBetSetting" SpName="Age_CustomerSelBetSetting" DbName="DBCUST.CustDB.bodbAdminNet" Plain="0" />
+    <Setting Key="Age_CustomerSelUserInfo" SpName="Age_CustomerSelUserInfo" DbName="DBCUST.CustDB.bodbAdminNet" Plain="0" />
   </Function>
 </Functions>
