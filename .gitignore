@@ -67,3 +67,4 @@ Websites/[Bb]in/*.xml
 Websites/vwd.webinfo
 packages/
 [Bb]in/
+.vs/
