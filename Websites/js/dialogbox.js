@@ -65,7 +65,7 @@ function OpenNextPopup(popupId, url, title, width, height, modal, resizable, cur
         width: width,
         height: height,
         autoOpen: false,
-        zIndex: 9999999,
+        zIndex: 9999,
         open: function (event, ui) {
             jQuery("#innerFrame" + popupId).attr({ "src": url }).css({ "height": jQuery(this).css("height"), "width": jQuery(this).css("width") });
         },
@@ -82,11 +82,14 @@ function OpenNextPopup(popupId, url, title, width, height, modal, resizable, cur
             jQuery("#innerFrame" + popupId).css({ "height": jQuery(this).css("height"), "width": jQuery(this).css("width") }).show();
         },
         close: function (event, ui) {
-            if (currentExecFrame != null && currentExecFrame.onclose) {
-                currentExecFrame.onclose();
-                setTimeout('currentExecFrame=null;', 500);
+            jQuery("#innerFrame" + popupId).attr('src', 'about:blank');
+            jQuery('#dialog-modal' + popupId).remove();
+            if (typeof fnRecall == 'function') {
+                fnRecall();
             }
-            jQuery("#innerFrame" + popupId).empty();
+            if (typeof fnOnClose == 'function') {
+                fnOnClose();
+            }
         }
     });
 
