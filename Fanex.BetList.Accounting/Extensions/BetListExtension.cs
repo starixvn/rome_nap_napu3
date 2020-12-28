@@ -11,9 +11,9 @@ namespace Fanex.BetList.Accounting.Extensions
 {
     public static class BetListExtension
     {
-        public static string BuildStake(this TicketDetail betDetail, ref BetListHTMLBuilder builder)
+        public static string BuildStake(this TicketDetail betDetail, ref BetListHTMLBuilder builder, ITicketHelper ticketHelper)
         {
-            string stakeBuilder = builder.BuildStake(betDetail.Ticket);
+            string stakeBuilder = builder.BuildStake(betDetail.Ticket, ticketHelper);
 
             if (betDetail.IsShowOtExRate)
             {

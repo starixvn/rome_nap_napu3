@@ -79,7 +79,7 @@ namespace Fanex.BetList.Accounting.Services
 
                         betDetail.TransDateHtml = builder.BuildTrans(betDetail.Ticket);
                         betDetail.ChoiceHtml = builder.BuildChoice(betDetail.Ticket, ticketHelper, ticketData, false);
-                        betDetail.StakeHtml = betDetail.BuildStake(ref builder);
+                        betDetail.StakeHtml = betDetail.BuildStake(ref builder, ticketHelper);
                         betDetail.OddHtml = builder.BuildOdds(betDetail.Ticket, ticketData, funcGetOddsTypeName);
                         betDetail.StatusHtml = BetListHelper.BuildStatus(betDetail.Ticket, ticketHelper, ticketData, factory, builder);
                     }
@@ -216,7 +216,7 @@ namespace Fanex.BetList.Accounting.Services
 
                         betDetail.TransDateHtml = builder.BuildTrans(betDetail.Ticket);
                         betDetail.ChoiceHtml = builder.BuildChoice(betDetail.Ticket, ticketHelper, outputLiveCasino_Merge, false);
-                        betDetail.StakeHtml = betDetail.BuildStake(ref builder);
+                        betDetail.StakeHtml = betDetail.BuildStake(ref builder, ticketHelper);
                         betDetail.OddHtml = builder.BuildOdds(betDetail.Ticket, outputLiveCasino, funcGetOddsTypeName);
                         betDetail.StatusHtml = BetListHelper.BuildStatus(betDetail.Ticket, ticketHelper, outputLiveCasino_Merge, factory, builder);
                     }
@@ -325,7 +325,7 @@ namespace Fanex.BetList.Accounting.Services
 
                     betDetail.TransDateHtml = builder.BuildTrans(betDetail.Ticket);
                     betDetail.ChoiceHtml = builder.BuildChoice(betDetail.Ticket, ticketHelper, outputLiveCasino, false);
-                    betDetail.StakeHtml = betDetail.BuildStake(ref builder);
+                    betDetail.StakeHtml = betDetail.BuildStake(ref builder, ticketHelper);
                     betDetail.OddHtml = builder.BuildOdds(betDetail.Ticket, outputLiveCasino, funcGetOddsTypeName);
                     betDetail.StatusHtml = BetListHelper.BuildStatus(betDetail.Ticket, ticketHelper, outputLiveCasino, factory, builder);
 
@@ -405,7 +405,7 @@ namespace Fanex.BetList.Accounting.Services
 
                         builder.AddChoice(betdetail.Ticket, ticketHelper, outputLiveCasino)
                                .AddOdds(betdetail.Ticket, outputLiveCasino, funcGetOddsTypeName)
-                               .AddStake(betdetail.Ticket);
+                               .AddStake(betdetail.Ticket, ticketHelper);
 
                         builder.AddWinLoss(betdetail.Ticket);
 
