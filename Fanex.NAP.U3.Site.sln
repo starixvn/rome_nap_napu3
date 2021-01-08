@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.852
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebForm", "WebForm", "{FA1F6B54-C01D-4120-8347-B2896E2C217F}"
 EndProject
@@ -290,5 +290,8 @@ Global
 		{9E60FAEF-0C05-4506-BE45-8A1C8FDD0AD3} = {A1D5D746-4A11-4B6A-B1EB-955D09544652}
 		{23CA0605-90E8-4839-8DEF-976A31A68563} = {78CF7258-A6DD-4CD1-8662-FF83E5945B5A}
 		{7A3C2E38-B4E3-4D17-B3DE-094332459268} = {1318B0B2-62B8-42E4-AF86-9ADA7AE3E501}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BE7E4F98-0126-45B0-8AEF-B9951A70BDA5}
 	EndGlobalSection
 EndGlobal

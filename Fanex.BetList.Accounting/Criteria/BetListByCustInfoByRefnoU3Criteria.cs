@@ -7,7 +7,7 @@ namespace Fanex.BetList.Accounting.Criteria
         [SpParam(SqlParamName = "CustID")]
         public int CustId { get; set; }
 
-        [SpParam(SqlParamName = "TransID")]
+        [SpParam(SqlParamName = "RefNo")]
         public string TransId { get; set; }
 
         public override string GetSettingKey()

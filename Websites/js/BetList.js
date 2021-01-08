@@ -424,7 +424,7 @@ function showLucky3Details(transId, custId) {
 
 // --------------------
 function ViewResult(matchid, race, bettype, sporttype, refno, username, winlostdate, refno_mixparlay, league, is_outright, betid, matchcode, betcheck, transdesc) {
-    var resultParam = getResultParamBySportType(matchid, race, bettype, sporttype, league, betid, matchcode, transdesc);
+    var resultParam = getResultParamBySportType(matchid, race, bettype, sporttype, league, betid, matchcode, transdesc, refno);
 
     resultParam = resultParam || getResultParamByBetType(matchid, race, bettype, sporttype, refno, username, winlostdate, refno_mixparlay, league, is_outright, betid);
 
@@ -443,7 +443,7 @@ function ViewResult(matchid, race, bettype, sporttype, refno, username, winlostd
     openResultsPopUp(defaultResultParam);
 }
 
-function getResultParamBySportType(matchid, race, bettype, sporttype, league, betid, matchcode, transdesc) {
+function getResultParamBySportType(matchid, race, bettype, sporttype, league, betid, matchcode, transdesc, refno) {
     switch (sporttype) {
         case 5: // Tennis.
             return getTennisParam();
@@ -463,6 +463,9 @@ function getResultParamBySportType(matchid, race, bettype, sporttype, league, be
         case 164: // Happy5
             return getHappy5Param(matchid);
 
+        case 168: // Happy5 Linked Games
+            return getLinkedGamesParam(betid, refno);
+
         case 181:
         case 182:
         case 183:
@@ -479,6 +482,16 @@ function getResultParamBySportType(matchid, race, bettype, sporttype, league, be
         default:
             return undefined;
     }
+}
+
+function getLinkedGamesParam(custId, transId3rd) {
+    return {
+        url: "ThirdParty/LinkedGamesResult",
+        title: "Happy 5 Linked Games Result",
+        jsonParam: { productId: 3, custId: custId, transId3rd: transId3rd },
+        width: 945,
+        height: 700
+    };
 }
 
 function getResultParamByBetType(matchid, race, bettype, sporttype, refno, username, winlostdate, refno_mixparlay, league, is_outright, betid) {
