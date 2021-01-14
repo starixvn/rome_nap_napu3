@@ -9,7 +9,10 @@ namespace Sunplus.Accounting.Core.Cache
     public static class CacheRef
     {
         private static readonly IRemotingRefService remotingRefService = new RemotingRefService();
-        
+
+        public static string GetProductName(int productId)
+            => remotingRefService.GetResourceDataByRefIdAndResourceId("Product", productId.ToString(), "en-US", productId.ToString());
+
         public static string GetBettype(object bettypeID)
         {
             return remotingRefService.GetBetTypeName(bettypeID.ToString(), "en-US");

@@ -97,7 +97,6 @@ namespace Fanex.BetList.Accounting.Repositories
                     { "apositiontaking", ticketType.GetProperty("AgentPositionTaking", flag) },
                     { "comm", ticketType.GetProperty("Comm", flag) },
                     { "discount", ticketType.GetProperty("AgentDiscount", flag) },
-
                     { "awayid", ticketType.GetProperty("AwayId", flag) },
                     { "betid", ticketType.GetProperty("BetId", flag) },
                     { "betteam", ticketType.GetProperty("BetTeam", flag) },
@@ -115,43 +114,31 @@ namespace Fanex.BetList.Accounting.Repositories
                     { "leagueid", ticketType.GetProperty("LeagueId", flag) },
                     { "livehomescore", ticketType.GetProperty("LiveHomeScore", flag) },
                     { "liveawayscore", ticketType.GetProperty("LiveAwayScore", flag) },
-
                     { "mwinlost", ticketType.GetProperty("MasterWinlost", flag) },
                     { "mpositiontaking", ticketType.GetProperty("MasterPositionTaking", flag) },
                     { "acomm", ticketType.GetProperty("AgentComm", flag) },
                     { "adiscount", ticketType.GetProperty("MasterDiscount", flag) },
-
                     { "modds", ticketType.GetProperty("MasterOdds", flag) },
                     { "matchcode", ticketType.GetProperty("MatchCode", flag) },
                     { "matchid", ticketType.GetProperty("MatchId", flag) },
                     { "odds", ticketType.GetProperty("Odds", flag) },
                     { "oddstype", ticketType.GetProperty("OddsType", flag) },
                     { "commission", ticketType.GetProperty("PlayerComm", flag) },
-                    { "race", ticketType.GetProperty("Race", flag) },
                     { "refno", ticketType.GetProperty("RefNo", flag) },
                     { "showtime", ticketType.GetProperty("ShowTime", flag) },
                     { "sporttype", ticketType.GetProperty("SportTypeId", flag) },
                     { "stake", ticketType.GetProperty("Stake", flag) },
                     { "status", ticketType.GetProperty("Status", flag) },
-
                     { "swinlost", ticketType.GetProperty("SuperWinlost", flag) },
                     { "spositiontaking", ticketType.GetProperty("SuperPositionTaking", flag) },
                     { "scomm", ticketType.GetProperty("SuperComm", flag) },
                     { "sdiscount", ticketType.GetProperty("SuperDiscount", flag) },
-
                     { "transdate", ticketType.GetProperty("TransDate", flag) },
                     { "transid", ticketType.GetProperty("TransId", flag) },
                     { "winlost", ticketType.GetProperty("Winlost", flag) },
                     { "winlostdate", ticketType.GetProperty("WinlostDate", flag) },
                     { "transdesc", ticketType.GetProperty("TransDesc", flag) },
-
                     { "betcheck", ticketType.GetProperty("BetCheck", flag) },
-                    { "oddsspread", ticketType.GetProperty("OddsSpread", flag) },
-
-                    { "originalbettype", ticketType.GetProperty("OriginalBetType", flag) },
-                    { "betdaqid", ticketType.GetProperty("BetdaqId", flag) },
-                    { "extrainfo", ticketType.GetProperty("ExtraInfo", flag) },
-
                     { "currency", ticketType.GetProperty("Currency", flag) }
                 };
             }
