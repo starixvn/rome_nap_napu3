@@ -38,7 +38,8 @@ public partial class AlphaReportView : System.Web.UI.Page
 
         var isWebVpnAccess = IPHelper.IsWebVpnAccess();
         var host = isWebVpnAccess ? ConfigurationManager.AppSettings["InternalIPReport"] : Request.Headers["Host"];
-        var urlScheme = (uri.Host.Contains("oneops.net") ? "https" : uri.Scheme) + Uri.SchemeDelimiter;
+        bool isPublicDomain = !string.IsNullOrEmpty(ConfigurationManager.AppSettings["U3Domain"]) && uri.Host.Contains(ConfigurationManager.AppSettings["U3Domain"]);
+        var urlScheme = (isPublicDomain ? "https" : uri.Scheme) + Uri.SchemeDelimiter;
         
         var internalAgentUrl = string.Format(
             ConfigurationManager.AppSettings["int_agent_url_report"],
