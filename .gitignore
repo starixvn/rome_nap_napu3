@@ -18,6 +18,7 @@ Thumbs.db
 *.ilk
 *.log
 *.orig
+*.sh
 *Settings.StyleCop
 ![Bb]in/.refresh
 Fanex.AuthenticationFilter/bin
