@@ -24,25 +24,25 @@ public partial class SignIn : System.Web.UI.Page
 
     protected void Page_PreInit(object sender, EventArgs e)
     {
-        LoginTheme = AuthManager.IsRequestFromExternalSite(Request.Url.Host) ? "LoginEx" : "Login";
-        Page.Theme = LoginTheme;
+        //LoginTheme = AuthManager.IsRequestFromExternalSite(Request.Url.Host) ? "LoginEx" : "Login";
+        //Page.Theme = LoginTheme;
     }
 
     protected void Page_Load(object sender, EventArgs e)
     {
 
 
-        if (Session["Username"] != null) FormsAuthentication.RedirectFromLoginPage(DNAide.Core.CastAide.AsString(Session["Username"]), false);
+        //if (Session["Username"] != null) FormsAuthentication.RedirectFromLoginPage(DNAide.Core.CastAide.AsString(Session["Username"]), false);
 
-        AccCommon.Redirect2SSL();
+        //AccCommon.Redirect2SSL();
 
-        int endPos = Request.Url.AbsoluteUri.IndexOf("/SignIn.aspx", StringComparison.CurrentCultureIgnoreCase);
+        //int endPos = Request.Url.AbsoluteUri.IndexOf("/SignIn.aspx", StringComparison.CurrentCultureIgnoreCase);
 
-        submitUrl = Request.Url.AbsoluteUri.Substring(0, endPos).ToLower();
-        if (!WebSettings.IsLocalTest)
-        {
-            submitUrl = submitUrl.Replace("http://", "https://");
-        }
+        //submitUrl = Request.Url.AbsoluteUri.Substring(0, endPos).ToLower();
+        //if (!WebSettings.IsLocalTest)
+        //{
+        //    submitUrl = submitUrl.Replace("http://", "https://");
+        //}
 
 
     }

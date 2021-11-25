@@ -32,7 +32,7 @@
     </form>
      
     <iframe id="controlFr" name="controlFr" style="display: none;"></iframe>
-    <script language="javascript" type="text/javascript">
+   <%-- <script language="javascript" type="text/javascript">
         var plsInputUserNameErr = '<%=Resources.ErrorMsg.lblPlsEnterUserName %>';
         var plsInputPassErr = '<%=Resources.ErrorMsg.lblPlsEnterPassword %>';
         var theme = '<%=LoginTheme%>';
@@ -99,6 +99,6 @@
 
         signIn.system = theme.toLowerCase();
         signIn.bindingLoginTheme();
-    </script>
+    </script>--%>
 </body>
 </html>
