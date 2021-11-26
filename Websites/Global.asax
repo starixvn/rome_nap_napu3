@@ -27,14 +27,6 @@
     {
         // Code that runs on application startup    
         BootStrapperManager.Initialize(new UnityBootStrapper());
-        //For Data Replication System
-        //Sunplus.Data.DataAbstract.BootStrappers.BootStrapperManager.Initialize(new Sunplus.Data.DataAbstract.BootStrappers.UnityBootStrapper());
-
-        var logger = new CasinoAPILogger();
-        var manager = new Sunplus.Libraries.APILogger.APILogManager(logger);
-        string pattern = "AutoInsert*|Update*|Insert*|Move*|Reset*|FullSettlementResetMaxTransfer|Rollback*";
-        manager.Register(typeof(CasinoLibrary.SBAgent.Customer), pattern);
-        manager.Register(typeof(CasinoLibrary.SBAgent.BasicInfo), pattern);
 
         RegisterRouteMiscController(RouteTable.Routes);
 
@@ -161,34 +153,34 @@
     void Application_AcquireRequestState(object sender, EventArgs e)
     {
 
-        string url = Request.RawUrl.ToLower();
+        //string url = Request.RawUrl.ToLower();
 
-        var isDowntime = ConfigurationManager.AppSettings["UM"] == "1";
-        try
-        {
-            if (isDowntime && url.Contains(".aspx"))
-            {
-                var downTimeInfo = new Fanex.Tarus.Business.Implement.CommonService().GetDowntimeInfo();
-                if (downTimeInfo.IsDowntime)
-                {
-                    if (!url.Contains(Constants.Page.UMPage.ToLower().Replace("~", "")))
-                        Response.Redirect(Constants.Page.UMPage);
-                }
-                else
-                {
+        //var isDowntime = ConfigurationManager.AppSettings["UM"] == "1";
+        //try
+        //{
+        //    if (isDowntime && url.Contains(".aspx"))
+        //    {
+        //        var downTimeInfo = new Fanex.Tarus.Business.Implement.CommonService().GetDowntimeInfo();
+        //        if (downTimeInfo.IsDowntime)
+        //        {
+        //            if (!url.Contains(Constants.Page.UMPage.ToLower().Replace("~", "")))
+        //                Response.Redirect(Constants.Page.UMPage);
+        //        }
+        //        else
+        //        {
 
-                    if (!url.Contains(Constants.Page.SignIn.ToLower().Replace("~", "")) && !Request.IsAuthenticated)
-                    {
-                        Response.Redirect(Constants.Page.SignIn);
+        //            if (!url.Contains(Constants.Page.SignIn.ToLower().Replace("~", "")) && !Request.IsAuthenticated)
+        //            {
+        //                Response.Redirect(Constants.Page.SignIn);
 
-                    }
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            //Sunplus.Accounting.Core.Extensions.LogExtensions.ExceptionHandler(ex);
-        }
+        //            }
+        //        }
+        //    }
+        //}
+        //catch (Exception ex)
+        //{
+        //    //Sunplus.Accounting.Core.Extensions.LogExtensions.ExceptionHandler(ex);
+        //}
 
     }
 
