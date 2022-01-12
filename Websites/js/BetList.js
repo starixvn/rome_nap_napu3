@@ -423,8 +423,8 @@ function showLucky3Details(transId, custId) {
 }
 
 // --------------------
-function ViewResult(matchid, race, bettype, sporttype, refno, username, winlostdate, refno_mixparlay, league, is_outright, betid, matchcode, betcheck, transdesc) {
-    var resultParam = getResultParamBySportType(matchid, race, bettype, sporttype, league, betid, matchcode, transdesc, refno);
+function ViewResult(matchid, race, bettype, sporttype, refno, username, winlostdate, refno_mixparlay, league, is_outright, betid, matchcode, betcheck, transdesc, siteId) {
+    var resultParam = getResultParamBySportType(matchid, race, bettype, sporttype, refno, username, winlostdate, refno_mixparlay, league, is_outright, betid, matchcode, betcheck, transdesc, siteId);
 
     resultParam = resultParam || getResultParamByBetType(matchid, race, bettype, sporttype, refno, username, winlostdate, refno_mixparlay, league, is_outright, betid);
 
@@ -443,7 +443,7 @@ function ViewResult(matchid, race, bettype, sporttype, refno, username, winlostd
     openResultsPopUp(defaultResultParam);
 }
 
-function getResultParamBySportType(matchid, race, bettype, sporttype, league, betid, matchcode, transdesc, refno) {
+function getResultParamBySportType(matchid, race, bettype, sporttype, refno, username, winlostdate, refno_mixparlay, league, is_outright, currencyId, gameId3rd, custId, transId3rd, siteId) {
     switch (sporttype) {
         case 5: // Tennis.
             return getTennisParam();
@@ -464,7 +464,7 @@ function getResultParamBySportType(matchid, race, bettype, sporttype, league, be
             return getHappy5Param(matchid);
 
         case 168: // Happy5 Linked Games
-            return getLinkedGamesParam(betid, refno);
+            return getLinkedGamesParam(custId, refno, gameId3rd, currencyId, siteId);
 
         case 181:
         case 182:
@@ -477,18 +477,26 @@ function getResultParamBySportType(matchid, race, bettype, sporttype, league, be
             return getVirtualHRAndTennisParam(matchid, race, sporttype);
 
         case 211: // Allbet.
-            return getAllbetParam(transdesc, matchcode, bettype);
+            return getAllbetParam(transId3rd, gameId3rd, bettype);
 
         default:
             return undefined;
     }
 }
 
-function getLinkedGamesParam(custId, transId3rd) {
+function getLinkedGamesParam(custId, transId3rd, gameId3rd, currencyId, siteId) {
     return {
         url: "ThirdParty/LinkedGamesResult",
         title: "Happy 5 Linked Games Result",
-        jsonParam: { productId: 3, custId: custId, transId3rd: transId3rd },
+        jsonParam:
+        {
+            productId: 3,
+            custId: custId,
+            transId3rd: transId3rd,
+            gameId3rd: gameId3rd,
+            currencyId: currencyId,
+            siteId: siteId
+        },
         width: 945,
         height: 700
     };
